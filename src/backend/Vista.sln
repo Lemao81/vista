@@ -5,9 +5,58 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{5A4A
 		..\..\.gitignore = ..\..\.gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8AD07C1A-B654-4D63-BA02-CCC283192007}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileTransfer", "FileTransfer", "{E14AF59F-958A-4298-8673-759A5CC67206}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Services\FileTransfer\Application\Application.csproj", "{4FF7C167-427B-4142-9509-22B3596EA315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Services\FileTransfer\Domain\Domain.csproj", "{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Services\FileTransfer\Infrastructure\Infrastructure.csproj", "{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Services\FileTransfer\Presentation\Presentation.csproj", "{1C207893-0986-48FE-948B-35E780574030}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "Services\FileTransfer\WebApi\WebApi.csproj", "{522FEFF5-D234-433D-9D18-D406A98BC2EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34A438BD-31FB-4AC8-8139-ED98994FF08F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E14AF59F-958A-4298-8673-759A5CC67206} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
+		{4FF7C167-427B-4142-9509-22B3596EA315} = {E14AF59F-958A-4298-8673-759A5CC67206}
+		{D253F28E-FBE5-47C0-9325-2CB55ADB92CD} = {E14AF59F-958A-4298-8673-759A5CC67206}
+		{2CBC25FB-4CE8-438D-B53C-C9633B2E9932} = {E14AF59F-958A-4298-8673-759A5CC67206}
+		{1C207893-0986-48FE-948B-35E780574030} = {E14AF59F-958A-4298-8673-759A5CC67206}
+		{522FEFF5-D234-433D-9D18-D406A98BC2EA} = {E14AF59F-958A-4298-8673-759A5CC67206}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FF7C167-427B-4142-9509-22B3596EA315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FF7C167-427B-4142-9509-22B3596EA315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FF7C167-427B-4142-9509-22B3596EA315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FF7C167-427B-4142-9509-22B3596EA315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C207893-0986-48FE-948B-35E780574030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C207893-0986-48FE-948B-35E780574030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C207893-0986-48FE-948B-35E780574030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C207893-0986-48FE-948B-35E780574030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
