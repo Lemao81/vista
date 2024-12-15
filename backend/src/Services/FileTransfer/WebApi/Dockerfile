@@ -7,7 +7,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Services/FileTransfer/WebApi/WebApi.csproj", "Services/FileTransfer/WebApi/"]
+COPY ["src/Services/FileTransfer/WebApi/WebApi.csproj", "Services/FileTransfer/WebApi/"]
 RUN dotnet restore "Services/FileTransfer/WebApi/WebApi.csproj"
 COPY . .
 WORKDIR "/src/Services/FileTransfer/WebApi"

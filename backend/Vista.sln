@@ -1,29 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{5A4A4802-8A94-4392-9ED9-B3EB0E1C8C58}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\.gitignore = ..\..\.gitignore
-		.editorconfig = .editorconfig
-		Directory.build.props = Directory.build.props
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8AD07C1A-B654-4D63-BA02-CCC283192007}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileTransfer", "FileTransfer", "{E14AF59F-958A-4298-8673-759A5CC67206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Services\FileTransfer\Application\Application.csproj", "{4FF7C167-427B-4142-9509-22B3596EA315}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\FileTransfer\Application\Application.csproj", "{4FF7C167-427B-4142-9509-22B3596EA315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Services\FileTransfer\Domain\Domain.csproj", "{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Services\FileTransfer\Domain\Domain.csproj", "{D253F28E-FBE5-47C0-9325-2CB55ADB92CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Services\FileTransfer\Infrastructure\Infrastructure.csproj", "{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Services\FileTransfer\Infrastructure\Infrastructure.csproj", "{2CBC25FB-4CE8-438D-B53C-C9633B2E9932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Services\FileTransfer\Presentation\Presentation.csproj", "{1C207893-0986-48FE-948B-35E780574030}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Services\FileTransfer\Presentation\Presentation.csproj", "{1C207893-0986-48FE-948B-35E780574030}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "Services\FileTransfer\WebApi\WebApi.csproj", "{522FEFF5-D234-433D-9D18-D406A98BC2EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\Services\FileTransfer\WebApi\WebApi.csproj", "{522FEFF5-D234-433D-9D18-D406A98BC2EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34A438BD-31FB-4AC8-8139-ED98994FF08F}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		global.json = global.json
+		src\Directory.build.props = src\Directory.build.props
+		test\Directory.build.props = test\Directory.build.props
 	EndProjectSection
 EndProject
 Global

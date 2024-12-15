@@ -3,4 +3,4 @@
     image: webapi
     build:
       context: .
-      dockerfile: Services/FileTransfer/WebApi/Dockerfile
+      dockerfile: src/Services/FileTransfer/WebApi/Dockerfile
