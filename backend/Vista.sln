@@ -24,6 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		test\Directory.build.props = test\Directory.build.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{77BF20A9-EA2E-42FC-8D51-CA37B7DEDBAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTransfer", "src\Functions\FileTransfer\src\FileTransfer\FileTransfer.csproj", "{7972FFE3-3859-46A8-B89F-9771ED2148E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,7 @@ Global
 		{2CBC25FB-4CE8-438D-B53C-C9633B2E9932} = {E14AF59F-958A-4298-8673-759A5CC67206}
 		{1C207893-0986-48FE-948B-35E780574030} = {E14AF59F-958A-4298-8673-759A5CC67206}
 		{522FEFF5-D234-433D-9D18-D406A98BC2EA} = {E14AF59F-958A-4298-8673-759A5CC67206}
+		{7972FFE3-3859-46A8-B89F-9771ED2148E3} = {77BF20A9-EA2E-42FC-8D51-CA37B7DEDBAF}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4FF7C167-427B-4142-9509-22B3596EA315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +63,9 @@ Global
 		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{522FEFF5-D234-433D-9D18-D406A98BC2EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7972FFE3-3859-46A8-B89F-9771ED2148E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7972FFE3-3859-46A8-B89F-9771ED2148E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7972FFE3-3859-46A8-B89F-9771ED2148E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7972FFE3-3859-46A8-B89F-9771ED2148E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
