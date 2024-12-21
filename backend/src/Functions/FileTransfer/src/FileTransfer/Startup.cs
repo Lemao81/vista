@@ -6,12 +6,12 @@ namespace FileTransfer;
 [Amazon.Lambda.Annotations.LambdaStartup]
 public class Startup
 {
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var builder = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json", true);
+	public void ConfigureServices(IServiceCollection services)
+	{
+		var builder = new ConfigurationBuilder()
+			.AddJsonFile("appsettings.json", true);
 
-        var configuration = builder.Build();
-        services.AddSingleton<IConfiguration>(configuration);
-    }
+		var configuration = builder.Build();
+		services.AddSingleton<IConfiguration>(configuration);
+	}
 }

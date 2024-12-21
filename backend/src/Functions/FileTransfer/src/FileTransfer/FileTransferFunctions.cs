@@ -8,7 +8,7 @@ namespace FileTransfer;
 
 public class FileTransferFunctions
 {
-    public FileTransferFunctions()
-    {
-    }
+	public FileTransferFunctions()
+	{
+	}
 }

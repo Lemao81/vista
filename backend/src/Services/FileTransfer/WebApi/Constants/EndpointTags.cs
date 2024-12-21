@@ -2,5 +2,5 @@
 
 public static class EndpointTags
 {
-    public const string Pictures = "Pictures";
+	public const string Pictures = "Pictures";
 }
