@@ -1,9 +1,9 @@
 ﻿<Project>
-    <PropertyGroup>
+  <PropertyGroup>
 
-    </PropertyGroup>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0"/>
+  </ItemGroup>
 </Project>
