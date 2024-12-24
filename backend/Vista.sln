@@ -52,6 +52,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{44C79A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Services\Common\Domain\Domain.csproj", "{2700AB47-636E-4D10-98BC-67C3189AACB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Services\FileTransfer\Persistence\Persistence.csproj", "{70B0272D-ABF2-4C85-9CAB-9E6FAB7612A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{2700AB47-636E-4D10-98BC-67C3189AACB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2700AB47-636E-4D10-98BC-67C3189AACB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2700AB47-636E-4D10-98BC-67C3189AACB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B0272D-ABF2-4C85-9CAB-9E6FAB7612A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B0272D-ABF2-4C85-9CAB-9E6FAB7612A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B0272D-ABF2-4C85-9CAB-9E6FAB7612A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B0272D-ABF2-4C85-9CAB-9E6FAB7612A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +123,6 @@ Global
 		{E28677AD-6F4D-4C07-B05E-C9CB40C7AB5E} = {E429DAB5-32E9-48FB-995D-7806E2E114E2}
 		{44C79AF2-B0B3-404F-B437-A04C82B0B57B} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
 		{2700AB47-636E-4D10-98BC-67C3189AACB4} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
+		{70B0272D-ABF2-4C85-9CAB-9E6FAB7612A0} = {E14AF59F-958A-4298-8673-759A5CC67206}
 	EndGlobalSection
 EndGlobal

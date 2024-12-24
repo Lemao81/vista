@@ -2,6 +2,7 @@ using Application;
 using Domain;
 using FluentValidation;
 using Infrastructure;
+using Persistence;
 using Presentation;
 using WebApi.Pictures;
 
@@ -13,6 +14,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddPersistenceServices();
 builder.Services.AddPresentationServices();
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<AssemblyMarker>());
