@@ -8,4 +8,8 @@
     <AssemblyName>FileTransfer.Persistence</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
 </Project>

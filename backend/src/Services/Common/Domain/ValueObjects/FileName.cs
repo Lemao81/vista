@@ -7,7 +7,7 @@ public readonly record struct FileName
 		var dotIndex = value.LastIndexOf('.');
 		if (dotIndex < 0 || dotIndex == value.Length - 1)
 		{
-			throw new ArgumentException($"File name must have an extension - given '{value}'");
+			throw new ArgumentException($"'{nameof(value)}' must have an extension", nameof(value));
 		}
 
 		Value = value;
