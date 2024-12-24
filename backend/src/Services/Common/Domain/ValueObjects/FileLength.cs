@@ -11,6 +11,6 @@ public readonly record struct FileLength
 
 	public ulong Value { get; }
 
-	public static implicit operator FileLength(long value) => new(value);
+	public static implicit operator FileLength(long value)      => new(value);
 	public static implicit operator long(FileLength fileLength) => (long)fileLength.Value;
 }

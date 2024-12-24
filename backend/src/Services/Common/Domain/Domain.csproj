@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="UtilExtensions" Version="0.0.3" />
+    <PackageReference Include="UtilExtensions" Version="0.0.3"/>
   </ItemGroup>
 
 </Project>

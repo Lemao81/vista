@@ -17,5 +17,5 @@ public record UserId
 	public Guid Value { get; }
 
 	public static implicit operator Guid(UserId folderId) => folderId.Value;
-	public static implicit operator UserId(Guid id) => new(id);
+	public static implicit operator UserId(Guid id)       => new(id);
 }

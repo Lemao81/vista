@@ -9,13 +9,13 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 
 	private MediaFolder(MediaFolderId id, UserId userId)
 	{
-		Id = id;
+		Id     = id;
 		UserId = userId;
 	}
 
-	public override MediaFolderId Id { get; protected set; }
-	public UserId UserId { get; private set; }
-	public IReadOnlyCollection<MediaItem> MediaItems => _mediaItems;
+	public override MediaFolderId                  Id         { get; protected set; }
+	public          UserId                         UserId     { get; private set; }
+	public          IReadOnlyCollection<MediaItem> MediaItems => _mediaItems;
 
 	public void AddMediaItem(MediaItem mediaItem)
 	{

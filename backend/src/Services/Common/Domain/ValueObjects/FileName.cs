@@ -10,15 +10,15 @@ public readonly record struct FileName
 			throw new ArgumentException($"'{nameof(value)}' must have an extension", nameof(value));
 		}
 
-		Value = value;
-		Name = value[..dotIndex];
+		Value     = value;
+		Name      = value[..dotIndex];
 		Extension = value[(dotIndex + 1)..];
 	}
 
-	public string Value { get; }
-	public string Name { get; }
+	public string Value     { get; }
+	public string Name      { get; }
 	public string Extension { get; }
 
-	public static implicit operator FileName(string value) => new(value);
+	public static implicit operator FileName(string value)    => new(value);
 	public static implicit operator string(FileName fileName) => fileName.Value;
 }

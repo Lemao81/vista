@@ -17,5 +17,5 @@ public record MediaItemId
 	public Guid Value { get; }
 
 	public static implicit operator Guid(MediaItemId folderId) => folderId.Value;
-	public static implicit operator MediaItemId(Guid id) => new(id);
+	public static implicit operator MediaItemId(Guid id)       => new(id);
 }

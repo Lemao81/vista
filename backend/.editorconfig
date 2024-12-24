@@ -4,9 +4,19 @@ root = true
 indent_style = tab
 max_line_length = 160
 
-[{*.csproj,*.props}]
+[{*.csproj,*.props,*.json,*.yml}]
 indent_style = space
 indent_size = 2
 
 [*.cs]
-resharper_wrap_chained_method_calls = chop_if_long
+resharper_csharp_wrap_chained_method_calls = chop_if_long
+resharper_csharp_int_align_assignments = true
+resharper_csharp_int_align_fields = true
+resharper_csharp_int_align_methods = true
+resharper_csharp_int_align_nested_ternary = true
+resharper_csharp_int_align_parameters = true
+resharper_csharp_int_align_properties = true
+resharper_csharp_int_align_property_patterns = true
+resharper_csharp_int_align_switch_expressions = true
+resharper_csharp_int_align_switch_sections = true
+resharper_csharp_int_align_variables = true

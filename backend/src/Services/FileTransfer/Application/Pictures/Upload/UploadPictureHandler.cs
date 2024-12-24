@@ -16,9 +16,9 @@ internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureComman
 	{
 		try
 		{
-			var userId = Guid.NewGuid();
+			var userId      = Guid.NewGuid();
 			var mediaFolder = MediaFolder.Create(userId);
-			var mediaItem = MediaItem.Create(userId, MediaKind.Picture, MediaSizeKind.Original);
+			var mediaItem   = MediaItem.Create(userId, MediaKind.Picture, MediaSizeKind.Original);
 			mediaFolder.AddMediaItem(mediaItem);
 			mediaFolder = await _mediaFolderRepository.AddMediaFolderAsync(mediaFolder);
 

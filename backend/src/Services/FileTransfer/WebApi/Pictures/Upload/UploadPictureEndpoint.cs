@@ -25,7 +25,7 @@ public static class UploadPictureEndpoint
 
 				ArgumentNullException.ThrowIfNull(request.File);
 
-				var command = new UploadPictureCommand(request.File.OpenReadStream(), request.File.FileName, request.File.Length);
+				var command  = new UploadPictureCommand(request.File.OpenReadStream(), request.File.FileName, request.File.Length);
 				var response = await sender.Send(command);
 
 				return Results.Created($"/pictures/{response.Id}", response.Id);
