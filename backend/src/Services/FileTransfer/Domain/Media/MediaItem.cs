@@ -14,11 +14,12 @@ public sealed class MediaItem : Entity<MediaItemId>
 		MediaSizeKind = mediaSizeKind;
 	}
 
-	public override MediaItemId   Id            { get; protected set; }
-	public          MediaFolderId MediaFolderId { get; private set; }
-	public          UserId        UserId        { get; private set; }
-	public          MediaKind     MediaKind     { get; private set; }
-	public          MediaSizeKind MediaSizeKind { get; private set; }
+	public override MediaItemId   Id             { get; protected set; }
+	public          MediaFolderId MediaFolderId  { get; private set; }
+	public          UserId        UserId         { get; private set; }
+	public          MediaKind     MediaKind      { get; private set; }
+	public          MediaSizeKind MediaSizeKind  { get; private set; }
+	public          byte          StorageVersion { get; private set; }
 
 	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind) =>
 		new(new MediaItemId(Guid.NewGuid()), mediaFolderId, userId, mediaKind, mediaSizeKind);
