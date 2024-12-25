@@ -27,5 +27,5 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 		_mediaItems.Add(mediaItem);
 	}
 
-	public static MediaFolder Create(UserId userId) => new(Guid.NewGuid(), userId);
+	public static MediaFolder Create(UserId userId) => new(new MediaFolderId(Guid.NewGuid()), userId);
 }

@@ -2,6 +2,11 @@
 
 public readonly record struct FileName
 {
+	public FileName()
+	{
+		throw new NotSupportedException();
+	}
+
 	public FileName(string value)
 	{
 		var dotIndex = value.LastIndexOf('.');

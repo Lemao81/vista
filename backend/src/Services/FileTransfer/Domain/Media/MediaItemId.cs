@@ -8,7 +8,7 @@ public record MediaItemId
 	{
 		if (value.IsEmpty())
 		{
-			throw new ArgumentException($"'{nameof(value)}' cannot be empty.", nameof(value));
+			throw new ArgumentException($"'{nameof(value)}' cannot be empty", nameof(value));
 		}
 
 		Value = value;
@@ -17,5 +17,4 @@ public record MediaItemId
 	public Guid Value { get; }
 
 	public static implicit operator Guid(MediaItemId folderId) => folderId.Value;
-	public static implicit operator MediaItemId(Guid id)       => new(id);
 }
