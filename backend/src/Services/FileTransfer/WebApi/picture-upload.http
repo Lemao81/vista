@@ -1,0 +1,49 @@
+﻿@WebApi_HostAddress = http://localhost:5000
+
+###
+# @name UploadValidImage
+POST {{WebApi_HostAddress}}/pictures
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="test_600x400.png"
+Content-Type: image/png
+
+< ./testdata/test_600x400.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# @name UploadEmptyImage
+POST {{WebApi_HostAddress}}/pictures
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="empty.png"
+Content-Type: image/png
+
+< ./testdata/empty.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# @name UploadNoExtensionFile
+POST {{WebApi_HostAddress}}/pictures
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="noextension"
+Content-Type: image/png
+
+< ./testdata/test_600x400.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# @name UploadRequestNull
+POST {{WebApi_HostAddress}}/pictures
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename=""
+Content-Type: image/png
+
+< ./testdata/test_600x400.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

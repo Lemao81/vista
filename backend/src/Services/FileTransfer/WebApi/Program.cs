@@ -18,7 +18,7 @@ builder.Services.AddPersistenceServices();
 builder.Services.AddPresentationServices();
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<AssemblyMarker>());
-builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>(includeInternalTypes: true);
 
 var app = builder.Build();
 
