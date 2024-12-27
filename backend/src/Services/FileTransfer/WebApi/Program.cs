@@ -2,6 +2,7 @@ using Application;
 using Domain;
 using FluentValidation;
 using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Presentation;
 using WebApi.Pictures;
@@ -14,7 +15,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
-builder.Services.AddPersistenceServices();
+builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<AssemblyMarker>());
@@ -33,4 +34,15 @@ app.MapPictureEndpoints();
 
 app.UseHttpsRedirection();
 
+await MigrateDatabaseAsync(app);
+
 app.Run();
+
+return;
+
+async Task MigrateDatabaseAsync(WebApplication webApplication)
+{
+	using var scope     = webApplication.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+	var       dbContext = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
+	await dbContext.Database.MigrateAsync();
+}
