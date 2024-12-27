@@ -9,7 +9,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Disposition: form-data; name="file"; filename="test_600x400.png"
 Content-Type: image/png
 
-< ./testdata/test_600x400.png
+< ../../../../dev/testdata/images/ph_600x400.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
@@ -21,7 +21,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Disposition: form-data; name="file"; filename="empty.png"
 Content-Type: image/png
 
-< ./testdata/empty.png
+< ../../../../dev/testdata/images/empty.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
@@ -33,7 +33,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Disposition: form-data; name="file"; filename="noextension"
 Content-Type: image/png
 
-< ./testdata/test_600x400.png
+< ../../../../dev/testdata/images/ph_600x400.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
@@ -45,5 +45,5 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Disposition: form-data; name="file"; filename=""
 Content-Type: image/png
 
-< ./testdata/test_600x400.png
+< ../../../../dev/testdata/images/ph_600x400.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
