@@ -13,7 +13,7 @@ internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureComman
 		_mediaFolderRepository = mediaFolderRepository;
 	}
 
-	public async Task<UploadPictureResponse> Handle(UploadPictureCommand request, CancellationToken cancellationToken)
+	public async Task<UploadPictureResponse> Handle(UploadPictureCommand command, CancellationToken cancellationToken)
 	{
 		try
 		{
@@ -21,13 +21,15 @@ internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureComman
 			var mediaFolder = MediaFolder.Create(userId);
 			var mediaItem   = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Picture, MediaSizeKind.Original);
 			mediaFolder.AddMediaItem(mediaItem);
-			mediaFolder = await _mediaFolderRepository.AddMediaFolderAsync(mediaFolder);
+			using var ms = new MemoryStream();
+			await command.Stream.CopyToAsync(ms, cancellationToken);
+			mediaFolder = await _mediaFolderRepository.AddMediaFolderAsync(mediaFolder, ms.ToArray());
 
 			return new UploadPictureResponse(mediaFolder.Id);
 		}
 		finally
 		{
-			await request.Stream.DisposeAsync();
+			await command.Stream.DisposeAsync();
 		}
 	}
 }

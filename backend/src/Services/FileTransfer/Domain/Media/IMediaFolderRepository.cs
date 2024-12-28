@@ -2,5 +2,5 @@
 
 public interface IMediaFolderRepository
 {
-	Task<MediaFolder> AddMediaFolderAsync(MediaFolder mediaFolder);
+	Task<MediaFolder> AddMediaFolderAsync(MediaFolder mediaFolder, byte[] bytes);
 }

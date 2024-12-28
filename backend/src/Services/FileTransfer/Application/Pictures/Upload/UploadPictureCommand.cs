@@ -1,6 +1,6 @@
-﻿using Domain.ValueObjects;
-using MediatR;
+﻿using Application.Abstractions;
+using Domain.ValueObjects;
 
 namespace Application.Pictures.Upload;
 
-public sealed record UploadPictureCommand(Stream Stream, FileName FileName, FileLength FileLength) : IRequest<UploadPictureResponse>;
+public sealed record UploadPictureCommand(Stream Stream, FileName FileName, FileLength FileLength) : ICommand<UploadPictureResponse>;

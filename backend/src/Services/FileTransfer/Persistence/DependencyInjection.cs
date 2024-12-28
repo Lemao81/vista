@@ -1,4 +1,5 @@
 ﻿using Application;
+using Domain.Abstractions;
 using Domain.Media;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ public static class DependencyInjection
 				.UseSnakeCaseNamingConvention();
 		});
 
+		services.AddScoped<IUnitOfWork, UnitOfWork>();
 		services.AddScoped<IMediaFolderRepository, MediaFolderRepository>();
 		services.AddScoped<IObjectStorage, MinIoObjectStorage>();
 
