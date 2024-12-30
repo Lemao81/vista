@@ -5,6 +5,8 @@ namespace Domain.Media;
 
 public sealed class MediaItem : Entity<MediaItemId>
 {
+	private Dictionary<string, object> _metadata = [];
+
 	private MediaItem(MediaItemId id, MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind)
 	{
 		Id            = id;
@@ -20,6 +22,14 @@ public sealed class MediaItem : Entity<MediaItemId>
 	public          MediaKind     MediaKind      { get; private set; }
 	public          MediaSizeKind MediaSizeKind  { get; private set; }
 	public          byte          StorageVersion { get; private set; }
+
+	public IReadOnlyDictionary<string, object> MetaData
+	{
+		get => _metadata;
+		private set => _metadata = new Dictionary<string, object>(value);
+	}
+
+	public void AddMetaData(string key, object value) => _metadata[key] = value;
 
 	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind) =>
 		new(new MediaItemId(Guid.NewGuid()), mediaFolderId, userId, mediaKind, mediaSizeKind);
