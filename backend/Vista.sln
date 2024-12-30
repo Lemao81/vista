@@ -69,6 +69,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\Common\Application\Application.csproj", "{786C3909-D72E-4660-8233-6A94960D5798}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{E31BAA2D-B8BA-4FE4-87C5-09FBFD43FD6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGenerator", "tools\TestDataGenerator\TestDataGenerator.csproj", "{A085E387-C54A-464E-A4F5-BBAD2130A5D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +131,10 @@ Global
 		{786C3909-D72E-4660-8233-6A94960D5798}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{786C3909-D72E-4660-8233-6A94960D5798}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{786C3909-D72E-4660-8233-6A94960D5798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,5 +159,6 @@ Global
 		{403AA2FF-4781-4CF2-90BA-11B7F021A337} = {203DE8DD-CC13-4857-A98D-F0BC32AD71BA}
 		{1FD6B13B-E9A6-46FB-8B7B-D3E1A693FBBA} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
 		{786C3909-D72E-4660-8233-6A94960D5798} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
+		{A085E387-C54A-464E-A4F5-BBAD2130A5D1} = {E31BAA2D-B8BA-4FE4-87C5-09FBFD43FD6E}
 	EndGlobalSection
 EndGlobal
