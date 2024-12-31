@@ -10,6 +10,9 @@ indent_size = 2
 
 [*.cs]
 resharper_csharp_wrap_chained_method_calls = chop_if_long
+resharper_csharp_wrap_arguments_style = chop_if_long
+resharper_csharp_wrap_parameters_style = chop_if_long
+
 resharper_csharp_int_align_assignments = true
 resharper_csharp_int_align_fields = true
 resharper_csharp_int_align_methods = true
@@ -20,3 +23,20 @@ resharper_csharp_int_align_property_patterns = true
 resharper_csharp_int_align_switch_expressions = true
 resharper_csharp_int_align_switch_sections = true
 resharper_csharp_int_align_variables = true
+
+resharper_csharp_braces_for_for = required
+resharper_csharp_braces_for_foreach = required
+resharper_csharp_braces_for_ifelse = required
+resharper_csharp_braces_for_while = required
+
+resharper_csharp_align_multiline_expression = true
+resharper_csharp_align_multiline_extends_list = true
+resharper_csharp_align_multiline_for_stmt = true
+resharper_csharp_align_multiline_parameter = true
+resharper_csharp_align_multiline_property_pattern = true
+resharper_csharp_align_multiline_type_parameter_constraints = true
+resharper_csharp_align_multiline_type_parameter_list = true
+resharper_csharp_align_multiple_declaration = true
+resharper_csharp_align_tuple_components = true
+
+resharper_csharp_blank_lines_after_multiline_statements = 1
