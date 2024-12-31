@@ -12,12 +12,21 @@ public abstract class BasePipelineBehavior<TRequest, TResponse> : IPipelineBehav
 	protected TResponse CreateErrorResult(Error error)
 	{
 		var responseType = typeof(TResponse);
-		if (!responseType.IsGenericType || responseType.GetGenericTypeDefinition() != typeof(Result<>))
+		if (responseType.IsGenericType && responseType.GetGenericTypeDefinition() == typeof(Result<>))
 		{
-			throw new ApplicationException("Response type supposed to be Result<>");
+			var genericResult = Activator.CreateInstance(responseType, BindingFlags.Instance | BindingFlags.NonPublic, null, [error], null);
+			ArgumentNullException.ThrowIfNull(genericResult);
+
+			return (TResponse)genericResult;
 		}
 
-		var result = Activator.CreateInstance(responseType, BindingFlags.Instance | BindingFlags.NonPublic, null, [error], null);
+
+		if (responseType != typeof(Result))
+		{
+			throw new ApplicationException("Response type supposed to be Result<> or Result");
+		}
+
+		var result = Activator.CreateInstance(responseType, BindingFlags.Instance | BindingFlags.NonPublic, null, [false, error], null);
 		ArgumentNullException.ThrowIfNull(result);
 
 		return (TResponse)result;

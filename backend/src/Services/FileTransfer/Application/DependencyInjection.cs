@@ -11,6 +11,7 @@ public static class DependencyInjection
 		{
 			config.RegisterServicesFromAssemblyContaining<AssemblyMarker>();
 			config.AddOpenBehavior(typeof(ExceptionHandlingBehavior<,>));
+			config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 			config.AddOpenBehavior(typeof(TransactionalBehavior<,>));
 		});
 

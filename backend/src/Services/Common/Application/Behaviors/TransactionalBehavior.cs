@@ -23,11 +23,11 @@ public sealed class TransactionalBehavior<TRequest, TResponse> : BasePipelineBeh
 
 		try
 		{
-			var response = await next();
+			var result = await next();
 			await _unitOfWork.SaveChangesAsync(cancellationToken);
 			await transaction.CommitAsync(cancellationToken);
 
-			return response;
+			return result;
 		}
 		catch (Exception exception)
 		{
