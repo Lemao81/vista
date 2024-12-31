@@ -1,16 +1,24 @@
 using Application;
 using Domain;
+using Domain.ValueObjects;
 using FluentValidation;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Presentation;
+using WebApi;
 using WebApi.Pictures;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddProblemDetails();
+builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
+{
+	if (context.HttpContext.Items.TryGetValue(HttpContextItemKeys.ErrorCode, out var code) && code is ErrorCode errorCode)
+	{
+		context.ProblemDetails.Extensions.Add(ProblemDetailsExtensionKeys.ErrorCode, errorCode.Value);
+	}
+});
 
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();

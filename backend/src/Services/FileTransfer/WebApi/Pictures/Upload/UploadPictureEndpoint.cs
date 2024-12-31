@@ -3,7 +3,7 @@ using Domain.ValueObjects;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Constants;
+using WebApi.Extensions;
 
 namespace WebApi.Pictures.Upload;
 
@@ -12,7 +12,7 @@ public static class UploadPictureEndpoint
 	public static void MapUploadPictureEndpoint(this RouteGroupBuilder groupBuilder)
 	{
 		groupBuilder.MapPost("",
-				async ([FromForm] UploadPictureRequest? request, IValidator<UploadPictureRequest> validator, ISender sender) =>
+				async ([FromForm] UploadPictureRequest? request, IValidator<UploadPictureRequest> validator, ISender sender, HttpContext httpContext) =>
 				{
 					if (request is null)
 					{
@@ -29,12 +29,14 @@ public static class UploadPictureEndpoint
 
 					var command = new UploadPictureCommand(request.File.OpenReadStream(), request.File.FileName, request.File.Length);
 					var result  = await sender.Send(command);
+					httpContext.MaybeAddError(result);
 
-					return result.Match(response => Results.Created($"/pictures/{response.Id}", response.Id),
+					return result.Match(
+						response => Results.Created($"/pictures/{response.Id}", response.Id),
 						error => error switch
 						{
-							ValidationError validationError => Results.ValidationProblem(validationError.Errors),
-							_                               => Results.InternalServerError()
+							ValidationError valError => Results.ValidationProblem(valError.Errors),
+							_                        => Results.InternalServerError()
 						});
 				})
 			.DisableAntiforgery()
