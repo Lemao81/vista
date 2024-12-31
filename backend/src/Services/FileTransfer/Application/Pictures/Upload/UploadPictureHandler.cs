@@ -1,10 +1,11 @@
-﻿using Domain.Media;
+﻿using Domain;
+using Domain.Media;
 using Domain.Users;
 using MediatR;
 
 namespace Application.Pictures.Upload;
 
-internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureCommand, UploadPictureResponse>
+internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureCommand, Result<UploadPictureResponse>>
 {
 	private readonly IMediaFolderRepository _mediaFolderRepository;
 
@@ -13,7 +14,7 @@ internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureComman
 		_mediaFolderRepository = mediaFolderRepository;
 	}
 
-	public async Task<UploadPictureResponse> Handle(UploadPictureCommand command, CancellationToken cancellationToken)
+	public async Task<Result<UploadPictureResponse>> Handle(UploadPictureCommand command, CancellationToken cancellationToken)
 	{
 		try
 		{

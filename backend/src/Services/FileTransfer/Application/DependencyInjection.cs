@@ -10,7 +10,8 @@ public static class DependencyInjection
 		services.AddMediatR(config =>
 		{
 			config.RegisterServicesFromAssemblyContaining<AssemblyMarker>();
-			config.AddOpenBehavior(typeof(UnitOfWorkBehavior<,>));
+			config.AddOpenBehavior(typeof(ExceptionHandlingBehavior<,>));
+			config.AddOpenBehavior(typeof(TransactionalBehavior<,>));
 		});
 
 		return services;
