@@ -6,12 +6,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Behaviors;
 
-public sealed class TransactionalBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : ITransactionalBaseCommand
+public sealed class TransactionalPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : ITransactionalBaseCommand
 {
-	private readonly IUnitOfWork                                         _unitOfWork;
-	private readonly ILogger<TransactionalBehavior<TRequest, TResponse>> _logger;
+	private readonly IUnitOfWork                                                 _unitOfWork;
+	private readonly ILogger<TransactionalPipelineBehavior<TRequest, TResponse>> _logger;
 
-	public TransactionalBehavior(IUnitOfWork unitOfWork, ILogger<TransactionalBehavior<TRequest, TResponse>> logger)
+	public TransactionalPipelineBehavior(IUnitOfWork unitOfWork, ILogger<TransactionalPipelineBehavior<TRequest, TResponse>> logger)
 	{
 		_unitOfWork = unitOfWork;
 		_logger     = logger;

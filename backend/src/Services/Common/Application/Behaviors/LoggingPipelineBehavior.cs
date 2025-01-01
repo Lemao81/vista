@@ -6,11 +6,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Behaviors;
 
-public class LoggingBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull where TResponse : Result
+public class LoggingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull where TResponse : Result
 {
-	private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
+	private readonly ILogger<LoggingPipelineBehavior<TRequest, TResponse>> _logger;
 
-	public LoggingBehavior(ILogger<LoggingBehavior<TRequest, TResponse>> logger)
+	public LoggingPipelineBehavior(ILogger<LoggingPipelineBehavior<TRequest, TResponse>> logger)
 	{
 		_logger = logger;
 	}

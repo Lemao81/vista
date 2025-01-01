@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Behaviors;
 
-public sealed class ExceptionHandlingBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
-	private readonly ILogger<ExceptionHandlingBehavior<TRequest, TResponse>> _logger;
+	private readonly ILogger<ExceptionHandlingPipelineBehavior<TRequest, TResponse>> _logger;
 
-	public ExceptionHandlingBehavior(ILogger<ExceptionHandlingBehavior<TRequest, TResponse>> logger)
+	public ExceptionHandlingPipelineBehavior(ILogger<ExceptionHandlingPipelineBehavior<TRequest, TResponse>> logger)
 	{
 		_logger = logger;
 	}

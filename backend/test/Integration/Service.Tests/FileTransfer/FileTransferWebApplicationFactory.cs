@@ -4,11 +4,11 @@ using DotNet.Testcontainers.Networks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Testcontainers.PostgreSql;
-using AssemblyMarker = WebApi.AssemblyMarker;
+using WebApi;
 
 namespace Service.Tests.FileTransfer;
 
-public class FileTransferWebApplicationFactory : WebApplicationFactory<AssemblyMarker>, IAsyncLifetime
+public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAssemblyMarker>, IAsyncLifetime
 {
 	private readonly INetwork            _network;
 	private readonly PostgreSqlContainer _postgresContainer;
