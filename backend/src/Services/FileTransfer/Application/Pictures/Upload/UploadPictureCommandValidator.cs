@@ -1,0 +1,25 @@
+﻿using Domain.Media;
+using FluentValidation;
+using Microsoft.Extensions.Options;
+using UtilExtensions;
+
+namespace Application.Pictures.Upload;
+
+public class UploadPictureCommandValidator : AbstractValidator<UploadPictureCommand>
+{
+	public UploadPictureCommandValidator(IOptions<UploadMediaOptions> options)
+	{
+		var uploadOptions = options.Value;
+
+		RuleFor(c => c.ContentType)
+			.Must(v => uploadOptions.ValidPictureContentTypes.Contains(v.MediaType))
+			.WithMessage($"Content type must be one of: {uploadOptions.ValidPictureContentTypes.ToCommaSeparated()}");
+
+		RuleFor(c => c.FileName)
+			.Must(f => uploadOptions.ValidPictureFileExtensions.Contains(f.Extension))
+			.WithMessage($"File extension must be one of: {uploadOptions.ValidPictureFileExtensions.ToCommaSeparated()}");
+
+		RuleFor(c => c.FileLength).GreaterThan(0);
+		RuleFor(c => c.FileLength).LessThanOrEqualTo(uploadOptions.MaxPictureFileLengthKb * 1024);
+	}
+}

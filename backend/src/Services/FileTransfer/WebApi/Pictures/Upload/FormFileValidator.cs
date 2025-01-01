@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Net.Http.Headers;
+using FluentValidation;
 
 namespace WebApi.Pictures.Upload;
 
@@ -6,12 +7,20 @@ internal sealed class FormFileValidator : AbstractValidator<IFormFile?>
 {
 	public FormFileValidator()
 	{
+		RuleFor(f => f!.ContentType)
+			.NotNull()
+			.NotEmpty()
+			.Must(c => MediaTypeHeaderValue.TryParse(c, out _))
+			.WithMessage("Content type not valid")
+			.When(f => f is not null);
+
 		RuleFor(f => f!.FileName)
 			.NotNull()
 			.NotEmpty()
 			.Must(ContainExtension)
 			.WithMessage("File name must have an extension.")
 			.When(f => f is not null);
+
 		RuleFor(f => f!.Length).GreaterThan(0).When(f => f is not null);
 	}
 

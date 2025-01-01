@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects;
 
-public readonly record struct FileLength
+public readonly record struct FileLength : IComparable, IComparable<FileLength>
 {
 	public FileLength(long value)
 	{
@@ -10,6 +10,10 @@ public readonly record struct FileLength
 	}
 
 	public ulong Value { get; }
+
+	public int CompareTo(object? obj) => Value.CompareTo(obj);
+
+	public int CompareTo(FileLength other) => Value.CompareTo(other.Value);
 
 	public static implicit operator FileLength(long value)      => new(value);
 	public static implicit operator long(FileLength fileLength) => (long)fileLength.Value;

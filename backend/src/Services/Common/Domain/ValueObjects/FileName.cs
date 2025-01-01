@@ -15,9 +15,9 @@ public readonly record struct FileName
 			throw new ArgumentException($"'{nameof(value)}' must have an extension", nameof(value));
 		}
 
-		Value     = value;
-		Name      = value[..dotIndex];
-		Extension = value[(dotIndex + 1)..];
+		Value     = value.ToLowerInvariant();
+		Name      = value[..dotIndex].ToLowerInvariant();
+		Extension = value[(dotIndex + 1)..].ToLowerInvariant();
 	}
 
 	public string Value     { get; }

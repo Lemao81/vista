@@ -1,4 +1,5 @@
-﻿using Application.Pictures.Upload;
+﻿using System.Net.Http.Headers;
+using Application.Pictures.Upload;
 using Domain.ValueObjects;
 using FluentValidation;
 using MediatR;
@@ -27,8 +28,9 @@ public static class UploadPictureEndpoint
 
 					ArgumentNullException.ThrowIfNull(request.File);
 
-					var command = new UploadPictureCommand(request.File.OpenReadStream(), request.File.FileName, request.File.Length);
-					var result  = await sender.Send(command);
+					var contentType = new MediaTypeHeaderValue(request.File.ContentType);
+					var command     = new UploadPictureCommand(request.File.OpenReadStream(), contentType, request.File.FileName, request.File.Length);
+					var result      = await sender.Send(command);
 					httpContext.MaybeAddError(result);
 
 					return result.Match(

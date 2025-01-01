@@ -1,5 +1,6 @@
 using Application;
 using Domain;
+using Domain.Media;
 using Domain.ValueObjects;
 using FluentValidation;
 using Infrastructure;
@@ -26,7 +27,9 @@ builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
-builder.Services.AddValidatorsFromAssemblyContaining<Program>(includeInternalTypes: true);
+builder.Services.AddValidatorsFromAssemblies([typeof(WebApiAssemblyMarker).Assembly, typeof(ApplicationAssemblyMarker).Assembly], includeInternalTypes: true);
+
+builder.Services.Configure<UploadMediaOptions>(builder.Configuration.GetSection(ConfigurationKeys.MediaUpload));
 
 var app = builder.Build();
 

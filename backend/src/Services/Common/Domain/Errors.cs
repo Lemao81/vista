@@ -4,13 +4,15 @@ namespace Domain;
 
 public static class ErrorCodes
 {
-	private const string NoneValue           = "None";
-	private const string UnknownValue        = "Unknown";
-	private const string EntityNotFoundValue = "EntityNotFound";
+	private const string NoneValue             = "None";
+	private const string UnknownValue          = "Unknown";
+	private const string ValidationFailedValue = "ValidationFailed";
+	private const string EntityNotFoundValue   = "EntityNotFound";
 
-	public static readonly ErrorCode None           = new(NoneValue);
-	public static readonly ErrorCode Unknown        = new(UnknownValue);
-	public static readonly ErrorCode EntityNotFound = new(EntityNotFoundValue);
+	public static readonly ErrorCode None             = new(NoneValue);
+	public static readonly ErrorCode Unknown          = new(UnknownValue);
+	public static readonly ErrorCode ValidationFailed = new(ValidationFailedValue);
+	public static readonly ErrorCode EntityNotFound   = new(EntityNotFoundValue);
 }
 
 public static class Errors

@@ -6,7 +6,7 @@ POST {{WebApi_HostAddress}}/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="test_600x400.png"
+Content-Disposition: form-data; name="file"; filename="ph_600x400.png"
 Content-Type: image/png
 
 < ../../../../dev/testdata/images/ph_600x400.png
@@ -46,4 +46,16 @@ Content-Disposition: form-data; name="file"; filename=""
 Content-Type: image/png
 
 < ../../../../dev/testdata/images/ph_600x400.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# @name UploadInvalidFileType
+POST {{WebApi_HostAddress}}/pictures
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="test.txt"
+Content-Type: text/plain
+
+< ../../../../dev/testdata/images/test.txt
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--

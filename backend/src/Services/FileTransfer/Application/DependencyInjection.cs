@@ -9,13 +9,10 @@ public static class DependencyInjection
 	{
 		services.AddMediatR(config =>
 		{
-			config.RegisterServicesFromAssemblyContaining<AssemblyMarker>();
-			config.AddOpenBehavior(typeof(ExceptionHandlingBehavior<,>));
-			config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-			config.AddOpenBehavior(typeof(TransactionalBehavior<,>));
 			config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyMarker>();
 			config.AddOpenBehavior(typeof(ExceptionHandlingPipelineBehavior<,>));
 			config.AddOpenBehavior(typeof(LoggingPipelineBehavior<,>));
+			config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
 			config.AddOpenBehavior(typeof(TransactionalPipelineBehavior<,>));
 		});
 
