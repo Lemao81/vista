@@ -21,9 +21,9 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
-		builder.UseSetting(ConfigurationKeys.DbHost, $"{_postgresContainer.Hostname}:{_postgresContainer.GetMappedPublicPort(5432)}");
-		builder.UseSetting(ConfigurationKeys.DbUsername, "sa");
-		builder.UseSetting(ConfigurationKeys.DbPassword, "test_pwd");
+		builder.UseSetting(ConfigurationKeys.DatabaseHost, $"{_postgresContainer.Hostname}:{_postgresContainer.GetMappedPublicPort(5432)}");
+		builder.UseSetting(ConfigurationKeys.DatabaseUsername, "sa");
+		builder.UseSetting(ConfigurationKeys.DatabasePassword, "test_pwd");
 	}
 
 	public async Task InitializeAsync()

@@ -6,8 +6,8 @@ public static class Constants
 
 public static class ConfigurationKeys
 {
-	public const string DbHost      = "DbHost";
-	public const string DbUsername  = "DbUsername";
-	public const string DbPassword  = "DbPassword";
-	public const string MediaUpload = "Media:Upload";
+	public const string DatabaseHost     = "Database:Host";
+	public const string DatabaseUsername = "Database:Username";
+	public const string DatabasePassword = "Database:Password";
+	public const string MediaUpload      = "Media:Upload";
 }

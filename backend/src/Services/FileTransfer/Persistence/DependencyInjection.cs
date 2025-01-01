@@ -33,19 +33,19 @@ public static class DependencyInjection
 
 	private static NpgsqlDataSource CreateDataSource(IConfiguration configuration)
 	{
-		var host = configuration[ConfigurationKeys.DbHost];
+		var host = configuration[ConfigurationKeys.DatabaseHost];
 		if (host.IsNullOrWhiteSpace())
 		{
 			throw new ApplicationException("Database host is not configured");
 		}
 
-		var username = configuration[ConfigurationKeys.DbUsername];
+		var username = configuration[ConfigurationKeys.DatabaseUsername];
 		if (username.IsNullOrWhiteSpace())
 		{
 			throw new ApplicationException("Database username is not configured");
 		}
 
-		var password = configuration[ConfigurationKeys.DbPassword];
+		var password = configuration[ConfigurationKeys.DatabasePassword];
 		if (password.IsNullOrWhiteSpace())
 		{
 			throw new ApplicationException("Database password is not configured");

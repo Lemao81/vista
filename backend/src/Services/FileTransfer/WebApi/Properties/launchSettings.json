@@ -8,8 +8,8 @@
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DbHost": "localhost",
-        "DbUsername": "sa"
+        "Database__Host": "localhost",
+        "Database__Username": "sa"
       }
     },
     "https": {
