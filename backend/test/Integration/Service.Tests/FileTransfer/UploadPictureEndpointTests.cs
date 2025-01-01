@@ -1,17 +1,23 @@
 ﻿using System.Net;
+using System.Net.Http.Headers;
+using System.Net.Mime;
 using Domain.Media;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
+using Service.Tests.Extensions;
+using Xunit.Abstractions;
 
 namespace Service.Tests.FileTransfer;
 
 public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicationFactory>
 {
 	private readonly FileTransferWebApplicationFactory _webApplicationFactory;
+	private readonly ITestOutputHelper                 _testOutputHelper;
 
-	public UploadPictureEndpointTests(FileTransferWebApplicationFactory webApplicationFactory)
+	public UploadPictureEndpointTests(FileTransferWebApplicationFactory webApplicationFactory, ITestOutputHelper testOutputHelper)
 	{
 		_webApplicationFactory = webApplicationFactory;
+		_testOutputHelper      = testOutputHelper;
 	}
 
 	[Fact]
@@ -22,9 +28,11 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		var       dbContext  = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
 		var       httpClient = _webApplicationFactory.CreateClient();
 
-		await using var stream      = File.OpenRead(Path.Combine("FileTransfer", "Files", "ph_600x400.png"));
-		using var       formContent = new MultipartFormDataContent();
-		formContent.Add(new StreamContent(stream), "file", "ph_600x400.png");
+		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "ph_600x400.png"));
+		using var       formContent   = new MultipartFormDataContent();
+		var             streamContent = new StreamContent(stream);
+		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
+		formContent.Add(streamContent, "file", "ph_600x400.png");
 
 		// Pre-Assert
 		Assert.Empty(dbContext.MediaFolders);
@@ -32,6 +40,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 
 		// Act
 		var response = await httpClient.PostAsync("pictures", formContent);
+		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
 		response.EnsureSuccessStatusCode();
@@ -53,16 +62,43 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		using var scope      = _webApplicationFactory.Services.CreateScope();
 		var       httpClient = _webApplicationFactory.CreateClient();
 
-		await using var stream      = File.OpenRead(Path.Combine("FileTransfer", "Files", "empty.png"));
-		using var       formContent = new MultipartFormDataContent();
-		formContent.Add(new StreamContent(stream), "file", "empty.png");
+		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "empty.png"));
+		using var       formContent   = new MultipartFormDataContent();
+		var             streamContent = new StreamContent(stream);
+		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
+		formContent.Add(streamContent, "file", "empty.png");
 
 		// Act
 		var response = await httpClient.PostAsync("pictures", formContent);
+		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
 		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 		var content = await response.Content.ReadAsStringAsync();
 		Assert.Contains("'Length' must be greater than '0'", content);
+	}
+	
+	[Fact]
+	public async Task When_UploadPicture_given_invalid_file_type_should_return_bad_request()
+	{
+		// Arrange
+		using var scope      = _webApplicationFactory.Services.CreateScope();
+		var       httpClient = _webApplicationFactory.CreateClient();
+
+		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "test.txt"));
+		using var       formContent   = new MultipartFormDataContent();
+		var             streamContent = new StreamContent(stream);
+		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
+		formContent.Add(streamContent, "file", "test.txt");
+
+		// Act
+		var response = await httpClient.PostAsync("pictures", formContent);
+		await response.PrintContentAsync(_testOutputHelper);
+
+		// Assert
+		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+		var content = await response.Content.ReadAsStringAsync();
+		Assert.Contains("Content type must be one of", content);
+		Assert.Contains("File extension must be one of", content);
 	}
 }
