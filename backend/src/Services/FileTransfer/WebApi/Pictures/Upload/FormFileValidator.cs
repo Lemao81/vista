@@ -11,14 +11,14 @@ internal sealed class FormFileValidator : AbstractValidator<IFormFile?>
 			.NotNull()
 			.NotEmpty()
 			.Must(c => MediaTypeHeaderValue.TryParse(c, out _))
-			.WithMessage("Content type not valid")
+			.WithMessage("'Content Type' not valid.")
 			.When(f => f is not null);
 
 		RuleFor(f => f!.FileName)
 			.NotNull()
 			.NotEmpty()
 			.Must(ContainExtension)
-			.WithMessage("File name must have an extension.")
+			.WithMessage("'File Name' must have an extension.")
 			.When(f => f is not null);
 
 		RuleFor(f => f!.Length).GreaterThan(0).When(f => f is not null);
