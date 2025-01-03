@@ -77,7 +77,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		var content = await response.Content.ReadAsStringAsync();
 		Assert.Contains("'Length' must be greater than '0'", content);
 	}
-	
+
 	[Fact]
 	public async Task When_UploadPicture_given_invalid_file_type_should_return_bad_request()
 	{
@@ -98,7 +98,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		// Assert
 		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 		var content = await response.Content.ReadAsStringAsync();
-		Assert.Contains("Content type must be one of", content);
-		Assert.Contains("File extension must be one of", content);
+		Assert.Contains("'Content Type' must be one of", content);
+		Assert.Contains("'File Name' must have an extension of", content);
 	}
 }
