@@ -1,6 +1,8 @@
-﻿namespace Domain.Media;
+﻿using Domain.Abstractions;
 
-public interface IMediaFolderRepository
+namespace Domain.Media;
+
+public interface IMediaFolderRepository : IRepository
 {
 	Task<MediaFolder> AddMediaFolderAsync(MediaFolder mediaFolder, byte[] bytes);
 }

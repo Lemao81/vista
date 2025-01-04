@@ -1,15 +1,15 @@
-﻿using Domain;
+﻿using Application.Abstractions;
+using Domain;
 using Domain.Media;
 using Domain.Users;
-using MediatR;
 
 namespace Application.Pictures.Upload;
 
-internal sealed class UploadPictureHandler : IRequestHandler<UploadPictureCommand, Result<UploadPictureResponse>>
+internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictureCommand, Result<UploadPictureResponse>>
 {
 	private readonly IMediaFolderRepository _mediaFolderRepository;
 
-	public UploadPictureHandler(IMediaFolderRepository mediaFolderRepository)
+	public UploadPictureCommandHandler(IMediaFolderRepository mediaFolderRepository)
 	{
 		_mediaFolderRepository = mediaFolderRepository;
 	}
