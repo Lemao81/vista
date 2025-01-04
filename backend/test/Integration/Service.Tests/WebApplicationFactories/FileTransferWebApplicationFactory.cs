@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Testcontainers.PostgreSql;
 using WebApi;
 
-namespace Service.Tests.FileTransfer;
+namespace Service.Tests.WebApplicationFactories;
 
 public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAssemblyMarker>, IAsyncLifetime
 {
