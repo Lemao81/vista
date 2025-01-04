@@ -1,7 +1,7 @@
 ﻿using Domain.Media;
 using FluentValidation;
 using Microsoft.Extensions.Options;
-using UtilExtensions;
+using Lemao.UtilExtensions;
 
 namespace Application.Pictures.Upload;
 

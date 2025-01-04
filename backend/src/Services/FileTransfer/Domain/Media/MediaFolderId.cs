@@ -1,4 +1,4 @@
-﻿using UtilExtensions;
+﻿using Lemao.UtilExtensions;
 
 namespace Domain.Media;
 

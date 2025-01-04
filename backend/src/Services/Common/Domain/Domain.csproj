@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="UtilExtensions" Version="0.0.3"/>
+    <PackageReference Include="Lemao.UtilExtensions" Version="0.0.1" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using Domain;
 using Infrastructure;
 using NetArchTest.Rules;
 using Persistence;
-using UtilExtensions;
+using Lemao.UtilExtensions;
 using WebApi;
 using Xunit.Abstractions;
 

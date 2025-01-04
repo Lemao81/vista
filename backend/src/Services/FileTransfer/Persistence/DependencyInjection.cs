@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 using Persistence.Media;
-using UtilExtensions;
+using Lemao.UtilExtensions;
 
 namespace Persistence;
 
