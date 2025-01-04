@@ -1,0 +1,33 @@
+name: Build+Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  DOTNET_VERSION: 9.0.101
+
+jobs:
+  build_and_test:
+    name: Build and test
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore
+        run: dotnet restore ./backend/Vista.sln
+
+      - name: Build
+        run: dotnet build ./backend/Vista.sln -c Release --no-restore
+
+      - name: Test
+        run: dotnet test ./backend/Vista.sln -c Release --no-restore --no-build
