@@ -25,6 +25,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	public async Task When_UploadPicture_given_valid_image_should_persist_image()
 	{
 		// Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
 		using var scope      = _webApplicationFactory.Services.CreateScope();
 		var       dbContext  = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
 		var       httpClient = _webApplicationFactory.CreateClient();
@@ -60,6 +61,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	public async Task When_UploadPicture_given_empty_file_should_return_bad_request()
 	{
 		// Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
 		using var scope      = _webApplicationFactory.Services.CreateScope();
 		var       httpClient = _webApplicationFactory.CreateClient();
 
@@ -83,6 +85,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	public async Task When_UploadPicture_given_invalid_file_type_should_return_bad_request()
 	{
 		// Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
 		using var scope      = _webApplicationFactory.Services.CreateScope();
 		var       httpClient = _webApplicationFactory.CreateClient();
 
