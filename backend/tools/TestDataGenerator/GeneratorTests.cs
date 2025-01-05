@@ -1,4 +1,5 @@
-﻿using Domain.Media;
+﻿using System.Diagnostics.CodeAnalysis;
+using Domain.Media;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,15 +10,16 @@ using Persistence;
 
 namespace TestDataGenerator;
 
+[SuppressMessage("Usage", "xUnit1004:Test methods should not be skipped")]
 public class GeneratorTests
 {
-	[Fact]
+	[Fact(Skip = "TestDataGenerator")]
 	public async Task ClearMediaData()
 	{
 		await GetDbContext().MediaFolders.ExecuteDeleteAsync();
 	}
 
-	[Fact]
+	[Fact(Skip = "TestDataGenerator")]
 	public async Task AddMediaFolders()
 	{
 		var dbContext = GetDbContext();
