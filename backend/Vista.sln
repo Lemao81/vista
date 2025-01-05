@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileTransfer", "FileTransfer", "{E14AF59F-958A-4298-8673-759A5CC67206}"
 	ProjectSection(SolutionItems) = preProject
-		src\Services\FileTransfer\Directory.build.props = src\Services\FileTransfer\Directory.build.props
+		src\Services\FileTransfer\Directory.Build.props = src\Services\FileTransfer\Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\FileTransfer\Application\Application.csproj", "{4FF7C167-427B-4142-9509-22B3596EA315}"
@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
-		src\Directory.build.props = src\Directory.build.props
+		src\Directory.Build.props = src\Directory.Build.props
 		docker-compose.yml = docker-compose.yml
 		global.json = global.json
 		.env = .env
@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTransfer", "src\Functio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{31D07272-46F9-4C1E-966F-AC23A79CD639}"
 	ProjectSection(SolutionItems) = preProject
-		test\Directory.build.props = test\Directory.build.props
+		test\Directory.Build.props = test\Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{0C4B3C3A-8013-4B89-AE29-AB0F53996A69}"
