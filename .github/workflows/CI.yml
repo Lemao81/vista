@@ -29,5 +29,12 @@ jobs:
       - name: Build
         run: dotnet build ./backend/Vista.sln -c Release --no-restore
 
+      - name: Login to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Test
         run: dotnet test ./backend/Vista.sln -c Release --no-restore --no-build
