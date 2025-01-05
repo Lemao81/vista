@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Domain.Media;
 using Domain.Users;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using NSubstitute;
 using Persistence;
 
 // ReSharper disable Xunit.XunitTestWithConsoleOutput
@@ -39,6 +41,7 @@ public class GeneratorTests
 					mediaItem = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Video, MediaSizeKind.Original);
 					mediaItem.AddMetaData("DurationSec", Random.Shared.NextInt64(5, 31));
 				}
+
 				mediaFolder.AddMediaItem(mediaItem);
 
 				return mediaFolder;
@@ -52,7 +55,7 @@ public class GeneratorTests
 	private static FileTransferDbContext GetDbContext()
 	{
 		var configBuilder = new ConfigurationBuilder().AddUserSecrets<GeneratorTests>();
-		var dbPassword    = configBuilder.Build().GetSection("DbPassword").Value;
+		var dbPassword    = configBuilder.Build().GetSection("Database:Password").Value;
 
 		var dbBuilder = new DbContextOptionsBuilder<FileTransferDbContext>();
 		dbBuilder.UseNpgsql(new NpgsqlDataSourceBuilder
@@ -67,6 +70,6 @@ public class GeneratorTests
 			}.Build())
 			.UseSnakeCaseNamingConvention();
 
-		return new FileTransferDbContext(dbBuilder.Options);
+		return new FileTransferDbContext(dbBuilder.Options, Substitute.For<IPublisher>());
 	}
 }
