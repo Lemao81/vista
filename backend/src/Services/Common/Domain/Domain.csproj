@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Lemao.UtilExtensions" Version="0.0.1" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
   </ItemGroup>
 
 </Project>

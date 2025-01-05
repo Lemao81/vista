@@ -46,6 +46,23 @@ public class ApplicationTests : BaseArchitectureTest
 	}
 
 	[Fact]
+	public void DomainEventHandlers_should_end_name_with_DomainEventHandler()
+	{
+		// Act
+		var result = Types.InAssemblies(ApplicationAssemblies)
+			.That()
+			.ImplementInterface(typeof(INotificationHandler<>))
+			.Should()
+			.HaveNameEndingWith("DomainEventHandler")
+			.GetResult();
+
+		PrintFailingTypes(result);
+
+		// Assert
+		Assert.True(result.IsSuccessful);
+	}
+
+	[Fact]
 	public void PipelineBehaviors_should_end_name_with_PipelineBehavior()
 	{
 		// Act
@@ -69,6 +86,25 @@ public class ApplicationTests : BaseArchitectureTest
 		var result = Types.InAssemblies(ApplicationAssemblies)
 			.That()
 			.ImplementInterface(typeof(IRequestHandler<,>))
+			.Should()
+			.NotBePublic()
+			.And()
+			.BeSealed()
+			.GetResult();
+
+		PrintFailingTypes(result);
+
+		// Assert
+		Assert.True(result.IsSuccessful);
+	}
+
+	[Fact]
+	public void NotificationHandlers_should_be_internal_sealed()
+	{
+		// Act
+		var result = Types.InAssemblies(ApplicationAssemblies)
+			.That()
+			.ImplementInterface(typeof(INotificationHandler<>))
 			.Should()
 			.NotBePublic()
 			.And()

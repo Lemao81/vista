@@ -70,7 +70,7 @@ public class DomainTests : BaseArchitectureTest
 		{
 			var key             = domainAssembly.GetName().Name?.Split(".")[0];
 			var outerNamespaces = outerAssemblies[key!].Select(a => a.GetName().Name?.Split(".")[1]).ToArray();
-			
+
 			// Act
 			var result = Types.InAssembly(domainAssembly)
 				.Should()
