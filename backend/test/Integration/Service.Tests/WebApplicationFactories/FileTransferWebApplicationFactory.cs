@@ -49,8 +49,7 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 
 	private PostgreSqlContainer CreatePostgresContainer()
 	{
-		// TODO add remote image name
-		var image = IsLocal() ? "backend-vista-postgres" : "";
+		var image = IsLocal() ? "backend-vista-postgres" : "ghcr.io/lemao81/vista-postgres";
 
 		return new PostgreSqlBuilder().WithImage(image)
 			.WithName($"postgres_{Guid.NewGuid()}")
