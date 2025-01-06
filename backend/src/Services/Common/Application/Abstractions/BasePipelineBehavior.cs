@@ -23,7 +23,7 @@ public abstract class BasePipelineBehavior<TRequest, TResponse> : IPipelineBehav
 
 		if (responseType != typeof(Result))
 		{
-			throw new ApplicationException("Response type supposed to be Result<> or Result");
+			throw new ApplicationException("Response type must be Result<> or Result");
 		}
 
 		var result = Activator.CreateInstance(responseType, BindingFlags.Instance | BindingFlags.NonPublic, null, [false, error], null);

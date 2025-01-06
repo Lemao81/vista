@@ -1,6 +1,6 @@
 ﻿using Domain.ValueObjects;
 
-namespace Service.Tests.Common.ValueObjects;
+namespace Service.Tests.Common;
 
 public class FileLengthTests
 {
