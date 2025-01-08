@@ -28,6 +28,7 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
+		builder.UseEnvironment("Production");
 		builder.ConfigureLogging(logBuilder =>
 		{
 			logBuilder.Services.AddSingleton<ILoggerProvider>(new XUnitLoggerProvider(_delegatingTestOutputHelper));
