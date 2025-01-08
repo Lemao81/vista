@@ -1,6 +1,7 @@
 ﻿using Application;
 using Domain.Abstractions;
 using Domain.Media;
+using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,8 @@ public static class DependencyInjection
 						npgsqlOptions.SetPostgresVersion(17, 2);
 						npgsqlOptions.MigrationsHistoryTable("__ef_migrations_history", DbSchemas.FileTransfer);
 					})
-				.UseSnakeCaseNamingConvention();
+				.UseSnakeCaseNamingConvention()
+				.UseExceptionProcessor();
 		});
 
 		services.AddScoped<IUnitOfWork, UnitOfWork>();

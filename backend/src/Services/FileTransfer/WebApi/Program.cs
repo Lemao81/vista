@@ -4,11 +4,11 @@ using Domain.Media;
 using Domain.ValueObjects;
 using FluentValidation;
 using Infrastructure;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Presentation;
 using Serilog;
 using WebApi;
+using WebApi.Extensions;
 using WebApi.Pictures;
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console().CreateBootstrapLogger();
@@ -47,15 +47,10 @@ app.UseStatusCodePages();
 app.MapPictureEndpoints();
 app.UseHttpsRedirection();
 
-await MigrateDatabaseAsync(app);
+await app.AwaitDatabaseConnectionAsync();
+if (app.Environment.IsDevelopment())
+{
+	await app.MigrateDatabaseAsync();
+}
 
 app.Run();
-
-return;
-
-async Task MigrateDatabaseAsync(WebApplication webApplication)
-{
-	using var scope     = webApplication.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-	var       dbContext = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
-	await dbContext.Database.MigrateAsync();
-}
