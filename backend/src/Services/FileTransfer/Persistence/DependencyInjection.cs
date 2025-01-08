@@ -1,13 +1,11 @@
-﻿using Application;
-using Domain.Abstractions;
+﻿using Domain.Abstractions;
 using Domain.Media;
 using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Npgsql;
 using Persistence.Media;
-using Lemao.UtilExtensions;
+using Persistence.Utilities;
 
 namespace Persistence;
 
@@ -17,7 +15,7 @@ public static class DependencyInjection
 	{
 		services.AddDbContextPool<FileTransferDbContext>(dbContextOptions =>
 		{
-			dbContextOptions.UseNpgsql(CreateDataSource(configuration),
+			dbContextOptions.UseNpgsql(PersistenceHelper.CreateDataSource(configuration),
 					npgsqlOptions =>
 					{
 						npgsqlOptions.SetPostgresVersion(17, 2);
@@ -32,48 +30,5 @@ public static class DependencyInjection
 		services.AddScoped<IObjectStorage, MinIoObjectStorage>();
 
 		return services;
-	}
-
-	private static NpgsqlDataSource CreateDataSource(IConfiguration configuration)
-	{
-		var host = configuration[ConfigurationKeys.DatabaseHost];
-		if (host.IsNullOrWhiteSpace())
-		{
-			throw new ApplicationException("Database host is not configured");
-		}
-
-		var username = configuration[ConfigurationKeys.DatabaseUsername];
-		if (username.IsNullOrWhiteSpace())
-		{
-			throw new ApplicationException("Database username is not configured");
-		}
-
-		var password = configuration[ConfigurationKeys.DatabasePassword];
-		if (password.IsNullOrWhiteSpace())
-		{
-			var passwordFile = configuration[ConfigurationKeys.DatabasePasswordFile];
-			if (!passwordFile.IsNullOrWhiteSpace() && File.Exists(passwordFile))
-			{
-				password = File.ReadAllText(passwordFile);
-			}
-		}
-
-		if (password.IsNullOrWhiteSpace())
-		{
-			throw new ApplicationException("Database password is not configured");
-		}
-
-		var builder = new NpgsqlDataSourceBuilder
-		{
-			ConnectionStringBuilder =
-			{
-				Host     = host,
-				Database = "vista_file_transfer",
-				Username = username,
-				Password = password
-			}
-		};
-
-		return builder.Build();
 	}
 }
