@@ -7,8 +7,11 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Presentation;
+using Serilog;
 using WebApi;
 using WebApi.Pictures;
+
+Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console().CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +31,7 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
 builder.Services.AddValidatorsFromAssemblies([typeof(WebApiAssemblyMarker).Assembly, typeof(ApplicationAssemblyMarker).Assembly], includeInternalTypes: true);
+builder.Services.AddSerilog((services, configure) => configure.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services));
 
 builder.Services.Configure<UploadMediaOptions>(builder.Configuration.GetSection(ConfigurationKeys.MediaUpload));
 
@@ -38,10 +42,9 @@ if (app.Environment.IsDevelopment())
 	app.MapOpenApi();
 }
 
+app.UseSerilogRequestLogging();
 app.UseStatusCodePages();
-
 app.MapPictureEndpoints();
-
 app.UseHttpsRedirection();
 
 await MigrateDatabaseAsync(app);

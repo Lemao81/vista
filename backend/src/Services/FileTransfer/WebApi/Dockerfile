@@ -11,9 +11,11 @@ COPY ["src/Services/FileTransfer/WebApi/WebApi.csproj", "src/Services/FileTransf
 COPY ["src/Services/FileTransfer/Application/Application.csproj", "src/Services/FileTransfer/Application/"]
 COPY ["src/Services/FileTransfer/Domain/Domain.csproj", "src/Services/FileTransfer/Domain/"]
 COPY ["src/Services/Common/Domain/Domain.csproj", "src/Services/Common/Domain/"]
+COPY ["src/Services/Common/Application/Application.csproj", "src/Services/Common/Application/"]
 COPY ["src/Services/FileTransfer/Infrastructure/Infrastructure.csproj", "src/Services/FileTransfer/Infrastructure/"]
-COPY ["src/Services/FileTransfer/Presentation/Presentation.csproj", "src/Services/FileTransfer/Presentation/"]
 COPY ["src/Services/FileTransfer/Persistence/Persistence.csproj", "src/Services/FileTransfer/Persistence/"]
+COPY ["src/Services/Common/Persistence/Persistence.csproj", "src/Services/Common/Persistence/"]
+COPY ["src/Services/FileTransfer/Presentation/Presentation.csproj", "src/Services/FileTransfer/Presentation/"]
 RUN dotnet restore "src/Services/FileTransfer/WebApi/WebApi.csproj"
 COPY . .
 WORKDIR "/src/src/Services/FileTransfer/WebApi"

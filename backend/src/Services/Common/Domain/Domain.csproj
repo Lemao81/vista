@@ -9,8 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lemao.UtilExtensions" Version="0.0.1" />
-    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+    <PackageReference Include="Lemao.UtilExtensions" Version="0.0.2"/>
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1"/>
+    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
+    <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0"/>
   </ItemGroup>
 
 </Project>

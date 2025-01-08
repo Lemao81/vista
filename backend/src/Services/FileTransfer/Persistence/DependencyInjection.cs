@@ -16,11 +16,12 @@ public static class DependencyInjection
 	{
 		services.AddDbContextPool<FileTransferDbContext>(dbContextOptions =>
 		{
-			dbContextOptions.UseNpgsql(CreateDataSource(configuration), npgsqlOptions =>
-				{
-					npgsqlOptions.SetPostgresVersion(17, 2);
-					npgsqlOptions.MigrationsHistoryTable("__ef_migrations_history", DbSchemas.FileTransfer);
-				})
+			dbContextOptions.UseNpgsql(CreateDataSource(configuration),
+					npgsqlOptions =>
+					{
+						npgsqlOptions.SetPostgresVersion(17, 2);
+						npgsqlOptions.MigrationsHistoryTable("__ef_migrations_history", DbSchemas.FileTransfer);
+					})
 				.UseSnakeCaseNamingConvention();
 		});
 
@@ -46,6 +47,15 @@ public static class DependencyInjection
 		}
 
 		var password = configuration[ConfigurationKeys.DatabasePassword];
+		if (password.IsNullOrWhiteSpace())
+		{
+			var passwordFile = configuration[ConfigurationKeys.DatabasePasswordFile];
+			if (!passwordFile.IsNullOrWhiteSpace() && File.Exists(passwordFile))
+			{
+				password = File.ReadAllText(passwordFile);
+			}
+		}
+
 		if (password.IsNullOrWhiteSpace())
 		{
 			throw new ApplicationException("Database password is not configured");
