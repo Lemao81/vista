@@ -48,7 +48,7 @@ app.MapPictureEndpoints();
 app.UseHttpsRedirection();
 
 await app.AwaitDatabaseConnectionAsync();
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
 	await app.MigrateDatabaseAsync();
 }
