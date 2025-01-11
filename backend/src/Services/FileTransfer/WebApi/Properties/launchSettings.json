@@ -9,7 +9,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "Database__Host": "localhost",
-        "Database__Username": "sa"
+        "Database__Username": "sa",
+        "Minio__Endpoint": "localhost:9000"
       }
     },
     "https": {

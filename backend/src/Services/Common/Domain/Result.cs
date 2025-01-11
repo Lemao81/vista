@@ -19,7 +19,8 @@ public record Result
 	public bool  IsSuccess { get; }
 	public bool  IsFailure => !IsSuccess;
 
-	public static Result Failure(Error error) => new(error);
+	public static Result Success()            => new(true, Errors.None);
+	public static Result Failure(Error error) => new(false, error);
 
 	public static implicit operator Result(Error error) => Failure(error);
 }

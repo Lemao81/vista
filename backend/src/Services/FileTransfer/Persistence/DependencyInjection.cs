@@ -4,6 +4,7 @@ using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Extensions;
 using Persistence.Media;
 using Persistence.Utilities;
 
@@ -25,9 +26,11 @@ public static class DependencyInjection
 				.UseExceptionProcessor();
 		});
 
+		services.AddMinio(configuration);
+
 		services.AddScoped<IUnitOfWork, UnitOfWork>();
 		services.AddScoped<IMediaFolderRepository, MediaFolderRepository>();
-		services.AddScoped<IObjectStorage, MinIoObjectStorage>();
+		services.AddScoped<IObjectStorage, MinioObjectStorage>();
 
 		return services;
 	}

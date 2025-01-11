@@ -15,9 +15,9 @@ public static partial class WebApplicationExtensions
 
 	public static async Task AwaitDatabaseConnectionAsync(this WebApplication app)
 	{
-		using var scope         = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-		var       configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
-		var       logger        = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+		await using var scope         = app.Services.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
+		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+		var             logger        = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
 		var connectionString = PersistenceHelper.CreateDataSource(configuration, true).ConnectionString;
 		connectionString = DatabaseRegex().Replace(connectionString, "");
@@ -44,14 +44,15 @@ public static partial class WebApplicationExtensions
 				await conn.OpenAsync(ct);
 				logger.LogInformation("Database connection established");
 				await conn.CloseAsync();
+				await conn.DisposeAsync();
 			},
 			connection);
 	}
 
 	public static async Task MigrateDatabaseAsync(this WebApplication app)
 	{
-		using var scope     = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
-		var       dbContext = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
+		await using var scope     = app.Services.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
+		await using var dbContext = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
 		await dbContext.Database.MigrateAsync();
 	}
 }

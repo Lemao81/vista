@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.gitignore = ..\.gitignore
 		dev\.notes.txt = dev\.notes.txt
 		postgres-password = postgres-password
+		.env.secrets = .env.secrets
+		minio-keys = minio-keys
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{77BF20A9-EA2E-42FC-8D51-CA37B7DEDBAF}"
@@ -78,6 +80,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{6514B3C4-8BC4-4A32-AE76-DD60C7FF4628}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\CI.yml = ..\.github\workflows\CI.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "minio", "minio", "{DA015CBF-9DE1-4E1A-80CA-90860F3A0BBE}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\docker\minio\Dockerfile = deployment\docker\minio\Dockerfile
 	EndProjectSection
 EndProject
 Global
@@ -169,5 +176,6 @@ Global
 		{A085E387-C54A-464E-A4F5-BBAD2130A5D1} = {E31BAA2D-B8BA-4FE4-87C5-09FBFD43FD6E}
 		{6514B3C4-8BC4-4A32-AE76-DD60C7FF4628} = {E57F252C-8F68-489C-8987-C23D12EDB857}
 		{E57F252C-8F68-489C-8987-C23D12EDB857} = {34A438BD-31FB-4AC8-8139-ED98994FF08F}
+		{DA015CBF-9DE1-4E1A-80CA-90860F3A0BBE} = {203DE8DD-CC13-4857-A98D-F0BC32AD71BA}
 	EndGlobalSection
 EndGlobal

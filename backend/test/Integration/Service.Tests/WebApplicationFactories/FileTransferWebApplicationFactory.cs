@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Service.Tests.Utilities;
+using Testcontainers.Minio;
 using Testcontainers.PostgreSql;
 using WebApi;
 using Xunit.Abstractions;
@@ -17,12 +18,14 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 {
 	private readonly INetwork                   _network;
 	private readonly PostgreSqlContainer        _postgresContainer;
+	private readonly MinioContainer             _minioContainer;
 	private readonly DelegatingTestOutputHelper _delegatingTestOutputHelper;
 
 	public FileTransferWebApplicationFactory()
 	{
 		_network                    = new NetworkBuilder().WithName($"{GetType().Name}_{Guid.NewGuid()}").Build();
 		_postgresContainer          = CreatePostgresContainer();
+		_minioContainer             = CreateMinioContainer();
 		_delegatingTestOutputHelper = new DelegatingTestOutputHelper(() => TestOutputHelper);
 	}
 
@@ -31,19 +34,23 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 		builder.UseEnvironment("Staging");
 		builder.ConfigureLogging(logBuilder =>
 		{
+			logBuilder.ClearProviders();
 			logBuilder.Services.AddSingleton<ILoggerProvider>(new XUnitLoggerProvider(_delegatingTestOutputHelper));
 		});
 
 		builder.UseSetting(ConfigurationKeys.DatabaseHost, $"{_postgresContainer.Hostname}:{_postgresContainer.GetMappedPublicPort(5432)}");
 		builder.UseSetting(ConfigurationKeys.DatabaseUsername, "sa");
-		builder.UseSetting(ConfigurationKeys.DatabasePassword, "test_pwd");
+		builder.UseSetting(ConfigurationKeys.DatabasePassword, "adminpwd");
+		builder.UseSetting(ConfigurationKeys.MinioEndpoint, $"{_minioContainer.Hostname}:{_minioContainer.GetMappedPublicPort(9000)}");
+		builder.UseSetting(ConfigurationKeys.MinioAccessKey, "admin");
+		builder.UseSetting(ConfigurationKeys.MinioSecretKey, "adminpwd");
 	}
 
 	public ITestOutputHelper? TestOutputHelper { get; set; }
 
 	public async Task InitializeAsync()
 	{
-		await _postgresContainer.StartAsync();
+		await Task.WhenAll(_postgresContainer.StartAsync(), _minioContainer.StartAsync());
 	}
 
 	public new Task DisposeAsync() => Task.CompletedTask;
@@ -56,12 +63,29 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 			.WithName($"postgres_{Guid.NewGuid()}")
 			.WithNetwork(_network)
 			.WithNetworkAliases(NetworkAliases.Postgres)
-			// uncomment for local inspection
-			// .WithPortBinding(5432, 5432)
 			.WithDatabase("sa")
 			.WithUsername("sa")
-			.WithPassword("test_pwd")
+			.WithPassword("adminpwd")
 			.WithEnvironment("PGUSER", "sa")
+			// uncomment for local inspection
+			// .WithPortBinding(5432)
+			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
+			.Build();
+	}
+
+	private MinioContainer CreateMinioContainer()
+	{
+		var image = IsLocal() ? "backend-vista-minio" : "ghcr.io/lemao81/vista-minio";
+
+		return new MinioBuilder().WithImage(image)
+			.WithName($"minio_{Guid.NewGuid()}")
+			.WithNetwork(_network)
+			.WithNetworkAliases(NetworkAliases.Minio)
+			.WithUsername("admin")
+			.WithPassword("adminpwd")
+			.WithCommand("--console-address", ":9001")
+			// uncomment for local inspection
+			// .WithPortBinding(9001)
 			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
 			.Build();
 	}

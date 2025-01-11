@@ -34,6 +34,22 @@ services:
         aliases:
           - postgres
   
+  vista-minio:
+    build:
+      context: ./deployment/docker/minio
+      dockerfile: ./Dockerfile
+    env_file:
+      - .env.secrets
+    volumes:
+      - "vista-minio-data:/data"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      vista:
+        aliases:
+          - minio
+  
   vista-file-transfer-api:
     build:
       context: .
@@ -42,8 +58,10 @@ services:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}
       Database__PasswordFile: /run/secrets/postgres-password
+      Minio__KeysFile: /run/secrets/minio-keys
     secrets:
       - postgres-password
+      - minio-keys
     ports:
       - "5000:8080"
     networks:
@@ -53,10 +71,13 @@ services:
 
 volumes:
   vista-postgres-data:
+  vista-minio-data:
 
 secrets:
   postgres-password:
     file: postgres-password
+  minio-keys:
+    file: minio-keys
 
 networks:
   vista:

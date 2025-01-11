@@ -5,15 +5,13 @@ namespace Persistence.Media;
 internal sealed class MediaFolderRepository : IMediaFolderRepository
 {
 	private readonly FileTransferDbContext _dbContext;
-	private readonly IObjectStorage        _objectStorage;
 
-	public MediaFolderRepository(FileTransferDbContext dbContext, IObjectStorage objectStorage)
+	public MediaFolderRepository(FileTransferDbContext dbContext)
 	{
-		_dbContext     = dbContext;
-		_objectStorage = objectStorage;
+		_dbContext = dbContext;
 	}
 
-	public async Task<MediaFolder> AddMediaFolderAsync(MediaFolder mediaFolder, byte[] bytes)
+	public async Task<MediaFolder> AddAsync(MediaFolder mediaFolder)
 	{
 		var entry = await _dbContext.MediaFolders.AddAsync(mediaFolder);
 

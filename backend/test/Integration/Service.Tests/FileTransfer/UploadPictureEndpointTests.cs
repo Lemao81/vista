@@ -1,7 +1,10 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using Application.Utilities;
 using Domain.Media;
+using Domain.Users;
+using Domain.ValueObjects;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 using Service.Tests.Extensions;
@@ -26,19 +29,25 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
-		using var scope      = _webApplicationFactory.Services.CreateScope();
-		var       dbContext  = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
-		var       httpClient = _webApplicationFactory.CreateClient();
+		using var       scope         = _webApplicationFactory.Services.CreateScope();
+		await using var dbContext     = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
+		var             objectStorage = scope.ServiceProvider.GetRequiredService<IObjectStorage>();
+		var             httpClient    = _webApplicationFactory.CreateClient();
 
 		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "ph_600x400.png"));
 		using var       formContent   = new MultipartFormDataContent();
 		var             streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
 		formContent.Add(streamContent, "file", "ph_600x400.png");
+		var userId = Guid.Parse("f6fac46a-ad79-44d8-8bc5-917e8cbad737");
+		await objectStorage.CreateBucketAsync(StorageBucket.Media);
 
 		// Pre-Assert
 		Assert.Empty(dbContext.MediaFolders);
 		Assert.Empty(dbContext.MediaItems);
+		var itemsResult = await objectStorage.GetObjectItemsAsync(StorageBucket.Media, new StoragePrefix(userId));
+		Assert.True(itemsResult.IsSuccess);
+		Assert.Empty(itemsResult.Value!);
 
 		// Act
 		var response = await httpClient.PostAsync("pictures", formContent);
@@ -53,8 +62,11 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.Equal(MediaKind.Picture, mediaItem.MediaKind);
 		Assert.Equal(MediaSizeKind.Original, mediaItem.MediaSizeKind);
 		Assert.Equal(mediaFolder.Id, mediaItem.MediaFolderId);
-
-		// TODO add object storage asserts
+		var fileName    = ApplicationHelper.GetStorageFileName(new FileName("ph_600x400.png"), mediaItem);
+		var objectName  = StorageObjectName.CreateMediaName(fileName, new UserId(userId), mediaFolder.Id);
+		var existResult = await objectStorage.ObjectExistAsync(StorageBucket.Media, objectName);
+		Assert.True(existResult.IsSuccess);
+		Assert.True(existResult.Value);
 	}
 
 	[Fact]
