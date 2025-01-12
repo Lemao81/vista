@@ -1,5 +1,5 @@
-﻿using Domain.Abstractions;
-using NetArchTest.Rules;
+﻿using NetArchTest.Rules;
+using SharedKernel;
 using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;

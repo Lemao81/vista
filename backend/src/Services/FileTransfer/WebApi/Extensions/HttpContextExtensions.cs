@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿using SharedKernel;
 
 namespace WebApi.Extensions;
 

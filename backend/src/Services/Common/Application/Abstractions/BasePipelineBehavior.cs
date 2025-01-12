@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using Domain;
-using Domain.ValueObjects;
 using MediatR;
+using SharedKernel;
 
 namespace Application.Abstractions;
 

@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using Application.Abstractions;
-using Domain.ValueObjects;
+using SharedKernel;
 
 namespace Application.Pictures.Upload;
 

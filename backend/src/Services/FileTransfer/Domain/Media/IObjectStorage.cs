@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Domain.ValueObjects;
+using SharedKernel;
 
 namespace Domain.Media;
 

@@ -1,5 +1,5 @@
-﻿using Domain;
-using Service.Tests.Utilities;
+﻿using Service.Tests.Utilities;
+using SharedKernel;
 
 namespace Service.Tests.Common;
 

@@ -1,4 +1,4 @@
-﻿namespace Domain.ValueObjects;
+﻿namespace SharedKernel;
 
 public readonly record struct FileLength : IComparable, IComparable<FileLength>
 {

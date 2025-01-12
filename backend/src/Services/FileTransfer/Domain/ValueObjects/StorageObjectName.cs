@@ -1,5 +1,6 @@
 ﻿using Domain.Media;
 using Domain.Users;
+using SharedKernel;
 
 namespace Domain.ValueObjects;
 

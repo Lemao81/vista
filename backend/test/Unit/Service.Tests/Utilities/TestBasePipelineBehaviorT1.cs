@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions;
-using Domain;
-using Domain.ValueObjects;
 using MediatR;
+using SharedKernel;
 
 namespace Service.Tests.Utilities;
 

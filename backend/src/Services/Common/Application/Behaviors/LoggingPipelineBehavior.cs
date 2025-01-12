@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using Application.Abstractions;
-using Domain;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using SharedKernel;
 
 namespace Application.Behaviors;
 

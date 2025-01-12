@@ -1,6 +1,6 @@
-﻿using Domain.Abstractions;
-using Domain.ValueObjects;
+﻿using Domain.ValueObjects;
 using NetArchTest.Rules;
+using SharedKernel;
 using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;

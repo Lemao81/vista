@@ -1,11 +1,11 @@
 ﻿using Application.Abstractions;
 using Application.Utilities;
-using Domain;
 using Domain.Media;
 using Domain.Users;
 using Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using SharedKernel;
 
 namespace Application.Pictures.Upload;
 

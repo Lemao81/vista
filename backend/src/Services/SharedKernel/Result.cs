@@ -1,6 +1,4 @@
-﻿using Domain.ValueObjects;
-
-namespace Domain;
+﻿namespace SharedKernel;
 
 public record Result
 {

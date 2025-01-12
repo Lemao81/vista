@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 using Service.Tests.Extensions;
 using Service.Tests.WebApplicationFactories;
+using SharedKernel;
 using Xunit.Abstractions;
 
 namespace Service.Tests.FileTransfer;

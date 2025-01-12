@@ -1,9 +1,9 @@
 ﻿using System.Net.Http.Headers;
 using Application.Pictures.Upload;
 using Domain.Media;
-using Domain.ValueObjects;
 using Microsoft.Extensions.Options;
 using NSubstitute;
+using SharedKernel;
 
 namespace Service.Tests.FileTransfer.Pictures;
 

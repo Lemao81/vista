@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Domain;
 using Domain.Media;
 using Domain.Models;
 using Domain.ValueObjects;
@@ -8,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Minio;
 using Minio.DataModel.Args;
 using Minio.Exceptions;
+using SharedKernel;
 
 namespace Persistence.Media;
 

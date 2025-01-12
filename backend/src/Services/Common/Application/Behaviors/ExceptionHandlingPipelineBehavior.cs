@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions;
-using Domain;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using SharedKernel;
 
 namespace Application.Behaviors;
 

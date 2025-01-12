@@ -1,3 +1,3 @@
-﻿namespace Domain.ValueObjects;
+﻿namespace SharedKernel;
 
 public abstract record Error(ErrorCode Code);

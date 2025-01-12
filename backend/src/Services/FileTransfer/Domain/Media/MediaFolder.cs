@@ -1,5 +1,5 @@
-﻿using Domain.Abstractions;
-using Domain.Users;
+﻿using Domain.Users;
+using SharedKernel;
 
 namespace Domain.Media;
 

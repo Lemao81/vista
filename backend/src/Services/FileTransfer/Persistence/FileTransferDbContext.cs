@@ -1,7 +1,7 @@
-﻿using Domain.Abstractions;
-using Domain.Media;
+﻿using Domain.Media;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel;
 
 namespace Persistence;
 

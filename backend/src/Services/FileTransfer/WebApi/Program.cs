@@ -1,12 +1,12 @@
 using Application;
 using Domain;
 using Domain.Media;
-using Domain.ValueObjects;
 using FluentValidation;
 using Infrastructure;
 using Persistence;
 using Presentation;
 using Serilog;
+using SharedKernel;
 using WebApi;
 using WebApi.Extensions;
 using WebApi.Pictures;

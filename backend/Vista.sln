@@ -87,6 +87,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "minio", "minio", "{DA015CBF
 		deployment\docker\minio\Dockerfile = deployment\docker\minio\Dockerfile
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "src\Services\SharedKernel\SharedKernel.csproj", "{D7BDEB41-0B6E-4874-B827-5F6568768E57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +151,10 @@ Global
 		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A085E387-C54A-464E-A4F5-BBAD2130A5D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BDEB41-0B6E-4874-B827-5F6568768E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BDEB41-0B6E-4874-B827-5F6568768E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BDEB41-0B6E-4874-B827-5F6568768E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BDEB41-0B6E-4874-B827-5F6568768E57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -177,5 +183,6 @@ Global
 		{6514B3C4-8BC4-4A32-AE76-DD60C7FF4628} = {E57F252C-8F68-489C-8987-C23D12EDB857}
 		{E57F252C-8F68-489C-8987-C23D12EDB857} = {34A438BD-31FB-4AC8-8139-ED98994FF08F}
 		{DA015CBF-9DE1-4E1A-80CA-90860F3A0BBE} = {203DE8DD-CC13-4857-A98D-F0BC32AD71BA}
+		{D7BDEB41-0B6E-4874-B827-5F6568768E57} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
 	EndGlobalSection
 EndGlobal

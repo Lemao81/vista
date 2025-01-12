@@ -1,8 +1,7 @@
 ﻿using Application.Abstractions;
-using Domain;
-using Domain.ValueObjects;
 using FluentValidation;
 using MediatR;
+using SharedKernel;
 
 namespace Application.Behaviors;
 

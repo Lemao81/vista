@@ -1,9 +1,9 @@
 ﻿using System.Net.Http.Headers;
 using Application.Pictures.Upload;
-using Domain.ValueObjects;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SharedKernel;
 using WebApi.Extensions;
 
 namespace WebApi.Pictures.Upload;

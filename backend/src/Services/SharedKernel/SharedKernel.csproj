@@ -5,12 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
-    <AssemblyName>FileTransfer.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Domain\Domain.csproj"/>
-    <ProjectReference Include="..\..\SharedKernel\SharedKernel.csproj" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1"/>
   </ItemGroup>
 
 </Project>
