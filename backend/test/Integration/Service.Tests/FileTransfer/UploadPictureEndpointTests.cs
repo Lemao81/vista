@@ -47,7 +47,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.Empty(dbContext.MediaItems);
 		var itemsResult = await objectStorage.GetObjectItemsAsync(StorageBucket.Media, new StoragePrefix(userId));
 		Assert.True(itemsResult.IsSuccess);
-		Assert.Empty(itemsResult.Value!);
+		Assert.Empty(itemsResult.Value);
 
 		// Act
 		var response = await httpClient.PostAsync("pictures", formContent);

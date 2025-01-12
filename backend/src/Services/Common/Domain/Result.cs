@@ -4,7 +4,7 @@ namespace Domain;
 
 public record Result
 {
-	protected Result(bool isSuccess, Error error)
+	protected internal Result(bool isSuccess, Error error)
 	{
 		if (isSuccess && error != Errors.None || !isSuccess && error == Errors.None)
 		{
@@ -27,6 +27,8 @@ public record Result
 
 public sealed record Result<T> : Result
 {
+	private readonly T? _value;
+
 	private Result(T value) : base(true, Errors.None)
 	{
 		if (value is null)
@@ -34,23 +36,16 @@ public sealed record Result<T> : Result
 			throw new ArgumentNullException(nameof(value));
 		}
 
-		Value = value;
+		_value = value;
 	}
 
 	private Result(Error error) : base(false, error)
 	{
 	}
 
-	public T? Value { get; }
+	public T Value => IsSuccess ? _value! : throw new InvalidOperationException("Value of a non-success result can't be accessed");
 
-	public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure)
-	{
-		if (!IsSuccess) return onFailure(Error);
-
-		ArgumentNullException.ThrowIfNull(Value);
-
-		return onSuccess(Value);
-	}
+	public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess(Value) : onFailure(Error);
 
 	public static     Result<T> Success(T     value) => new(value);
 	public new static Result<T> Failure(Error error) => new(error);
