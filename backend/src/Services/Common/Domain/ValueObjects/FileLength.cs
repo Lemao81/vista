@@ -2,6 +2,8 @@
 
 public readonly record struct FileLength : IComparable, IComparable<FileLength>
 {
+	public FileLength() => throw new NotSupportedException();
+
 	public FileLength(long value)
 	{
 		ArgumentOutOfRangeException.ThrowIfNegative(value);

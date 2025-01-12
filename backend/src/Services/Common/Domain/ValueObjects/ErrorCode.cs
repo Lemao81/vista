@@ -2,13 +2,12 @@
 
 public readonly record struct ErrorCode
 {
-	public ErrorCode()
-	{
-		throw new NotSupportedException();
-	}
+	public ErrorCode() => throw new NotSupportedException();
 
 	public ErrorCode(string value)
 	{
+		ArgumentException.ThrowIfNullOrWhiteSpace(value, nameof(value));
+
 		Value = value;
 	}
 

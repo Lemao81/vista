@@ -1,15 +1,12 @@
-﻿using Lemao.UtilExtensions;
-
-namespace Domain.ValueObjects;
+﻿namespace Domain.ValueObjects;
 
 public readonly record struct StorageBucket
 {
+	public StorageBucket() => throw new NotSupportedException();
+
 	private StorageBucket(string value)
 	{
-		if (value.IsNullOrWhiteSpace())
-		{
-			throw new ArgumentException($"'{nameof(value)}' must not be empty");
-		}
+		ArgumentException.ThrowIfNullOrWhiteSpace(value, nameof(value));
 
 		Value = value;
 	}

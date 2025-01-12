@@ -2,13 +2,12 @@
 
 public readonly record struct FileName
 {
-	public FileName()
-	{
-		throw new NotSupportedException();
-	}
+	public FileName() => throw new NotSupportedException();
 
 	public FileName(string value)
 	{
+		ArgumentException.ThrowIfNullOrWhiteSpace(value, nameof(value));
+		
 		var dotIndex = value.LastIndexOf('.');
 		if (dotIndex < 0 || dotIndex == value.Length - 1)
 		{
