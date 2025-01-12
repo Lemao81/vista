@@ -11,6 +11,7 @@ COPY ["src/Services/FileTransfer/WebApi/WebApi.csproj", "src/Services/FileTransf
 COPY ["src/Services/FileTransfer/Application/Application.csproj", "src/Services/FileTransfer/Application/"]
 COPY ["src/Services/FileTransfer/Domain/Domain.csproj", "src/Services/FileTransfer/Domain/"]
 COPY ["src/Services/Common/Domain/Domain.csproj", "src/Services/Common/Domain/"]
+COPY ["src/Services/SharedKernel/SharedKernel.csproj", "src/Services/SharedKernel/"]
 COPY ["src/Services/Common/Application/Application.csproj", "src/Services/Common/Application/"]
 COPY ["src/Services/FileTransfer/Infrastructure/Infrastructure.csproj", "src/Services/FileTransfer/Infrastructure/"]
 COPY ["src/Services/FileTransfer/Persistence/Persistence.csproj", "src/Services/FileTransfer/Persistence/"]
