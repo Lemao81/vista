@@ -1,18 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>Nullable</WarningsAsErrors>
     <AssemblyName>Common.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Lemao.UtilExtensions" Version="0.0.2"/>
-    <PackageReference Include="MediatR.Contracts" Version="2.0.1"/>
-    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
-    <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0"/>
+    <PackageReference Include="Lemao.UtilExtensions"/>
+    <PackageReference Include="MediatR.Contracts"/>
+    <PackageReference Include="Serilog.AspNetCore"/>
+    <PackageReference Include="Serilog.Sinks.Seq"/>
   </ItemGroup>
 
 </Project>
