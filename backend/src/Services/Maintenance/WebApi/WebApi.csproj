@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <AssemblyName>Maintenance.WebApi</AssemblyName>
+    <UserSecretsId>bb970804-ff2c-4d2c-b21b-38cd784a605c</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-postgresql"/>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Persistence\Persistence.csproj"/>
+    <ProjectReference Include="..\..\Common\WebApi\WebApi.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DbScripts\vista_file_transfer\0001_Initial.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DbScripts\vista_file_transfer\"/>
+  </ItemGroup>
+
+</Project>

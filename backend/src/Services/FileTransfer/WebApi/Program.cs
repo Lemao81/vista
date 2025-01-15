@@ -15,6 +15,8 @@ Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console()
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddCommonAppSettings();
+
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
 {
@@ -47,7 +49,7 @@ app.UseStatusCodePages();
 app.MapPictureEndpoints();
 app.UseHttpsRedirection();
 
-await app.AwaitDatabaseConnectionAsync();
+await app.AwaitDatabaseConnectionAsync(DbNames.FileTransfer);
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
 	await app.MigrateDatabaseAsync();

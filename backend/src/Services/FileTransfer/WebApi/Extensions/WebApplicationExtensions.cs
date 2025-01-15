@@ -13,13 +13,13 @@ public static partial class WebApplicationExtensions
 	[GeneratedRegex("Database=(.*?);")]
 	private static partial Regex DatabaseRegex();
 
-	public static async Task AwaitDatabaseConnectionAsync(this WebApplication app)
+	public static async Task AwaitDatabaseConnectionAsync(this WebApplication app, string database)
 	{
 		await using var scope         = app.Services.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
 		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 		var             logger        = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-		var connectionString = PersistenceHelper.CreateDataSource(configuration, true).ConnectionString;
+		var connectionString = PersistenceHelper.CreateDataSource(configuration, database, true).ConnectionString;
 		connectionString = DatabaseRegex().Replace(connectionString, "");
 		var connection = new NpgsqlConnection(connectionString);
 

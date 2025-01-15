@@ -50,6 +50,25 @@ services:
         aliases:
           - minio
   
+  vista-maintenance-api:
+    build:
+      context: .
+      dockerfile: src/Services/Maintenance/WebApi/Dockerfile
+    environment:
+      Database__Host: ${DB_HOST}
+      Database__Username: ${DB_USER}
+      Database__PasswordFile: /run/secrets/postgres-password
+      Minio__KeysFile: /run/secrets/minio-keys
+    secrets:
+      - postgres-password
+      - minio-keys
+    ports:
+      - "5000:8080"
+    networks:
+      vista:
+        aliases:
+          - maintenance-api
+  
   vista-file-transfer-api:
     build:
       context: .

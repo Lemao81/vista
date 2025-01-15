@@ -16,7 +16,7 @@ public static class DependencyInjection
 	{
 		services.AddDbContextPool<FileTransferDbContext>(dbContextOptions =>
 		{
-			dbContextOptions.UseNpgsql(PersistenceHelper.CreateDataSource(configuration),
+			dbContextOptions.UseNpgsql(PersistenceHelper.CreateDataSource(configuration, DbNames.FileTransfer),
 					npgsqlOptions =>
 					{
 						npgsqlOptions.SetPostgresVersion(17, 2);

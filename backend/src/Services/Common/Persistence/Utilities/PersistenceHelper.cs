@@ -7,7 +7,7 @@ namespace Persistence.Utilities;
 
 public static class PersistenceHelper
 {
-	public static NpgsqlDataSource CreateDataSource(IConfiguration configuration, bool persistSecurityInfo = false)
+	public static NpgsqlDataSource CreateDataSource(IConfiguration configuration, string database, bool persistSecurityInfo = false)
 	{
 		var host = configuration[ConfigurationKeys.DatabaseHost];
 		if (host.IsNullOrWhiteSpace())
@@ -41,7 +41,7 @@ public static class PersistenceHelper
 			ConnectionStringBuilder =
 			{
 				Host                = host,
-				Database            = "vista_file_transfer",
+				Database            = database,
 				Username            = username,
 				Password            = password,
 				PersistSecurityInfo = persistSecurityInfo

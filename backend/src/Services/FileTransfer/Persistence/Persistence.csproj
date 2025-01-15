@@ -15,7 +15,6 @@
     <PackageReference Include="EFCore.NamingConventions"/>
     <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL"/>
     <PackageReference Include="Minio"/>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
   </ItemGroup>
 
   <ItemGroup>
