@@ -2,6 +2,7 @@
 
 public static class Constants
 {
+	public const string DefaultDatabaseHost = "postgres";
 }
 
 public static class DbSchemas

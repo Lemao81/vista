@@ -5,13 +5,13 @@ namespace Service.Tests.Common;
 
 public class BasePipelineBehaviorTests
 {
-	private readonly TestBasePipelineBehaviorT0 _classUnderTestT0;
-	private readonly TestBasePipelineBehaviorT1 _classUnderTestT1;
+	private readonly NonGenericTestBasePipelineBehavior _classUnderTestT0;
+	private readonly GenericTestBasePipelineBehavior _classUnderTestT1;
 
 	public BasePipelineBehaviorTests()
 	{
-		_classUnderTestT0 = new TestBasePipelineBehaviorT0();
-		_classUnderTestT1 = new TestBasePipelineBehaviorT1();
+		_classUnderTestT0 = new NonGenericTestBasePipelineBehavior();
+		_classUnderTestT1 = new GenericTestBasePipelineBehavior();
 	}
 
 	[Fact]

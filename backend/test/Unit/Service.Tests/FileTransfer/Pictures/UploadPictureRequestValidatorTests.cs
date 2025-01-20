@@ -38,6 +38,6 @@ public class UploadPictureRequestValidatorTests
 
 		// Assert
 		Assert.False(result.IsValid);
-		Assert.Contains("'File' must not be empty", result.Errors.First().ErrorMessage);
+		Assert.Contains("'File' must not be empty", result.Errors.First().ErrorMessage, StringComparison.Ordinal);
 	}
 }

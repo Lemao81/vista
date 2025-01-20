@@ -2,4 +2,4 @@
 
 namespace Service.Tests.Utilities;
 
-public class TestRequest : IRequest<TestResponse>;
+public sealed class TestRequest : IRequest<TestResponse>;

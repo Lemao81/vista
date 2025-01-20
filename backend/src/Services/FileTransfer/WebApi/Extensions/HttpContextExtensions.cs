@@ -2,7 +2,7 @@
 
 namespace WebApi.Extensions;
 
-public static class HttpContextExtensions
+internal static class HttpContextExtensions
 {
 	public static void MaybeAddError(this HttpContext httpContext, Result result)
 	{

@@ -3,6 +3,7 @@ using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Minio;
+using SharedKernel;
 
 namespace Persistence.Extensions;
 
@@ -15,7 +16,7 @@ public static class ServiceCollectionExtensions
 			var endpoint = configuration[ConfigurationKeys.MinioEndpoint];
 			if (endpoint.IsNullOrWhiteSpace())
 			{
-				throw new ApplicationException("Minio endpoint is not configured");
+				throw new MissingConfigurationException("Minio endpoint is not configured");
 			}
 
 			var accessKey = configuration[ConfigurationKeys.MinioAccessKey];
@@ -34,12 +35,12 @@ public static class ServiceCollectionExtensions
 
 			if (accessKey.IsNullOrWhiteSpace())
 			{
-				throw new ApplicationException("Minio access key is not configured");
+				throw new MissingConfigurationException("Minio access key is not configured");
 			}
 
 			if (secretKey.IsNullOrWhiteSpace())
 			{
-				throw new ApplicationException("Minio secret key is not configured");
+				throw new MissingConfigurationException("Minio secret key is not configured");
 			}
 
 			client.WithEndpoint(endpoint).WithCredentials(accessKey, secretKey).WithSSL(false);

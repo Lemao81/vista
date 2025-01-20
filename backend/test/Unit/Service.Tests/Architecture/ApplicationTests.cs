@@ -19,7 +19,7 @@ public class ApplicationTests : BaseArchitectureTest
 			.That()
 			.ImplementInterface(typeof(IBaseCommand))
 			.Should()
-			.HaveNameEndingWith("Command")
+			.HaveNameEndingWith("Command", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);
@@ -36,7 +36,7 @@ public class ApplicationTests : BaseArchitectureTest
 			.That()
 			.ImplementInterface(typeof(ICommandHandler<,>))
 			.Should()
-			.HaveNameEndingWith("CommandHandler")
+			.HaveNameEndingWith("CommandHandler", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);
@@ -53,7 +53,7 @@ public class ApplicationTests : BaseArchitectureTest
 			.That()
 			.ImplementInterface(typeof(INotificationHandler<>))
 			.Should()
-			.HaveNameEndingWith("DomainEventHandler")
+			.HaveNameEndingWith("DomainEventHandler", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);
@@ -70,7 +70,7 @@ public class ApplicationTests : BaseArchitectureTest
 			.That()
 			.ImplementInterface(typeof(IPipelineBehavior<,>))
 			.Should()
-			.HaveNameEndingWith("PipelineBehavior")
+			.HaveNameEndingWith("PipelineBehavior", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);
@@ -143,10 +143,7 @@ public class ApplicationTests : BaseArchitectureTest
 			var outerNamespaces = outerAssemblies[key!].Select(a => a.GetName().Name?.Split(".")[1]).ToArray();
 
 			// Act
-			var result = Types.InAssembly(applicationAssembly)
-				.Should()
-				.NotHaveDependencyOnAny(outerNamespaces)
-				.GetResult();
+			var result = Types.InAssembly(applicationAssembly).Should().NotHaveDependencyOnAny(outerNamespaces).GetResult();
 
 			PrintFailingTypes(result);
 

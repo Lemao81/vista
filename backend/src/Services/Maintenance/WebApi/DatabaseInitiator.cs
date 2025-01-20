@@ -14,9 +14,9 @@ internal static class DatabaseInitiator
 
 	private static bool UpgradeDatabase(IConfiguration configuration, string database)
 	{
-		var connectionString = PersistenceHelper.CreateDataSource(configuration, database, true).ConnectionString;
-		EnsureDatabase.For.PostgresqlDatabase(connectionString);
-		var engine = GetUpgradeEngine(connectionString, database);
+		using var dataSource = PersistenceHelper.CreateDataSource(configuration, database, true);
+		EnsureDatabase.For.PostgresqlDatabase(dataSource.ConnectionString);
+		var engine = GetUpgradeEngine(dataSource.ConnectionString, database);
 		if (!engine.IsUpgradeRequired())
 		{
 			return true;

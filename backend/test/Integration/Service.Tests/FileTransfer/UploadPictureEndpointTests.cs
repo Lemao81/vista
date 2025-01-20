@@ -37,7 +37,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 
 		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "ph_600x400.png"));
 		using var       formContent   = new MultipartFormDataContent();
-		var             streamContent = new StreamContent(stream);
+		using var       streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
 		formContent.Add(streamContent, "file", "ph_600x400.png");
 		var userId = Guid.Parse("f6fac46a-ad79-44d8-8bc5-917e8cbad737");
@@ -80,7 +80,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 
 		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "empty.png"));
 		using var       formContent   = new MultipartFormDataContent();
-		var             streamContent = new StreamContent(stream);
+		using var       streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
 		formContent.Add(streamContent, "file", "empty.png");
 
@@ -91,7 +91,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		// Assert
 		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 		var content = await response.Content.ReadAsStringAsync();
-		Assert.Contains("'Length' must be greater than '0'", content);
+		Assert.Contains("'Length' must be greater than '0'", content, StringComparison.Ordinal);
 	}
 
 	[Fact]
@@ -104,7 +104,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 
 		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "test.txt"));
 		using var       formContent   = new MultipartFormDataContent();
-		var             streamContent = new StreamContent(stream);
+		using var       streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
 		formContent.Add(streamContent, "file", "test.txt");
 
@@ -115,7 +115,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		// Assert
 		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 		var content = await response.Content.ReadAsStringAsync();
-		Assert.Contains("'Content Type' must be one of", content);
-		Assert.Contains("'File Name' must have an extension of", content);
+		Assert.Contains("'Content Type' must be one of", content, StringComparison.Ordinal);
+		Assert.Contains("'File Name' must have an extension of", content, StringComparison.Ordinal);
 	}
 }

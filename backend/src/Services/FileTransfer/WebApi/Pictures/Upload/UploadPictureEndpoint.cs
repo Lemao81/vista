@@ -8,7 +8,7 @@ using WebApi.Extensions;
 
 namespace WebApi.Pictures.Upload;
 
-public static class UploadPictureEndpoint
+internal static class UploadPictureEndpoint
 {
 	public static void MapUploadPictureEndpoint(this RouteGroupBuilder groupBuilder)
 	{

@@ -64,3 +64,34 @@ resharper_csharp_keep_existing_list_patterns_arrangement = false
 resharper_csharp_keep_existing_primary_constructor_declaration_parens_arrangement = false
 
 resharper_csharp_max_initializer_elements_on_line = 1
+
+## Code analysis
+
+# Operator overloads have named alternates
+dotnet_diagnostic.CA2225.severity = none
+# Normalize strings to uppercase
+dotnet_diagnostic.CA1308.severity = none
+# Avoid empty interfaces
+dotnet_diagnostic.CA1040.severity = none
+# Identifiers should not match keywords
+dotnet_diagnostic.CA1716.severity = none
+# Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = none
+# Use the LoggerMessage delegates
+dotnet_diagnostic.CA1848.severity = none
+# Do not directly await a Task
+dotnet_diagnostic.CA2007.severity = none
+# Do not catch general exception types
+dotnet_diagnostic.CA1031.severity = none
+# Avoid uninstantiated internal classes
+dotnet_diagnostic.CA1812.severity = none
+# Do not pass literals as localized parameters
+dotnet_diagnostic.CA1303.severity = none
+# Pass System.Uri objects instead of strings
+dotnet_diagnostic.CA2234.severity = none
+# Consider making public types internal
+dotnet_diagnostic.CA1515.severity = none
+
+[*Tests.cs]
+# Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none

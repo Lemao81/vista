@@ -2,7 +2,7 @@
 
 namespace WebApi.Pictures;
 
-public static class PicturesEndpointGroup
+internal static class PicturesEndpointGroup
 {
 	public static void MapPictureEndpoints(this IEndpointRouteBuilder app)
 	{

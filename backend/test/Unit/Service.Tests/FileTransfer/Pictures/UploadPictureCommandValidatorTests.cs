@@ -47,10 +47,7 @@ public class UploadPictureCommandValidatorTests
 		});
 
 		var classUnderTest = new UploadPictureCommandValidator(options);
-		var command = new UploadPictureCommand(Substitute.For<Stream>(),
-			new MediaTypeHeaderValue("image/jpeg"),
-			new FileName("pic.jpeg"),
-			new FileLength(0));
+		var command = new UploadPictureCommand(Substitute.For<Stream>(), new MediaTypeHeaderValue("image/jpeg"), new FileName("pic.jpeg"), new FileLength(0));
 
 		// Act
 		var result = await classUnderTest.ValidateAsync(command);
@@ -58,9 +55,9 @@ public class UploadPictureCommandValidatorTests
 		// Assert
 		Assert.False(result.IsValid);
 		var errorString = result.ToString();
-		Assert.Contains("'Content Type' must be one of", errorString);
-		Assert.Contains("'File Name' must have an extension of", errorString);
-		Assert.Contains("'File Length' must be greater than", errorString);
+		Assert.Contains("'Content Type' must be one of", errorString, StringComparison.Ordinal);
+		Assert.Contains("'File Name' must have an extension of", errorString, StringComparison.Ordinal);
+		Assert.Contains("'File Length' must be greater than", errorString, StringComparison.Ordinal);
 	}
 
 	[Fact]
@@ -86,6 +83,6 @@ public class UploadPictureCommandValidatorTests
 
 		// Assert
 		Assert.False(result.IsValid);
-		Assert.Contains("'File Length' must be less than or equal to", result.Errors.First().ErrorMessage);
+		Assert.Contains("'File Length' must be less than or equal to", result.Errors.First().ErrorMessage, StringComparison.Ordinal);
 	}
 }

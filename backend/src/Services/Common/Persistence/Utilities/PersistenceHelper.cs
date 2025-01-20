@@ -2,6 +2,7 @@
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
+using SharedKernel;
 
 namespace Persistence.Utilities;
 
@@ -12,13 +13,13 @@ public static class PersistenceHelper
 		var host = configuration[ConfigurationKeys.DatabaseHost];
 		if (host.IsNullOrWhiteSpace())
 		{
-			throw new ApplicationException("Database host is not configured");
+			host = Constants.DefaultDatabaseHost;
 		}
 
 		var username = configuration[ConfigurationKeys.DatabaseUsername];
 		if (username.IsNullOrWhiteSpace())
 		{
-			throw new ApplicationException("Database username is not configured");
+			throw new MissingConfigurationException("Database username is not configured");
 		}
 
 		var password = configuration[ConfigurationKeys.DatabasePassword];
@@ -33,7 +34,7 @@ public static class PersistenceHelper
 
 		if (password.IsNullOrWhiteSpace())
 		{
-			throw new ApplicationException("Database password is not configured");
+			throw new MissingConfigurationException("Database password is not configured");
 		}
 
 		var builder = new NpgsqlDataSourceBuilder

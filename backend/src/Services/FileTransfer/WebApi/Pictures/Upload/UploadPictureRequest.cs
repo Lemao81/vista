@@ -1,3 +1,3 @@
 ﻿namespace WebApi.Pictures.Upload;
 
-public sealed record UploadPictureRequest(IFormFile? File);
+internal sealed record UploadPictureRequest(IFormFile? File);

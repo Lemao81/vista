@@ -19,4 +19,12 @@ public readonly record struct FileLength : IComparable, IComparable<FileLength>
 
 	public static implicit operator FileLength(long value)      => new(value);
 	public static implicit operator long(FileLength fileLength) => (long)fileLength.Value;
+
+	public static bool operator <(FileLength left, FileLength right) => left.CompareTo(right) < 0;
+
+	public static bool operator <=(FileLength left, FileLength right) => left.CompareTo(right) <= 0;
+
+	public static bool operator >(FileLength left, FileLength right) => left.CompareTo(right) > 0;
+
+	public static bool operator >=(FileLength left, FileLength right) => left.CompareTo(right) >= 0;
 }

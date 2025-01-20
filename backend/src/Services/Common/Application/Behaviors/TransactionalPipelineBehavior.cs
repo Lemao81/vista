@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using SharedKernel;
 
 namespace Application.Behaviors;
 
@@ -32,9 +31,9 @@ public sealed class TransactionalPipelineBehavior<TRequest, TResponse> : BasePip
 		{
 			await transaction.RollbackAsync(cancellationToken);
 
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogWarning("Transaction rolled back due to an error: {Message}", exception.Message);
 
-			return CreateErrorResult(Errors.Unknown);
+			throw;
 		}
 	}
 }

@@ -30,7 +30,7 @@ public class DomainTests : BaseArchitectureTest
 			.That()
 			.ImplementInterface(typeof(IDomainEvent))
 			.Should()
-			.HaveNameEndingWith("DomainEvent")
+			.HaveNameEndingWith("DomainEvent", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);
@@ -47,7 +47,7 @@ public class DomainTests : BaseArchitectureTest
 			.That()
 			.Inherit(typeof(Error))
 			.Should()
-			.HaveNameEndingWith("Error")
+			.HaveNameEndingWith("Error", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);
@@ -72,10 +72,7 @@ public class DomainTests : BaseArchitectureTest
 			var outerNamespaces = outerAssemblies[key!].Select(a => a.GetName().Name?.Split(".")[1]).ToArray();
 
 			// Act
-			var result = Types.InAssembly(domainAssembly)
-				.Should()
-				.NotHaveDependencyOnAny(outerNamespaces)
-				.GetResult();
+			var result = Types.InAssembly(domainAssembly).Should().NotHaveDependencyOnAny(outerNamespaces).GetResult();
 
 			PrintFailingTypes(result);
 

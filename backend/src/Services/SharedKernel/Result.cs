@@ -45,9 +45,6 @@ public sealed record Result<T> : Result
 
 	public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess(Value) : onFailure(Error);
 
-	public static     Result<T> Success(T     value) => new(value);
-	public new static Result<T> Failure(Error error) => new(error);
-
-	public static implicit operator Result<T>(T     value) => Success(value);
-	public static implicit operator Result<T>(Error error) => Failure(error);
+	public static implicit operator Result<T>(T     value) => new(value);
+	public static implicit operator Result<T>(Error error) => new(error);
 }

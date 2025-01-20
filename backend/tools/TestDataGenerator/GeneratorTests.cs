@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
 using Domain.Media;
 using Domain.Users;
 using MediatR;
@@ -18,13 +19,14 @@ public class GeneratorTests
 	[Fact(Skip = "TestDataGenerator")]
 	public async Task ClearMediaData()
 	{
-		await GetDbContext().MediaFolders.ExecuteDeleteAsync();
+		await using var dbContext = GetDbContext();
+		await dbContext.MediaFolders.ExecuteDeleteAsync();
 	}
 
 	[Fact(Skip = "TestDataGenerator")]
 	public async Task AddMediaFolders()
 	{
-		var dbContext = GetDbContext();
+		await using var dbContext = GetDbContext();
 
 		var userId = new UserId(Guid.NewGuid());
 		var mediaFolders = Enumerable.Range(0, 10)
@@ -39,7 +41,7 @@ public class GeneratorTests
 				else
 				{
 					mediaItem = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Video, MediaSizeKind.Original);
-					mediaItem.AddMetaData("DurationSec", Random.Shared.NextInt64(5, 31));
+					mediaItem.AddMetaData("DurationSec", RandomNumberGenerator.GetInt32(5, 31));
 				}
 
 				mediaFolder.AddMediaItem(mediaItem);

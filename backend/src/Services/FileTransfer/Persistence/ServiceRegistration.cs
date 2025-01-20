@@ -10,7 +10,7 @@ using Persistence.Utilities;
 
 namespace Persistence;
 
-public static class DependencyInjection
+public static class ServiceRegistration
 {
 	public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
 	{

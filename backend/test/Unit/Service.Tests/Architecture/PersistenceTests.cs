@@ -18,7 +18,7 @@ public class PersistenceTests : BaseArchitectureTest
 			.That()
 			.ImplementInterface(typeof(IRepository))
 			.Should()
-			.HaveNameEndingWith("Repository")
+			.HaveNameEndingWith("Repository", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);

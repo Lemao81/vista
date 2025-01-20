@@ -2,7 +2,7 @@
 
 namespace Presentation;
 
-public static class DependencyInjection
+public static class ServiceRegistration
 {
 	public static IServiceCollection AddPresentationServices(this IServiceCollection services)
 	{

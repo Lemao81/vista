@@ -8,7 +8,7 @@ public abstract class Entity
 	public DateTime?                         ModifiedUtc  { get; protected set; }
 	public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
 
-	protected void RaiseDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
+	protected void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
 
 	public void ClearDomainEvents() => _domainEvents.Clear();
 }

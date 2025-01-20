@@ -8,7 +8,7 @@ using Polly.Retry;
 
 namespace WebApi.Extensions;
 
-public static partial class WebApplicationExtensions
+internal static partial class WebApplicationExtensions
 {
 	[GeneratedRegex("Database=(.*?);")]
 	private static partial Regex DatabaseRegex();
@@ -19,9 +19,9 @@ public static partial class WebApplicationExtensions
 		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 		var             logger        = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-		var connectionString = PersistenceHelper.CreateDataSource(configuration, database, true).ConnectionString;
-		connectionString = DatabaseRegex().Replace(connectionString, "");
-		var connection = new NpgsqlConnection(connectionString);
+		await using var dataSource       = PersistenceHelper.CreateDataSource(configuration, database, true);
+		var             connectionString = DatabaseRegex().Replace(dataSource.ConnectionString, "");
+		await using var connection       = new NpgsqlConnection(connectionString);
 
 		var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
 			{

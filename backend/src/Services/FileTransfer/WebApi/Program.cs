@@ -1,3 +1,4 @@
+using System.Globalization;
 using Application;
 using Domain;
 using Domain.Media;
@@ -11,7 +12,7 @@ using WebApi;
 using WebApi.Extensions;
 using WebApi.Pictures;
 
-Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console().CreateBootstrapLogger();
+Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(formatProvider: CultureInfo.InvariantCulture).CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,4 +56,6 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 	await app.MigrateDatabaseAsync();
 }
 
+#pragma warning disable CA1849
 app.Run();
+#pragma warning restore CA1849

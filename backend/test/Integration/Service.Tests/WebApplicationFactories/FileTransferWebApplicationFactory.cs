@@ -53,7 +53,12 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 		await Task.WhenAll(_postgresContainer.StartAsync(), _minioContainer.StartAsync());
 	}
 
-	public new Task DisposeAsync() => Task.CompletedTask;
+	public new async Task DisposeAsync()
+	{
+		await _network.DisposeAsync();
+		await _postgresContainer.DisposeAsync();
+		await _minioContainer.DisposeAsync();
+	}
 
 	private PostgreSqlContainer CreatePostgresContainer()
 	{

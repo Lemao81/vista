@@ -38,10 +38,10 @@ public class FormFileValidatorTests
 		// Assert
 		Assert.False(result.IsValid);
 		var errorString = result.ToString();
-		Assert.Contains("'Content Type' must not be empty", errorString);
-		Assert.Contains("'Content Type' not valid", errorString);
-		Assert.Contains("'File Name' must not be empty", errorString);
-		Assert.Contains("'File Name' must have an extension", errorString);
-		Assert.Contains("'Length' must be greater than '0'", errorString);
+		Assert.Contains("'Content Type' must not be empty", errorString, StringComparison.Ordinal);
+		Assert.Contains("'Content Type' not valid", errorString, StringComparison.Ordinal);
+		Assert.Contains("'File Name' must not be empty", errorString, StringComparison.Ordinal);
+		Assert.Contains("'File Name' must have an extension", errorString, StringComparison.Ordinal);
+		Assert.Contains("'Length' must be greater than '0'", errorString, StringComparison.Ordinal);
 	}
 }

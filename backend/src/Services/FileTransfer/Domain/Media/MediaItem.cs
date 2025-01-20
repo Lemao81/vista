@@ -34,7 +34,7 @@ public sealed class MediaItem : Entity<MediaItemId>
 	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind)
 	{
 		var item = new MediaItem(new MediaItemId(Guid.NewGuid()), mediaFolderId, userId, mediaKind, mediaSizeKind);
-		item.RaiseDomainEvent(new MediaCreatedDomainEvent(item.MediaFolderId, item.Id, mediaKind));
+		item.AddDomainEvent(new MediaCreatedDomainEvent(item.MediaFolderId, item.Id, mediaKind));
 
 		return item;
 	}

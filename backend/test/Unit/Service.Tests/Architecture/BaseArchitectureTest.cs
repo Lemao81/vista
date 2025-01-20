@@ -17,12 +17,12 @@ public abstract class BaseArchitectureTest
 		TestOutputHelper = testOutputHelper;
 	}
 
-	protected readonly ITestOutputHelper TestOutputHelper;
-	protected readonly Assembly[]        DomainAssemblies         = [typeof(DomainAssemblyMarker).Assembly];
-	protected readonly Assembly[]        ApplicationAssemblies    = [typeof(ApplicationAssemblyMarker).Assembly];
-	protected readonly Assembly[]        InfrastructureAssemblies = [typeof(InfrastructureAssemblyMarker).Assembly];
-	protected readonly Assembly[]        PersistenceAssemblies    = [typeof(PersistenceAssemblyMarker).Assembly];
-	protected readonly Assembly[]        WebApiAssemblies         = [typeof(WebApiAssemblyMarker).Assembly];
+	protected ITestOutputHelper     TestOutputHelper         { get; }
+	protected IEnumerable<Assembly> DomainAssemblies         { get; } = [typeof(DomainAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> ApplicationAssemblies    { get; } = [typeof(ApplicationAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> InfrastructureAssemblies { get; } = [typeof(InfrastructureAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> PersistenceAssemblies    { get; } = [typeof(PersistenceAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> WebApiAssemblies         { get; } = [typeof(WebApiAssemblyMarker).Assembly];
 
 	protected void PrintFailingTypes(TestResult result) => TestOutputHelper.WriteLine(result.FailingTypeNames.ToCommaSeparated());
 }

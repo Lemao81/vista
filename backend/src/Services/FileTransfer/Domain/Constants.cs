@@ -1,13 +1,14 @@
-﻿namespace Domain;
-
-public class Constants
+﻿namespace Domain
 {
-}
-
-public static class Storage
-{
-	public static class Buckets
+	public class Constants
 	{
-		public const string Media = "media";
+	}
+
+	namespace Storage
+	{
+		public static class Buckets
+		{
+			public const string Media = "media";
+		}
 	}
 }
