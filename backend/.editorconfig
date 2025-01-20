@@ -91,6 +91,10 @@ dotnet_diagnostic.CA1303.severity = none
 dotnet_diagnostic.CA2234.severity = none
 # Consider making public types internal
 dotnet_diagnostic.CA1515.severity = none
+# Avoid unused private fields
+dotnet_diagnostic.CA1823.severity = warning
+# Do not initialize unnecessarily
+dotnet_diagnostic.CA1805.severity = none
 
 [*Tests.cs]
 # Identifiers should not contain underscores

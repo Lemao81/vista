@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Application.Abstractions;
+using Application.Extensions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
@@ -24,19 +25,16 @@ public class LoggingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior
 
 		if (result.IsSuccess)
 		{
-			Log("Success", elapsedMs);
+			_logger.MediatRRequestFinished(typeof(TRequest).Name, true, elapsedMs);
 		}
 		else
 		{
 			using (LogContext.PushProperty("Error", result.Error, true))
 			{
-				Log("Failure", elapsedMs);
+				_logger.MediatRRequestFinished(typeof(TRequest).Name, false, elapsedMs);
 			}
 		}
 
 		return result;
 	}
-
-	private void Log(string status, double elapsedMs) =>
-		_logger.LogInformation("MediatR Request finished {RequestName} - {Status} in {RequestTime} ms", typeof(TRequest).Name, status, elapsedMs);
 }
