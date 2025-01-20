@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Extensions.Logging.Xunit" Version="1.0.8"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.0"/>
-    <PackageReference Include="Testcontainers" Version="4.1.0"/>
-    <PackageReference Include="Testcontainers.Minio" Version="4.1.0"/>
-    <PackageReference Include="Testcontainers.PostgreSql" Version="4.1.0"/>
+    <PackageReference Include="Meziantou.Extensions.Logging.Xunit"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing"/>
+    <PackageReference Include="Testcontainers"/>
+    <PackageReference Include="Testcontainers.Minio"/>
+    <PackageReference Include="Testcontainers.PostgreSql"/>
   </ItemGroup>
 
   <ItemGroup>
