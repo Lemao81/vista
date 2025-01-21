@@ -3,10 +3,7 @@
     "FileTransfer http": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "Database__Host": "localhost",
-        "Database__Username": "sa",
-        "Minio__Endpoint": "localhost:9000"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"

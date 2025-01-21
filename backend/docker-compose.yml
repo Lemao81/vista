@@ -63,7 +63,7 @@ services:
       - postgres-password
       - minio-keys
     ports:
-      - "5000:8080"
+      - "5001:8080"
     networks:
       vista:
         aliases:
