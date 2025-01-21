@@ -1,6 +1,8 @@
 ﻿using Application;
 using DotNet.Testcontainers.Builders;
+using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;
+using Lemao.UtilExtensions;
 using Meziantou.Extensions.Logging.Xunit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -17,21 +19,24 @@ namespace Service.Tests.WebApplicationFactories;
 public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAssemblyMarker>, IAsyncLifetime
 {
 	private readonly INetwork                   _network;
+	private readonly ContainerFactory           _containerFactory;
 	private readonly PostgreSqlContainer        _postgresContainer;
 	private readonly MinioContainer             _minioContainer;
+	private          IContainer?                _maintenanceContainer;
 	private readonly DelegatingTestOutputHelper _delegatingTestOutputHelper;
 
 	public FileTransferWebApplicationFactory()
 	{
 		_network                    = new NetworkBuilder().WithName($"{GetType().Name}_{Guid.NewGuid()}").Build();
-		_postgresContainer          = CreatePostgresContainer();
-		_minioContainer             = CreateMinioContainer();
+		_containerFactory           = new ContainerFactory(_network);
+		_postgresContainer          = _containerFactory.CreatePostgresContainer();
+		_minioContainer             = _containerFactory.CreateMinioContainer();
 		_delegatingTestOutputHelper = new DelegatingTestOutputHelper(() => TestOutputHelper);
 	}
 
 	protected override void ConfigureWebHost(IWebHostBuilder builder)
 	{
-		builder.UseEnvironment("Staging");
+		builder.UseEnvironment("Production");
 		builder.ConfigureLogging(logBuilder =>
 		{
 			logBuilder.ClearProviders();
@@ -50,50 +55,41 @@ public class FileTransferWebApplicationFactory : WebApplicationFactory<WebApiAss
 
 	public async Task InitializeAsync()
 	{
-		await Task.WhenAll(_postgresContainer.StartAsync(), _minioContainer.StartAsync());
+		try
+		{
+			await Task.WhenAll(_postgresContainer.StartAsync(), _minioContainer.StartAsync());
+			_maintenanceContainer = _containerFactory.CreateMaintenanceContainer();
+			await _maintenanceContainer.StartAsync();
+		}
+		catch (Exception)
+		{
+			await LogExitedContainersAsync(_postgresContainer, _minioContainer, _maintenanceContainer);
+
+			throw;
+		}
 	}
 
 	public new async Task DisposeAsync()
 	{
-		await _network.DisposeAsync();
+		if (_maintenanceContainer is not null)
+		{
+			await _maintenanceContainer.DisposeAsync();
+		}
+
 		await _postgresContainer.DisposeAsync();
 		await _minioContainer.DisposeAsync();
+		await _network.DisposeAsync();
 	}
 
-	private PostgreSqlContainer CreatePostgresContainer()
+	private static async Task LogExitedContainersAsync(params IContainer?[] containers)
 	{
-		var image = IsLocal() ? "backend-vista-postgres" : "ghcr.io/lemao81/vista-postgres";
-
-		return new PostgreSqlBuilder().WithImage(image)
-			.WithName($"postgres_{Guid.NewGuid()}")
-			.WithNetwork(_network)
-			.WithNetworkAliases(NetworkAliases.Postgres)
-			.WithDatabase("sa")
-			.WithUsername("sa")
-			.WithPassword("adminpwd")
-			.WithEnvironment("PGUSER", "sa")
-			// uncomment for local inspection
-			// .WithPortBinding(5432)
-			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
-			.Build();
+		foreach (var container in containers.Where(c => c is not null && c.State == TestcontainersStates.Exited))
+		{
+			var stderr = (await container!.GetLogsAsync()).Stderr;
+			if (!stderr.IsNullOrWhiteSpace())
+			{
+				Console.WriteLine(stderr);
+			}
+		}
 	}
-
-	private MinioContainer CreateMinioContainer()
-	{
-		var image = IsLocal() ? "backend-vista-minio" : "ghcr.io/lemao81/vista-minio";
-
-		return new MinioBuilder().WithImage(image)
-			.WithName($"minio_{Guid.NewGuid()}")
-			.WithNetwork(_network)
-			.WithNetworkAliases(NetworkAliases.Minio)
-			.WithUsername("admin")
-			.WithPassword("adminpwd")
-			.WithCommand("--console-address", ":9001")
-			// uncomment for local inspection
-			// .WithPortBinding(9001)
-			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
-			.Build();
-	}
-
-	private static bool IsLocal() => Environment.OSVersion.Platform != PlatformID.Unix;
 }

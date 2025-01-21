@@ -41,7 +41,6 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
 		formContent.Add(streamContent, "file", "ph_600x400.png");
 		var userId = Guid.Parse("f6fac46a-ad79-44d8-8bc5-917e8cbad737");
-		await objectStorage.CreateBucketAsync(StorageBucket.Media);
 
 		// Pre-Assert
 		Assert.Empty(dbContext.MediaFolders);
