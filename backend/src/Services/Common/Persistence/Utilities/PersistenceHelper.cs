@@ -1,7 +1,11 @@
 ﻿using Application;
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Npgsql;
+using Polly;
+using Polly.Retry;
 using SharedKernel;
 
 namespace Persistence.Utilities;
@@ -51,4 +55,41 @@ public static class PersistenceHelper
 
 		return builder.Build();
 	}
+
+	public static async Task AwaitDatabaseConnectionAsync(IServiceProvider serviceProvider)
+	{
+		await using var scope         = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
+		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+		var             logger        = scope.ServiceProvider.GetRequiredService<ILogger<Logging>>();
+
+		await using var dataSource = CreateDataSource(configuration, "", true);
+		await using var connection = new NpgsqlConnection(dataSource.ConnectionString);
+
+		var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
+			{
+				Delay            = TimeSpan.FromSeconds(1),
+				BackoffType      = DelayBackoffType.Exponential,
+				MaxDelay         = TimeSpan.FromSeconds(10),
+				MaxRetryAttempts = int.MaxValue,
+				ShouldHandle     = new PredicateBuilder().Handle<Exception>(exception => exception is not OperationCanceledException),
+				OnRetry = _ =>
+				{
+					logger.LogInformation("Failed to establish database connection");
+
+					return ValueTask.CompletedTask;
+				}
+			})
+			.Build();
+
+		await pipeline.ExecuteAsync(async (conn, ct) =>
+			{
+				await conn.OpenAsync(ct);
+				logger.LogInformation("Database connection established");
+				await conn.CloseAsync();
+				await conn.DisposeAsync();
+			},
+			connection);
+	}
+
+	private sealed class Logging;
 }

@@ -5,6 +5,7 @@ using Domain.Media;
 using FluentValidation;
 using Infrastructure;
 using Persistence;
+using Persistence.Utilities;
 using Presentation;
 using Serilog;
 using SharedKernel;
@@ -50,7 +51,7 @@ app.UseStatusCodePages();
 app.MapPictureEndpoints();
 app.UseHttpsRedirection();
 
-await app.AwaitDatabaseConnectionAsync(DbNames.FileTransfer);
+await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services);
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
 	await app.MigrateDatabaseAsync();

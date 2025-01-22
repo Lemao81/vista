@@ -1,4 +1,5 @@
 using Persistence.Extensions;
+using Persistence.Utilities;
 using WebApi;
 using WebApi.Extensions;
 using WebApi.Initiators;
@@ -27,11 +28,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services);
+
 try
 {
-	using var scope      = app.Services.CreateScope();
-	var       initiators = scope.ServiceProvider.GetServices<IInitiator>();
-	var       results    = await Task.WhenAll(initiators.Select(i => i.InitiateAsync()));
+	await using var scope      = app.Services.CreateAsyncScope();
+	var             initiators = scope.ServiceProvider.GetServices<IInitiator>();
+	var             results    = await Task.WhenAll(initiators.Select(i => i.InitiateAsync()));
 	if (results.All(r => r))
 	{
 		HealthCheck.IsHealthy = true;

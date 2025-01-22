@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions"/>
     <PackageReference Include="Minio" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
+    <PackageReference Include="Polly.Core" />
   </ItemGroup>
 
   <ItemGroup>
