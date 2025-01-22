@@ -23,13 +23,46 @@ public sealed class FileTransferDbContext : DbContext
 		modelBuilder.ApplyConfigurationsFromAssembly(typeof(FileTransferDbContext).Assembly);
 	}
 
+	public override int SaveChanges(bool acceptAllChangesOnSuccess)
+	{
+		OnBeforeSaving();
+
+		return base.SaveChanges(acceptAllChangesOnSuccess);
+	}
+
 	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
 	{
 		var domainEvents = GatherDomainEvents();
-		var result       = await base.SaveChangesAsync(cancellationToken);
+		OnBeforeSaving();
+		var result = await base.SaveChangesAsync(cancellationToken);
 		await PublishDomainEventsAsync(domainEvents, cancellationToken);
 
 		return result;
+	}
+
+	private void OnBeforeSaving()
+	{
+		var entries = ChangeTracker.Entries();
+		foreach (var entry in entries)
+		{
+			if (entry.Entity is not Entity entity)
+			{
+				continue;
+			}
+
+			var now = DateTime.UtcNow;
+			switch (entry.State)
+			{
+				case EntityState.Added:
+					entity.CreatedUtc = now;
+
+					break;
+				case EntityState.Modified:
+					entity.ModifiedUtc = now;
+
+					break;
+			}
+		}
 	}
 
 	private List<IDomainEvent> GatherDomainEvents() =>

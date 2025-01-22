@@ -4,8 +4,8 @@ public abstract class Entity
 {
 	private readonly List<IDomainEvent> _domainEvents = [];
 
-	public DateTime                          CreatedUtc   { get; private set; } = DateTime.UtcNow;
-	public DateTime?                         ModifiedUtc  { get; protected set; }
+	public DateTime                          CreatedUtc   { get; set; } = default;
+	public DateTime?                         ModifiedUtc  { get; set; }
 	public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
 
 	protected void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
