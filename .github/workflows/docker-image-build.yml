@@ -12,6 +12,12 @@ jobs:
     name: Build and push
     runs-on: ubuntu-22.04
     
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
