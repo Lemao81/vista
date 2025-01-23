@@ -57,6 +57,4 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 	await app.MigrateDatabaseAsync();
 }
 
-#pragma warning disable CA1849
-app.Run();
-#pragma warning restore CA1849
+await app.RunAsync();
