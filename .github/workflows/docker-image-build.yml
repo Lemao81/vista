@@ -10,16 +10,16 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: lemao81/vista-maintenance-api
 
+permissions:
+  contents: read
+  packages: write
+  attestations: write
+  id-token: write
+
 jobs:
   build_and_push:
     name: Build and push
     runs-on: ubuntu-22.04
-    
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
     
     steps:
       - name: Checkout
