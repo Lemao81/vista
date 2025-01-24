@@ -10,12 +10,6 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: lemao81/vista-maintenance-api
 
-permissions:
-  contents: read
-  packages: write
-  attestations: write
-  id-token: write
-
 jobs:
   build_and_push:
     name: Build and push
@@ -30,7 +24,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PACKAGES_TOKEN }}
 
       - name: Docker metadata
         uses: docker/metadata-action@v5
