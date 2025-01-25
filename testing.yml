@@ -34,11 +34,6 @@ steps:
       configuration: '$(buildConfiguration)'
 
   - task: CmdLine@2
-    displayName: 'Cmd test'
-    inputs:
-      script: 'echo $(TEST)'
-
-  - task: CmdLine@2
     displayName: 'Docker login'
     inputs:
       script: 'echo $(GITHUB_TOKEN) | docker login ghcr.io -u Lemao81 --password-stdin'
