@@ -96,6 +96,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\Services\Main
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\Services\Common\WebApi\WebApi.csproj", "{0C108DF9-C050-4D10-89DC-9B5576C1341D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{08FB74A1-AF5B-4136-8D51-5B50E0088BB7}"
+	ProjectSection(SolutionItems) = preProject
+		..\.azure\CI.yml = ..\.azure\CI.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -202,5 +207,6 @@ Global
 		{7A4055D1-4B5F-4278-92CC-03117B1834DB} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
 		{ACE79AB8-A3F2-495E-8263-C0AB51804987} = {7A4055D1-4B5F-4278-92CC-03117B1834DB}
 		{0C108DF9-C050-4D10-89DC-9B5576C1341D} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
+		{08FB74A1-AF5B-4136-8D51-5B50E0088BB7} = {E57F252C-8F68-489C-8987-C23D12EDB857}
 	EndGlobalSection
 EndGlobal
