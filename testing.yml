@@ -10,7 +10,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+  - task: CmdLine@2
+    displayName: 'Docker login'
+    inputs:
+      script: 'echo $(GITHUB_TOKEN) | docker login ghcr.io -u Lemao81 --password-stdin'
+
   - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet'
 
   - task: UseDotNet@2
     displayName: 'Use .NET $(dotNetVersion)'
@@ -32,11 +38,6 @@ steps:
       projects: '$(solution)'
       arguments: '--no-restore'
       configuration: '$(buildConfiguration)'
-
-  - task: CmdLine@2
-    displayName: 'Docker login'
-    inputs:
-      script: 'echo $(GITHUB_TOKEN) | docker login ghcr.io -u Lemao81 --password-stdin'
 
   - task: DotNetCoreCLI@2
     displayName: 'Test'
