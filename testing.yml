@@ -34,8 +34,14 @@ steps:
       configuration: '$(buildConfiguration)'
 
   - task: CmdLine@2
+    displayName: 'Cmd test'
     inputs:
-      script: 'docker login ghcr.io -u Lemao81 -p $(GITHUB_TOKEN)'
+      script: 'echo $(TEST)'
+
+  - task: CmdLine@2
+    displayName: 'Docker login'
+    inputs:
+      script: 'echo $(GITHUB_TOKEN) | docker login ghcr.io -u Lemao81 --password-stdin'
 
   - task: DotNetCoreCLI@2
     displayName: 'Test'
