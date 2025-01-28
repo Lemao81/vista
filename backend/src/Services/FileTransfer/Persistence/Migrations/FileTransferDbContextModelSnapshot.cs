@@ -37,6 +37,12 @@ namespace Persistence.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_utc");
 
+                    b.Property<string>("OriginalName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("original_name");
+
                     b.Property<byte>("StorageVersion")
                         .HasColumnType("smallint")
                         .HasColumnName("storage_version");

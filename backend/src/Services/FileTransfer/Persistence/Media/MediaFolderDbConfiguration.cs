@@ -19,6 +19,7 @@ internal sealed class MediaFolderDbConfiguration : IEntityTypeConfiguration<Medi
 	{
 		builder.Property(f => f.Id).HasConversion(i => i.Value, g => new MediaFolderId(g));
 		builder.Property(f => f.UserId).HasConversion(i => i.Value, g => new UserId(g));
+		builder.Property(f => f.OriginalName).HasMaxLength(50).IsRequired();
 	}
 
 	private static void ConfigureRelations(EntityTypeBuilder<MediaFolder> builder)

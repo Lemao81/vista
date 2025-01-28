@@ -12,7 +12,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(FileTransferDbContext))]
-    [Migration("20241227184204_Initial")]
+    [Migration("20250128134342_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -39,6 +39,12 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("ModifiedUtc")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_utc");
+
+                    b.Property<string>("OriginalName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("original_name");
 
                     b.Property<byte>("StorageVersion")
                         .HasColumnType("smallint")
@@ -75,6 +81,11 @@ namespace Persistence.Migrations
                     b.Property<int>("MediaSizeKind")
                         .HasColumnType("integer")
                         .HasColumnName("media_size_kind");
+
+                    b.Property<string>("MetaData")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("meta_data");
 
                     b.Property<DateTime?>("ModifiedUtc")
                         .HasColumnType("timestamp with time zone")

@@ -27,8 +27,8 @@ internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictur
 		try
 		{
 			var userId      = new UserId(Guid.Parse("f6fac46a-ad79-44d8-8bc5-917e8cbad737"));
-			var mediaFolder = MediaFolder.Create(userId);
-			var mediaItem   = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Picture, MediaSizeKind.Original);
+			var mediaFolder = MediaFolder.Create(userId, command.FileName.Value);
+			var mediaItem   = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Picture, MediaSizeKind.Original, command.MediaType);
 			mediaFolder.AddMediaItem(mediaItem);
 
 			var fileName   = ApplicationHelper.GetStorageFileName(command.FileName, mediaItem);

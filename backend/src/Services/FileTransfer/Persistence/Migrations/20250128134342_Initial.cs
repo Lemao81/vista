@@ -22,6 +22,7 @@ namespace Persistence.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
                     storage_version = table.Column<byte>(type: "smallint", nullable: false),
+                    original_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     created_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modified_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
@@ -41,6 +42,7 @@ namespace Persistence.Migrations
                     media_kind = table.Column<int>(type: "integer", nullable: false),
                     media_size_kind = table.Column<int>(type: "integer", nullable: false),
                     storage_version = table.Column<byte>(type: "smallint", nullable: false),
+                    meta_data = table.Column<string>(type: "text", nullable: false),
                     created_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modified_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
