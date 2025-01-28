@@ -1,4 +1,5 @@
 ﻿using Application.Behaviors;
+using Application.Media;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -15,6 +16,8 @@ public static class ServiceRegistration
 			config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
 			config.AddOpenBehavior(typeof(TransactionalPipelineBehavior<,>));
 		});
+
+		services.AddSingleton<FileTransferMetrics>();
 
 		return services;
 	}

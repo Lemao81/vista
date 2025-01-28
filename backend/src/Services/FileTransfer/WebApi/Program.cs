@@ -30,7 +30,7 @@ builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = 
 
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices();
+builder.Services.AddInfrastructureServices(builder.Environment, builder.Logging);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 

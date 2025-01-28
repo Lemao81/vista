@@ -8,26 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\WebApi\WebApi.csproj" />
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Persistence\Persistence.csproj" />
-    <ProjectReference Include="..\Presentation\Presentation.csproj" />
+    <ProjectReference Include="..\..\Common\WebApi\WebApi.csproj"/>
+    <ProjectReference Include="..\Application\Application.csproj"/>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+    <ProjectReference Include="..\Persistence\Persistence.csproj"/>
+    <ProjectReference Include="..\Presentation\Presentation.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="Integration.Service.Tests" />
-    <InternalsVisibleTo Include="Unit.Service.Tests" />
+    <InternalsVisibleTo Include="Integration.Service.Tests"/>
+    <InternalsVisibleTo Include="Unit.Service.Tests"/>
   </ItemGroup>
 
 </Project>

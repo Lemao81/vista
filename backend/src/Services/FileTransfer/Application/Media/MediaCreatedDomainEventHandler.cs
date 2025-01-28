@@ -1,13 +1,31 @@
 ﻿using Domain.Media;
 using MediatR;
+using SharedKernel;
 
 namespace Application.Media;
 
 internal sealed class MediaCreatedDomainEventHandler : INotificationHandler<MediaCreatedDomainEvent>
 {
+	private readonly FileTransferMetrics _fileTransferMetrics;
+
+	public MediaCreatedDomainEventHandler(FileTransferMetrics fileTransferMetrics)
+	{
+		_fileTransferMetrics = fileTransferMetrics;
+	}
+
 	public Task Handle(MediaCreatedDomainEvent domainEvent, CancellationToken cancellationToken)
 	{
-		Console.WriteLine("A media has been created");
+		switch (domainEvent.MediaKind)
+		{
+			case MediaKind.Picture:
+				_fileTransferMetrics.PictureUploaded(domainEvent.MediaType);
+
+				break;
+			case MediaKind.Video:
+				break;
+			default:
+				throw new CaseOutOfRangeException(nameof(domainEvent.MediaKind), domainEvent.MediaKind);
+		}
 
 		return Task.CompletedTask;
 	}
