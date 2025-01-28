@@ -31,10 +31,9 @@ internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictur
 			var mediaItem   = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Picture, MediaSizeKind.Original, command.MediaType);
 			mediaFolder.AddMediaItem(mediaItem);
 
-			var fileName   = ApplicationHelper.GetStorageFileName(command.FileName, mediaItem);
-			var objectName = StorageObjectName.CreateMediaName(fileName, userId, mediaFolder.Id);
-			var putObjectResult =
-				await _objectStorage.PutObjectAsync(StorageBucket.Media, objectName, command.ContentType.MediaType, command.Stream, cancellationToken);
+			var fileName        = ApplicationHelper.GetStorageFileName(command.FileName, mediaItem);
+			var objectName      = StorageObjectName.CreateMediaName(fileName, userId, mediaFolder.Id);
+			var putObjectResult = await _objectStorage.PutObjectAsync(StorageBucket.Media, objectName, command.MediaType, command.Stream, cancellationToken);
 
 			if (putObjectResult.IsFailure)
 			{

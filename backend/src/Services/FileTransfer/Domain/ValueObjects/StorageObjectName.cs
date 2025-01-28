@@ -10,7 +10,7 @@ public readonly record struct StorageObjectName
 
 	public StorageObjectName(FileName fileName, params object[] parts)
 	{
-		Value = "/" + fileName.Value;
+		Value = "/" + fileName.NormalizedValue;
 		if (parts.Length != 0)
 		{
 			Value = $"/{parts.Select(p => (p.ToString() ?? "").Trim('/').ToLowerInvariant()).Aggregate((a, b) => $"{a}/{b}")}{Value}";

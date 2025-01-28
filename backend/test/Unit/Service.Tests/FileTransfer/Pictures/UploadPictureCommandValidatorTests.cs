@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using Application.Pictures.Upload;
+﻿using Application.Pictures.Upload;
 using Domain.Media;
 using Microsoft.Extensions.Options;
 using NSubstitute;
@@ -22,10 +21,7 @@ public class UploadPictureCommandValidatorTests
 		});
 
 		var classUnderTest = new UploadPictureCommandValidator(options);
-		var command = new UploadPictureCommand(Substitute.For<Stream>(),
-			new MediaTypeHeaderValue("image/jpeg"),
-			new FileName("pic.jpeg"),
-			new FileLength(2000));
+		var command        = new UploadPictureCommand(Substitute.For<Stream>(), "image/jpeg", new FileName("pic.jpeg"), new FileLength(2000));
 
 		// Act
 		var result = await classUnderTest.ValidateAsync(command);
@@ -47,7 +43,7 @@ public class UploadPictureCommandValidatorTests
 		});
 
 		var classUnderTest = new UploadPictureCommandValidator(options);
-		var command = new UploadPictureCommand(Substitute.For<Stream>(), new MediaTypeHeaderValue("image/jpeg"), new FileName("pic.jpeg"), new FileLength(0));
+		var command        = new UploadPictureCommand(Substitute.For<Stream>(), "image/jpeg", new FileName("pic.jpeg"), new FileLength(0));
 
 		// Act
 		var result = await classUnderTest.ValidateAsync(command);
@@ -73,10 +69,7 @@ public class UploadPictureCommandValidatorTests
 		});
 
 		var classUnderTest = new UploadPictureCommandValidator(options);
-		var command = new UploadPictureCommand(Substitute.For<Stream>(),
-			new MediaTypeHeaderValue("image/jpeg"),
-			new FileName("pic.jpeg"),
-			new FileLength(5000));
+		var command        = new UploadPictureCommand(Substitute.For<Stream>(), "image/jpeg", new FileName("pic.jpeg"), new FileLength(5000));
 
 		// Act
 		var result = await classUnderTest.ValidateAsync(command);

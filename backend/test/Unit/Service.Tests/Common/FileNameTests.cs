@@ -5,16 +5,17 @@ namespace Service.Tests.Common;
 public class FileNameTests
 {
 	[Theory]
-	[InlineData("pic.png", "pic", "png")]
-	[InlineData("img.jpeg", "img", "jpeg")]
-	public void When_new_given_valid_file_name_should_set_values(string value, string expectedName, string expectedExtension)
+	[InlineData("Pic.pNg", "Pic", "pic.png", "png")]
+	[InlineData("imG.jpeG", "imG", "img.jpeg", "jpeg")]
+	public void When_new_given_valid_file_name_should_set_values(string value, string expectedBaseName, string expectedNormalizedName, string expectedExtension)
 	{
 		// Act
 		var fileName = new FileName(value);
 
 		// Assert
 		Assert.Equal(value, fileName.Value);
-		Assert.Equal(expectedName, fileName.Name);
+		Assert.Equal(expectedBaseName, fileName.BaseName);
+		Assert.Equal(expectedNormalizedName, fileName.NormalizedValue);
 		Assert.Equal(expectedExtension, fileName.Extension);
 	}
 

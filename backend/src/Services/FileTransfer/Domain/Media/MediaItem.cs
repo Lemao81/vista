@@ -31,10 +31,10 @@ public sealed class MediaItem : Entity<MediaItemId>
 
 	public void AddMetaData(string key, object value) => _metadata[key] = value;
 
-	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind)
+	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind, string mediaType)
 	{
 		var item = new MediaItem(new MediaItemId(Guid.NewGuid()), mediaFolderId, userId, mediaKind, mediaSizeKind);
-		item.AddDomainEvent(new MediaCreatedDomainEvent(item.MediaFolderId, item.Id, mediaKind));
+		item.AddDomainEvent(new MediaCreatedDomainEvent(item.MediaFolderId, item.Id, mediaKind, mediaType));
 
 		return item;
 	}

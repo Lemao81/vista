@@ -28,13 +28,12 @@ internal static class UploadPictureEndpoint
 
 					ArgumentNullException.ThrowIfNull(request.File);
 
-					var contentType = new MediaTypeHeaderValue(request.File.ContentType);
-					var command     = new UploadPictureCommand(request.File.OpenReadStream(), contentType, request.File.FileName, request.File.Length);
-					var result      = await sender.Send(command);
+					var mediaType = new MediaTypeHeaderValue(request.File.ContentType).MediaType;
+					var command   = new UploadPictureCommand(request.File.OpenReadStream(), mediaType ?? "", request.File.FileName, request.File.Length);
+					var result    = await sender.Send(command);
 					httpContext.MaybeAddError(result);
 
-					return result.Match(
-						response => Results.Created($"/pictures/{response.Id}", response.Id),
+					return result.Match(response => Results.Created($"/pictures/{response.Id}", response.Id),
 						error => error switch
 						{
 							ValidationError valError => Results.ValidationProblem(valError.Errors),

@@ -11,8 +11,8 @@ public class UploadPictureCommandValidator : AbstractValidator<UploadPictureComm
 	{
 		var uploadOptions = options.Value;
 
-		RuleFor(c => c.ContentType)
-			.Must(v => uploadOptions.ValidPictureContentTypes.Contains(v.MediaType))
+		RuleFor(c => c.MediaType)
+			.Must(v => uploadOptions.ValidPictureContentTypes.Contains(v))
 			.WithMessage($"'Content Type' must be one of: {uploadOptions.ValidPictureContentTypes.ToCommaSeparated()}");
 
 		RuleFor(c => c.FileName)
