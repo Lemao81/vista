@@ -41,7 +41,7 @@ public static class ServiceRegistration
 
 				tracing.AddAspNetCoreInstrumentation();
 				tracing.AddHttpClientInstrumentation();
-				tracing.AddEntityFrameworkCoreInstrumentation();
+				tracing.AddEntityFrameworkCoreInstrumentation(options => options.SetDbStatementForText = true);
 			})
 			.UseOtlpExporter();
 
