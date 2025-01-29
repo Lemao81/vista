@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  DOTNET_VERSION: 9.0.101
+  DOTNET_VERSION: 9.0.102
   REGISTRY: ghcr.io
   MAINTENANCE_IMAGE_NAME: lemao81/vista-maintenance-api
   IMAGE_TAG: latest
