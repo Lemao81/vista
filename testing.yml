@@ -30,7 +30,6 @@ steps:
       restoreSolution: '$(solution)'
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
-      arguments: '-MSBuildPath C:\MyLocalAgent\_work\_tool\dotnet\sdk\9.0.102'
 
   - task: DotNetCoreCLI@2
     displayName: 'Build'
