@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Extensions;
+using Persistence.Interceptors;
 using Persistence.Media;
 using Persistence.Utilities;
 
@@ -14,8 +15,9 @@ public static class ServiceRegistration
 {
 	public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
 	{
-		services.AddDbContextPool<FileTransferDbContext>(dbContextOptions =>
+		services.AddDbContextPool<FileTransferDbContext>((sp, dbContextOptions) =>
 		{
+			var scope = sp.CreateScope();
 			dbContextOptions.UseNpgsql(PersistenceHelper.CreateDataSource(configuration, DbNames.FileTransfer),
 					npgsqlOptions =>
 					{
@@ -23,7 +25,8 @@ public static class ServiceRegistration
 						npgsqlOptions.MigrationsHistoryTable("__ef_migrations_history", DbSchemas.FileTransfer);
 					})
 				.UseSnakeCaseNamingConvention()
-				.UseExceptionProcessor();
+				.UseExceptionProcessor()
+				.AddInterceptors(scope.ServiceProvider.GetRequiredService<AuditDatesSaveChangesInterceptor>());
 		});
 
 		services.AddMinio(configuration);
@@ -31,6 +34,7 @@ public static class ServiceRegistration
 		services.AddScoped<IUnitOfWork, UnitOfWork>();
 		services.AddScoped<IMediaFolderRepository, MediaFolderRepository>();
 		services.AddScoped<IObjectStorage, MinioObjectStorage>();
+		services.AddScoped<AuditDatesSaveChangesInterceptor>();
 
 		return services;
 	}
