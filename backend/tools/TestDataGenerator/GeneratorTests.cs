@@ -76,6 +76,6 @@ public class GeneratorTests
 			}.Build())
 			.UseSnakeCaseNamingConvention();
 
-		return new FileTransferDbContext(dbBuilder.Options, Substitute.For<IPublisher>());
+		return new FileTransferDbContext(dbBuilder.Options);
 	}
 }

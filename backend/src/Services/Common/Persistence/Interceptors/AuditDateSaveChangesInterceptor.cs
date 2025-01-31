@@ -4,7 +4,7 @@ using SharedKernel;
 
 namespace Persistence.Interceptors;
 
-public sealed class AuditDatesSaveChangesInterceptor : SaveChangesInterceptor
+public sealed class AuditDateSaveChangesInterceptor : SaveChangesInterceptor
 {
 	public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
 	{

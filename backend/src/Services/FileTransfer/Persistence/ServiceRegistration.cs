@@ -26,7 +26,8 @@ public static class ServiceRegistration
 					})
 				.UseSnakeCaseNamingConvention()
 				.UseExceptionProcessor()
-				.AddInterceptors(scope.ServiceProvider.GetRequiredService<AuditDatesSaveChangesInterceptor>());
+				.AddInterceptors(scope.ServiceProvider.GetRequiredService<AuditDateSaveChangesInterceptor>(),
+					scope.ServiceProvider.GetRequiredService<DomainEventSaveChangesInterceptor>());
 		});
 
 		services.AddMinio(configuration);
@@ -34,7 +35,8 @@ public static class ServiceRegistration
 		services.AddScoped<IUnitOfWork, UnitOfWork>();
 		services.AddScoped<IMediaFolderRepository, MediaFolderRepository>();
 		services.AddScoped<IObjectStorage, MinioObjectStorage>();
-		services.AddScoped<AuditDatesSaveChangesInterceptor>();
+		services.AddScoped<AuditDateSaveChangesInterceptor>();
+		services.AddScoped<DomainEventSaveChangesInterceptor>();
 
 		return services;
 	}
