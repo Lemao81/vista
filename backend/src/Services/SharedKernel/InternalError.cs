@@ -1,3 +1,3 @@
 ﻿namespace SharedKernel;
 
-public sealed record InternalError(ErrorCode Code) : Error(Code);
+public sealed record InternalError(string Code) : Error(Code);

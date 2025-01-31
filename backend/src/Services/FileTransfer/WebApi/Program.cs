@@ -9,7 +9,6 @@ using Persistence.Utilities;
 using Presentation;
 using Presentation.Pictures;
 using Serilog;
-using SharedKernel;
 using WebApi;
 using WebApi.Extensions;
 
@@ -22,9 +21,9 @@ builder.Configuration.AddCommonAppSettings();
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
 {
-	if (context.HttpContext.Items.TryGetValue(HttpContextItemKeys.ErrorCode, out var code) && code is ErrorCode errorCode)
+	if (context.HttpContext.Items.TryGetValue(HttpContextItemKeys.ErrorCode, out var code))
 	{
-		context.ProblemDetails.Extensions.Add(ProblemDetailsExtensionKeys.ErrorCode, errorCode.Value);
+		context.ProblemDetails.Extensions.Add(ProblemDetailsExtensionKeys.ErrorCode, code);
 	}
 });
 
