@@ -2,11 +2,14 @@
 using Application.Pictures.Upload;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Presentation.Extensions;
 using SharedKernel;
-using WebApi.Extensions;
 
-namespace WebApi.Pictures.Upload;
+namespace Presentation.Pictures.Upload;
 
 internal static class UploadPictureEndpoint
 {

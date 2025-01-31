@@ -7,11 +7,11 @@ using Infrastructure;
 using Persistence;
 using Persistence.Utilities;
 using Presentation;
+using Presentation.Pictures;
 using Serilog;
 using SharedKernel;
 using WebApi;
 using WebApi.Extensions;
-using WebApi.Pictures;
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(formatProvider: CultureInfo.InvariantCulture).CreateBootstrapLogger();
 
@@ -34,7 +34,9 @@ builder.Services.AddInfrastructureServices(builder.Environment, builder.Logging)
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
-builder.Services.AddValidatorsFromAssemblies([typeof(WebApiAssemblyMarker).Assembly, typeof(ApplicationAssemblyMarker).Assembly], includeInternalTypes: true);
+builder.Services.AddValidatorsFromAssemblies([typeof(ApplicationAssemblyMarker).Assembly, typeof(PresentationAssemblyMarker).Assembly],
+	includeInternalTypes: true);
+
 builder.Services.AddSerilog((services, configure) => configure.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services));
 
 builder.Services.Configure<UploadMediaOptions>(builder.Configuration.GetSection(ConfigurationKeys.MediaUpload));

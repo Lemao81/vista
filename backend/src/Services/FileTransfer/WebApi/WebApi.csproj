@@ -25,9 +25,4 @@
     <ProjectReference Include="..\Presentation\Presentation.csproj"/>
   </ItemGroup>
 
-  <ItemGroup>
-    <InternalsVisibleTo Include="Integration.Service.Tests"/>
-    <InternalsVisibleTo Include="Unit.Service.Tests"/>
-  </ItemGroup>
-
 </Project>

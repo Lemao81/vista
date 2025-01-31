@@ -4,4 +4,19 @@
     <AssemblyName>FileTransfer.Presentation</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Integration.Service.Tests"/>
+    <InternalsVisibleTo Include="Unit.Service.Tests"/>
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
-namespace WebApi.Pictures.Upload;
+namespace Presentation.Pictures.Upload;
 
 internal sealed class FormFileValidator : AbstractValidator<IFormFile?>
 {

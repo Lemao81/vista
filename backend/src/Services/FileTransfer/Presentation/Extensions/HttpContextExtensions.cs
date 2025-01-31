@@ -1,6 +1,7 @@
-﻿using SharedKernel;
+﻿using Microsoft.AspNetCore.Http;
+using SharedKernel;
 
-namespace WebApi.Extensions;
+namespace Presentation.Extensions;
 
 internal static class HttpContextExtensions
 {

@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using FluentValidation;
 using MediatR;
 using NetArchTest.Rules;
 using Xunit.Abstractions;
@@ -37,6 +38,23 @@ public class ApplicationTests : BaseArchitectureTest
 			.ImplementInterface(typeof(ICommandHandler<,>))
 			.Should()
 			.HaveNameEndingWith("CommandHandler", StringComparison.Ordinal)
+			.GetResult();
+
+		PrintFailingTypes(result);
+
+		// Assert
+		Assert.True(result.IsSuccessful);
+	}
+
+	[Fact]
+	public void Validators_should_end_name_with_Validator()
+	{
+		// Act
+		var result = Types.InAssemblies(ApplicationAssemblies)
+			.That()
+			.ImplementInterface(typeof(IValidator))
+			.Should()
+			.HaveNameEndingWith("Validator", StringComparison.Ordinal)
 			.GetResult();
 
 		PrintFailingTypes(result);

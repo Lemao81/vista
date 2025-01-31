@@ -1,6 +1,6 @@
 ﻿using System.Net.Mime;
+using Presentation.Pictures.Upload;
 using Service.Tests.Utilities;
-using WebApi.Pictures.Upload;
 
 namespace Service.Tests.FileTransfer.Pictures;
 
