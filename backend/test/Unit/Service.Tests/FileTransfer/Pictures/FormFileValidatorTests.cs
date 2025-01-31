@@ -23,7 +23,7 @@ public class FormFileValidatorTests
 		var result = await _classUnderTest.ValidateAsync(file);
 
 		// Assert
-		Assert.True(result.IsValid);
+		await Verify(result);
 	}
 
 	[Fact]
@@ -36,12 +36,6 @@ public class FormFileValidatorTests
 		var result = await _classUnderTest.ValidateAsync(file);
 
 		// Assert
-		Assert.False(result.IsValid);
-		var errorString = result.ToString();
-		Assert.Contains("'Content Type' must not be empty", errorString, StringComparison.Ordinal);
-		Assert.Contains("'Content Type' not valid", errorString, StringComparison.Ordinal);
-		Assert.Contains("'File Name' must not be empty", errorString, StringComparison.Ordinal);
-		Assert.Contains("'File Name' must have an extension", errorString, StringComparison.Ordinal);
-		Assert.Contains("'Length' must be greater than '0'", errorString, StringComparison.Ordinal);
+		await Verify(result);
 	}
 }

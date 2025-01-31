@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Net.Mime;
 using Application.Utilities;
 using Domain.Media;
@@ -10,6 +9,7 @@ using Persistence;
 using Service.Tests.Extensions;
 using Service.Tests.WebApplicationFactories;
 using SharedKernel;
+using Tests.Common;
 using Xunit.Abstractions;
 
 namespace Service.Tests.FileTransfer;
@@ -54,7 +54,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
-		response.EnsureSuccessStatusCode();
+		await Verify(response, VerifySettingsFactory.ScrubGuidsSettings);
 		Assert.Single(dbContext.MediaFolders);
 		Assert.Single(dbContext.MediaItems);
 		var mediaFolder = dbContext.MediaFolders.Single();
@@ -88,9 +88,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
-		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-		var content = await response.Content.ReadAsStringAsync();
-		Assert.Contains("'Length' must be greater than '0'", content, StringComparison.Ordinal);
+		await Verify(response, VerifySettingsFactory.ScrubGuidsSettings);
 	}
 
 	[Fact]
@@ -112,9 +110,6 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
-		Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-		var content = await response.Content.ReadAsStringAsync();
-		Assert.Contains("'Content Type' must be one of", content, StringComparison.Ordinal);
-		Assert.Contains("'File Name' must have an extension of", content, StringComparison.Ordinal);
+		await Verify(response, VerifySettingsFactory.ScrubGuidsSettings);
 	}
 }

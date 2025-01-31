@@ -611,6 +611,10 @@ FodyWeavers.xsd
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,rider,webstorm,dotnetcore,svelte,react
 
+# Verify
+*.received.*
+*.received/
+
 # Custom
 backend/postgres-password
 backend/minio-keys

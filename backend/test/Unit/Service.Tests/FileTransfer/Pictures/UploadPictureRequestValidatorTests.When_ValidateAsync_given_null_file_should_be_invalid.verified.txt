@@ -1,0 +1,18 @@
+﻿{
+  IsValid: false,
+  Errors: [
+    {
+      PropertyName: File,
+      ErrorMessage: 'File' must not be empty.,
+      ErrorCode: NotNullValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: File,
+        PropertyPath: File,
+        PropertyValue: null
+      }
+    }
+  ],
+  RuleSetsExecuted: [
+    default
+  ]
+}

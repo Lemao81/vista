@@ -27,7 +27,7 @@ public class UploadPictureCommandValidatorTests
 		var result = await classUnderTest.ValidateAsync(command);
 
 		// Assert
-		Assert.True(result.IsValid);
+		await Verify(result);
 	}
 
 	[Fact]
@@ -49,11 +49,7 @@ public class UploadPictureCommandValidatorTests
 		var result = await classUnderTest.ValidateAsync(command);
 
 		// Assert
-		Assert.False(result.IsValid);
-		var errorString = result.ToString();
-		Assert.Contains("'Content Type' must be one of", errorString, StringComparison.Ordinal);
-		Assert.Contains("'File Name' must have an extension of", errorString, StringComparison.Ordinal);
-		Assert.Contains("'File Length' must be greater than", errorString, StringComparison.Ordinal);
+		await Verify(result);
 	}
 
 	[Fact]
@@ -75,7 +71,6 @@ public class UploadPictureCommandValidatorTests
 		var result = await classUnderTest.ValidateAsync(command);
 
 		// Assert
-		Assert.False(result.IsValid);
-		Assert.Contains("'File Length' must be less than or equal to", result.Errors.First().ErrorMessage, StringComparison.Ordinal);
+		await Verify(result);
 	}
 }

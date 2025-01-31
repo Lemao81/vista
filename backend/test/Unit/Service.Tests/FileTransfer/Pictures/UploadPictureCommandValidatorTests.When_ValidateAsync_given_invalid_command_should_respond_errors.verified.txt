@@ -1,0 +1,53 @@
+﻿{
+  IsValid: false,
+  Errors: [
+    {
+      PropertyName: MediaType,
+      ErrorMessage: 'Content Type' must be one of: image/png,
+      AttemptedValue: image/jpeg,
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Media Type,
+        PropertyPath: MediaType,
+        PropertyValue: image/jpeg
+      }
+    },
+    {
+      PropertyName: FileName,
+      ErrorMessage: 'File Name' must have an extension of: png,
+      AttemptedValue: {
+        Value: pic.jpeg,
+        BaseName: pic,
+        Extension: jpeg,
+        NormalizedValue: pic.jpeg
+      },
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: File Name,
+        PropertyPath: FileName,
+        PropertyValue: {
+          Value: pic.jpeg,
+          BaseName: pic,
+          Extension: jpeg,
+          NormalizedValue: pic.jpeg
+        }
+      }
+    },
+    {
+      PropertyName: FileLength,
+      ErrorMessage: 'File Length' must be greater than 'FileLength { Value = 0 }'.,
+      AttemptedValue: {},
+      ErrorCode: GreaterThanValidator,
+      FormattedMessagePlaceholderValues: {
+        ComparisonProperty: ,
+        ComparisonValue: {},
+        PropertyName: File Length,
+        PropertyPath: FileLength,
+        PropertyValue: {}
+      }
+    }
+  ],
+  RuleSetsExecuted: [
+    default
+  ]
+}

@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Services\Common\Domain\Domain.csproj"/>
     <ProjectReference Include="..\..\..\src\Services\FileTransfer\WebApi\WebApi.csproj"/>
+    <ProjectReference Include="..\..\Tests.Common\Tests.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

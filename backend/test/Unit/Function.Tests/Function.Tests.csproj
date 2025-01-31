@@ -10,4 +10,8 @@
     <PackageReference Include="Amazon.Lambda.TestUtilities"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tests.Common\Tests.Common.csproj" />
+  </ItemGroup>
+
 </Project>

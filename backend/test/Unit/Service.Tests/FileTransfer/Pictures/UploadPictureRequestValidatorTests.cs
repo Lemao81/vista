@@ -24,7 +24,7 @@ public class UploadPictureRequestValidatorTests
 		var result = await _classUnderTest.ValidateAsync(request);
 
 		// Assert
-		Assert.True(result.IsValid);
+		await Verify(result);
 	}
 
 	[Fact]
@@ -37,7 +37,6 @@ public class UploadPictureRequestValidatorTests
 		var result = await _classUnderTest.ValidateAsync(request);
 
 		// Assert
-		Assert.False(result.IsValid);
-		Assert.Contains("'File' must not be empty", result.Errors.First().ErrorMessage, StringComparison.Ordinal);
+		await Verify(result);
 	}
 }

@@ -1,0 +1,65 @@
+﻿{
+  IsValid: false,
+  Errors: [
+    {
+      PropertyName: ContentType,
+      ErrorMessage: 'Content Type' must not be empty.,
+      AttemptedValue: ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Content Type,
+        PropertyPath: ContentType,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: ContentType,
+      ErrorMessage: 'Content Type' not valid.,
+      AttemptedValue: ,
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Content Type,
+        PropertyPath: ContentType,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: FileName,
+      ErrorMessage: 'File Name' must not be empty.,
+      AttemptedValue: ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: File Name,
+        PropertyPath: FileName,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: FileName,
+      ErrorMessage: 'File Name' must have an extension.,
+      AttemptedValue: ,
+      ErrorCode: PredicateValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: File Name,
+        PropertyPath: FileName,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: Length,
+      ErrorMessage: 'Length' must be greater than '0'.,
+      AttemptedValue: 0,
+      ErrorCode: GreaterThanValidator,
+      FormattedMessagePlaceholderValues: {
+        ComparisonProperty: ,
+        ComparisonValue: 0,
+        PropertyName: Length,
+        PropertyPath: Length,
+        PropertyValue: 0
+      }
+    }
+  ],
+  RuleSetsExecuted: [
+    default
+  ]
+}

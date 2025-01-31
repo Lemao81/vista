@@ -6,7 +6,7 @@ namespace Service.Tests.Common;
 public class BasePipelineBehaviorTests
 {
 	private readonly NonGenericTestBasePipelineBehavior _classUnderTestT0;
-	private readonly GenericTestBasePipelineBehavior _classUnderTestT1;
+	private readonly GenericTestBasePipelineBehavior    _classUnderTestT1;
 
 	public BasePipelineBehaviorTests()
 	{
@@ -15,19 +15,30 @@ public class BasePipelineBehaviorTests
 	}
 
 	[Fact]
-	public void When_CreateErrorResult_given_error_should_return_failure_result()
+	public void When_CreateErrorResultT0_given_error_should_return_failure_result()
 	{
 		// Arrange
 		var error = Errors.EntityNotFound;
 
 		// Act
-		var responseT0 = _classUnderTestT0.CreateErrorResultPublic(error);
-		var responseT1 = _classUnderTestT1.CreateErrorResultPublic(error);
+		var response = _classUnderTestT0.CreateErrorResultPublic(error);
 
 		// Assert
-		Assert.True(responseT0.IsFailure);
-		Assert.Equal(error, responseT0.Error);
-		Assert.True(responseT1.IsFailure);
-		Assert.Equal(error, responseT1.Error);
+		Assert.True(response.IsFailure);
+		Assert.Equal(error, response.Error);
+	}
+
+	[Fact]
+	public void When_CreateErrorResultT1_given_error_should_return_failure_result()
+	{
+		// Arrange
+		var error = Errors.EntityNotFound;
+
+		// Act
+		var response = _classUnderTestT1.CreateErrorResultPublic(error);
+
+		// Assert
+		Assert.True(response.IsFailure);
+		Assert.Equal(error, response.Error);
 	}
 }

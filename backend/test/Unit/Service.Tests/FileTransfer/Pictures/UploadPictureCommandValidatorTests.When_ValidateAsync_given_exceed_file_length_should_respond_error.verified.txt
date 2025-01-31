@@ -1,0 +1,27 @@
+﻿{
+  IsValid: false,
+  Errors: [
+    {
+      PropertyName: FileLength,
+      ErrorMessage: 'File Length' must be less than or equal to 'FileLength { Value = 1024 }'.,
+      AttemptedValue: {
+        Value: 5000
+      },
+      ErrorCode: LessThanOrEqualValidator,
+      FormattedMessagePlaceholderValues: {
+        ComparisonProperty: ,
+        ComparisonValue: {
+          Value: 1024
+        },
+        PropertyName: File Length,
+        PropertyPath: FileLength,
+        PropertyValue: {
+          Value: 5000
+        }
+      }
+    }
+  ],
+  RuleSetsExecuted: [
+    default
+  ]
+}
