@@ -6,7 +6,9 @@ public abstract class Entity
 
 	public DateTime                          CreatedUtc   { get; set; } = default;
 	public DateTime?                         ModifiedUtc  { get; set; }
-	public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
+	public IReadOnlyCollection<IDomainEvent> DomainEvents => [.. _domainEvents];
+
+	public bool HasDomainEvents => _domainEvents.Count > 0;
 
 	protected void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
 

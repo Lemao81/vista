@@ -68,10 +68,10 @@ public sealed class FileTransferDbContext : DbContext
 	private List<IDomainEvent> GatherDomainEvents() =>
 		ChangeTracker.Entries<Entity>()
 			.Select(e => e.Entity)
-			.Where(e => e.DomainEvents.Count != 0)
+			.Where(e => e.HasDomainEvents)
 			.SelectMany(entity =>
 			{
-				var domainEvents = new List<IDomainEvent>(entity.DomainEvents);
+				var domainEvents = entity.DomainEvents;
 				entity.ClearDomainEvents();
 
 				return domainEvents;
