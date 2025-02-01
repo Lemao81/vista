@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Npgsql;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -41,7 +42,7 @@ public static class ServiceRegistration
 
 				tracing.AddAspNetCoreInstrumentation();
 				tracing.AddHttpClientInstrumentation();
-				tracing.AddEntityFrameworkCoreInstrumentation(options => options.SetDbStatementForText = true);
+				tracing.AddNpgsql();
 			})
 			.UseOtlpExporter();
 
