@@ -8,6 +8,9 @@
     <PackageReference Include="FluentValidation"/>
     <PackageReference Include="MediatR"/>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions"/>
+    <PackageReference Include="Serilog.AspNetCore"/>
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry" />
+    <PackageReference Include="Serilog.Sinks.Seq"/>
   </ItemGroup>
 
   <ItemGroup>

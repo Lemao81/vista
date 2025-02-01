@@ -6,9 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Lemao.UtilExtensions"/>
-    <PackageReference Include="MediatR.Contracts"/>
-    <PackageReference Include="Serilog.AspNetCore"/>
-    <PackageReference Include="Serilog.Sinks.Seq"/>
   </ItemGroup>
 
 </Project>

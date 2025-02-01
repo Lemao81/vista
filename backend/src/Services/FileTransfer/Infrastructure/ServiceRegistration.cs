@@ -17,7 +17,6 @@ public static class ServiceRegistration
 	                                                           IWebHostEnvironment     environment,
 	                                                           ILoggingBuilder         loggingBuilder)
 	{
-		// TODO solve serilog 'inhibition'
 		loggingBuilder.AddOpenTelemetry(logging =>
 		{
 			logging.IncludeFormattedMessage = true;
