@@ -1,5 +1,7 @@
 ﻿using DbUp;
 using DbUp.Engine;
+using DbUp.Engine.Output;
+using Lemao.UtilExtensions;
 using Persistence;
 using Persistence.Utilities;
 
@@ -18,12 +20,12 @@ internal sealed class DatabaseInitiator : IInitiator
 
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{
-		var result = await UpgradeDatabaseAsync(DbNames.FileTransfer);
+		var result = await UpgradeDatabaseAsync(DbNames.FileTransfer, cancellationToken);
 
 		return result;
 	}
 
-	private async Task<bool> UpgradeDatabaseAsync(string database)
+	private async Task<bool> UpgradeDatabaseAsync(string database, CancellationToken cancellationToken)
 	{
 		await using var dataSource = PersistenceHelper.CreateDataSource(_configuration, database, true);
 		EnsureDatabase.For.PostgresqlDatabase(dataSource.ConnectionString);
@@ -32,6 +34,11 @@ internal sealed class DatabaseInitiator : IInitiator
 		{
 			return true;
 		}
+
+		cancellationToken.ThrowIfCancellationRequested();
+
+		var scriptsToExecute = engine.GetScriptsToExecute().Select(s => s.Name);
+		_logger.LogInformation("Scripts to execute: {Scripts}", scriptsToExecute.ToCommaSeparated());
 
 		var result = engine.PerformUpgrade();
 		if (result.Successful)
@@ -43,13 +50,16 @@ internal sealed class DatabaseInitiator : IInitiator
 
 		_logger.LogInformation("Database '{Database}' upgrade failed: {Error}", database, result.Error);
 
+		cancellationToken.ThrowIfCancellationRequested();
+
 		return false;
 	}
 
-	private static UpgradeEngine GetUpgradeEngine(string connectionString, string database) =>
+	private UpgradeEngine GetUpgradeEngine(string connectionString, string database) =>
 		DeployChanges.To.PostgresqlDatabase(connectionString)
 			.WithScriptsFromFileSystem(Path.Combine(AppContext.BaseDirectory, "DbScripts", database))
 			.WithVariable("EF", "$$")
-			.LogToConsole()
+			// .LogToConsole()
+			.LogTo(new DbUpLogger(_logger))
 			.Build();
 }
