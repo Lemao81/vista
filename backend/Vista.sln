@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8AD07C1A-B654-4D63-BA02-CCC283192007}"
 EndProject
@@ -24,17 +24,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
-		docker-compose.yml = docker-compose.yml
-		global.json = global.json
 		.env = .env
+		.env.secrets = .env.secrets
 		..\.gitignore = ..\.gitignore
 		dev\.notes.txt = dev\.notes.txt
-		postgres-password = postgres-password
-		.env.secrets = .env.secrets
-		minio-keys = minio-keys
+		..\.git\config = ..\.git\config
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
-		..\.git\config = ..\.git\config
+		docker-compose.yml = docker-compose.yml
+		global.json = global.json
+		minio-keys = minio-keys
+		postgres-password = postgres-password
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{77BF20A9-EA2E-42FC-8D51-CA37B7DEDBAF}"
@@ -210,8 +210,8 @@ Global
 		{1FD6B13B-E9A6-46FB-8B7B-D3E1A693FBBA} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
 		{786C3909-D72E-4660-8233-6A94960D5798} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
 		{A085E387-C54A-464E-A4F5-BBAD2130A5D1} = {E31BAA2D-B8BA-4FE4-87C5-09FBFD43FD6E}
-		{6514B3C4-8BC4-4A32-AE76-DD60C7FF4628} = {E57F252C-8F68-489C-8987-C23D12EDB857}
 		{E57F252C-8F68-489C-8987-C23D12EDB857} = {34A438BD-31FB-4AC8-8139-ED98994FF08F}
+		{6514B3C4-8BC4-4A32-AE76-DD60C7FF4628} = {E57F252C-8F68-489C-8987-C23D12EDB857}
 		{DA015CBF-9DE1-4E1A-80CA-90860F3A0BBE} = {203DE8DD-CC13-4857-A98D-F0BC32AD71BA}
 		{D7BDEB41-0B6E-4874-B827-5F6568768E57} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
 		{7A4055D1-4B5F-4278-92CC-03117B1834DB} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
