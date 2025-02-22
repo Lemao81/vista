@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Presentation.Extensions;
 using SharedKernel;
+using static Microsoft.AspNetCore.Http.Results;
 
 namespace Presentation.Pictures.Upload;
 
@@ -20,13 +21,13 @@ internal static class UploadPictureEndpoint
 				{
 					if (request is null)
 					{
-						return Results.BadRequest();
+						return BadRequest();
 					}
 
 					var validationResult = await validator.ValidateAsync(request);
 					if (!validationResult.IsValid)
 					{
-						return Results.ValidationProblem(validationResult.ToDictionary());
+						return ValidationProblem(validationResult.ToDictionary());
 					}
 
 					ArgumentNullException.ThrowIfNull(request.File);
@@ -36,11 +37,11 @@ internal static class UploadPictureEndpoint
 					var result    = await sender.Send(command);
 					httpContext.MaybeAddError(result);
 
-					return result.Match(response => Results.Created($"/pictures/{response.Id}", response.Id),
+					return result.Match(response => Created($"/pictures/{response.Id}", response.Id),
 						error => error switch
 						{
-							ValidationError valError => Results.ValidationProblem(valError.Errors),
-							_                        => Results.InternalServerError()
+							ValidationError valError => ValidationProblem(valError.Errors),
+							_                        => InternalServerError()
 						});
 				})
 			.DisableAntiforgery()

@@ -4,6 +4,7 @@ using Domain;
 using Domain.Media;
 using FluentValidation;
 using Infrastructure;
+using Microsoft.Extensions.Options;
 using Persistence;
 using Persistence.Utilities;
 using Presentation;
@@ -38,7 +39,8 @@ builder.Services.AddValidatorsFromAssemblies([typeof(ApplicationAssemblyMarker).
 
 builder.Services.AddSerilog((services, configure) => configure.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services));
 
-builder.Services.Configure<UploadMediaOptions>(builder.Configuration.GetSection(ConfigurationKeys.MediaUpload));
+builder.Services.AddOptions<UploadMediaOptions>().BindConfiguration(ConfigurationKeys.MediaUpload).ValidateDataAnnotations().ValidateOnStart();
+builder.Services.AddSingleton<UploadMediaOptions>(sp => sp.GetRequiredService<IOptions<UploadMediaOptions>>().Value);
 
 var app = builder.Build();
 
