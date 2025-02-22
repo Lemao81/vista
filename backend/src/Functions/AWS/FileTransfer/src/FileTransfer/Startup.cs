@@ -1,3 +1,5 @@
+using Application;
+using Domain;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,10 +12,12 @@ public class Startup
 	public void ConfigureServices(IServiceCollection services)
 #pragma warning restore CA1822
 	{
-		var builder = new ConfigurationBuilder()
-			.AddJsonFile("appsettings.json", true);
+		var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", true);
 
 		var configuration = builder.Build();
 		services.AddSingleton<IConfiguration>(configuration);
+
+		services.AddDomainServices();
+		services.AddApplicationServices();
 	}
 }
