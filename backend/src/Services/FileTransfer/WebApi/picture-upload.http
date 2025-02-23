@@ -2,7 +2,7 @@
 
 ###
 # @name UploadValidImage
-POST {{WebApi_HostAddress}}/pictures
+POST {{WebApi_HostAddress}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -14,7 +14,7 @@ Content-Type: image/png
 
 ###
 # @name UploadEmptyImage
-POST {{WebApi_HostAddress}}/pictures
+POST {{WebApi_HostAddress}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -26,7 +26,7 @@ Content-Type: image/png
 
 ###
 # @name UploadNoExtensionFile
-POST {{WebApi_HostAddress}}/pictures
+POST {{WebApi_HostAddress}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -38,7 +38,7 @@ Content-Type: image/png
 
 ###
 # @name UploadRequestNull
-POST {{WebApi_HostAddress}}/pictures
+POST {{WebApi_HostAddress}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -50,7 +50,7 @@ Content-Type: image/png
 
 ###
 # @name UploadInvalidFileType
-POST {{WebApi_HostAddress}}/pictures
+POST {{WebApi_HostAddress}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW

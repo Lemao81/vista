@@ -6,9 +6,9 @@ namespace Presentation.Pictures;
 
 public static class PicturesEndpointGroup
 {
-	public static void MapPictureEndpoints(this IEndpointRouteBuilder app)
+	public static void MapPictureEndpoints(this RouteGroupBuilder apiGroup)
 	{
-		var picturesGroup = app.MapGroup("pictures");
+		var picturesGroup = apiGroup.MapGroup("pictures");
 		picturesGroup.MapUploadPictureEndpoint();
 	}
 }

@@ -51,7 +51,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 app.UseStatusCodePages();
-app.MapPictureEndpoints();
+
+var apiGroup = app.MapGroup("api");
+apiGroup.MapPictureEndpoints();
+
 app.UseHttpsRedirection();
 
 await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services);

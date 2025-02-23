@@ -50,7 +50,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.Empty(itemsResult.Value);
 
 		// Act
-		var response = await httpClient.PostAsync("pictures", formContent);
+		var response = await httpClient.PostAsync("api/pictures", formContent);
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
@@ -84,7 +84,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		formContent.Add(streamContent, "file", "empty.png");
 
 		// Act
-		var response = await httpClient.PostAsync("pictures", formContent);
+		var response = await httpClient.PostAsync("api/pictures", formContent);
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
@@ -106,7 +106,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		formContent.Add(streamContent, "file", "test.txt");
 
 		// Act
-		var response = await httpClient.PostAsync("pictures", formContent);
+		var response = await httpClient.PostAsync("api/pictures", formContent);
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
