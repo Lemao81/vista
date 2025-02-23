@@ -3,7 +3,7 @@
   "Transform": "AWS::Serverless-2016-10-31",
   "Description": "An AWS Serverless Application. This template is partially managed by Amazon.Lambda.Annotations (v1.6.1.0).",
   "Resources": {
-    "FileTransferFileTransferFunctionsPingAsyncGenerated": {
+    "FileTransferAwsFileTransferFunctionsPingAsyncGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -26,7 +26,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "FileTransfer::FileTransfer.FileTransferFunctions_PingAsync_Generated::PingAsync",
+        "Handler": "FileTransfer::FileTransfer.AwsFileTransferFunctions_PingAsync_Generated::PingAsync",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",

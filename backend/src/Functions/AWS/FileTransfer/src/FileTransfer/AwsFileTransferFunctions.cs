@@ -9,9 +9,9 @@ using static Amazon.Lambda.Annotations.APIGateway.HttpResults;
 namespace FileTransfer;
 
 [SuppressMessage("Performance", "CA1822:Mark members as static")]
-public class FileTransferFunctions
+public class AwsFileTransferFunctions
 {
-	public FileTransferFunctions()
+	public AwsFileTransferFunctions()
 	{
 	}
 
