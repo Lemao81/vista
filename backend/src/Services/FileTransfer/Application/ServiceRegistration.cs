@@ -1,5 +1,6 @@
 ﻿using Application.Behaviors;
 using Application.Media;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -8,6 +9,8 @@ public static class ServiceRegistration
 {
 	public static IServiceCollection AddApplicationServices(this IServiceCollection services)
 	{
+		services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>(includeInternalTypes: true);
+
 		services.AddMediatR(config =>
 		{
 			config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyMarker>();

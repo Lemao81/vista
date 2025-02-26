@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace Presentation.Pictures.Upload;
 
 internal sealed class UploadPictureRequestValidator : AbstractValidator<UploadPictureRequest>
 {
-	public UploadPictureRequestValidator()
+	public UploadPictureRequestValidator(IValidator<IFormFile?> formFileValidator)
 	{
-		RuleFor(r => r.File).NotNull().SetValidator(new FormFileValidator());
+		RuleFor(r => r.File).NotNull().SetValidator(formFileValidator);
 	}
 }

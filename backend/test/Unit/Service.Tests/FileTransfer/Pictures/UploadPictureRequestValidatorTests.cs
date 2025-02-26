@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Presentation.Pictures.Upload;
+using Presentation.Validators;
 using Service.Tests.Utilities;
 
 namespace Service.Tests.FileTransfer.Pictures;
@@ -10,7 +11,7 @@ public class UploadPictureRequestValidatorTests
 
 	public UploadPictureRequestValidatorTests()
 	{
-		_classUnderTest = new UploadPictureRequestValidator();
+		_classUnderTest = new UploadPictureRequestValidator(new FormFileValidator());
 	}
 
 	[Fact]

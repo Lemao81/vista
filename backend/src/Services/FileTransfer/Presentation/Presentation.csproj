@@ -5,13 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
+    <PackageReference Include="Microsoft.AspNetCore.Http"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc"/>
+    <PackageReference Include="Microsoft.AspNetCore.Routing"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Common\Presentation\Presentation.csproj"/>
+    <ProjectReference Include="..\Application\Application.csproj"/>
   </ItemGroup>
 
   <ItemGroup>

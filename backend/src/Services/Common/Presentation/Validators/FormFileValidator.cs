@@ -2,9 +2,9 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
-namespace Presentation.Pictures.Upload;
+namespace Presentation.Validators;
 
-internal sealed class FormFileValidator : AbstractValidator<IFormFile?>
+public sealed class FormFileValidator : AbstractValidator<IFormFile?>
 {
 	public FormFileValidator()
 	{

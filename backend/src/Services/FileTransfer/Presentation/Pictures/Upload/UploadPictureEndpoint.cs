@@ -17,14 +17,14 @@ internal static class UploadPictureEndpoint
 	public static void MapUploadPictureEndpoint(this RouteGroupBuilder groupBuilder)
 	{
 		groupBuilder.MapPost("",
-				async ([FromForm] UploadPictureRequest? request, IValidator<UploadPictureRequest> validator, ISender sender, HttpContext httpContext) =>
+				async ([FromForm] UploadPictureRequest? request, IValidator<UploadPictureRequest> requestValidator, ISender sender, HttpContext httpContext) =>
 				{
 					if (request is null)
 					{
 						return BadRequest();
 					}
 
-					var validationResult = await validator.ValidateAsync(request);
+					var validationResult = await requestValidator.ValidateAsync(request);
 					if (!validationResult.IsValid)
 					{
 						return ValidationProblem(validationResult.ToDictionary());

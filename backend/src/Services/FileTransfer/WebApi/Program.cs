@@ -2,7 +2,6 @@ using System.Globalization;
 using Application;
 using Domain;
 using Domain.Media;
-using FluentValidation;
 using Infrastructure;
 using Microsoft.Extensions.Options;
 using Persistence;
@@ -10,7 +9,6 @@ using Persistence.Utilities;
 using Presentation;
 using Presentation.Pictures;
 using Serilog;
-using WebApi;
 using WebApi.Extensions;
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(formatProvider: CultureInfo.InvariantCulture).CreateBootstrapLogger();
@@ -33,9 +31,6 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Environment, builder.Logging);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
-
-builder.Services.AddValidatorsFromAssemblies([typeof(ApplicationAssemblyMarker).Assembly, typeof(PresentationAssemblyMarker).Assembly],
-	includeInternalTypes: true);
 
 builder.Services.AddSerilog((services, configure) => configure.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services));
 
