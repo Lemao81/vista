@@ -59,3 +59,13 @@ Content-Type: text/plain
 
 < ../../../../dev/testdata/images/test.txt
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+# @name UploadNoFile
+POST {{WebApi_HostAddress}}/api/pictures
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Type: text/plain
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

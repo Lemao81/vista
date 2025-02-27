@@ -8,7 +8,7 @@ public static class PicturesEndpointGroup
 {
 	public static void MapPictureEndpoints(this RouteGroupBuilder apiGroup)
 	{
-		var picturesGroup = apiGroup.MapGroup("pictures");
+		var picturesGroup = apiGroup.MapGroup(Routes.Pictures);
 		picturesGroup.MapUploadPictureEndpoint();
 	}
 }

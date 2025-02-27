@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using Application.Pictures.Upload;
+﻿using Application.Utilities;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -32,12 +31,11 @@ internal static class UploadPictureEndpoint
 
 					ArgumentNullException.ThrowIfNull(request.File);
 
-					var mediaType = new MediaTypeHeaderValue(request.File.ContentType).MediaType;
-					var command   = new UploadPictureCommand(request.File.OpenReadStream(), mediaType ?? "", request.File.FileName, request.File.Length);
-					var result    = await sender.Send(command);
+					var command = CommandFactory.CreateUploadPictureCommand(request.File);
+					var result  = await sender.Send(command);
 					httpContext.MaybeAddError(result);
 
-					return result.Match(response => Created($"/pictures/{response.Id}", response.Id),
+					return result.Match(response => Created($"/{Routes.Pictures}/{response.Id}", response.Id),
 						error => error switch
 						{
 							ValidationError valError => ValidationProblem(valError.Errors),
