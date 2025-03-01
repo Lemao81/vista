@@ -26,9 +26,11 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          
+
       - name: Docker login
-        run: docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p ${{ secrets.PACKAGES_TOKEN }}
+        run: |
+          export TOKEN=${{ secrets.PACKAGES_TOKEN }}
+          echo $TOKEN | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
       - name: Build Maintenance service image
         run: docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
