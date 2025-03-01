@@ -40,6 +40,8 @@ services:
     build:
       context: .
       dockerfile: src/Services/Maintenance/WebApi/Dockerfile
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}
     environment:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}
@@ -64,6 +66,8 @@ services:
     build:
       context: .
       dockerfile: src/Services/FileTransfer/WebApi/Dockerfile
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}
     environment:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}

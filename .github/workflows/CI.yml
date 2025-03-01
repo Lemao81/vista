@@ -33,7 +33,7 @@ jobs:
           echo $TOKEN | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
       - name: Build Maintenance service image
-        run: docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
+        run: docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
 
       - name: Push Maintenance service image
         run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
