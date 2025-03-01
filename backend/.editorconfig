@@ -65,6 +65,8 @@ resharper_csharp_keep_existing_primary_constructor_declaration_parens_arrangemen
 
 resharper_csharp_max_initializer_elements_on_line = 1
 
+dotnet_sort_system_directives_first = true
+
 ## Code analysis
 
 # Operator overloads have named alternates
