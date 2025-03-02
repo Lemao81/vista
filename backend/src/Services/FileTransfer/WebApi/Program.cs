@@ -29,7 +29,8 @@ builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = 
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Environment, builder.Logging);
-builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddDatabasePersistenceServices(builder.Configuration);
+builder.Services.AddObjectStoragePersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
 builder.Services.AddSerilog((services, configure) => configure.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services));

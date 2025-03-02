@@ -27,7 +27,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Services\Common\Presentation\Presentation.csproj" />
+    <ProjectReference Include="..\..\..\Services\Common\WebApi\WebApi.csproj" />
     <ProjectReference Include="..\..\..\Services\FileTransfer\Application\Application.csproj" />
+    <ProjectReference Include="..\..\..\Services\FileTransfer\Persistence\Persistence.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.json">

@@ -13,7 +13,7 @@ namespace Persistence;
 
 public static class ServiceRegistration
 {
-	public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection AddDatabasePersistenceServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		services.AddDbContextPool<FileTransferDbContext>((sp, dbContextOptions) =>
 		{
@@ -30,13 +30,18 @@ public static class ServiceRegistration
 					scope.ServiceProvider.GetRequiredService<DomainEventSaveChangesInterceptor>());
 		});
 
-		services.AddMinio(configuration);
-
-		services.AddScoped<IUnitOfWork, UnitOfWork>();
-		services.AddScoped<IMediaFolderRepository, MediaFolderRepository>();
-		services.AddScoped<IObjectStorage, MinioObjectStorage>();
 		services.AddScoped<AuditDateSaveChangesInterceptor>();
 		services.AddScoped<DomainEventSaveChangesInterceptor>();
+		services.AddScoped<IUnitOfWork, UnitOfWork>();
+		services.AddScoped<IMediaFolderRepository, MediaFolderRepository>();
+
+		return services;
+	}
+
+	public static IServiceCollection AddObjectStoragePersistenceServices(this IServiceCollection services, IConfiguration configuration)
+	{
+		services.AddMinio(configuration);
+		services.AddScoped<IObjectStorage, MinioObjectStorage>();
 
 		return services;
 	}
