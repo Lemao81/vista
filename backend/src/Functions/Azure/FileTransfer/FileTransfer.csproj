@@ -2,6 +2,7 @@
   <PropertyGroup>
     <AzureFunctionsVersion>V4</AzureFunctionsVersion>
     <OutputType>Exe</OutputType>
+    <UserSecretsId>bb970804-ff2c-4d2c-b21b-38cd784a605c</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App"/>
