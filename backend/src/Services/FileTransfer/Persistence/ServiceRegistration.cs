@@ -1,13 +1,14 @@
-﻿using Application.Abstractions;
+﻿using Common.Application.Abstractions;
+using Common.Persistence;
+using Common.Persistence.Extensions;
+using Common.Persistence.Interceptors;
+using Common.Persistence.Utilities;
 using Domain.Media;
 using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence.Extensions;
-using Persistence.Interceptors;
 using Persistence.Media;
-using Persistence.Utilities;
 
 namespace Persistence;
 

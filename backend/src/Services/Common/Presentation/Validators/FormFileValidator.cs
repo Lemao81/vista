@@ -2,7 +2,7 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
-namespace Presentation.Validators;
+namespace Common.Presentation.Validators;
 
 public sealed class FormFileValidator : AbstractValidator<IFormFile?>
 {

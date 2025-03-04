@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Common.WebApi</AssemblyName>
+    <RootNamespace>Common.WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

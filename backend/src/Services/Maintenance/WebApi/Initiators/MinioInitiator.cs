@@ -1,4 +1,5 @@
-﻿using Minio;
+﻿using Common.Domain.Storage;
+using Minio;
 using Minio.DataModel.Args;
 
 namespace WebApi.Initiators;
@@ -16,7 +17,7 @@ internal sealed class MinioInitiator : IInitiator
 
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{
-		var result = await CreateBucketAsync(Domain.Storage.Buckets.Media, cancellationToken);
+		var result = await CreateBucketAsync(Buckets.Media, cancellationToken);
 
 		return result;
 	}

@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Mime;
 using Application.Utilities;
+using Common.Domain.Users;
 using Domain.Media;
-using Domain.Users;
 using Domain.ValueObjects;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;

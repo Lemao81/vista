@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Common.Domain
 {
 	public class Constants
 	{

@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Common.Application;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -1,5 +1,5 @@
-﻿using Application.Behaviors;
-using Application.Media;
+﻿using Application.Media;
+using Common.Application.Behaviors;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

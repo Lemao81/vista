@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SharedKernel;
 
-namespace Persistence.Interceptors;
+namespace Common.Persistence.Interceptors;
 
 public sealed class AuditDateSaveChangesInterceptor : SaveChangesInterceptor
 {

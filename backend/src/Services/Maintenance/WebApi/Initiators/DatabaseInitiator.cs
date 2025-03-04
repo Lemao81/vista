@@ -1,9 +1,8 @@
-﻿using DbUp;
+﻿using Common.Persistence;
+using Common.Persistence.Utilities;
+using DbUp;
 using DbUp.Engine;
-using DbUp.Engine.Output;
 using Lemao.UtilExtensions;
-using Persistence;
-using Persistence.Utilities;
 
 namespace WebApi.Initiators;
 
@@ -59,7 +58,6 @@ internal sealed class DatabaseInitiator : IInitiator
 		DeployChanges.To.PostgresqlDatabase(connectionString)
 			.WithScriptsFromFileSystem(Path.Combine(AppContext.BaseDirectory, "DbScripts", database))
 			.WithVariable("EF", "$$")
-			// .LogToConsole()
 			.LogTo(new DbUpLogger(_logger))
 			.Build();
 }

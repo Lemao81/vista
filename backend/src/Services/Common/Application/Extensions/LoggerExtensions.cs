@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Application.Extensions;
+namespace Common.Application.Extensions;
 
 public static class LoggerExtensions
 {

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Common.Domain</AssemblyName>
+    <RootNamespace>Common.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

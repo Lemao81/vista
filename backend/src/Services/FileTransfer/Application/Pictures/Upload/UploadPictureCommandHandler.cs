@@ -1,7 +1,7 @@
-﻿using Application.Abstractions;
-using Application.Utilities;
+﻿using Application.Utilities;
+using Common.Application.Abstractions;
+using Common.Domain.Users;
 using Domain.Media;
-using Domain.Users;
 using Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;

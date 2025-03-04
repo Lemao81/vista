@@ -1,4 +1,4 @@
-﻿namespace Persistence;
+﻿namespace Common.Persistence;
 
 public static class Constants
 {

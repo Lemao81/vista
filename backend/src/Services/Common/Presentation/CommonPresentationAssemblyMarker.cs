@@ -1,3 +1,3 @@
-﻿namespace Presentation;
+﻿namespace Common.Presentation;
 
 public sealed class CommonPresentationAssemblyMarker;

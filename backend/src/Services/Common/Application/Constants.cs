@@ -1,4 +1,4 @@
-﻿namespace Application;
+﻿namespace Common.Application;
 
 public static class Constants
 {

@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Common.Application;
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +8,7 @@ using Polly;
 using Polly.Retry;
 using SharedKernel;
 
-namespace Persistence.Utilities;
+namespace Common.Persistence.Utilities;
 
 public static class PersistenceHelper
 {

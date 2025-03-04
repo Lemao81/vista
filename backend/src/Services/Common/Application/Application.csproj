@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Common.Application</AssemblyName>
+    <RootNamespace>Common.Application</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

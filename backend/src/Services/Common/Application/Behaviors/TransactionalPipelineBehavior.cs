@@ -1,8 +1,8 @@
-﻿using Application.Abstractions;
+﻿using Common.Application.Abstractions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Behaviors;
+namespace Common.Application.Behaviors;
 
 public sealed class TransactionalPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : ITransactionalBaseCommand
 {

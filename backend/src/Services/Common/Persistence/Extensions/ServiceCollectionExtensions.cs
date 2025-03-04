@@ -1,11 +1,11 @@
-﻿using Application;
+﻿using Common.Application;
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Minio;
 using SharedKernel;
 
-namespace Persistence.Extensions;
+namespace Common.Persistence.Extensions;
 
 public static class ServiceCollectionExtensions
 {

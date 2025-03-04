@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Common.Persistence</AssemblyName>
+    <RootNamespace>Common.Persistence</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

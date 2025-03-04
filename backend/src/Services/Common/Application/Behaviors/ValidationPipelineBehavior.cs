@@ -1,9 +1,9 @@
-﻿using Application.Abstractions;
+﻿using Common.Application.Abstractions;
 using FluentValidation;
 using MediatR;
 using SharedKernel;
 
-namespace Application.Behaviors;
+namespace Common.Application.Behaviors;
 
 public class ValidationPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {

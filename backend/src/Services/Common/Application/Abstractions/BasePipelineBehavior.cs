@@ -2,7 +2,7 @@
 using MediatR;
 using SharedKernel;
 
-namespace Application.Abstractions;
+namespace Common.Application.Abstractions;
 
 public abstract class BasePipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {

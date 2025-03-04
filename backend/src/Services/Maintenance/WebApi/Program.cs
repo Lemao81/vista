@@ -1,7 +1,7 @@
-using Persistence.Extensions;
-using Persistence.Utilities;
+using Common.Persistence.Extensions;
+using Common.Persistence.Utilities;
+using Common.WebApi.Extensions;
 using WebApi;
-using WebApi.Extensions;
 using WebApi.Initiators;
 
 var builder = WebApplication.CreateBuilder(args);

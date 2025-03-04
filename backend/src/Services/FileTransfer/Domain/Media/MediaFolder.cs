@@ -1,4 +1,4 @@
-﻿using Domain.Users;
+﻿using Common.Domain.Users;
 using SharedKernel;
 
 namespace Domain.Media;

@@ -1,5 +1,5 @@
 ﻿using System.Net.Mime;
-using Presentation.Validators;
+using Common.Presentation.Validators;
 using Service.Tests.Utilities;
 
 namespace Service.Tests.FileTransfer.Pictures;

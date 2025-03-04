@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SharedKernel;
 
-namespace Application.Abstractions;
+namespace Common.Application.Abstractions;
 
 public interface IBaseCommand;
 

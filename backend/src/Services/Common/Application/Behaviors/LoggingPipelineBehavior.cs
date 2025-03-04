@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics;
-using Application.Abstractions;
-using Application.Extensions;
+using Common.Application.Abstractions;
+using Common.Application.Extensions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using SharedKernel;
 
-namespace Application.Behaviors;
+namespace Common.Application.Behaviors;
 
 public class LoggingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull where TResponse : Result
 {

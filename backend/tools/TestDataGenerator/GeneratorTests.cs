@@ -1,13 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using Bogus;
+using Common.Domain.Users;
 using Domain.Media;
-using Domain.Users;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using NSubstitute;
 using Persistence;
 
 // ReSharper disable Xunit.XunitTestWithConsoleOutput

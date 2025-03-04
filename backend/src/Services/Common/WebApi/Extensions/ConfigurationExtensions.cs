@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 
-namespace WebApi.Extensions;
+namespace Common.WebApi.Extensions;
 
 public static class ConfigurationExtensions
 {

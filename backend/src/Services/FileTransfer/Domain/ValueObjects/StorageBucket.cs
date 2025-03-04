@@ -1,4 +1,6 @@
-﻿namespace Domain.ValueObjects;
+﻿using Common.Domain.Storage;
+
+namespace Domain.ValueObjects;
 
 public readonly record struct StorageBucket
 {
@@ -13,5 +15,5 @@ public readonly record struct StorageBucket
 
 	public string Value { get; }
 
-	public static readonly StorageBucket Media = new(Storage.Buckets.Media);
+	public static readonly StorageBucket Media = new(Buckets.Media);
 }

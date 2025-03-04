@@ -1,6 +1,6 @@
 ﻿using Lemao.UtilExtensions;
 
-namespace Domain.Users;
+namespace Common.Domain.Users;
 
 public record UserId
 {

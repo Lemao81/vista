@@ -1,4 +1,4 @@
-﻿namespace Presentation;
+﻿namespace Common.Presentation;
 
 public static class Constants
 {

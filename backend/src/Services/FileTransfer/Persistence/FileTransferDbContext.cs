@@ -1,4 +1,5 @@
-﻿using Domain.Media;
+﻿using Common.Persistence;
+using Domain.Media;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;

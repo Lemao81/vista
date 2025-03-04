@@ -1,5 +1,5 @@
 ﻿using System.Data.Common;
-using Application.Abstractions;
+using Common.Application.Abstractions;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Persistence;

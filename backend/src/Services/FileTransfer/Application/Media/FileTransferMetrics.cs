@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Metrics;
+using Common.Application;
 
 namespace Application.Media;
 

@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Common.Application.Abstractions;
 using SharedKernel;
 
 namespace Application.Pictures.Upload;

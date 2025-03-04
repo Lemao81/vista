@@ -1,9 +1,9 @@
-﻿using Application.Abstractions;
+﻿using Common.Application.Abstractions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using SharedKernel;
 
-namespace Application.Behaviors;
+namespace Common.Application.Behaviors;
 
 public sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {

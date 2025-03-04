@@ -1,4 +1,7 @@
 using Application;
+using Common.Application;
+using Common.Presentation;
+using Common.WebApi.Extensions;
 using Domain;
 using Domain.Media;
 using FileTransfer.Persistence;
@@ -8,8 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Persistence;
-using Presentation;
-using WebApi.Extensions;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 

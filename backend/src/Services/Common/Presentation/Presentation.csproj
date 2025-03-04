@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Common.Presentation</AssemblyName>
+    <RootNamespace>Common.Presentation</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
