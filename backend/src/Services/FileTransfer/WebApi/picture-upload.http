@@ -69,3 +69,6 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 Content-Type: text/plain
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Health
+GET {{WebApi_HostAddress}}/api/health

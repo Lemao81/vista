@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using SharedKernel;
 using static FileTransfer.ResultFactory;
@@ -23,6 +24,10 @@ public class AzureFileTransferFunctions
 		_formFileValidator = formFileValidator;
 		_sender            = sender;
 	}
+
+	[Function("Health")]
+	public static IActionResult Health([HttpTrigger(AuthorizationLevel.Function, "get", Route = Routes.Health)] HttpRequest req) =>
+		new OkObjectResult(HealthStatus.Healthy.ToString());
 
 	[Function("UploadPicture")]
 	public async Task<IActionResult> UploadPictureAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = Routes.Pictures)] HttpRequest req)

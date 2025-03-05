@@ -12,5 +12,6 @@ public static class ProblemDetailsExtensionKeys
 
 public static class Routes
 {
+	public const string Health   = "health";
 	public const string Pictures = "pictures";
 }
