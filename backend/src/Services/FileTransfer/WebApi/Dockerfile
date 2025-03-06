@@ -15,6 +15,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Directory.Packages.props", "."]
 COPY ["src/Services/FileTransfer/Directory.Build.props", "src/Services/FileTransfer/"]
+COPY ["src/Directory.Build.props", "src/"]
 COPY ["Directory.Build.props", "."]
 COPY ["src/Services/FileTransfer/WebApi/WebApi.csproj", "src/Services/FileTransfer/WebApi/"]
 COPY ["src/Services/Common/WebApi/WebApi.csproj", "src/Services/Common/WebApi/"]
@@ -27,6 +28,7 @@ COPY ["src/Services/FileTransfer/Infrastructure/Infrastructure.csproj", "src/Ser
 COPY ["src/Services/FileTransfer/Persistence/Persistence.csproj", "src/Services/FileTransfer/Persistence/"]
 COPY ["src/Services/Common/Persistence/Persistence.csproj", "src/Services/Common/Persistence/"]
 COPY ["src/Services/FileTransfer/Presentation/Presentation.csproj", "src/Services/FileTransfer/Presentation/"]
+COPY ["src/Services/Common/Presentation/Presentation.csproj", "src/Services/Common/Presentation/"]
 RUN dotnet restore "./src/Services/FileTransfer/WebApi/WebApi.csproj"
 COPY . .
 WORKDIR "/src/src/Services/FileTransfer/WebApi"

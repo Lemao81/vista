@@ -20,6 +20,7 @@ FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Directory.Packages.props", "."]
+COPY ["src/Directory.Build.props", "src/"]
 COPY ["Directory.Build.props", "."]
 COPY ["src/Services/Maintenance/WebApi/WebApi.csproj", "src/Services/Maintenance/WebApi/"]
 COPY ["src/Services/Common/Persistence/Persistence.csproj", "src/Services/Common/Persistence/"]
