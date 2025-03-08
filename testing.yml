@@ -30,7 +30,7 @@ steps:
     inputs:
       command: 'publish'
       publishWebProjects: false
-      projects: './backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
+      projects: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
       arguments: '--no-restore'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
