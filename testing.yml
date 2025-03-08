@@ -5,6 +5,7 @@ pool:
 
 variables:
   dotNetVersion: '9.0.200'
+  project: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
   solution: './backend/Vista.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
@@ -21,7 +22,7 @@ steps:
     displayName: 'Restore'
     inputs:
       command: 'restore'
-      restoreSolution: '$(solution)'
+      restoreSolution: '$(project)'
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
 
@@ -30,7 +31,7 @@ steps:
     inputs:
       command: 'publish'
       publishWebProjects: false
-      projects: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
+      projects: '$(project)'
       arguments: '--no-restore'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
