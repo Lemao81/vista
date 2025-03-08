@@ -26,19 +26,11 @@ steps:
       verbosityRestore: 'Normal'
 
   - task: DotNetCoreCLI@2
-    displayName: 'Build'
-    inputs:
-      command: 'build'
-      projects: '$(solution)'
-      arguments: '--no-restore'
-      configuration: '$(buildConfiguration)'
-
-  - task: DotNetCoreCLI@2
     displayName: 'Publish FileTransfer'
     inputs:
       command: 'publish'
       publishWebProjects: false
       projects: './backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
-      arguments: '--no-restore --no-build'
+      arguments: '--no-restore'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
