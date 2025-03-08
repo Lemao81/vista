@@ -18,20 +18,13 @@ steps:
     inputs:
       version: $(dotNetVersion)
 
-  - task: NuGetCommand@2
-    displayName: 'Restore'
-    inputs:
-      command: 'restore'
-      restoreSolution: '$(project)'
-      feedsToUse: 'select'
-      verbosityRestore: 'Normal'
-
   - task: DotNetCoreCLI@2
     displayName: 'Publish FileTransfer'
     inputs:
       command: 'publish'
+      feedsToUse: 'select'
+      verbosityRestore: 'Normal'
       publishWebProjects: false
       projects: '$(project)'
-      arguments: '--no-restore'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
