@@ -4,19 +4,13 @@ pool:
   name: 'MyLocalAgentPool'
 
 variables:
-  dotNetVersion: '9.0.101'
+  dotNetVersion: '9.0.200'
   solution: './backend/Vista.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-  - task: CmdLine@2
-    displayName: 'Docker login'
-    inputs:
-      script: 'echo $(GITHUB_TOKEN) | docker login ghcr.io -u Lemao81 --password-stdin'
-
   - task: NuGetToolInstaller@1
-    displayName: 'Install NuGet'
 
   - task: UseDotNet@2
     displayName: 'Use .NET $(dotNetVersion)'
@@ -40,9 +34,11 @@ steps:
       configuration: '$(buildConfiguration)'
 
   - task: DotNetCoreCLI@2
-    displayName: 'Test'
+    displayName: 'Publish FileTransfer'
     inputs:
-      command: 'test'
-      projects: '$(solution)'
+      command: 'publish'
+      publishWebProjects: false
+      projects: './backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
       arguments: '--no-restore --no-build'
+      modifyOutputPath: false
       configuration: '$(buildConfiguration)'
