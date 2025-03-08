@@ -26,12 +26,18 @@ public class AzureFileTransferFunctions
 	}
 
 	[Function("Health")]
-	public static IActionResult Health([HttpTrigger(AuthorizationLevel.Function, "get", Route = Routes.Health)] HttpRequest req) =>
-		new OkObjectResult(HealthStatus.Healthy.ToString());
+	public IActionResult Health([HttpTrigger(AuthorizationLevel.Function, "get", Route = Routes.Health)] HttpRequest req)
+	{
+		_logger.LogInformation("Calling Health function");
+
+		return new OkObjectResult(HealthStatus.Healthy.ToString());
+	}
 
 	[Function("UploadPicture")]
 	public async Task<IActionResult> UploadPictureAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = Routes.Pictures)] HttpRequest req)
 	{
+		_logger.LogInformation("Calling UploadPicture function");
+
 		try
 		{
 			IFormCollection formData;
