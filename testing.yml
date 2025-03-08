@@ -6,16 +6,17 @@ pool:
 variables:
   dotNetVersion: '9.0.200'
   project: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
-  solution: './backend/Vista.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  functionApp: 'func-vista-filetransfer-dev-001'
+  subscription: 'MyAzureSubscription(19a97b41-e18f-481b-a072-dba7985b27bd)'
 
 steps:
   - checkout: self
     displayName: 'Checkout'
     clean: true
     fetchDepth: 1
-    
+
   - task: NuGetToolInstaller@1
 
   - task: UseDotNet@2
@@ -33,3 +34,12 @@ steps:
       projects: '$(project)'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
+
+  - task: AzureFunctionApp@2
+    displayName: 'Azure Function Deployment'
+    inputs:
+      connectedServiceNameARM: '$(subscription)'
+      appType: 'functionApp'
+      appName: '$(functionApp)'
+      package: '$(Build.ArtifactStagingDirectory)/publish.zip'
+      deploymentMethod: 'zipDeploy'
