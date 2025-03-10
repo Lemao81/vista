@@ -4,7 +4,7 @@ using DbUp;
 using DbUp.Engine;
 using Lemao.UtilExtensions;
 
-namespace WebApi.Initiators;
+namespace Maintenance.WebApi.Initiators;
 
 internal sealed class PostgresDatabaseInitiator : IInitiator
 {

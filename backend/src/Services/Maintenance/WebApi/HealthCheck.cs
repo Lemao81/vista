@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace WebApi;
+namespace Maintenance.WebApi;
 
 internal sealed class HealthCheck : IHealthCheck
 {

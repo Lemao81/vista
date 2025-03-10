@@ -3,7 +3,7 @@ using Lemao.UtilExtensions;
 using Minio;
 using Minio.DataModel.Args;
 
-namespace WebApi.Initiators;
+namespace Maintenance.WebApi.Initiators;
 
 internal sealed class MinioInitiator : IInitiator
 {

@@ -1,4 +1,4 @@
-﻿namespace WebApi;
+﻿namespace Maintenance.WebApi;
 
 public interface IInitiator
 {

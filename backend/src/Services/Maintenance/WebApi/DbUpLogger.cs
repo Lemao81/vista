@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using DbUp.Engine.Output;
 
-namespace WebApi;
+namespace Maintenance.WebApi;
 
 [SuppressMessage("Usage", "CA2254:Template should be a static expression")]
 public class DbUpLogger : IUpgradeLog
