@@ -6,16 +6,18 @@ using Lemao.UtilExtensions;
 
 namespace WebApi.Initiators;
 
-internal sealed class DatabaseInitiator : IInitiator
+internal sealed class PostgresDatabaseInitiator : IInitiator
 {
-	private readonly IConfiguration             _configuration;
-	private readonly ILogger<DatabaseInitiator> _logger;
+	private readonly IConfiguration                     _configuration;
+	private readonly ILogger<PostgresDatabaseInitiator> _logger;
 
-	public DatabaseInitiator(IConfiguration configuration, ILogger<DatabaseInitiator> logger)
+	public PostgresDatabaseInitiator(IConfiguration configuration, ILogger<PostgresDatabaseInitiator> logger)
 	{
 		_configuration = configuration;
 		_logger        = logger;
 	}
+
+	public bool IsEnabled() => EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiatePostgresDatabase);
 
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{

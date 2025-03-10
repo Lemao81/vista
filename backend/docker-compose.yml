@@ -47,6 +47,8 @@ services:
       Database__Username: ${DB_USER}
       Database__PasswordFile: /run/secrets/postgres-password
       Minio__KeysFile: /run/secrets/minio-keys
+      INIT_POSTGRES_DB: true
+      INIT_MINIO: true
     secrets:
       - postgres-password
       - minio-keys

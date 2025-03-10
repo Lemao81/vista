@@ -2,8 +2,10 @@
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;
+using Lemao.UtilExtensions;
 using Testcontainers.Minio;
 using Testcontainers.PostgreSql;
+using WebApi;
 
 namespace Service.Tests.Utilities;
 
@@ -71,6 +73,8 @@ public class ContainerFactory
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioEndpoint), $"{NetworkAliases.Minio}:9000")
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioAccessKey), MinioUsername)
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioSecretKey), MinioPassword)
+			.WithEnvironment(EnvironmentVariableNames.InitiatePostgresDatabase, "true")
+			.WithEnvironment(EnvironmentVariableNames.InitiateMinio, "true")
 			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
 			.Build();
 	}

@@ -1,4 +1,5 @@
 ﻿using Common.Domain.Storage;
+using Lemao.UtilExtensions;
 using Minio;
 using Minio.DataModel.Args;
 
@@ -15,6 +16,8 @@ internal sealed class MinioInitiator : IInitiator
 		_logger      = logger;
 	}
 
+	public bool IsEnabled() => EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiateMinio);
+
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{
 		var result = await CreateBucketAsync(Buckets.Media, cancellationToken);
@@ -28,6 +31,8 @@ internal sealed class MinioInitiator : IInitiator
 		var exists     = await _minioClient.BucketExistsAsync(existsArgs, cancellationToken);
 		if (exists)
 		{
+			_logger.LogInformation("Minio bucket '{Bucket}' exists", bucket);
+
 			return true;
 		}
 

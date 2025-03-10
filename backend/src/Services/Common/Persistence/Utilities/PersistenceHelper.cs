@@ -56,11 +56,10 @@ public static class PersistenceHelper
 		return builder.Build();
 	}
 
-	public static async Task AwaitDatabaseConnectionAsync(IServiceProvider serviceProvider)
+	public static async Task AwaitDatabaseConnectionAsync(IServiceProvider serviceProvider, ILogger logger)
 	{
 		await using var scope         = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
 		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
-		var             logger        = scope.ServiceProvider.GetRequiredService<ILogger<Logging>>();
 
 		await using var dataSource = CreateDataSource(configuration, "", true);
 		await using var connection = new NpgsqlConnection(dataSource.ConnectionString);
@@ -90,6 +89,4 @@ public static class PersistenceHelper
 			},
 			connection);
 	}
-
-	private sealed class Logging;
 }

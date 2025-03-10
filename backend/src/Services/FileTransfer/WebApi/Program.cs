@@ -56,7 +56,8 @@ apiGroup.MapPictureEndpoints();
 
 app.UseHttpsRedirection();
 
-await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services);
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services, logger);
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
 	await app.MigrateDatabaseAsync();

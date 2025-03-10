@@ -3,7 +3,9 @@
     "Maintenance http": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "INIT_POSTGRES_DB": "true",
+        "INIT_MINIO": "true"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
