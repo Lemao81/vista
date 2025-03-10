@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SharedKernel;
 
-namespace Presentation.Extensions;
+namespace FileTransfer.Presentation.Extensions;
 
 internal static class HttpContextExtensions
 {

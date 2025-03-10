@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.Metrics;
 using Common.Application;
 
-namespace Application.Media;
+namespace FileTransfer.Application.Media;
 
 public class FileTransferMetrics
 {

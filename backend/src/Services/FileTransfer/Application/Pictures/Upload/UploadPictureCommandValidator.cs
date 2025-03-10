@@ -1,8 +1,8 @@
-﻿using Domain.Media;
+﻿using FileTransfer.Domain.Media;
 using FluentValidation;
 using Lemao.UtilExtensions;
 
-namespace Application.Pictures.Upload;
+namespace FileTransfer.Application.Pictures.Upload;
 
 public class UploadPictureCommandValidator : AbstractValidator<UploadPictureCommand>
 {

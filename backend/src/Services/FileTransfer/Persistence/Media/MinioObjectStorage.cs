@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using Domain.Media;
-using Domain.Models;
-using Domain.ValueObjects;
+using FileTransfer.Domain.Media;
+using FileTransfer.Domain.Models;
+using FileTransfer.Domain.ValueObjects;
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Logging;
 using Minio;
@@ -9,7 +9,7 @@ using Minio.DataModel.Args;
 using Minio.Exceptions;
 using SharedKernel;
 
-namespace Persistence.Media;
+namespace FileTransfer.Persistence.Media;
 
 internal sealed class MinioObjectStorage : IObjectStorage
 {

@@ -1,4 +1,4 @@
-﻿namespace Presentation;
+﻿namespace FileTransfer.Presentation;
 
 public static class Constants
 {

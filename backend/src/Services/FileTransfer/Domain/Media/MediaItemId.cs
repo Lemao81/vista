@@ -1,6 +1,6 @@
 ﻿using Lemao.UtilExtensions;
 
-namespace Domain.Media;
+namespace FileTransfer.Domain.Media;
 
 public record MediaItemId
 {

@@ -1,8 +1,8 @@
 ﻿using Common.Persistence;
-using Domain.Media;
+using FileTransfer.Domain.Media;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence;
+namespace FileTransfer.Persistence;
 
 public sealed class FileTransferDbContext : DbContext
 {

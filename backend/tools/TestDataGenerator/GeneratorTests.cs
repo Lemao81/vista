@@ -2,11 +2,11 @@
 using System.Security.Cryptography;
 using Bogus;
 using Common.Domain.Users;
-using Domain.Media;
+using FileTransfer.Domain.Media;
+using FileTransfer.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using Persistence;
 
 // ReSharper disable Xunit.XunitTestWithConsoleOutput
 

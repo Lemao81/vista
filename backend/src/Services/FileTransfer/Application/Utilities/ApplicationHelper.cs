@@ -1,7 +1,7 @@
-﻿using Domain.Media;
+﻿using FileTransfer.Domain.Media;
 using SharedKernel;
 
-namespace Application.Utilities;
+namespace FileTransfer.Application.Utilities;
 
 public static class ApplicationHelper
 {

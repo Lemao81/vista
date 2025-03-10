@@ -2,7 +2,7 @@
 using Common.Application.Abstractions;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Persistence;
+namespace FileTransfer.Persistence;
 
 internal sealed class UnitOfWork : IUnitOfWork
 {

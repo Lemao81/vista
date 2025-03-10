@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>FileTransfer.Persistence</AssemblyName>
+    <RootNamespace>FileTransfer.Persistence</RootNamespace>
     <UserSecretsId>bb970804-ff2c-4d2c-b21b-38cd784a605c</UserSecretsId>
   </PropertyGroup>
 

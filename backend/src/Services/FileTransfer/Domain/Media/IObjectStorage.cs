@@ -1,8 +1,8 @@
-﻿using Domain.Models;
-using Domain.ValueObjects;
+﻿using FileTransfer.Domain.Models;
+using FileTransfer.Domain.ValueObjects;
 using SharedKernel;
 
-namespace Domain.Media;
+namespace FileTransfer.Domain.Media;
 
 public interface IObjectStorage
 {

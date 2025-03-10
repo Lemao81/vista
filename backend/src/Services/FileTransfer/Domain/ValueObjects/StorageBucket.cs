@@ -1,6 +1,6 @@
 ﻿using Common.Domain.Storage;
 
-namespace Domain.ValueObjects;
+namespace FileTransfer.Domain.ValueObjects;
 
 public readonly record struct StorageBucket
 {

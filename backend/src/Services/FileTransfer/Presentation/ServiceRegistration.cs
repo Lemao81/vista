@@ -2,7 +2,7 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Presentation;
+namespace FileTransfer.Presentation;
 
 public static class ServiceRegistration
 {

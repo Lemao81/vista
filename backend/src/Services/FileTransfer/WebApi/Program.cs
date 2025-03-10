@@ -1,18 +1,18 @@
 using System.Globalization;
-using Application;
 using Common.Application;
 using Common.Persistence.Utilities;
 using Common.Presentation;
 using Common.WebApi.Extensions;
-using Domain;
-using Domain.Media;
-using Infrastructure;
+using FileTransfer.Application;
+using FileTransfer.Domain;
+using FileTransfer.Domain.Media;
+using FileTransfer.Infrastructure;
+using FileTransfer.Persistence;
+using FileTransfer.Presentation;
+using FileTransfer.Presentation.Pictures;
+using FileTransfer.WebApi.Extensions;
 using Microsoft.Extensions.Options;
-using Persistence;
-using Presentation;
-using Presentation.Pictures;
 using Serilog;
-using WebApi.Extensions;
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(formatProvider: CultureInfo.InvariantCulture).CreateBootstrapLogger();
 

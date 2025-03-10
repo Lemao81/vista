@@ -1,5 +1,5 @@
-using Application;
-using Domain;
+using FileTransfer.Application;
+using FileTransfer.Domain;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

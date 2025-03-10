@@ -1,6 +1,6 @@
 ﻿using System.Net.Mime;
 using Common.Presentation.Validators;
-using Presentation.Pictures.Upload;
+using FileTransfer.Presentation.Pictures.Upload;
 using Service.Tests.Utilities;
 
 namespace Service.Tests.FileTransfer.Pictures;

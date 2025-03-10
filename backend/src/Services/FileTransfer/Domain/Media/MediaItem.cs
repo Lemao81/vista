@@ -1,7 +1,7 @@
 ﻿using Common.Domain.Users;
 using SharedKernel;
 
-namespace Domain.Media;
+namespace FileTransfer.Domain.Media;
 
 public sealed class MediaItem : Entity<MediaItemId>
 {

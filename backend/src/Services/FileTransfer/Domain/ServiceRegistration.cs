@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Domain;
+namespace FileTransfer.Domain;
 
 public static class ServiceRegistration
 {

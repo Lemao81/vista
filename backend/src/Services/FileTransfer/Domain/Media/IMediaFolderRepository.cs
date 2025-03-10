@@ -1,6 +1,6 @@
 ﻿using SharedKernel;
 
-namespace Domain.Media;
+namespace FileTransfer.Domain.Media;
 
 public interface IMediaFolderRepository : IRepository
 {

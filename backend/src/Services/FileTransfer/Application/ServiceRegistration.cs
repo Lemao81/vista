@@ -1,9 +1,9 @@
-﻿using Application.Media;
-using Common.Application.Behaviors;
+﻿using Common.Application.Behaviors;
+using FileTransfer.Application.Media;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application;
+namespace FileTransfer.Application;
 
 public static class ServiceRegistration
 {

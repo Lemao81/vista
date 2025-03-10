@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>FileTransfer.Presentation</AssemblyName>
+    <RootNamespace>FileTransfer.Presentation</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

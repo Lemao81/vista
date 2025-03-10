@@ -1,4 +1,4 @@
-﻿namespace Domain.Media;
+﻿namespace FileTransfer.Domain.Media;
 
 public enum MediaKind
 {

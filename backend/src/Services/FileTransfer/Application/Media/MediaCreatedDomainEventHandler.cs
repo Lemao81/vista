@@ -1,8 +1,8 @@
-﻿using Domain.Media;
+﻿using FileTransfer.Domain.Media;
 using MediatR;
 using SharedKernel;
 
-namespace Application.Media;
+namespace FileTransfer.Application.Media;
 
 internal sealed class MediaCreatedDomainEventHandler : INotificationHandler<MediaCreatedDomainEvent>
 {

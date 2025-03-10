@@ -1,6 +1,6 @@
-﻿using Domain.Media;
-using Domain.Models;
-using Domain.ValueObjects;
+﻿using FileTransfer.Domain.Media;
+using FileTransfer.Domain.Models;
+using FileTransfer.Domain.ValueObjects;
 using SharedKernel;
 
 namespace FileTransfer.Persistence;

@@ -1,10 +1,10 @@
 ﻿using System.Text.Json;
 using Common.Domain.Users;
-using Domain.Media;
+using FileTransfer.Domain.Media;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Persistence.Media;
+namespace FileTransfer.Persistence.Media;
 
 internal sealed class MediaItemDbConfiguration : IEntityTypeConfiguration<MediaItem>
 {

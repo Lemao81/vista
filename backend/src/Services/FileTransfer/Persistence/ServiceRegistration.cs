@@ -3,14 +3,14 @@ using Common.Persistence;
 using Common.Persistence.Extensions;
 using Common.Persistence.Interceptors;
 using Common.Persistence.Utilities;
-using Domain.Media;
 using EntityFramework.Exceptions.PostgreSQL;
+using FileTransfer.Domain.Media;
+using FileTransfer.Persistence.Media;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence.Media;
 
-namespace Persistence;
+namespace FileTransfer.Persistence;
 
 public static class ServiceRegistration
 {

@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
-using Application;
-using Domain;
-using Infrastructure;
+using FileTransfer.Application;
+using FileTransfer.Domain;
+using FileTransfer.Infrastructure;
+using FileTransfer.Persistence;
+using FileTransfer.Presentation;
+using FileTransfer.WebApi;
 using NetArchTest.Rules;
-using Persistence;
 using Lemao.UtilExtensions;
-using Presentation;
-using WebApi;
 using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;

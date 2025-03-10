@@ -1,4 +1,4 @@
-﻿namespace Domain.Models;
+﻿namespace FileTransfer.Domain.Models;
 
 public sealed class StorageItem
 {

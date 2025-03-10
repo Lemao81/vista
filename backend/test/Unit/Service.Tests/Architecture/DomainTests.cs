@@ -1,5 +1,4 @@
-﻿using Domain.ValueObjects;
-using NetArchTest.Rules;
+﻿using NetArchTest.Rules;
 using SharedKernel;
 using Xunit.Abstractions;
 

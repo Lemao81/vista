@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Media;
+namespace FileTransfer.Domain.Media;
 
 public class UploadMediaOptions
 {

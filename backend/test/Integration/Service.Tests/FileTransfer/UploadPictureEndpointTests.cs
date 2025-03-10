@@ -1,11 +1,11 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Mime;
-using Application.Utilities;
 using Common.Domain.Users;
-using Domain.Media;
-using Domain.ValueObjects;
+using FileTransfer.Application.Utilities;
+using FileTransfer.Domain.Media;
+using FileTransfer.Domain.ValueObjects;
+using FileTransfer.Persistence;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence;
 using Service.Tests.Extensions;
 using Service.Tests.WebApplicationFactories;
 using SharedKernel;

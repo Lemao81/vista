@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>FileTransfer.Application</AssemblyName>
+    <RootNamespace>FileTransfer.Application</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

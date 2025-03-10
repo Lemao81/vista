@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Presentation.Pictures.Upload;
+namespace FileTransfer.Presentation.Pictures.Upload;
 
 internal sealed record UploadPictureRequest(IFormFile? File);

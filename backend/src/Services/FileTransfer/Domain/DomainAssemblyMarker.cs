@@ -1,3 +1,3 @@
-﻿namespace Domain;
+﻿namespace FileTransfer.Domain;
 
 public sealed class DomainAssemblyMarker;

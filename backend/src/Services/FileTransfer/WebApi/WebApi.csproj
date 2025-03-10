@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>FileTransfer.WebApi</AssemblyName>
+    <RootNamespace>FileTransfer.WebApi</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>bb970804-ff2c-4d2c-b21b-38cd784a605c</UserSecretsId>
     <DockerfileContext>..\..\..\..</DockerfileContext>

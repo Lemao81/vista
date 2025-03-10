@@ -1,16 +1,16 @@
-﻿using Application.Utilities;
-using Common.Presentation;
+﻿using Common.Presentation;
+using FileTransfer.Application.Utilities;
+using FileTransfer.Presentation.Extensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Presentation.Extensions;
 using SharedKernel;
 using static Microsoft.AspNetCore.Http.Results;
 
-namespace Presentation.Pictures.Upload;
+namespace FileTransfer.Presentation.Pictures.Upload;
 
 internal static class UploadPictureEndpoint
 {

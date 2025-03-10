@@ -1,9 +1,9 @@
 ﻿using Common.Presentation;
+using FileTransfer.Presentation.Pictures.Upload;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
-using Presentation.Pictures.Upload;
 
-namespace Presentation.Pictures;
+namespace FileTransfer.Presentation.Pictures;
 
 public static class PicturesEndpointGroup
 {

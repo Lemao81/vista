@@ -1,8 +1,8 @@
 ﻿using Common.Domain.Users;
-using Domain.Media;
+using FileTransfer.Domain.Media;
 using SharedKernel;
 
-namespace Domain.ValueObjects;
+namespace FileTransfer.Domain.ValueObjects;
 
 public readonly record struct StorageObjectName
 {

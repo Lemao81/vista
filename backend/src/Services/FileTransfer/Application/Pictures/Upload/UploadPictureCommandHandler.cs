@@ -1,13 +1,13 @@
-﻿using Application.Utilities;
-using Common.Application.Abstractions;
+﻿using Common.Application.Abstractions;
 using Common.Domain.Users;
-using Domain.Media;
-using Domain.ValueObjects;
+using FileTransfer.Application.Utilities;
+using FileTransfer.Domain.Media;
+using FileTransfer.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 using SharedKernel;
 
-namespace Application.Pictures.Upload;
+namespace FileTransfer.Application.Pictures.Upload;
 
 internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictureCommand, Result<UploadPictureResponse>>
 {

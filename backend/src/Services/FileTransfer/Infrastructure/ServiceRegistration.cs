@@ -9,7 +9,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Infrastructure;
+namespace FileTransfer.Infrastructure;
 
 public static class ServiceRegistration
 {

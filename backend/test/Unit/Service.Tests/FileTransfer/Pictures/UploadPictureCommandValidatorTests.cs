@@ -1,5 +1,5 @@
-﻿using Application.Pictures.Upload;
-using Domain.Media;
+﻿using FileTransfer.Application.Pictures.Upload;
+using FileTransfer.Domain.Media;
 using NSubstitute;
 using SharedKernel;
 

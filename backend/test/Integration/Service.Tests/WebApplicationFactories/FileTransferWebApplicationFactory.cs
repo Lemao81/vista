@@ -2,6 +2,7 @@
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;
+using FileTransfer.WebApi;
 using Lemao.UtilExtensions;
 using Meziantou.Extensions.Logging.Xunit;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Service.Tests.Utilities;
 using Testcontainers.Minio;
 using Testcontainers.PostgreSql;
-using WebApi;
 using Xunit.Abstractions;
 
 namespace Service.Tests.WebApplicationFactories;

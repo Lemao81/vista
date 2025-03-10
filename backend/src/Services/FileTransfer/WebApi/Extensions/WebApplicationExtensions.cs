@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Persistence;
+﻿using FileTransfer.Persistence;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebApi.Extensions;
+namespace FileTransfer.WebApi.Extensions;
 
 internal static class WebApplicationExtensions
 {

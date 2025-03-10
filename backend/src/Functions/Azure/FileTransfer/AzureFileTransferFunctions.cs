@@ -1,5 +1,5 @@
-﻿using Application.Utilities;
-using Common.Presentation;
+﻿using Common.Presentation;
+using FileTransfer.Application.Utilities;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http;

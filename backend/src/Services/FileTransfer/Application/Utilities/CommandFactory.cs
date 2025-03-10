@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
-using Application.Pictures.Upload;
+using FileTransfer.Application.Pictures.Upload;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.Utilities;
+namespace FileTransfer.Application.Utilities;
 
 public static class CommandFactory
 {
