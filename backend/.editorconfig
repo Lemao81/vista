@@ -99,6 +99,8 @@ dotnet_diagnostic.CA1823.severity = warning
 dotnet_diagnostic.CA1805.severity = none
 # Do not use insecure randomness
 dotnet_diagnostic.CA5394.severity = none
+# Type names should not match namespaces
+dotnet_diagnostic.CA1724.severity = none
 
 [*Tests.cs]
 # Identifiers should not contain underscores

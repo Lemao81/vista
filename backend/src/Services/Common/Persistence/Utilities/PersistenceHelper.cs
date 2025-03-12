@@ -12,7 +12,7 @@ namespace Common.Persistence.Utilities;
 
 public static class PersistenceHelper
 {
-	public static NpgsqlDataSource CreateDataSource(IConfiguration configuration, string database, bool persistSecurityInfo = false)
+	public static NpgsqlDataSource CreateDataSource(IConfiguration configuration, string? database = null, bool persistSecurityInfo = false)
 	{
 		var host = configuration[ConfigurationKeys.DatabaseHost];
 		if (host.IsNullOrWhiteSpace())
@@ -46,7 +46,7 @@ public static class PersistenceHelper
 			ConnectionStringBuilder =
 			{
 				Host                = host,
-				Database            = database,
+				Database            = database ?? "",
 				Username            = username,
 				Password            = password,
 				PersistSecurityInfo = persistSecurityInfo
@@ -61,7 +61,7 @@ public static class PersistenceHelper
 		await using var scope         = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
 		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-		await using var dataSource = CreateDataSource(configuration, "", true);
+		await using var dataSource = CreateDataSource(configuration, persistSecurityInfo: true);
 		await using var connection = new NpgsqlConnection(dataSource.ConnectionString);
 
 		var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions

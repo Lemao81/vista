@@ -28,7 +28,7 @@ internal sealed class PostgresDatabaseInitiator : IInitiator
 
 	private async Task<bool> UpgradeDatabaseAsync(string database, CancellationToken cancellationToken)
 	{
-		await using var dataSource = PersistenceHelper.CreateDataSource(_configuration, database, true);
+		await using var dataSource = PersistenceHelper.CreateDataSource(_configuration, database, persistSecurityInfo: true);
 		EnsureDatabase.For.PostgresqlDatabase(dataSource.ConnectionString);
 		var engine = GetUpgradeEngine(dataSource.ConnectionString, database);
 		if (!engine.IsUpgradeRequired())

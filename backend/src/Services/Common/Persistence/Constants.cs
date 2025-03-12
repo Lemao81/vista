@@ -12,5 +12,6 @@ public static class DbSchemas
 
 public static class DbNames
 {
+	public const string Postgres     = "postgres";
 	public const string FileTransfer = "vista_file_transfer";
 }
