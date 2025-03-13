@@ -1,7 +1,10 @@
-﻿using Common.Persistence;
+﻿using Common.Domain.Storage;
+using Common.Persistence;
 using Common.Persistence.Utilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Minio;
+using Minio.DataModel.Args;
 using Npgsql;
 using Service.Tests.Utilities;
 using Service.Tests.WebApplicationFactories;
@@ -41,6 +44,23 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 
 			// Assert
 			Assert.NotNull(result);
+		}
+	}
+
+	[Fact]
+	public async Task When_startup_service_should_create_minio_buckets()
+	{
+		// Act + Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
+		await TestHelper.AwaitHealthiness(_webApplicationFactory);
+		var buckets     = new[] { Buckets.Media };
+		var minioClient = _webApplicationFactory.Services.GetRequiredService<IMinioClient>();
+		foreach (var bucket in buckets)
+		{
+			var exists = await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket));
+
+			// Assert
+			Assert.True(exists);
 		}
 	}
 }

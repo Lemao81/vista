@@ -25,6 +25,7 @@ public class MaintenanceWebApplicationFactory : WebApplicationFactoryBase<WebApi
 		base.ConfigureWebHost(builder);
 
 		Environment.SetEnvironmentVariable(EnvironmentVariableNames.InitiatePostgresDatabase, "true");
+		Environment.SetEnvironmentVariable(EnvironmentVariableNames.InitiateMinio, "true");
 
 		UsePostgresDatabaseSetting(builder, _postgresContainer);
 		UseMinioSetting(builder, _minioContainer);
