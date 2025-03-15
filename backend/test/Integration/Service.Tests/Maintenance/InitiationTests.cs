@@ -34,6 +34,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		await using var dataSource    = PersistenceHelper.CreateDataSource(configuration, DbNames.Postgres, persistSecurityInfo: true);
 		await using var connection    = new NpgsqlConnection(dataSource.ConnectionString);
 		await connection.OpenAsync();
+
 		foreach (var database in databases)
 		{
 			_testOutputHelper.WriteLine($"Checking for database {database}");
@@ -48,6 +49,33 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
+	public async Task When_startup_service_should_execute_filetransfer_migrations()
+	{
+		// Act + Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
+		await TestHelper.AwaitHealthiness(_webApplicationFactory);
+		var migrationIds  = new[] { "20250128134342_Initial" };
+		var configuration = _webApplicationFactory.Services.GetRequiredService<IConfiguration>();
+
+		await using var dataSource = PersistenceHelper.CreateDataSource(configuration, DbNames.FileTransfer, persistSecurityInfo: true);
+		await using var connection = new NpgsqlConnection(dataSource.ConnectionString);
+		await connection.OpenAsync();
+
+		await using var command = connection.CreateCommand();
+		command.CommandText = "SELECT migration_id FROM vista_file_transfer.filetransfer.__ef_migrations_history";
+		var reader             = await command.ExecuteReaderAsync();
+		var actualMigrationIds = new List<string>();
+		while (await reader.ReadAsync())
+		{
+			actualMigrationIds.Add(reader.GetString(0));
+		}
+
+		// Assert
+		Assert.Equal(migrationIds.Length, actualMigrationIds.Count);
+		Assert.True(migrationIds.All(id => actualMigrationIds.Contains(id, StringComparer.OrdinalIgnoreCase)));
+	}
+
+	[Fact]
 	public async Task When_startup_service_should_create_minio_buckets()
 	{
 		// Act + Arrange
@@ -55,6 +83,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		await TestHelper.AwaitHealthiness(_webApplicationFactory);
 		var buckets     = new[] { Buckets.Media };
 		var minioClient = _webApplicationFactory.Services.GetRequiredService<IMinioClient>();
+
 		foreach (var bucket in buckets)
 		{
 			var exists = await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket));
