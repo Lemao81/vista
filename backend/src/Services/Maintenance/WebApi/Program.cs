@@ -14,7 +14,10 @@ builder.Services.AddScoped<IInitiator, MinioInitiator>();
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddMinio(builder.Configuration);
+if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiateMinio))
+{
+	builder.Services.AddMinio(builder.Configuration);
+}
 
 builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");
 
