@@ -5,7 +5,7 @@ pool:
 
 variables:
   dotNetVersion: '9.0.200'
-  project: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
+  project: 'backend/src/Services/Maintenance/WebApi/WebApi.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   functionApp: 'func-vista-filetransfer-dev-001'
@@ -25,21 +25,20 @@ steps:
       version: $(dotNetVersion)
 
   - task: DotNetCoreCLI@2
-    displayName: 'Publish FileTransfer'
+    displayName: 'Publish Maintenance'
     inputs:
       command: 'publish'
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
-      publishWebProjects: false
+      publishWebProjects: true
       projects: '$(project)'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
 
-  - task: AzureFunctionApp@2
-    displayName: 'Azure Function Deployment'
+  - task: AzureWebApp@1
+    displayName: 'Web App Deployment'
     inputs:
-      connectedServiceNameARM: '$(subscription)'
-      appType: 'functionApp'
-      appName: '$(functionApp)'
+      azureSubscription: '$(subscription)'
+      appType: 'webAppLinux'
+      appName: 'app-vista-maintenance-dev-001'
       package: '$(Build.SourcesDirectory)/**/publish.zip'
-      deploymentMethod: 'zipDeploy'
