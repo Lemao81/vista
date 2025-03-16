@@ -30,7 +30,7 @@ steps:
       command: 'publish'
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
-      publishWebProjects: true
+      publishWebProjects: false
       projects: '$(project)'
       modifyOutputPath: false
       configuration: '$(buildConfiguration)'
