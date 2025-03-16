@@ -41,4 +41,4 @@ steps:
       azureSubscription: '$(subscription)'
       appType: 'webAppLinux'
       appName: 'app-vista-maintenance-dev-001'
-      package: '$(Build.SourcesDirectory)/**/publish.zip'
+      package: '$(Build.SourcesDirectory)/**/Maintenance/**/publish.zip'
