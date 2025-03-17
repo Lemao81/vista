@@ -9,17 +9,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddCommonAppSettings();
 
-builder.Services.AddScoped<IInitiator, PostgresDatabaseInitiator>();
-builder.Services.AddScoped<IInitiator, MinioInitiator>();
-
 builder.Services.AddOpenApi();
+
+builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");
+
+var initiateDatabase = EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiatePostgresDatabase);
+if (initiateDatabase)
+{
+	builder.Services.AddScoped<IInitiator, PostgresDatabaseInitiator>();
+}
 
 if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiateMinio))
 {
 	builder.Services.AddMinio(builder.Configuration);
+	builder.Services.AddScoped<IInitiator, MinioInitiator>();
 }
-
-builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");
 
 var app = builder.Build();
 
@@ -33,7 +37,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
-if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiatePostgresDatabase))
+if (initiateDatabase)
 {
 	await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services, logger);
 }
