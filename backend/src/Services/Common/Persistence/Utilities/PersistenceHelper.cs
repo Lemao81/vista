@@ -1,4 +1,5 @@
-﻿using Common.Application;
+﻿using System.Text.RegularExpressions;
+using Common.Application;
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +11,7 @@ using SharedKernel;
 
 namespace Common.Persistence.Utilities;
 
-public static class PersistenceHelper
+public static partial class PersistenceHelper
 {
 	public static NpgsqlDataSource CreateDataSource(IConfiguration configuration, string? database = null, bool persistSecurityInfo = false)
 	{
@@ -61,8 +62,9 @@ public static class PersistenceHelper
 		await using var scope         = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateAsyncScope();
 		var             configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-		await using var dataSource = CreateDataSource(configuration, persistSecurityInfo: true);
-		await using var connection = new NpgsqlConnection(dataSource.ConnectionString);
+		await using var dataSource       = CreateDataSource(configuration, persistSecurityInfo: true);
+		var             connectionString = dataSource.ConnectionString;
+		await using var connection       = new NpgsqlConnection(connectionString);
 
 		var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
 			{
@@ -73,7 +75,7 @@ public static class PersistenceHelper
 				ShouldHandle     = new PredicateBuilder().Handle<Exception>(exception => exception is not OperationCanceledException),
 				OnRetry = _ =>
 				{
-					logger.LogInformation("Failed to establish database connection");
+					logger.LogInformation("Failed to establish database connection (ConnectionString: '{ConnectionString}')", HidePassword(connectionString));
 
 					return ValueTask.CompletedTask;
 				}
@@ -89,4 +91,9 @@ public static class PersistenceHelper
 			},
 			connection);
 	}
+
+	[GeneratedRegex("Password=[^;]+")]
+	private static partial Regex HidePasswordRegex();
+
+	private static string HidePassword(string connectionString) => HidePasswordRegex().Replace(connectionString, "Password=xxx");
 }
