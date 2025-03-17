@@ -33,7 +33,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
-await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services, logger);
+if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiatePostgresDatabase))
+{
+	await PersistenceHelper.AwaitDatabaseConnectionAsync(app.Services, logger);
+}
 
 try
 {
