@@ -15,7 +15,7 @@ public class UploadPictureRequestValidatorTests
 	}
 
 	[Fact]
-	public async Task When_ValidateAsync_given_valid_file_should_return_valid()
+	public async Task ValidateAsync_Given_valid_file_Should_return_valid()
 	{
 		// Arrange
 		var file    = new TestFormFile(MediaTypeNames.Image.Jpeg, "", 4000, "pic", "pic.jpg");
@@ -29,7 +29,7 @@ public class UploadPictureRequestValidatorTests
 	}
 
 	[Fact]
-	public async Task When_ValidateAsync_given_null_file_should_be_invalid()
+	public async Task ValidateAsync_Given_null_file_Should_be_invalid()
 	{
 		// Arrange
 		var request = new UploadPictureRequest(null);

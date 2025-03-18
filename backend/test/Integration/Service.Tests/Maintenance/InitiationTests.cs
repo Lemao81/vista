@@ -24,7 +24,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task When_startup_service_should_create_databases()
+	public async Task Startup_service_Given_db_init_enabled_Should_create_databases()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -49,7 +49,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task When_startup_service_should_execute_filetransfer_migrations()
+	public async Task Startup_service_Given_db_init_enabled_Should_execute_filetransfer_migrations()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -76,7 +76,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task When_startup_service_should_create_minio_buckets()
+	public async Task Startup_service_Given_minio_init_enabled_Should_create_minio_buckets()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;

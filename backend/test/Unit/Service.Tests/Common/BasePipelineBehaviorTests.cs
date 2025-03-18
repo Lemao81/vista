@@ -15,7 +15,7 @@ public class BasePipelineBehaviorTests
 	}
 
 	[Fact]
-	public void When_CreateErrorResultT0_given_error_should_return_failure_result()
+	public void CreateErrorResultT0_Given_error_Should_return_failure_result()
 	{
 		// Arrange
 		var error = Errors.EntityNotFound;
@@ -29,7 +29,7 @@ public class BasePipelineBehaviorTests
 	}
 
 	[Fact]
-	public void When_CreateErrorResultT1_given_error_should_return_failure_result()
+	public void CreateErrorResultT1_Given_error_Should_return_failure_result()
 	{
 		// Arrange
 		var error = Errors.EntityNotFound;

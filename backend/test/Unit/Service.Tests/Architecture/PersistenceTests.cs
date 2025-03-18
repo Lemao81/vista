@@ -4,7 +4,7 @@ using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 
-public class PersistenceTests : BaseArchitectureTest
+public class PersistenceTests : ArchitectureTestBase
 {
 	public PersistenceTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
 	{

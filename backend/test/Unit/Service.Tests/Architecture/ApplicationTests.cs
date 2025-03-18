@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 
-public class ApplicationTests : BaseArchitectureTest
+public class ApplicationTests : ArchitectureTestBase
 {
 	public ApplicationTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
 	{

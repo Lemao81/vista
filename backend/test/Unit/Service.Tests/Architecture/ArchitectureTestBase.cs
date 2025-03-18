@@ -11,9 +11,9 @@ using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 
-public abstract class BaseArchitectureTest
+public abstract class ArchitectureTestBase
 {
-	protected BaseArchitectureTest(ITestOutputHelper testOutputHelper)
+	protected ArchitectureTestBase(ITestOutputHelper testOutputHelper)
 	{
 		TestOutputHelper = testOutputHelper;
 	}

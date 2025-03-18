@@ -8,7 +8,7 @@ namespace Service.Tests.FileTransfer.Pictures;
 public class UploadPictureCommandValidatorTests
 {
 	[Fact]
-	public async Task When_ValidateAsync_given_valid_command_should_return_valid()
+	public async Task ValidateAsync_Given_valid_command_Should_return_valid()
 	{
 		// Arrange
 		var options = new UploadMediaOptions
@@ -29,7 +29,7 @@ public class UploadPictureCommandValidatorTests
 	}
 
 	[Fact]
-	public async Task When_ValidateAsync_given_invalid_command_should_respond_errors()
+	public async Task ValidateAsync_Given_invalid_command_Should_respond_errors()
 	{
 		// Arrange
 		var options = new UploadMediaOptions
@@ -50,7 +50,7 @@ public class UploadPictureCommandValidatorTests
 	}
 
 	[Fact]
-	public async Task When_ValidateAsync_given_exceed_file_length_should_respond_error()
+	public async Task? ValidateAsync_Given_exceed_file_length_Should_respond_error()
 	{
 		// Arrange
 		var options = new UploadMediaOptions

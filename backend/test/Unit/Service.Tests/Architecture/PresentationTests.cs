@@ -4,7 +4,7 @@ using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 
-public class PresentationTests : BaseArchitectureTest
+public class PresentationTests : ArchitectureTestBase
 {
 	public PresentationTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
 	{
