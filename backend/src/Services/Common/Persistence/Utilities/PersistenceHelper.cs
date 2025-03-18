@@ -73,9 +73,11 @@ public static partial class PersistenceHelper
 				MaxDelay         = TimeSpan.FromSeconds(10),
 				MaxRetryAttempts = int.MaxValue,
 				ShouldHandle     = new PredicateBuilder().Handle<Exception>(exception => exception is not OperationCanceledException),
-				OnRetry = _ =>
+				OnRetry = args =>
 				{
-					logger.LogInformation("Failed to establish database connection (ConnectionString: '{ConnectionString}')", HidePassword(connectionString));
+					logger.LogInformation("Failed to establish database connection: {Message} (ConnectionString: '{ConnectionString}')",
+						args.Outcome.Exception?.Message,
+						HidePassword(connectionString));
 
 					return ValueTask.CompletedTask;
 				}
