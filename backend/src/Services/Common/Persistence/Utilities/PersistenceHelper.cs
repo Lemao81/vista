@@ -47,7 +47,7 @@ public static partial class PersistenceHelper
 			ConnectionStringBuilder =
 			{
 				Host                = host,
-				Database            = database ?? "",
+				Database            = database ?? "postgres",
 				Username            = username,
 				Password            = password,
 				PersistSecurityInfo = persistSecurityInfo
