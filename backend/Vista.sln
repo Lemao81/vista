@@ -101,6 +101,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{08FB74A1
 		..\.azure\CI.yml = ..\.azure\CI.yml
 		..\.azure\deploy-functions.yml = ..\.azure\deploy-functions.yml
 		..\.azure\deploy-maintenance.yml = ..\.azure\deploy-maintenance.yml
+		..\.azure\deploy-maintenance-functions.yml = ..\.azure\deploy-maintenance-functions.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Common", "test\Tests.Common\Tests.Common.csproj", "{CBE0005E-A480-4E80-8DD2-6548B25F6914}"
