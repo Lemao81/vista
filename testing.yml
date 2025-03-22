@@ -43,6 +43,5 @@ steps:
       appType: 'functionApp'
       appName: '$(functionsApp)'
       package: '$(functionsPackage)'
-      deploymentMethod: 'zipDeploy'
-      appSettings: -WEBSITE_RUN_FROM_PACKAGE 1
+      deploymentMethod: 'runFromPackage'
       
