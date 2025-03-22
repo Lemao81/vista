@@ -7,11 +7,10 @@ variables:
   dotNetVersion: '9.0.200'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  webProject: 'backend/src/Services/Maintenance/WebApi/WebApi.csproj'
-  functionsProject: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
   subscription: 'MyAzureSubscription(19a97b41-e18f-481b-a072-dba7985b27bd)'
-  webApp: 'app-vista-maintenance-dev-001'
+  functionsProject: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
   functionsApp: 'func-vista-filetransfer-dev-001'
+  functionsPackage: '$(Build.SourcesDirectory)/**/FileTransfer/**/publish.zip'
 
 steps:
   - checkout: self
@@ -27,26 +26,7 @@ steps:
       version: $(dotNetVersion)
 
   - task: DotNetCoreCLI@2
-    displayName: 'Publish Maintenance'
-    inputs:
-      command: 'publish'
-      feedsToUse: 'select'
-      verbosityRestore: 'Normal'
-      publishWebProjects: false
-      projects: '$(webProject)'
-      modifyOutputPath: false
-      configuration: '$(buildConfiguration)'
-
-  - task: AzureWebApp@1
-    displayName: 'Web App Deployment'
-    inputs:
-      azureSubscription: '$(subscription)'
-      appType: 'webAppLinux'
-      appName: '$(webApp)'
-      package: '$(Build.SourcesDirectory)/**/Maintenance/**/publish.zip'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Publish FileTransfer'
+    displayName: 'Publish Functions'
     inputs:
       command: 'publish'
       feedsToUse: 'select'
@@ -57,10 +37,12 @@ steps:
       configuration: '$(buildConfiguration)'
 
   - task: AzureFunctionApp@2
-    displayName: 'Azure Function Deployment'
+    displayName: 'Deploy Functions'
     inputs:
       connectedServiceNameARM: '$(subscription)'
       appType: 'functionApp'
       appName: '$(functionsApp)'
-      package: '$(Build.SourcesDirectory)/**/FileTransfer/**/publish.zip'
+      package: '$(functionsPackage)'
       deploymentMethod: 'zipDeploy'
+      appSettings: -WEBSITE_RUN_FROM_PACKAGE 1
+      
