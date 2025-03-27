@@ -33,7 +33,7 @@ internal sealed class MinioObjectStorage : IObjectStorage
 		}
 		catch (Exception exception)
 		{
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogError(exception);
 
 			return Errors.StorageBucketCreationFailed;
 		}
@@ -65,7 +65,7 @@ internal sealed class MinioObjectStorage : IObjectStorage
 		}
 		catch (Exception exception)
 		{
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogError(exception);
 
 			return Errors.ObjectStorageFailed;
 		}
@@ -89,7 +89,7 @@ internal sealed class MinioObjectStorage : IObjectStorage
 		}
 		catch (Exception exception)
 		{
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogError(exception);
 
 			return Errors.ObjectListFailed;
 		}
@@ -111,7 +111,7 @@ internal sealed class MinioObjectStorage : IObjectStorage
 		}
 		catch (Exception exception)
 		{
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogError(exception);
 
 			return Errors.ObjectRetrievalFailed;
 		}
@@ -132,7 +132,7 @@ internal sealed class MinioObjectStorage : IObjectStorage
 		}
 		catch (Exception exception)
 		{
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogError(exception);
 
 			return Errors.ObjectExistFailed;
 		}
