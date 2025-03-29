@@ -1,4 +1,5 @@
 ﻿using Common.Domain.Storage;
+using Common.WebApi;
 using Lemao.UtilExtensions;
 using Minio;
 using Minio.DataModel.Args;

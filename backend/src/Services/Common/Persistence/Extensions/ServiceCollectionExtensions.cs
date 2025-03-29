@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
 			var endpoint = configuration[ConfigurationKeys.MinioEndpoint];
 			if (endpoint.IsNullOrWhiteSpace())
 			{
-				throw new MissingConfigurationException("Minio endpoint is not configured");
+				throw new MissingConfigurationException("Minio endpoint");
 			}
 
 			var accessKey = configuration[ConfigurationKeys.MinioAccessKey];
@@ -35,12 +35,12 @@ public static class ServiceCollectionExtensions
 
 			if (accessKey.IsNullOrWhiteSpace())
 			{
-				throw new MissingConfigurationException("Minio access key is not configured");
+				throw new MissingConfigurationException("Minio access key");
 			}
 
 			if (secretKey.IsNullOrWhiteSpace())
 			{
-				throw new MissingConfigurationException("Minio secret key is not configured");
+				throw new MissingConfigurationException("Minio secret key");
 			}
 
 			client.WithEndpoint(endpoint).WithCredentials(accessKey, secretKey).WithSSL(false);

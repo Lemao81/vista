@@ -24,7 +24,7 @@ public static partial class PersistenceHelper
 		var username = configuration[ConfigurationKeys.DatabaseUsername];
 		if (username.IsNullOrWhiteSpace())
 		{
-			throw new MissingConfigurationException("Database username is not configured");
+			throw new MissingConfigurationException("Database username");
 		}
 
 		var password = configuration[ConfigurationKeys.DatabasePassword];
@@ -39,7 +39,7 @@ public static partial class PersistenceHelper
 
 		if (password.IsNullOrWhiteSpace())
 		{
-			throw new MissingConfigurationException("Database password is not configured");
+			throw new MissingConfigurationException("Database password");
 		}
 
 		var builder = new NpgsqlDataSourceBuilder

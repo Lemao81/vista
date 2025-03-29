@@ -1,6 +1,7 @@
 using Azure.Identity;
 using Common.Application;
 using Common.Presentation;
+using Common.WebApi;
 using Common.WebApi.Extensions;
 using FileTransfer.Application;
 using FileTransfer.Domain;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using SharedKernel;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
@@ -32,9 +34,12 @@ builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 
 builder.Services.AddAzureClients(clientBuilder =>
 {
-	clientBuilder.AddBlobServiceClient(builder.Configuration.GetSection(ConfigurationKeys.Storage));
+	var storageConnectionString = Environment.GetEnvironmentVariable(EnvironmentVariableNames.AzureWebJobsStorage) ??
+	                              throw new MissingConfigurationException("AzureWebJobsStorage");
+
 	// TODO use real client id
-	clientBuilder.UseCredential(new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = Guid.NewGuid().ToString() }));
+	var credentials = new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = Guid.NewGuid().ToString() });
+	clientBuilder.AddBlobServiceClient(new Uri(storageConnectionString), credentials);
 });
 
 builder.Services.AddScoped<IObjectStorage, AzureObjectStorage>();
