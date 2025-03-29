@@ -34,8 +34,8 @@ builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 builder.Services.AddAzureClients(clientBuilder =>
 {
 	clientBuilder.AddBlobServiceClient(builder.Configuration.GetRequiredSection(ConfigurationKeys.AzureStorageBlob));
-	// TODO use real client id
-	clientBuilder.UseCredential(new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = Guid.NewGuid().ToString() }));
+	var managedIdentityClientId = builder.Configuration.GetValue<string>(ConfigurationKeys.AzureStorageManagedIdentityClientId);
+	clientBuilder.UseCredential(new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = managedIdentityClientId }));
 });
 
 builder.Services.AddScoped<IObjectStorage, AzureObjectStorage>();
