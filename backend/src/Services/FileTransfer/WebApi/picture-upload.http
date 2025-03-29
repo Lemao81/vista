@@ -1,8 +1,8 @@
-﻿@WebApi_HostAddress = http://localhost:5000
+﻿@baseUrl = http://localhost:5000
 
 ###
 # @name UploadValidImage
-POST {{WebApi_HostAddress}}/api/pictures
+POST {{baseUrl}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -14,7 +14,7 @@ Content-Type: image/png
 
 ###
 # @name UploadEmptyImage
-POST {{WebApi_HostAddress}}/api/pictures
+POST {{baseUrl}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -26,7 +26,7 @@ Content-Type: image/png
 
 ###
 # @name UploadNoExtensionFile
-POST {{WebApi_HostAddress}}/api/pictures
+POST {{baseUrl}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -38,7 +38,7 @@ Content-Type: image/png
 
 ###
 # @name UploadRequestNull
-POST {{WebApi_HostAddress}}/api/pictures
+POST {{baseUrl}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -50,7 +50,7 @@ Content-Type: image/png
 
 ###
 # @name UploadInvalidFileType
-POST {{WebApi_HostAddress}}/api/pictures
+POST {{baseUrl}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -62,7 +62,7 @@ Content-Type: text/plain
 
 ###
 # @name UploadNoFile
-POST {{WebApi_HostAddress}}/api/pictures
+POST {{baseUrl}}/api/pictures
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -71,4 +71,4 @@ Content-Type: text/plain
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ### Health
-GET {{WebApi_HostAddress}}/api/health
+GET {{baseUrl}}/api/health
