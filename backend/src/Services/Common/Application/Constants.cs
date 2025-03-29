@@ -35,5 +35,5 @@ public static class ConfigurationKeys
 	public const string MinioAccessKey       = "Minio:AccessKey";
 	public const string MinioSecretKey       = "Minio:SecretKey";
 	public const string MinioKeysFile        = "Minio:KeysFile";
-	public const string Storage              = "Storage";
+	public const string AzureStorageBlob     = "Azure:Storage:Blob";
 }
