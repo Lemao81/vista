@@ -3,6 +3,7 @@ using Common.WebApi;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;
+using Testcontainers.Azurite;
 using Testcontainers.Minio;
 using Testcontainers.PostgreSql;
 
@@ -37,7 +38,7 @@ public class ContainerFactory
 			.WithEnvironment("PGUSER", DatabaseUsername)
 			// uncomment for local inspection
 			// .WithPortBinding(5432)
-			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
+			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy(3, s => s.WithTimeout(TimeSpan.FromSeconds(5))))
 			.Build();
 	}
 
@@ -54,7 +55,7 @@ public class ContainerFactory
 			.WithCommand("--console-address", ":9001")
 			// uncomment for local inspection
 			// .WithPortBinding(9001)
-			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
+			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy(3, s => s.WithTimeout(TimeSpan.FromSeconds(5))))
 			.Build();
 	}
 
@@ -74,7 +75,22 @@ public class ContainerFactory
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioSecretKey), MinioPassword)
 			.WithEnvironment(EnvironmentVariableNames.InitiatePostgresDatabase, "true")
 			.WithEnvironment(EnvironmentVariableNames.InitiateMinio, "true")
-			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy())
+			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy(3, s => s.WithTimeout(TimeSpan.FromSeconds(5))))
+			.Build();
+	}
+
+	public AzuriteContainer CreateAzuriteContainer()
+	{
+		return new AzuriteBuilder().WithImage("mcr.microsoft.com/azure-storage/azurite:3.34.0")
+			.WithName($"{NetworkAliases.Azurite}_{Guid.NewGuid()}")
+			.WithNetwork(_network)
+			.WithNetworkAliases(NetworkAliases.Azurite)
+			.WithResourceMapping(Path.Combine("Utilities", "cert", "127.0.0.1.pem"), "/workspace")
+			.WithResourceMapping(Path.Combine("Utilities", "cert", "127.0.0.1-key.pem"), "/workspace")
+			// uncomment for local inspection
+			// blob
+			// .WithPortBinding(10000)
+			.WithCommand("--skipApiVersionCheck", "--cert", "/workspace/127.0.0.1.pem", "--key", "/workspace/127.0.0.1-key.pem", "--oauth", "basic")
 			.Build();
 	}
 

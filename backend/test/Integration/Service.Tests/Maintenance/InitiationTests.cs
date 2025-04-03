@@ -1,4 +1,5 @@
-﻿using Common.Domain.Storage;
+﻿using Azure.Storage.Blobs;
+using Common.Domain.Storage;
 using Common.Persistence;
 using Common.Persistence.Utilities;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Startup_service_Given_db_init_enabled_Should_create_databases()
+	public async Task Given_DbInitEnabled_Should_CreateDatabases()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -49,7 +50,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Startup_service_Given_db_init_enabled_Should_execute_filetransfer_migrations()
+	public async Task Given_DbInitEnabled_Should_ExecuteFiletransferMigrations()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -76,7 +77,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Startup_service_Given_minio_init_enabled_Should_create_minio_buckets()
+	public async Task Given_MinioInitEnabled_Should_CreateMinioBuckets()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -87,6 +88,25 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		foreach (var bucket in buckets)
 		{
 			var exists = await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket));
+
+			// Assert
+			Assert.True(exists);
+		}
+	}
+
+	[Fact]
+	public async Task Given_AzureBlobStorageInitEnabled_Should_CreateAzureBlobStorageContainers()
+	{
+		// Act + Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
+		await TestHelper.AwaitHealthiness(_webApplicationFactory);
+		var containers        = new[] { Buckets.Media };
+		var blobServiceClient = _webApplicationFactory.Services.GetRequiredService<BlobServiceClient>();
+
+		foreach (var container in containers)
+		{
+			var blobContainerClient = blobServiceClient.GetBlobContainerClient(container);
+			var exists              = await blobContainerClient.ExistsAsync();
 
 			// Assert
 			Assert.True(exists);

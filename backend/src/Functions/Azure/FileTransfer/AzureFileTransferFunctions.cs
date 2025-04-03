@@ -1,6 +1,7 @@
 ﻿using Common.Presentation;
 using FileTransfer.Application.Utilities;
 using FluentValidation;
+using Lemao.UtilExtensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -75,7 +76,7 @@ public class AzureFileTransferFunctions
 		}
 		catch (Exception exception)
 		{
-			_logger.LogError(exception, "{Message}", exception.Message);
+			_logger.LogError(exception);
 
 			return CreateInternalErrorResult();
 		}

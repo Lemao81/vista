@@ -4,6 +4,7 @@ using Common.WebApi;
 using DbUp;
 using DbUp.Engine;
 using Lemao.UtilExtensions;
+using Maintenance.WebApi.Abstractions;
 
 namespace Maintenance.WebApi.Initiators;
 
@@ -50,7 +51,7 @@ internal sealed class PostgresDatabaseInitiator : IInitiator
 			return true;
 		}
 
-		_logger.LogInformation("Database '{Database}' upgrade failed: {Error}", database, result.Error);
+		_logger.LogWarning("Database '{Database}' upgrade failed: {Error}", database, result.Error);
 
 		cancellationToken.ThrowIfCancellationRequested();
 

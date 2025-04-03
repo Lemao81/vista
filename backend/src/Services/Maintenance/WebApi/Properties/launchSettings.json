@@ -5,7 +5,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "INIT_POSTGRES_DB": "true",
-        "INIT_MINIO": "true"
+        "INIT_MINIO": "true",
+        "INIT_AZURE_BLOB": "true"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"

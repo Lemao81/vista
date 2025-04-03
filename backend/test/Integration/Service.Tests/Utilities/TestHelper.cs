@@ -9,7 +9,7 @@ public static class TestHelper
 	public static async Task AwaitHealthiness<T>(WebApplicationFactory<T> webApplicationFactory) where T : class
 	{
 		var healthCheckService = webApplicationFactory.Services.GetRequiredService<HealthCheckService>();
-		var timeoutTask        = Task.Delay(TimeSpan.FromSeconds(3));
+		var timeoutTask        = Task.Delay(TimeSpan.FromSeconds(10));
 
 		while (true)
 		{

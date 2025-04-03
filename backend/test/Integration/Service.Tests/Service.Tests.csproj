@@ -8,6 +8,7 @@
     <PackageReference Include="Meziantou.Extensions.Logging.Xunit"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing"/>
     <PackageReference Include="Testcontainers"/>
+    <PackageReference Include="Testcontainers.Azurite" />
     <PackageReference Include="Testcontainers.Minio"/>
     <PackageReference Include="Testcontainers.PostgreSql"/>
   </ItemGroup>
@@ -29,6 +30,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="FileTransfer\Files\test.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Utilities\cert\127.0.0.1.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Utilities\cert\127.0.0.1-key.pem">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

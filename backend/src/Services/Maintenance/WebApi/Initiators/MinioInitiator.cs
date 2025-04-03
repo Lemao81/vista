@@ -1,6 +1,7 @@
 ﻿using Common.Domain.Storage;
 using Common.WebApi;
 using Lemao.UtilExtensions;
+using Maintenance.WebApi.Abstractions;
 using Minio;
 using Minio.DataModel.Args;
 
@@ -29,8 +30,7 @@ internal sealed class MinioInitiator : IInitiator
 	private async Task<bool> CreateBucketAsync(string bucket, CancellationToken cancellationToken)
 	{
 		var existsArgs = new BucketExistsArgs().WithBucket(bucket);
-		var exists     = await _minioClient.BucketExistsAsync(existsArgs, cancellationToken);
-		if (exists)
+		if (await _minioClient.BucketExistsAsync(existsArgs, cancellationToken))
 		{
 			_logger.LogInformation("Minio bucket '{Bucket}' exists", bucket);
 

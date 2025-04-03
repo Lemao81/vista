@@ -1,4 +1,4 @@
-﻿namespace Maintenance.WebApi;
+﻿namespace Maintenance.WebApi.Abstractions;
 
 public interface IInitiator
 {

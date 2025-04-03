@@ -36,5 +36,6 @@ public static class ConfigurationKeys
 	public const string MinioSecretKey                      = "Minio:SecretKey";
 	public const string MinioKeysFile                       = "Minio:KeysFile";
 	public const string AzureStorageBlob                    = "Azure:Storage:Blob";
+	public const string AzureStorageBlobServiceUri          = "Azure:Storage:Blob:ServiceUri";
 	public const string AzureStorageManagedIdentityClientId = "Azure:Storage:ManagedIdentityClientId";
 }

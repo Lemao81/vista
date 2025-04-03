@@ -1,10 +1,14 @@
+using Azure.Identity;
+using Common.Application;
 using Common.Persistence.Extensions;
 using Common.Persistence.Utilities;
 using Common.WebApi;
 using Common.WebApi.Extensions;
 using Lemao.UtilExtensions;
 using Maintenance.WebApi;
+using Maintenance.WebApi.Abstractions;
 using Maintenance.WebApi.Initiators;
+using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +28,18 @@ if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiateMinio))
 {
 	builder.Services.AddMinio(builder.Configuration);
 	builder.Services.AddScoped<IInitiator, MinioInitiator>();
+}
+
+if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiateAzureBlobStorage))
+{
+	builder.Services.AddAzureClients(clientBuilder =>
+	{
+		clientBuilder.AddBlobServiceClient(builder.Configuration.GetRequiredSection(ConfigurationKeys.AzureStorageBlob));
+		var managedIdentityClientId = builder.Configuration.GetValue<string>(ConfigurationKeys.AzureStorageManagedIdentityClientId);
+		clientBuilder.UseCredential(new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = managedIdentityClientId }));
+	});
+
+	builder.Services.AddScoped<IInitiator, AzureBlobStorageInitiator>();
 }
 
 var app = builder.Build();

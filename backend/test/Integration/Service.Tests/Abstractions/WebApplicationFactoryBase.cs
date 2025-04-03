@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Service.Tests.Utilities;
+using Testcontainers.Azurite;
 using Testcontainers.Minio;
 using Testcontainers.PostgreSql;
 using Xunit.Abstractions;
@@ -76,6 +77,12 @@ public abstract class WebApplicationFactoryBase<T> : WebApplicationFactory<T>, I
 		builder.UseSetting(ConfigurationKeys.MinioEndpoint, $"{minioContainer.Hostname}:{minioContainer.GetMappedPublicPort(9000)}");
 		builder.UseSetting(ConfigurationKeys.MinioAccessKey, "admin");
 		builder.UseSetting(ConfigurationKeys.MinioSecretKey, "adminpwd");
+	}
+
+	protected void UseAzuriteSetting(IWebHostBuilder builder, AzuriteContainer azuriteContainer)
+	{
+		var blobEndpoint = azuriteContainer.GetBlobEndpoint().Replace("http", "https", StringComparison.OrdinalIgnoreCase);
+		builder.UseSetting(ConfigurationKeys.AzureStorageBlobServiceUri, blobEndpoint);
 	}
 
 	private static async Task LogExitedContainersAsync(IEnumerable<IContainer?> containers)
