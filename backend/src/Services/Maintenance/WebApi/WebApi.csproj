@@ -9,15 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" />
+    <PackageReference Include="Azure.Storage.Blobs"/>
     <PackageReference Include="dbup-postgresql"/>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
-    <PackageReference Include="Microsoft.Extensions.Azure" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets"/>
-    <PackageReference Include="Minio" />
+    <PackageReference Include="Minio"/>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Azure\Azure.csproj"/>
     <ProjectReference Include="..\..\Common\Persistence\Persistence.csproj"/>
     <ProjectReference Include="..\..\Common\WebApi\WebApi.csproj"/>
   </ItemGroup>

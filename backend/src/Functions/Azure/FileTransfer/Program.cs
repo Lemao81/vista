@@ -1,5 +1,5 @@
-using Azure.Identity;
 using Common.Application;
+using Common.Azure.Extensions;
 using Common.Presentation;
 using Common.WebApi.Extensions;
 using FileTransfer.Application;
@@ -8,8 +8,6 @@ using FileTransfer.Domain.Media;
 using FileTransfer.Persistence;
 using FluentValidation;
 using Microsoft.Azure.Functions.Worker.Builder;
-using Microsoft.Extensions.Azure;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -30,13 +28,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<CommonPresentationAssemblyM
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddDatabasePersistenceServices(builder.Configuration);
-
-builder.Services.AddAzureClients(clientBuilder =>
-{
-	clientBuilder.AddBlobServiceClient(builder.Configuration.GetRequiredSection(ConfigurationKeys.AzureStorageBlob));
-	var managedIdentityClientId = builder.Configuration.GetValue<string>(ConfigurationKeys.AzureStorageManagedIdentityClientId);
-	clientBuilder.UseCredential(new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = managedIdentityClientId }));
-});
+builder.Services.AddAzureClients(builder.Configuration);
 
 builder.Services.AddScoped<IObjectStorage, AzureObjectStorage>();
 

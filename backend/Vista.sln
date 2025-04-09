@@ -117,6 +117,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileTransfer", "src\Functio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Services\Common\Presentation\Presentation.csproj", "{817B15B9-64AC-4AEC-8CF4-66C9BBB93D5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure", "src\Services\Common\Azure\Azure.csproj", "{60C3B8DD-D041-4053-8A37-DC37ACDF9113}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -203,6 +205,10 @@ Global
 		{817B15B9-64AC-4AEC-8CF4-66C9BBB93D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{817B15B9-64AC-4AEC-8CF4-66C9BBB93D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{817B15B9-64AC-4AEC-8CF4-66C9BBB93D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C3B8DD-D041-4053-8A37-DC37ACDF9113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C3B8DD-D041-4053-8A37-DC37ACDF9113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C3B8DD-D041-4053-8A37-DC37ACDF9113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C3B8DD-D041-4053-8A37-DC37ACDF9113}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,5 +247,6 @@ Global
 		{AE12D83C-F6E4-4A01-8222-9241133B8470} = {E1C35357-995F-4124-877B-EFCDE8032603}
 		{9EA582A7-0A39-4EAD-9F87-20CF93A27175} = {E516BB28-415D-4272-AC0A-0DC5948CBE61}
 		{817B15B9-64AC-4AEC-8CF4-66C9BBB93D5F} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
+		{60C3B8DD-D041-4053-8A37-DC37ACDF9113} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
 	EndGlobalSection
 EndGlobal

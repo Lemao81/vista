@@ -23,10 +23,11 @@ COPY ["Directory.Packages.props", "."]
 COPY ["src/Directory.Build.props", "src/"]
 COPY ["Directory.Build.props", "."]
 COPY ["src/Services/Maintenance/WebApi/WebApi.csproj", "src/Services/Maintenance/WebApi/"]
-COPY ["src/Services/Common/Persistence/Persistence.csproj", "src/Services/Common/Persistence/"]
+COPY ["src/Services/Common/Azure/Azure.csproj", "src/Services/Common/Azure/"]
 COPY ["src/Services/Common/Application/Application.csproj", "src/Services/Common/Application/"]
 COPY ["src/Services/SharedKernel/SharedKernel.csproj", "src/Services/SharedKernel/"]
 COPY ["src/Services/Common/Domain/Domain.csproj", "src/Services/Common/Domain/"]
+COPY ["src/Services/Common/Persistence/Persistence.csproj", "src/Services/Common/Persistence/"]
 COPY ["src/Services/Common/WebApi/WebApi.csproj", "src/Services/Common/WebApi/"]
 RUN dotnet restore "./src/Services/Maintenance/WebApi/WebApi.csproj"
 COPY . .
