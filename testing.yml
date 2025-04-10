@@ -1,4 +1,5 @@
-trigger: none
+trigger:
+  - main
 
 pool:
   name: 'MyLocalAgentPool'
@@ -7,16 +8,22 @@ variables:
   dotNetVersion: '9.0.200'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  solution: './backend/Vista.sln'
   subscription: 'MyAzureSubscription(19a97b41-e18f-481b-a072-dba7985b27bd)'
-  functionsProject: 'backend/src/Functions/Azure/FileTransfer/FileTransfer.csproj'
-  functionsApp: 'func-vista-filetransfer-dev-001'
-  functionsPackage: '$(Build.SourcesDirectory)/**/FileTransfer/**/publish.zip'
+  identityClientId: '3e7123ab-9eca-43bc-ae2c-6405047676fd'
 
 steps:
   - checkout: self
     displayName: 'Checkout'
     clean: true
     fetchDepth: 1
+    
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '$(subscription)'
+      scriptType: 'ps'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az login --identity --username $(identityClientId)'
 
   - task: NuGetToolInstaller@1
 
@@ -25,23 +32,26 @@ steps:
     inputs:
       version: $(dotNetVersion)
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Publish Functions'
+  - task: NuGetCommand@2
+    displayName: 'Restore'
     inputs:
-      command: 'publish'
+      command: 'restore'
+      restoreSolution: '$(solution)'
       feedsToUse: 'select'
       verbosityRestore: 'Normal'
-      publishWebProjects: false
-      projects: '$(functionsProject)'
-      modifyOutputPath: false
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: 'build'
+      projects: '$(solution)'
+      arguments: '--no-restore'
       configuration: '$(buildConfiguration)'
 
-  - task: AzureFunctionApp@2
-    displayName: 'Deploy Functions'
+  - task: DotNetCoreCLI@2
+    displayName: 'Test'
     inputs:
-      connectedServiceNameARM: '$(subscription)'
-      appType: 'functionApp'
-      appName: '$(functionsApp)'
-      package: '$(functionsPackage)'
-      deploymentMethod: 'runFromPackage'
-      
+      command: 'test'
+      projects: '$(solution)'
+      arguments: '--no-restore --no-build'
+      configuration: '$(buildConfiguration)'
