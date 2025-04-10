@@ -23,7 +23,8 @@ steps:
       azureSubscription: '$(subscription)'
       scriptType: 'ps'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az login --identity --client-id $(identityClientId) --debug'
+#      inlineScript: 'az login --identity --client-id $(identityClientId)'
+      inlineScript: 'az login -u $(AZ_USERNAME) -p $(AZ_PASSWORD)'
 
   - task: NuGetToolInstaller@1
 
