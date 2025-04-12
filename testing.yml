@@ -18,13 +18,13 @@ steps:
     clean: true
     fetchDepth: 1
     
-  - task: AzureCLI@2
-    inputs:
-      azureSubscription: '$(subscription)'
-      scriptType: 'ps'
-      scriptLocation: 'inlineScript'
-#      inlineScript: 'az login --identity --client-id $(identityClientId)'
-      inlineScript: 'az login -u $(AZ_USERNAME) -p "$(AZ_PASSWORD)" --debug'
+#  - task: AzureCLI@2
+#    inputs:
+#      azureSubscription: '$(subscription)'
+#      scriptType: 'ps'
+#      scriptLocation: 'inlineScript'
+##      inlineScript: 'az login --identity --client-id $(identityClientId)'
+#      inlineScript: 'az login -u $(AZ_USERNAME) -p "$(AZ_PASSWORD)" --debug'
 
   - task: NuGetToolInstaller@1
 
