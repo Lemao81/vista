@@ -3,8 +3,6 @@
   "logging": {
     "logLevel": {
       "default": "Information",
-      "Host.Aggregator": "Trace",
-      "Host.Results": "Error",
       "Function.Health.User": "Error"
     },
     "applicationInsights": {
