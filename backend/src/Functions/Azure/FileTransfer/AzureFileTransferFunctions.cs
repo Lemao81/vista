@@ -27,9 +27,15 @@ public class AzureFileTransferFunctions
 	}
 
 	[Function("Health")]
-	public IActionResult Health([HttpTrigger(AuthorizationLevel.Function, "get", Route = Routes.Health)] HttpRequest req)
+	public IActionResult Health([HttpTrigger(AuthorizationLevel.Function, "get", Route = Routes.Health)] HttpRequest req, FunctionContext ctx)
 	{
+		var reqLogger = ctx.GetLogger<AzureFileTransferFunctions>();
+		reqLogger.LogInformation("Ctx Logger Information");
+		reqLogger.LogWarning("Ctx Logger Warning");
+		reqLogger.LogError(new InvalidOperationException("just for the testing"), "Ctx Logger {Error}", "Error");
 		_logger.LogInformation("Calling Health function");
+		_logger.LogWarning("Calling Health function with warning");
+		_logger.LogError(new MissingConfigurationException("just for testing"), "Calling Health function with error | {Error}", "the error text");
 
 		return new OkObjectResult(HealthStatus.Healthy.ToString());
 	}
