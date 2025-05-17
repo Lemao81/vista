@@ -36,6 +36,7 @@ public class AzureFileTransferFunctions
 		_logger.LogInformation("Calling Health function");
 		_logger.LogWarning("Calling Health function with warning");
 		_logger.LogError(new MissingConfigurationException("just for testing"), "Calling Health function with error | {Error}", "the error text");
+		Console.WriteLine("Some console logging");
 
 		return new OkObjectResult(HealthStatus.Healthy.ToString());
 	}
