@@ -3,6 +3,7 @@
   "logging": {
     "logLevel": {
       "default": "Information",
+      "Host.Aggregator": "Warning",
       "Function.Health.User": "Error"
     },
     "applicationInsights": {
