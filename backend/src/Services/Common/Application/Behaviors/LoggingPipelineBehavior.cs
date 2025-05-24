@@ -8,7 +8,9 @@ using SharedKernel;
 
 namespace Common.Application.Behaviors;
 
-public class LoggingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull where TResponse : Result
+public class LoggingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse>
+	where TRequest : notnull
+	where TResponse : Result
 {
 	private readonly ILogger<LoggingPipelineBehavior<TRequest, TResponse>> _logger;
 

@@ -1,4 +1,4 @@
-﻿using Common.Persistence;
+﻿using Common.Persistence.Constants;
 using FileTransfer.Domain.Media;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +11,8 @@ public sealed class FileTransferDbContext : DbContext
 	}
 
 	public DbSet<MediaFolder> MediaFolders { get; set; }
-	public DbSet<MediaItem>   MediaItems   { get; set; }
+
+	public DbSet<MediaItem> MediaItems { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

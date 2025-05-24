@@ -1,6 +1,6 @@
-﻿using Common.Persistence;
+﻿using Common.Persistence.Constants;
 using Common.Persistence.Utilities;
-using Common.WebApi;
+using Common.WebApi.Constants;
 using DbUp;
 using DbUp.Engine;
 using Lemao.UtilExtensions;

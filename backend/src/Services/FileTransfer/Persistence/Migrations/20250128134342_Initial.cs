@@ -24,7 +24,7 @@ namespace Persistence.Migrations
                     storage_version = table.Column<byte>(type: "smallint", nullable: false),
                     original_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     created_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    modified_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    modified_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -44,7 +44,7 @@ namespace Persistence.Migrations
                     storage_version = table.Column<byte>(type: "smallint", nullable: false),
                     meta_data = table.Column<string>(type: "text", nullable: false),
                     created_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    modified_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    modified_utc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                 },
                 constraints: table =>
                 {

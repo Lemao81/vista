@@ -2,5 +2,5 @@
 
 public sealed class StorageItem
 {
-	public string Key { get; set; } = "";
+	public string Key { get; set; } = string.Empty;
 }

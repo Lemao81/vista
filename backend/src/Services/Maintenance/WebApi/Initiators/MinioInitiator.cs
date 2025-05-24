@@ -1,5 +1,5 @@
-﻿using Common.Domain.Storage;
-using Common.WebApi;
+﻿using Common.Domain.Constants.Storage;
+using Common.WebApi.Constants;
 using Lemao.UtilExtensions;
 using Maintenance.WebApi.Abstractions;
 using Minio;

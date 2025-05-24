@@ -1,6 +1,6 @@
 ﻿using Azure.Storage.Blobs;
-using Common.Domain.Storage;
-using Common.Persistence;
+using Common.Domain.Constants.Storage;
+using Common.Persistence.Constants;
 using Common.Persistence.Utilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

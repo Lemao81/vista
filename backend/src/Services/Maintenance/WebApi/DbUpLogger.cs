@@ -3,7 +3,7 @@ using DbUp.Engine.Output;
 
 namespace Maintenance.WebApi;
 
-[SuppressMessage("Usage", "CA2254:Template should be a static expression")]
+[SuppressMessage("Usage", "CA2254:Template should be a static expression", Justification = "Required due to interface usage")]
 public class DbUpLogger : IUpgradeLog
 {
 	private readonly ILogger _logger;

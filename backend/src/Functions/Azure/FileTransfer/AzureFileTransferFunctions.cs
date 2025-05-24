@@ -1,4 +1,4 @@
-﻿using Common.Presentation;
+﻿using Common.Presentation.Constants;
 using FileTransfer.Application.Utilities;
 using FluentValidation;
 using Lemao.UtilExtensions;
@@ -64,14 +64,16 @@ public class AzureFileTransferFunctions
 
 			var command = CommandFactory.CreateUploadPictureCommand(formData.Files[0]);
 			var result  = await _sender.Send(command);
-			// TODO add function equivalent 
-			// httpContext.MaybeAddError(result);
 
-			return result.Match<IActionResult>(response => new CreatedResult($"/{Routes.Pictures}/{response.Id}", response.Id),
+			//// TODO add function equivalent
+			//// httpContext.MaybeAddError(result);
+
+			return result.Match<IActionResult>(
+				response => new CreatedResult($"/{Routes.Pictures}/{response.Id}", response.Id),
 				error => error switch
 				{
 					ValidationError valError => CreateValidationProblemResult(valError.Errors),
-					_                        => CreateInternalErrorResult()
+					_                        => CreateInternalErrorResult(),
 				});
 		}
 		catch (Exception exception)

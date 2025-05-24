@@ -1,4 +1,4 @@
-﻿using Common.Presentation;
+﻿using Common.Presentation.Constants;
 using FileTransfer.Presentation.Pictures.Upload;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;

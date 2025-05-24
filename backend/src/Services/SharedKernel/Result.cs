@@ -4,7 +4,7 @@ public record Result
 {
 	protected internal Result(bool isSuccess, Error error)
 	{
-		if (isSuccess && error != Errors.None || !isSuccess && error == Errors.None)
+		if ((isSuccess && error != Errors.None) || (!isSuccess && error == Errors.None))
 		{
 			throw new ArgumentException("Invalid argument combination");
 		}
@@ -13,17 +13,22 @@ public record Result
 		Error     = error;
 	}
 
-	public Error Error     { get; }
-	public bool  IsSuccess { get; }
-	public bool  IsFailure => !IsSuccess;
+	public Error Error { get; }
 
-	public static Result Success()            => new(true, Errors.None);
-	public static Result Failure(Error error) => new(false, error);
+	public bool IsSuccess { get; }
+
+	public bool IsFailure => !IsSuccess;
 
 	public static implicit operator Result(Error error) => Failure(error);
+
+	public static Result Success() => new(true, Errors.None);
+
+	public static Result Failure(Error error) => new(false, error);
 }
 
+#pragma warning disable SA1402
 public sealed record Result<T> : Result
+#pragma warning restore SA1402
 {
 	private readonly T? _value;
 
@@ -43,8 +48,9 @@ public sealed record Result<T> : Result
 
 	public T Value => IsSuccess ? _value! : throw new InvalidOperationException("Value of a non-success result can't be accessed");
 
-	public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess(Value) : onFailure(Error);
+	public static implicit operator Result<T>(T value) => new(value);
 
-	public static implicit operator Result<T>(T     value) => new(value);
 	public static implicit operator Result<T>(Error error) => new(error);
+
+	public TResult Match<TResult>(Func<T, TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess(Value) : onFailure(Error);
 }

@@ -1,8 +1,4 @@
-﻿namespace Common.WebApi;
-
-public static class Constants
-{
-}
+﻿namespace Common.WebApi.Constants;
 
 public static class EnvironmentVariableNames
 {

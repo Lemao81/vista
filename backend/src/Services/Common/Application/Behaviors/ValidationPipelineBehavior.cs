@@ -5,7 +5,8 @@ using SharedKernel;
 
 namespace Common.Application.Behaviors;
 
-public class ValidationPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public class ValidationPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse>
+	where TRequest : notnull
 {
 	private readonly IEnumerable<IValidator<TRequest>> _validators;
 

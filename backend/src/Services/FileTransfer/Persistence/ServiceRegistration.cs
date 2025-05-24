@@ -1,5 +1,5 @@
 ﻿using Common.Application.Abstractions;
-using Common.Persistence;
+using Common.Persistence.Constants;
 using Common.Persistence.Extensions;
 using Common.Persistence.Interceptors;
 using Common.Persistence.Utilities;
@@ -19,7 +19,8 @@ public static class ServiceRegistration
 		services.AddDbContextPool<FileTransferDbContext>((sp, dbContextOptions) =>
 		{
 			var scope = sp.CreateScope();
-			dbContextOptions.UseNpgsql(PersistenceHelper.CreateDataSource(configuration, DbNames.FileTransfer),
+			dbContextOptions.UseNpgsql(
+					PersistenceHelper.CreateDataSource(configuration, DbNames.FileTransfer),
 					npgsqlOptions =>
 					{
 						npgsqlOptions.SetPostgresVersion(17, 2);
@@ -27,7 +28,8 @@ public static class ServiceRegistration
 					})
 				.UseSnakeCaseNamingConvention()
 				.UseExceptionProcessor()
-				.AddInterceptors(scope.ServiceProvider.GetRequiredService<AuditDateSaveChangesInterceptor>(),
+				.AddInterceptors(
+					scope.ServiceProvider.GetRequiredService<AuditDateSaveChangesInterceptor>(),
 					scope.ServiceProvider.GetRequiredService<DomainEventSaveChangesInterceptor>());
 		});
 

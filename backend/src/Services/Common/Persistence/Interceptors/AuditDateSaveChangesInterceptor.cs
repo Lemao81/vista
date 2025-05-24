@@ -13,9 +13,10 @@ public sealed class AuditDateSaveChangesInterceptor : SaveChangesInterceptor
 		return base.SavingChanges(eventData, result);
 	}
 
-	public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData      eventData,
-	                                                                      InterceptionResult<int> result,
-	                                                                      CancellationToken       cancellationToken = new())
+	public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
+		DbContextEventData      eventData,
+		InterceptionResult<int> result,
+		CancellationToken       cancellationToken = default)
 	{
 		SetAuditDates(eventData);
 

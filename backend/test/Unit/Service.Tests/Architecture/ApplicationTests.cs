@@ -1,4 +1,5 @@
 ﻿using Common.Application.Abstractions;
+using Common.Application.Abstractions.Command;
 using FluentValidation;
 using MediatR;
 using NetArchTest.Rules;

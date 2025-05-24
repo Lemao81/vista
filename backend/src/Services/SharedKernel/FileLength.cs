@@ -13,11 +13,8 @@ public readonly record struct FileLength : IComparable, IComparable<FileLength>
 
 	public ulong Value { get; }
 
-	public int CompareTo(object? obj) => Value.CompareTo(obj);
+	public static implicit operator FileLength(long value) => new(value);
 
-	public int CompareTo(FileLength other) => Value.CompareTo(other.Value);
-
-	public static implicit operator FileLength(long value)      => new(value);
 	public static implicit operator long(FileLength fileLength) => (long)fileLength.Value;
 
 	public static bool operator <(FileLength left, FileLength right) => left.CompareTo(right) < 0;
@@ -27,4 +24,8 @@ public readonly record struct FileLength : IComparable, IComparable<FileLength>
 	public static bool operator >(FileLength left, FileLength right) => left.CompareTo(right) > 0;
 
 	public static bool operator >=(FileLength left, FileLength right) => left.CompareTo(right) >= 0;
+
+	public int CompareTo(object? obj) => Value.CompareTo(obj);
+
+	public int CompareTo(FileLength other) => Value.CompareTo(other.Value);
 }

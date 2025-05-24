@@ -1,7 +1,7 @@
 using Common.Azure.Extensions;
 using Common.Persistence.Extensions;
 using Common.Persistence.Utilities;
-using Common.WebApi;
+using Common.WebApi.Constants;
 using Common.WebApi.Extensions;
 using Lemao.UtilExtensions;
 using Maintenance.WebApi;

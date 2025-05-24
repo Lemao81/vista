@@ -1,5 +1,6 @@
-﻿using Common.Presentation;
+﻿using Common.Presentation.Constants;
 using FileTransfer.Application.Utilities;
+using FileTransfer.Presentation.Constants;
 using FileTransfer.Presentation.Extensions;
 using FluentValidation;
 using MediatR;
@@ -16,7 +17,8 @@ internal static class UploadPictureEndpoint
 {
 	public static void MapUploadPictureEndpoint(this RouteGroupBuilder groupBuilder)
 	{
-		groupBuilder.MapPost("",
+		groupBuilder.MapPost(
+				string.Empty,
 				async ([FromForm] UploadPictureRequest? request, IValidator<UploadPictureRequest> requestValidator, ISender sender, HttpContext httpContext) =>
 				{
 					if (request is null)
@@ -36,11 +38,12 @@ internal static class UploadPictureEndpoint
 					var result  = await sender.Send(command);
 					httpContext.MaybeAddError(result);
 
-					return result.Match(response => Created($"/{Routes.Pictures}/{response.Id}", response.Id),
+					return result.Match(
+						response => Created($"/{Routes.Pictures}/{response.Id}", response.Id),
 						error => error switch
 						{
 							ValidationError valError => ValidationProblem(valError.Errors),
-							_                        => InternalServerError()
+							_                        => InternalServerError(),
 						});
 				})
 			.DisableAntiforgery()

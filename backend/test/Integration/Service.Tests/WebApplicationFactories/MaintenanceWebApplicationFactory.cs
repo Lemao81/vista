@@ -1,4 +1,4 @@
-﻿using Common.WebApi;
+﻿using Common.WebApi.Constants;
 using DotNet.Testcontainers.Containers;
 using Maintenance.WebApi;
 using Microsoft.AspNetCore.Hosting;

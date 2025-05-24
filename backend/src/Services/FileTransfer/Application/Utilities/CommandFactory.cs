@@ -10,6 +10,6 @@ public static class CommandFactory
 	{
 		var mediaType = new MediaTypeHeaderValue(file.ContentType).MediaType;
 
-		return new UploadPictureCommand(file.OpenReadStream(), mediaType ?? "", file.FileName, file.Length);
+		return new UploadPictureCommand(file.OpenReadStream(), mediaType ?? string.Empty, file.FileName, file.Length);
 	}
 }

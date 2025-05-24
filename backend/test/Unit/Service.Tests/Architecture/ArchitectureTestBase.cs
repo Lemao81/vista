@@ -5,8 +5,8 @@ using FileTransfer.Infrastructure;
 using FileTransfer.Persistence;
 using FileTransfer.Presentation;
 using FileTransfer.WebApi;
-using NetArchTest.Rules;
 using Lemao.UtilExtensions;
+using NetArchTest.Rules;
 using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;

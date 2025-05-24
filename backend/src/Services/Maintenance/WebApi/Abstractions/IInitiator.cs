@@ -2,6 +2,7 @@
 
 public interface IInitiator
 {
-	bool       IsEnabled();
+	bool IsEnabled();
+
 	Task<bool> InitiateAsync(CancellationToken cancellationToken = default);
 }

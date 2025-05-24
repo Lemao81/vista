@@ -1,4 +1,4 @@
-using Common.Application;
+using Common.Application.Constants;
 using Common.Azure.Extensions;
 using Common.Presentation;
 using Common.WebApi.Extensions;
@@ -18,10 +18,10 @@ builder.ConfigureFunctionsWebApplication();
 
 builder.Configuration.AddCommonAppSettings();
 
-// Application Insights isn't enabled by default. See https://aka.ms/AAt8mw4.
-// builder.Services
-//     .AddApplicationInsightsTelemetryWorkerService()
-//     .ConfigureFunctionsApplicationInsights();
+//// Application Insights isn't enabled by default. See https://aka.ms/AAt8mw4.
+//// builder.Services
+////     .AddApplicationInsightsTelemetryWorkerService()
+////     .ConfigureFunctionsApplicationInsights();
 
 builder.Services.AddValidatorsFromAssemblyContaining<CommonPresentationAssemblyMarker>(includeInternalTypes: true);
 

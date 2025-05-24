@@ -22,9 +22,10 @@ public sealed class DomainEventSaveChangesInterceptor : SaveChangesInterceptor
 		return base.SavingChanges(eventData, result);
 	}
 
-	public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData      eventData,
-	                                                                      InterceptionResult<int> result,
-	                                                                      CancellationToken       cancellationToken = new())
+	public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
+		DbContextEventData      eventData,
+		InterceptionResult<int> result,
+		CancellationToken       cancellationToken = default)
 	{
 		_domainEvents = GatherDomainEvents(eventData);
 
@@ -38,7 +39,7 @@ public sealed class DomainEventSaveChangesInterceptor : SaveChangesInterceptor
 		return base.SavedChanges(eventData, result);
 	}
 
-	public override async ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = new())
+	public override async ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
 	{
 		await PublishDomainEventsAsync(cancellationToken);
 

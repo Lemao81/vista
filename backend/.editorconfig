@@ -2,6 +2,7 @@ root = true
 
 [*]
 indent_style = tab
+indent_size = tab
 max_line_length = 160
 
 [{*.csproj,*.props,*.json,*.yml}]
@@ -12,6 +13,7 @@ indent_size = 2
 resharper_csharp_wrap_chained_method_calls = chop_if_long
 resharper_csharp_wrap_arguments_style = chop_if_long
 resharper_csharp_wrap_parameters_style = chop_if_long
+resharper_csharp_wrap_multiple_type_parameter_constraints_style = chop_always
 
 resharper_csharp_int_align_assignments = true
 resharper_csharp_int_align_fields = true
@@ -63,12 +65,18 @@ resharper_csharp_keep_existing_expr_member_arrangement = false
 resharper_csharp_keep_existing_list_patterns_arrangement = false
 resharper_csharp_keep_existing_primary_constructor_declaration_parens_arrangement = false
 
+resharper_csharp_trailing_comma_in_multiline_lists = true
+resharper_csharp_trailing_comma_in_singleline_lists = true
+
+resharper_csharp_place_type_constraints_on_same_line = false
+
 resharper_csharp_max_initializer_elements_on_line = 1
 
 dotnet_sort_system_directives_first = true
 
 ## Code analysis
 
+# .NET
 # Operator overloads have named alternates
 dotnet_diagnostic.CA2225.severity = none
 # Normalize strings to uppercase
@@ -101,6 +109,28 @@ dotnet_diagnostic.CA1805.severity = none
 dotnet_diagnostic.CA5394.severity = none
 # Type names should not match namespaces
 dotnet_diagnostic.CA1724.severity = none
+
+# StyleCop
+# FileMustHaveHeader
+dotnet_diagnostic.SA1633.severity = none
+# TabsMustNotBeUsed
+dotnet_diagnostic.SA1027.severity = none
+# UsingDirectivesMustBePlacedCorrectly
+dotnet_diagnostic.SA1200.severity = none
+# PrefixLocalCallsWithThis
+dotnet_diagnostic.SA1101.severity = none
+# CodeMustNotContainMultipleWhitespaceInARow
+dotnet_diagnostic.SA1025.severity = none
+# ElementsMustBeDocumented
+dotnet_diagnostic.SA1600.severity = none
+# FieldNamesMustNotBeginWithUnderscore
+dotnet_diagnostic.SA1309.severity = none
+# ConstructorInitializerMustBeOnOwnLine
+dotnet_diagnostic.SA1128.severity = none
+# XmlCommentAnalysisDisabled
+dotnet_diagnostic.SA0001.severity = none
+# EnumerationItemsMustBeDocumented
+dotnet_diagnostic.SA1602.severity = none
 
 [*Tests.cs]
 # Identifiers should not contain underscores

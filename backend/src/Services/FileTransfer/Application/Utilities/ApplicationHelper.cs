@@ -13,6 +13,6 @@ public static class ApplicationHelper
 		{
 			MediaSizeKind.Original => "orig",
 			MediaSizeKind.Medium   => "medium",
-			_                      => throw new ArgumentOutOfRangeException(nameof(sizeKind), sizeKind, null)
+			_                      => throw new ArgumentOutOfRangeException(nameof(sizeKind), sizeKind, null),
 		};
 }

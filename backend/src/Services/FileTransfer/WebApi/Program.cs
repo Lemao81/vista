@@ -1,7 +1,7 @@
 using System.Globalization;
-using Common.Application;
+using Common.Application.Constants;
 using Common.Persistence.Utilities;
-using Common.Presentation;
+using Common.Presentation.Constants;
 using Common.WebApi.Extensions;
 using FileTransfer.Application;
 using FileTransfer.Domain;
@@ -9,6 +9,7 @@ using FileTransfer.Domain.Media;
 using FileTransfer.Infrastructure;
 using FileTransfer.Persistence;
 using FileTransfer.Presentation;
+using FileTransfer.Presentation.Constants;
 using FileTransfer.Presentation.Pictures;
 using FileTransfer.WebApi.Extensions;
 using Microsoft.Extensions.Options;

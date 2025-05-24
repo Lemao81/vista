@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using Common.Application;
+using Common.Application.Constants;
+using Common.Persistence.Constants;
 using Lemao.UtilExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,7 @@ public static partial class PersistenceHelper
 		var host = configuration[ConfigurationKeys.DatabaseHost];
 		if (host.IsNullOrWhiteSpace())
 		{
-			host = Constants.DefaultDatabaseHost;
+			host = PersistenceConstants.DefaultDatabaseHost;
 		}
 
 		var username = configuration[ConfigurationKeys.DatabaseUsername];
@@ -50,8 +51,8 @@ public static partial class PersistenceHelper
 				Database            = database ?? "postgres",
 				Username            = username,
 				Password            = password,
-				PersistSecurityInfo = persistSecurityInfo
-			}
+				PersistSecurityInfo = persistSecurityInfo,
+			},
 		};
 
 		return builder.Build();
@@ -66,25 +67,28 @@ public static partial class PersistenceHelper
 		var             connectionString = dataSource.ConnectionString;
 		await using var connection       = new NpgsqlConnection(connectionString);
 
-		var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
-			{
-				Delay            = TimeSpan.FromSeconds(1),
-				BackoffType      = DelayBackoffType.Exponential,
-				MaxDelay         = TimeSpan.FromSeconds(10),
-				MaxRetryAttempts = int.MaxValue,
-				ShouldHandle     = new PredicateBuilder().Handle<Exception>(exception => exception is not OperationCanceledException),
-				OnRetry = args =>
+		var pipeline = new ResiliencePipelineBuilder().AddRetry(
+				new RetryStrategyOptions
 				{
-					logger.LogInformation("Failed to establish database connection: {Message} (ConnectionString: '{ConnectionString}')",
-						args.Outcome.Exception?.Message,
-						HidePassword(connectionString));
+					Delay            = TimeSpan.FromSeconds(1),
+					BackoffType      = DelayBackoffType.Exponential,
+					MaxDelay         = TimeSpan.FromSeconds(10),
+					MaxRetryAttempts = int.MaxValue,
+					ShouldHandle     = new PredicateBuilder().Handle<Exception>(exception => exception is not OperationCanceledException),
+					OnRetry = args =>
+					{
+						logger.LogInformation(
+							"Failed to establish database connection: {Message} (ConnectionString: '{ConnectionString}')",
+							args.Outcome.Exception?.Message,
+							HidePassword(connectionString));
 
-					return ValueTask.CompletedTask;
-				}
-			})
+						return ValueTask.CompletedTask;
+					},
+				})
 			.Build();
 
-		await pipeline.ExecuteAsync(async (conn, ct) =>
+		await pipeline.ExecuteAsync(
+			async (conn, ct) =>
 			{
 				await conn.OpenAsync(ct);
 				logger.LogInformation("Database connection established");

@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Azure.Storage.Blobs;
-using Common.Domain.Storage;
-using Common.WebApi;
+using Common.Domain.Constants.Storage;
+using Common.WebApi.Constants;
 using Lemao.UtilExtensions;
 using Maintenance.WebApi.Abstractions;
 
@@ -46,7 +46,8 @@ public class AzureBlobStorageInitiator : IInitiator
 			return true;
 		}
 
-		_logger.LogWarning("Azure blob container '{Container}' creation failed: {Status} - {Reason}",
+		_logger.LogWarning(
+			"Azure blob container '{Container}' creation failed: {Status} - {Reason}",
 			containerName,
 			rawResponse.Status,
 			rawResponse.ReasonPhrase);

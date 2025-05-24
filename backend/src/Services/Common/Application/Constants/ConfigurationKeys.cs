@@ -1,28 +1,4 @@
-﻿namespace Common.Application;
-
-public static class Constants
-{
-}
-
-public static class ServiceNames
-{
-	public const string FileTransfer = nameof(FileTransfer);
-}
-
-public static class MeterNames
-{
-	public const string FileTransfer = "Vista.FileTransfer";
-}
-
-public static class CounterNames
-{
-	public const string PictureUpload = "picture.uploads";
-}
-
-public static class CounterTagNames
-{
-	public const string PictureMediaType = "picture.media_type";
-}
+﻿namespace Common.Application.Constants;
 
 public static class ConfigurationKeys
 {

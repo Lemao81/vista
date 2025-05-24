@@ -1,4 +1,4 @@
-﻿using Common.Application;
+﻿using Common.Application.Constants;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;

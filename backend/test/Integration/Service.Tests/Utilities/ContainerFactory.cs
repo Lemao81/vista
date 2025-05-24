@@ -1,5 +1,5 @@
-﻿using Common.Application;
-using Common.WebApi;
+﻿using Common.Application.Constants;
+using Common.WebApi.Constants;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;

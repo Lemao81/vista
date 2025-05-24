@@ -1,5 +1,5 @@
 <Project>
-
+  <!--  backend/src/Directory.Build.props-->
   <Import Project="../Directory.Build.props"/>
 
   <PropertyGroup>
@@ -7,5 +7,12 @@
     <NuGetAuditMode>all</NuGetAuditMode>
     <NuGetAuditLevel>low</NuGetAuditLevel>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>

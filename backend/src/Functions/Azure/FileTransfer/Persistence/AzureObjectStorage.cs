@@ -35,11 +35,12 @@ public class AzureObjectStorage : IObjectStorage
 		}
 	}
 
-	public async Task<Result> PutObjectAsync(StorageBucket     bucket,
-	                                         StorageObjectName objectName,
-	                                         string?           contentType,
-	                                         Stream            stream,
-	                                         CancellationToken cancellationToken = default)
+	public async Task<Result> PutObjectAsync(
+		StorageBucket     bucket,
+		StorageObjectName objectName,
+		string?           contentType,
+		Stream            stream,
+		CancellationToken cancellationToken = default)
 	{
 		try
 		{

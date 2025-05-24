@@ -20,11 +20,15 @@ public readonly record struct FileName
 		NormalizedValue = value.ToLowerInvariant();
 	}
 
-	public string Value           { get; }
-	public string BaseName        { get; }
-	public string Extension       { get; }
+	public string Value { get; }
+
+	public string BaseName { get; }
+
+	public string Extension { get; }
+
 	public string NormalizedValue { get; }
 
-	public static implicit operator FileName(string value)    => new(value);
+	public static implicit operator FileName(string value) => new(value);
+
 	public static implicit operator string(FileName fileName) => fileName.Value;
 }

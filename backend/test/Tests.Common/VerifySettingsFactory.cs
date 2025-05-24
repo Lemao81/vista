@@ -1,6 +1,4 @@
-﻿using VerifyTests;
-
-namespace Tests.Common;
+﻿namespace Tests.Common;
 
 #pragma warning disable CA1515
 public static class VerifySettingsFactory

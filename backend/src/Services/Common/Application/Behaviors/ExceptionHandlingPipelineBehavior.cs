@@ -5,7 +5,8 @@ using SharedKernel;
 
 namespace Common.Application.Behaviors;
 
-public sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior<TRequest, TResponse>
+	where TRequest : notnull
 {
 	private readonly ILogger<ExceptionHandlingPipelineBehavior<TRequest, TResponse>> _logger;
 

@@ -4,5 +4,5 @@ public enum MediaSizeKind
 {
 	None     = -1,
 	Original = 0,
-	Medium   = 1
+	Medium   = 1,
 }

@@ -1,4 +1,4 @@
-﻿using Common.Application;
+﻿using Common.Application.Constants;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,9 +13,10 @@ namespace FileTransfer.Infrastructure;
 
 public static class ServiceRegistration
 {
-	public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
-	                                                           IWebHostEnvironment     environment,
-	                                                           ILoggingBuilder         loggingBuilder)
+	public static IServiceCollection AddInfrastructureServices(
+		this IServiceCollection services,
+		IWebHostEnvironment     environment,
+		ILoggingBuilder         loggingBuilder)
 	{
 		loggingBuilder.AddOpenTelemetry(logging =>
 		{

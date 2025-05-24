@@ -14,11 +14,17 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 		OriginalName = originalName;
 	}
 
-	public override MediaFolderId                  Id             { get; protected set; }
-	public          UserId                         UserId         { get; private set; }
-	public          byte                           StorageVersion { get; private set; }
-	public          string                         OriginalName   { get; private set; }
-	public          IReadOnlyCollection<MediaItem> MediaItems     => _mediaItems;
+	public override MediaFolderId Id { get; protected set; }
+
+	public UserId UserId { get; private set; }
+
+	public byte StorageVersion { get; private set; }
+
+	public string OriginalName { get; private set; }
+
+	public IReadOnlyCollection<MediaItem> MediaItems => _mediaItems;
+
+	public static MediaFolder Create(UserId userId, string originalName) => new(new MediaFolderId(Guid.NewGuid()), userId, originalName);
 
 	public void AddMediaItem(MediaItem mediaItem)
 	{
@@ -29,6 +35,4 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 
 		_mediaItems.Add(mediaItem);
 	}
-
-	public static MediaFolder Create(UserId userId, string originalName) => new(new MediaFolderId(Guid.NewGuid()), userId, originalName);
 }
