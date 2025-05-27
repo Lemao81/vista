@@ -7,7 +7,7 @@ public sealed class MediaItem : Entity<MediaItemId>
 {
 	private Dictionary<string, object> _metadata = [];
 
-	private MediaItem(MediaItemId id, MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind, byte storageVersion = 0)
+	private MediaItem(MediaItemId id, MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind, byte storageVersion)
 	{
 		Id             = id;
 		MediaFolderId  = mediaFolderId;
@@ -19,7 +19,7 @@ public sealed class MediaItem : Entity<MediaItemId>
 
 	public override MediaItemId Id { get; }
 
-	public MediaFolderId MediaFolderId { get; }
+	public MediaFolderId MediaFolderId { get; private set; }
 
 	public UserId UserId { get; private set; }
 
@@ -27,7 +27,7 @@ public sealed class MediaItem : Entity<MediaItemId>
 
 	public MediaSizeKind MediaSizeKind { get; private set; }
 
-	public byte StorageVersion { get; }
+	public byte StorageVersion { get; private set; }
 
 	public IReadOnlyDictionary<string, object> MetaData
 	{
@@ -39,7 +39,7 @@ public sealed class MediaItem : Entity<MediaItemId>
 
 	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind, string mediaType)
 	{
-		var item = new MediaItem(new MediaItemId(Guid.NewGuid()), mediaFolderId, userId, mediaKind, mediaSizeKind);
+		var item = new MediaItem(new MediaItemId(Guid.NewGuid()), mediaFolderId, userId, mediaKind, mediaSizeKind, 0);
 		item.AddDomainEvent(new MediaCreatedDomainEvent(item.MediaFolderId, item.Id, mediaKind, mediaType));
 
 		return item;

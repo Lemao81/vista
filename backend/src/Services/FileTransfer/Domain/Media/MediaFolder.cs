@@ -7,7 +7,7 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 {
 	private readonly List<MediaItem> _mediaItems = [];
 
-	private MediaFolder(MediaFolderId id, UserId userId, string originalName, byte storageVersion = 0)
+	private MediaFolder(MediaFolderId id, UserId userId, string originalName, byte storageVersion)
 	{
 		Id             = id;
 		UserId         = userId;
@@ -17,15 +17,15 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 
 	public override MediaFolderId Id { get; }
 
-	public UserId UserId { get; }
+	public UserId UserId { get; private set; }
 
-	public byte StorageVersion { get; }
+	public byte StorageVersion { get; private set; }
 
 	public string OriginalName { get; private set; }
 
 	public IReadOnlyCollection<MediaItem> MediaItems => _mediaItems;
 
-	public static MediaFolder Create(UserId userId, string originalName) => new(new MediaFolderId(Guid.NewGuid()), userId, originalName);
+	public static MediaFolder Create(UserId userId, string originalName) => new(new MediaFolderId(Guid.NewGuid()), userId, originalName, 0);
 
 	public void AddMediaItem(MediaItem mediaItem)
 	{
