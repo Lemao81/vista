@@ -6,7 +6,7 @@ namespace FileTransfer.Application.Utilities;
 public static class ApplicationHelper
 {
 	public static FileName GetStorageFileName(FileName fileName, MediaItem mediaItem) =>
-		new((string)$"{mediaItem.Id.Value}.{ToFileNameSuffix(mediaItem.MediaSizeKind)}.{fileName.Extension}");
+		new($"{mediaItem.Id.Value}.{ToFileNameSuffix(mediaItem.MediaSizeKind)}.{fileName.Extension}");
 
 	private static string ToFileNameSuffix(MediaSizeKind sizeKind) =>
 		sizeKind switch

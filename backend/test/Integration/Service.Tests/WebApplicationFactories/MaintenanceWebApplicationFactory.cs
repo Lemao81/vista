@@ -9,7 +9,7 @@ using Testcontainers.PostgreSql;
 
 namespace Service.Tests.WebApplicationFactories;
 
-public class MaintenanceWebApplicationFactory : WebApplicationFactoryBase<WebApiAssemblyMarker>
+public class MaintenanceWebApplicationFactory : WebApplicationFactoryBase<IWebApiAssemblyMarker>
 {
 	private readonly PostgreSqlContainer _postgresContainer;
 	private readonly MinioContainer      _minioContainer;

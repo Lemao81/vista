@@ -7,18 +7,19 @@ public sealed class MediaItem : Entity<MediaItemId>
 {
 	private Dictionary<string, object> _metadata = [];
 
-	private MediaItem(MediaItemId id, MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind)
+	private MediaItem(MediaItemId id, MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind, byte storageVersion = 0)
 	{
-		Id            = id;
-		MediaFolderId = mediaFolderId;
-		UserId        = userId;
-		MediaKind     = mediaKind;
-		MediaSizeKind = mediaSizeKind;
+		Id             = id;
+		MediaFolderId  = mediaFolderId;
+		UserId         = userId;
+		MediaKind      = mediaKind;
+		MediaSizeKind  = mediaSizeKind;
+		StorageVersion = storageVersion;
 	}
 
-	public override MediaItemId Id { get; protected set; }
+	public override MediaItemId Id { get; }
 
-	public MediaFolderId MediaFolderId { get; private set; }
+	public MediaFolderId MediaFolderId { get; }
 
 	public UserId UserId { get; private set; }
 
@@ -26,12 +27,14 @@ public sealed class MediaItem : Entity<MediaItemId>
 
 	public MediaSizeKind MediaSizeKind { get; private set; }
 
-	public byte StorageVersion { get; private set; }
+	public byte StorageVersion { get; }
 
 	public IReadOnlyDictionary<string, object> MetaData
 	{
 		get => _metadata;
+#pragma warning disable S1144
 		private set => _metadata = new Dictionary<string, object>(value);
+#pragma warning restore S1144
 	}
 
 	public static MediaItem Create(MediaFolderId mediaFolderId, UserId userId, MediaKind mediaKind, MediaSizeKind mediaSizeKind, string mediaType)

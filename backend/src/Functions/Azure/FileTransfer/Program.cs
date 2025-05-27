@@ -23,7 +23,7 @@ builder.Configuration.AddCommonAppSettings();
 ////     .AddApplicationInsightsTelemetryWorkerService()
 ////     .ConfigureFunctionsApplicationInsights();
 
-builder.Services.AddValidatorsFromAssemblyContaining<CommonPresentationAssemblyMarker>(includeInternalTypes: true);
+builder.Services.AddValidatorsFromAssemblyContaining<ICommonPresentationAssemblyMarker>(includeInternalTypes: true);
 
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
@@ -35,4 +35,4 @@ builder.Services.AddScoped<IObjectStorage, AzureObjectStorage>();
 builder.Services.AddOptions<UploadMediaOptions>().BindConfiguration(ConfigurationKeys.MediaUpload).ValidateDataAnnotations().ValidateOnStart();
 builder.Services.AddSingleton<UploadMediaOptions>(sp => sp.GetRequiredService<IOptions<UploadMediaOptions>>().Value);
 
-builder.Build().Run();
+await builder.Build().RunAsync();

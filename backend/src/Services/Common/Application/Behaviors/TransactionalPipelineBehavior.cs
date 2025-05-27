@@ -33,7 +33,9 @@ public sealed class TransactionalPipelineBehavior<TRequest, TResponse> : BasePip
 		{
 			await transaction.RollbackAsync(cancellationToken);
 
+#pragma warning disable S6667
 			_logger.LogWarning("Transaction rolled back due to an error: {Message}", exception.Message);
+#pragma warning restore S6667
 
 			throw;
 		}

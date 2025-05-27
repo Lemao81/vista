@@ -10,7 +10,7 @@ public readonly record struct StorageBucket
 
 	private StorageBucket(string value)
 	{
-		ArgumentException.ThrowIfNullOrWhiteSpace(value, nameof(value));
+		ArgumentException.ThrowIfNullOrWhiteSpace(value);
 
 		Value = value;
 	}

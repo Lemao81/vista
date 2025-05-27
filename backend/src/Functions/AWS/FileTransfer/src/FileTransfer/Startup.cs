@@ -9,7 +9,9 @@ namespace FileTransfer;
 public class Startup
 {
 #pragma warning disable CA1822
+#pragma warning disable S2325
 	public void ConfigureServices(IServiceCollection services)
+#pragma warning restore S2325
 #pragma warning restore CA1822
 	{
 		var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", true);

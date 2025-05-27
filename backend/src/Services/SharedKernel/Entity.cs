@@ -21,5 +21,5 @@ public abstract class Entity
 public abstract class Entity<T> : Entity
 #pragma warning restore SA1402
 {
-	public abstract T Id { get; protected set; }
+	public abstract T Id { get; }
 }

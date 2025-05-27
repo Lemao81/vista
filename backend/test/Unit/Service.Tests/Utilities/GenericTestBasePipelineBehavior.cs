@@ -8,7 +8,7 @@ public class NonGenericTestBasePipelineBehavior : BasePipelineBehavior<TestReque
 {
 	public override Task<Result> Handle(TestRequest request, RequestHandlerDelegate<Result> next, CancellationToken cancellationToken) => next();
 
-	public Result CreateErrorResultPublic(Error error) => CreateErrorResult(error);
+	public static Result CreateErrorResultPublic(Error error) => CreateErrorResult(error);
 }
 
 public class GenericTestBasePipelineBehavior : BasePipelineBehavior<TestRequest, Result<TestResponse>>
@@ -18,5 +18,5 @@ public class GenericTestBasePipelineBehavior : BasePipelineBehavior<TestRequest,
 	                                                  CancellationToken                            cancellationToken) =>
 		next();
 
-	public Result<TestResponse> CreateErrorResultPublic(Error error) => CreateErrorResult(error);
+	public static Result<TestResponse> CreateErrorResultPublic(Error error) => CreateErrorResult(error);
 }

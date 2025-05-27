@@ -7,18 +7,19 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 {
 	private readonly List<MediaItem> _mediaItems = [];
 
-	private MediaFolder(MediaFolderId id, UserId userId, string originalName)
+	private MediaFolder(MediaFolderId id, UserId userId, string originalName, byte storageVersion = 0)
 	{
-		Id           = id;
-		UserId       = userId;
-		OriginalName = originalName;
+		Id             = id;
+		UserId         = userId;
+		OriginalName   = originalName;
+		StorageVersion = storageVersion;
 	}
 
-	public override MediaFolderId Id { get; protected set; }
+	public override MediaFolderId Id { get; }
 
-	public UserId UserId { get; private set; }
+	public UserId UserId { get; }
 
-	public byte StorageVersion { get; private set; }
+	public byte StorageVersion { get; }
 
 	public string OriginalName { get; private set; }
 

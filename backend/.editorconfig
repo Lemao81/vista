@@ -76,7 +76,7 @@ dotnet_sort_system_directives_first = true
 
 ## Code analysis
 
-# .NET
+# .NET-Analyzer
 # Operator overloads have named alternates
 dotnet_diagnostic.CA2225.severity = none
 # Normalize strings to uppercase
@@ -110,7 +110,7 @@ dotnet_diagnostic.CA5394.severity = none
 # Type names should not match namespaces
 dotnet_diagnostic.CA1724.severity = none
 
-# StyleCop
+# StyleCop-Analyzer
 # FileMustHaveHeader
 dotnet_diagnostic.SA1633.severity = none
 # TabsMustNotBeUsed
@@ -131,6 +131,10 @@ dotnet_diagnostic.SA1128.severity = none
 dotnet_diagnostic.SA0001.severity = none
 # EnumerationItemsMustBeDocumented
 dotnet_diagnostic.SA1602.severity = none
+
+# Sonar-Analyzer
+# Track uses of "TODO" tags
+dotnet_diagnostic.S1135.severity = warning
 
 [*Tests.cs]
 # Identifiers should not contain underscores

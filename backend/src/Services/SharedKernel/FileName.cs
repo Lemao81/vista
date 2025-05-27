@@ -6,7 +6,7 @@ public readonly record struct FileName
 
 	public FileName(string value)
 	{
-		ArgumentException.ThrowIfNullOrWhiteSpace(value, nameof(value));
+		ArgumentException.ThrowIfNullOrWhiteSpace(value);
 
 		var dotIndex = value.LastIndexOf('.');
 		if (dotIndex < 0 || dotIndex == value.Length - 1)

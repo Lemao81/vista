@@ -19,12 +19,12 @@ public abstract class ArchitectureTestBase
 	}
 
 	protected ITestOutputHelper     TestOutputHelper         { get; }
-	protected IEnumerable<Assembly> DomainAssemblies         { get; } = [typeof(DomainAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> ApplicationAssemblies    { get; } = [typeof(ApplicationAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> InfrastructureAssemblies { get; } = [typeof(InfrastructureAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> PersistenceAssemblies    { get; } = [typeof(PersistenceAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> PresentationAssemblies   { get; } = [typeof(PresentationAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> WebApiAssemblies         { get; } = [typeof(WebApiAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> DomainAssemblies         { get; } = [typeof(IDomainAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> ApplicationAssemblies    { get; } = [typeof(IApplicationAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> InfrastructureAssemblies { get; } = [typeof(IInfrastructureAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> PersistenceAssemblies    { get; } = [typeof(IPersistenceAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> PresentationAssemblies   { get; } = [typeof(IPresentationAssemblyMarker).Assembly];
+	protected IEnumerable<Assembly> WebApiAssemblies         { get; } = [typeof(IWebApiAssemblyMarker).Assembly];
 
 	protected void PrintFailingTypes(TestResult result) => TestOutputHelper.WriteLine(result.FailingTypeNames.ToCommaSeparated());
 }

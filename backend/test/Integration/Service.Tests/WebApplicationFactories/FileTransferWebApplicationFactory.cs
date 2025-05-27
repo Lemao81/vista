@@ -7,7 +7,7 @@ using Testcontainers.PostgreSql;
 
 namespace Service.Tests.WebApplicationFactories;
 
-public class FileTransferWebApplicationFactory : WebApplicationFactoryBase<WebApiAssemblyMarker>
+public class FileTransferWebApplicationFactory : WebApplicationFactoryBase<IWebApiAssemblyMarker>
 {
 	private readonly PostgreSqlContainer _postgresContainer;
 	private readonly MinioContainer      _minioContainer;

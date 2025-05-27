@@ -78,12 +78,11 @@ internal sealed class MinioObjectStorage : IObjectStorage
 		{
 			var items    = new List<StorageItem>();
 			var listArgs = new ListObjectsArgs().WithBucket(bucket.Value).WithPrefix(prefix.Value);
-			await foreach (var item in _minioClient.ListObjectsEnumAsync(listArgs, cancellationToken))
+			await foreach (var item in _minioClient.ListObjectsEnumAsync(listArgs, cancellationToken)
+				               .Where(i => i is not null)
+				               .WithCancellation(cancellationToken))
 			{
-				if (item is not null)
-				{
-					items.Add(new StorageItem { Key = item.Key });
-				}
+				items.Add(new StorageItem { Key = item.Key });
 			}
 
 			return items;

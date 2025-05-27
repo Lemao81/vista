@@ -9,11 +9,11 @@ public static class ServiceRegistration
 {
 	public static IServiceCollection AddApplicationServices(this IServiceCollection services)
 	{
-		services.AddValidatorsFromAssemblyContaining<ApplicationAssemblyMarker>(includeInternalTypes: true);
+		services.AddValidatorsFromAssemblyContaining<IApplicationAssemblyMarker>(includeInternalTypes: true);
 
 		services.AddMediatR(config =>
 		{
-			config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyMarker>();
+			config.RegisterServicesFromAssemblyContaining<IApplicationAssemblyMarker>();
 			config.AddOpenBehavior(typeof(ExceptionHandlingPipelineBehavior<,>));
 			config.AddOpenBehavior(typeof(LoggingPipelineBehavior<,>));
 			config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));

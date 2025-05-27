@@ -51,7 +51,7 @@ internal sealed class PostgresDatabaseInitiator : IInitiator
 			return true;
 		}
 
-		_logger.LogWarning("Database '{Database}' upgrade failed: {Error}", database, result.Error);
+		_logger.LogWarning(result.Error, "Database '{Database}' upgrade failed: {Message}", database, result.Error.Message);
 
 		cancellationToken.ThrowIfCancellationRequested();
 
