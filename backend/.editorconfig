@@ -121,20 +121,32 @@ dotnet_diagnostic.SA1200.severity = none
 dotnet_diagnostic.SA1101.severity = none
 # CodeMustNotContainMultipleWhitespaceInARow
 dotnet_diagnostic.SA1025.severity = none
-# ElementsMustBeDocumented
-dotnet_diagnostic.SA1600.severity = none
 # FieldNamesMustNotBeginWithUnderscore
 dotnet_diagnostic.SA1309.severity = none
 # ConstructorInitializerMustBeOnOwnLine
 dotnet_diagnostic.SA1128.severity = none
 # XmlCommentAnalysisDisabled
 dotnet_diagnostic.SA0001.severity = none
+# ElementsMustBeDocumented
+dotnet_diagnostic.SA1600.severity = none
 # EnumerationItemsMustBeDocumented
+dotnet_diagnostic.SA1601.severity = none
+# PartialElementsMustBeDocumented
 dotnet_diagnostic.SA1602.severity = none
 
 # Sonar-Analyzer
-# Track uses of "TODO" tags
+# Track uses of "T ODO" tags
 dotnet_diagnostic.S1135.severity = warning
+
+# Meziantou-Analyzer
+# Use Task.ConfigureAwait
+dotnet_diagnostic.MA0004.severity = none
+# File name must match type name
+dotnet_diagnostic.MA0048.excluded_symbol_names = *|T:Migrations.*
+# Implement the functionality instead of throwing Not ImplementedException
+dotnet_diagnostic.MA0025.severity = none
+# Fix T ODO comment
+dotnet_diagnostic.MA0026.severity = none
 
 [*Tests.cs]
 # Identifiers should not contain underscores

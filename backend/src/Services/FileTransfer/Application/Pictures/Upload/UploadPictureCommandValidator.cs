@@ -9,11 +9,11 @@ public class UploadPictureCommandValidator : AbstractValidator<UploadPictureComm
 	public UploadPictureCommandValidator(UploadMediaOptions options)
 	{
 		RuleFor(c => c.MediaType)
-			.Must(v => options.ValidPictureContentTypes.Contains(v))
+			.Must(v => options.ValidPictureContentTypes.Contains(v, StringComparer.Ordinal))
 			.WithMessage($"'Content Type' must be one of: {options.ValidPictureContentTypes.ToCommaSeparated()}");
 
 		RuleFor(c => c.FileName)
-			.Must(f => options.ValidPictureFileExtensions.Contains(f.Extension))
+			.Must(f => options.ValidPictureFileExtensions.Contains(f.Extension, StringComparer.Ordinal))
 			.WithMessage($"'File Name' must have an extension of: {options.ValidPictureFileExtensions.ToCommaSeparated()}");
 
 		RuleFor(c => c.FileLength).GreaterThan(0);

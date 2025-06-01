@@ -6,7 +6,7 @@ public record Result
 	{
 		if ((isSuccess && error != Errors.None) || (!isSuccess && error == Errors.None))
 		{
-			throw new ArgumentException("Invalid argument combination");
+			throw new ArgumentException("Invalid argument combination", paramName: nameof(isSuccess));
 		}
 
 		IsSuccess = isSuccess;

@@ -33,7 +33,7 @@ public sealed class MediaItem : Entity<MediaItemId>
 	{
 		get => _metadata;
 #pragma warning disable S1144
-		private set => _metadata = new Dictionary<string, object>(value);
+		private set => _metadata = new Dictionary<string, object>(value, StringComparer.Ordinal);
 #pragma warning restore S1144
 	}
 

@@ -24,7 +24,8 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : BasePipelineBehav
 			return await next();
 		}
 
-		var errors = failures.GroupBy(f => f.PropertyName).ToDictionary(g => g.Key, g => g.Select(f => f.ErrorMessage).ToArray());
+		var errors = failures.GroupBy(f => f.PropertyName, StringComparer.Ordinal)
+			.ToDictionary(g => g.Key, g => g.Select(f => f.ErrorMessage).ToArray(), StringComparer.Ordinal);
 
 		return CreateErrorResult(new ValidationError(ErrorCodes.ValidationFailed, errors));
 	}

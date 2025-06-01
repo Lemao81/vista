@@ -25,6 +25,7 @@ internal sealed class MediaItemDbConfiguration : IEntityTypeConfiguration<MediaI
 		builder.Property(i => i.MetaData)
 			.HasConversion(
 				d => JsonSerializer.Serialize(d, JsonSerializerOptions),
-				i => JsonSerializer.Deserialize<Dictionary<string, object>>(i, JsonSerializerOptions) ?? new Dictionary<string, object>());
+				i => JsonSerializer.Deserialize<Dictionary<string, object>>(i, JsonSerializerOptions) ??
+				     new Dictionary<string, object>(StringComparer.Ordinal));
 	}
 }

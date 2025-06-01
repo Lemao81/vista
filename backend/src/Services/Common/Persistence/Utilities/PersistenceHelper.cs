@@ -98,7 +98,7 @@ public static partial class PersistenceHelper
 			connection);
 	}
 
-	[GeneratedRegex("Password=[^;]+")]
+	[GeneratedRegex("Password=[^;]+", RegexOptions.None, matchTimeoutMilliseconds: 1000)]
 	private static partial Regex HidePasswordRegex();
 
 	private static string HidePassword(string connectionString) => HidePasswordRegex().Replace(connectionString, "Password=REDACTED");

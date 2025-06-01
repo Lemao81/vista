@@ -31,7 +31,7 @@ public sealed class MediaFolder : Entity<MediaFolderId>
 	{
 		if (mediaItem.UserId != UserId)
 		{
-			throw new ArgumentException($"User {UserId} does not have the same user id {mediaItem.UserId}");
+			throw new ArgumentException($"User ids don't match: Folder: {UserId}, Item: {mediaItem.UserId}", paramName: nameof(mediaItem));
 		}
 
 		_mediaItems.Add(mediaItem);
