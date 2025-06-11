@@ -19,6 +19,7 @@ steps:
     fetchDepth: 1
     
   - task: AzureCLI@2
+    displayName: 'Az CLI Login'
     inputs:
       azureSubscription: '$(subscription)'
       scriptType: 'ps'
