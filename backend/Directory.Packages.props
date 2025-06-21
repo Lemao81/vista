@@ -21,7 +21,7 @@
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
     <PackageVersion Include="Meziantou.Analyzer" Version="2.0.201" />
-    <PackageVersion Include="Meziantou.Extensions.Logging.Xunit" Version="1.0.8" />
+    <PackageVersion Include="Meziantou.Extensions.Logging.Xunit.v3" Version="1.1.6" />
     <PackageVersion Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc" Version="2.3.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.2" />
@@ -63,9 +63,9 @@
     <PackageVersion Include="Testcontainers.Azurite" Version="4.3.0" />
     <PackageVersion Include="Testcontainers.Minio" Version="4.3.0" />
     <PackageVersion Include="Testcontainers.PostgreSql" Version="4.3.0" />
-    <PackageVersion Include="Verify.Http" Version="6.4.1" />
-    <PackageVersion Include="Verify.Xunit" Version="28.16.0" />
-    <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2" />
+    <PackageVersion Include="Verify.Http" Version="7.0.0" />
+    <PackageVersion Include="Verify.XunitV3" Version="30.4.0" />
+    <PackageVersion Include="xunit.v3" Version="2.0.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.1" />
   </ItemGroup>
 </Project>

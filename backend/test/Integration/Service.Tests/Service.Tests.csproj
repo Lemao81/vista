@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Meziantou.Extensions.Logging.Xunit"/>
+    <PackageReference Include="Meziantou.Extensions.Logging.Xunit.v3"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing"/>
     <PackageReference Include="Testcontainers"/>
     <PackageReference Include="Testcontainers.Azurite" />

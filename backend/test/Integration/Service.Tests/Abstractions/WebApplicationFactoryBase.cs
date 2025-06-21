@@ -3,7 +3,7 @@ using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
 using DotNet.Testcontainers.Networks;
 using Lemao.UtilExtensions;
-using Meziantou.Extensions.Logging.Xunit;
+using Meziantou.Extensions.Logging.Xunit.v3;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,11 +12,11 @@ using Service.Tests.Utilities;
 using Testcontainers.Azurite;
 using Testcontainers.Minio;
 using Testcontainers.PostgreSql;
-using Xunit.Abstractions;
 
 namespace Service.Tests.Abstractions;
 
-public abstract class WebApplicationFactoryBase<T> : WebApplicationFactory<T>, IAsyncLifetime where T : class
+public abstract class WebApplicationFactoryBase<T> : WebApplicationFactory<T>, IAsyncLifetime
+	where T : class
 {
 	private readonly DelegatingTestOutputHelper _delegatingTestOutputHelper;
 
@@ -34,7 +34,7 @@ public abstract class WebApplicationFactoryBase<T> : WebApplicationFactory<T>, I
 
 	public ITestOutputHelper? TestOutputHelper { get; set; }
 
-	public async Task InitializeAsync()
+	public async ValueTask InitializeAsync()
 	{
 		try
 		{

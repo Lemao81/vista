@@ -22,7 +22,7 @@ public class UploadPictureCommandValidatorTests
 		var command        = new UploadPictureCommand(Substitute.For<Stream>(), "image/jpeg", new FileName("pic.jpeg"), new FileLength(2000));
 
 		// Act
-		var result = await classUnderTest.ValidateAsync(command);
+		var result = await classUnderTest.ValidateAsync(command, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);
@@ -43,7 +43,7 @@ public class UploadPictureCommandValidatorTests
 		var command        = new UploadPictureCommand(Substitute.For<Stream>(), "image/jpeg", new FileName("pic.jpeg"), new FileLength(0));
 
 		// Act
-		var result = await classUnderTest.ValidateAsync(command);
+		var result = await classUnderTest.ValidateAsync(command, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);
@@ -64,7 +64,7 @@ public class UploadPictureCommandValidatorTests
 		var command        = new UploadPictureCommand(Substitute.For<Stream>(), "image/jpeg", new FileName("pic.jpeg"), new FileLength(5000));
 
 		// Act
-		var result = await classUnderTest.ValidateAsync(command);
+		var result = await classUnderTest.ValidateAsync(command, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);

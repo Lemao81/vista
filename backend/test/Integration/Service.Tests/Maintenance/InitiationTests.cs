@@ -9,7 +9,6 @@ using Minio.DataModel.Args;
 using Npgsql;
 using Service.Tests.Utilities;
 using Service.Tests.WebApplicationFactories;
-using Xunit.Abstractions;
 
 namespace Service.Tests.Maintenance;
 
@@ -34,7 +33,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		var             configuration = _webApplicationFactory.Services.GetRequiredService<IConfiguration>();
 		await using var dataSource    = PersistenceHelper.CreateDataSource(configuration, DbNames.Postgres, persistSecurityInfo: true);
 		await using var connection    = new NpgsqlConnection(dataSource.ConnectionString);
-		await connection.OpenAsync();
+		await connection.OpenAsync(TestContext.Current.CancellationToken);
 
 		foreach (var database in databases)
 		{
@@ -42,7 +41,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 			await using var command = connection.CreateCommand();
 			command.CommandText = "SELECT 1 FROM pg_database WHERE datname = @dbname";
 			command.Parameters.AddWithValue("dbname", database);
-			var result = await command.ExecuteScalarAsync();
+			var result = await command.ExecuteScalarAsync(TestContext.Current.CancellationToken);
 
 			// Assert
 			Assert.NotNull(result);
@@ -60,13 +59,13 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 
 		await using var dataSource = PersistenceHelper.CreateDataSource(configuration, DbNames.FileTransfer, persistSecurityInfo: true);
 		await using var connection = new NpgsqlConnection(dataSource.ConnectionString);
-		await connection.OpenAsync();
+		await connection.OpenAsync(TestContext.Current.CancellationToken);
 
 		await using var command = connection.CreateCommand();
 		command.CommandText = "SELECT migration_id FROM vista_file_transfer.filetransfer.__ef_migrations_history";
-		var reader             = await command.ExecuteReaderAsync();
+		var reader             = await command.ExecuteReaderAsync(TestContext.Current.CancellationToken);
 		var actualMigrationIds = new List<string>();
-		while (await reader.ReadAsync())
+		while (await reader.ReadAsync(TestContext.Current.CancellationToken))
 		{
 			actualMigrationIds.Add(reader.GetString(0));
 		}
@@ -87,7 +86,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 
 		foreach (var bucket in buckets)
 		{
-			var exists = await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket));
+			var exists = await minioClient.BucketExistsAsync(new BucketExistsArgs().WithBucket(bucket), TestContext.Current.CancellationToken);
 
 			// Assert
 			Assert.True(exists);
@@ -106,7 +105,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		foreach (var container in containers)
 		{
 			var blobContainerClient = blobServiceClient.GetBlobContainerClient(container);
-			var exists              = await blobContainerClient.ExistsAsync();
+			var exists              = await blobContainerClient.ExistsAsync(TestContext.Current.CancellationToken);
 
 			// Assert
 			Assert.True(exists);

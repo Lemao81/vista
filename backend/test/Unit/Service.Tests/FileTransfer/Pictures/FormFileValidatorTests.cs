@@ -20,7 +20,7 @@ public class FormFileValidatorTests
 		var file = new TestFormFile(MediaTypeNames.Image.Jpeg, "", 4000, "pic", "pic.jpg");
 
 		// Act
-		var result = await _classUnderTest.ValidateAsync(file);
+		var result = await _classUnderTest.ValidateAsync(file, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);
@@ -33,7 +33,7 @@ public class FormFileValidatorTests
 		var file = new TestFormFile();
 
 		// Act
-		var result = await _classUnderTest.ValidateAsync(file);
+		var result = await _classUnderTest.ValidateAsync(file, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);

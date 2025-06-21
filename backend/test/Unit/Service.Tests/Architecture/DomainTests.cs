@@ -1,6 +1,5 @@
 ﻿using NetArchTest.Rules;
 using SharedKernel;
-using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 

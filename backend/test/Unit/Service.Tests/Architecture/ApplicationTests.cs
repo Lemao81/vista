@@ -3,7 +3,6 @@ using Common.Application.Abstractions.Command;
 using FluentValidation;
 using MediatR;
 using NetArchTest.Rules;
-using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 

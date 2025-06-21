@@ -1,6 +1,4 @@
-﻿using Xunit.Abstractions;
-
-namespace Service.Tests.Extensions;
+﻿namespace Service.Tests.Extensions;
 
 public static class HttpResponseMessageExtensions
 {

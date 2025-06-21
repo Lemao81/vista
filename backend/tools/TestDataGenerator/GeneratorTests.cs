@@ -23,7 +23,7 @@ public class GeneratorTests
 	public async Task ClearMediaData()
 	{
 		await using var dbContext = GetDbContext();
-		await dbContext.MediaFolders.ExecuteDeleteAsync();
+		await dbContext.MediaFolders.ExecuteDeleteAsync(TestContext.Current.CancellationToken);
 	}
 
 	[Fact(Skip = "TestDataGenerator")]
@@ -52,8 +52,8 @@ public class GeneratorTests
 			})
 			.ToList();
 
-		await dbContext.AddRangeAsync(mediaFolders);
-		await dbContext.SaveChangesAsync();
+		await dbContext.AddRangeAsync(mediaFolders, TestContext.Current.CancellationToken);
+		await dbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
 	}
 
 	private static FileTransferDbContext GetDbContext()

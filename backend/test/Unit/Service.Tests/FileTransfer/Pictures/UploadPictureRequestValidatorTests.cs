@@ -22,7 +22,7 @@ public class UploadPictureRequestValidatorTests
 		var request = new UploadPictureRequest(file);
 
 		// Act
-		var result = await _classUnderTest.ValidateAsync(request);
+		var result = await _classUnderTest.ValidateAsync(request, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);
@@ -35,7 +35,7 @@ public class UploadPictureRequestValidatorTests
 		var request = new UploadPictureRequest(null);
 
 		// Act
-		var result = await _classUnderTest.ValidateAsync(request);
+		var result = await _classUnderTest.ValidateAsync(request, TestContext.Current.CancellationToken);
 
 		// Assert
 		await Verify(result);

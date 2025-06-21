@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using NetArchTest.Rules;
-using Xunit.Abstractions;
 
 namespace Service.Tests.Architecture;
 
