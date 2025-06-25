@@ -8,6 +8,5 @@ internal sealed class VerifyIntegrationSettings
 	public static void Initialize()
 	{
 		VerifyHttp.Initialize();
-		Recording.Start();
 	}
 }
