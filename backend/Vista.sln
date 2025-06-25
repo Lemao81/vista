@@ -78,9 +78,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGenerator", "tools\TestDataGenerator\TestDataGenerator.csproj", "{A085E387-C54A-464E-A4F5-BBAD2130A5D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CI", "CI", "{E57F252C-8F68-489C-8987-C23D12EDB857}"
-	ProjectSection(SolutionItems) = preProject
-		..\testing.yml = ..\testing.yml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{6514B3C4-8BC4-4A32-AE76-DD60C7FF4628}"
 	ProjectSection(SolutionItems) = preProject
