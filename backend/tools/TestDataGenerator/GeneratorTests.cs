@@ -61,19 +61,20 @@ public class GeneratorTests
 		var configBuilder = new ConfigurationBuilder().AddUserSecrets<GeneratorTests>();
 		var dbPassword    = configBuilder.Build().GetSection("Database:Password").Value;
 
-		var dbBuilder = new DbContextOptionsBuilder<FileTransferDbContext>();
-		dbBuilder.UseNpgsql(new NpgsqlDataSourceBuilder
-			{
-				ConnectionStringBuilder =
+		var dbOptionsBuilder = new DbContextOptionsBuilder<FileTransferDbContext>();
+		dbOptionsBuilder.UseNpgsql(
+				new NpgsqlDataSourceBuilder
 				{
-					Host     = "localhost",
-					Database = "vista_file_transfer",
-					Username = "sa",
-					Password = dbPassword
-				}
-			}.Build())
+					ConnectionStringBuilder =
+					{
+						Host     = "localhost",
+						Database = "vista_file_transfer",
+						Username = "sa",
+						Password = dbPassword
+					}
+				}.Build())
 			.UseSnakeCaseNamingConvention();
 
-		return new FileTransferDbContext(dbBuilder.Options);
+		return new FileTransferDbContext(dbOptionsBuilder.Options);
 	}
 }

@@ -1,0 +1,37 @@
+﻿DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'filetransfer') THEN
+        CREATE SCHEMA filetransfer;
+    END IF;
+END $EF$;
+
+
+CREATE TABLE filetransfer."MediaFolders" (
+    "Id" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "StorageVersion" smallint NOT NULL,
+    "OriginalName" character varying(50) NOT NULL,
+    "CreatedUtc" timestamp with time zone NOT NULL,
+    "ModifiedUtc" timestamp with time zone,
+    CONSTRAINT "PK_MediaFolders" PRIMARY KEY ("Id")
+);
+
+
+CREATE TABLE filetransfer."MediaItems" (
+    "Id" uuid NOT NULL,
+    "MediaFolderId" uuid NOT NULL,
+    "UserId" uuid NOT NULL,
+    "MediaKind" integer NOT NULL,
+    "MediaSizeKind" integer NOT NULL,
+    "StorageVersion" smallint NOT NULL,
+    "MetaData" text NOT NULL,
+    "CreatedUtc" timestamp with time zone NOT NULL,
+    "ModifiedUtc" timestamp with time zone,
+    CONSTRAINT "PK_MediaItems" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_MediaItems_MediaFolders_MediaFolderId" FOREIGN KEY ("MediaFolderId") REFERENCES filetransfer."MediaFolders" ("Id") ON DELETE CASCADE
+);
+
+
+CREATE INDEX "IX_MediaItems_MediaFolderId" ON filetransfer."MediaItems" ("MediaFolderId");
+
+
