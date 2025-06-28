@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Persistence;
 
 #nullable disable
 
@@ -19,12 +18,12 @@ namespace Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("filetransfer")
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Media.MediaFolder", b =>
+            modelBuilder.Entity("FileTransfer.Domain.Media.MediaFolder", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -58,7 +57,7 @@ namespace Persistence.Migrations
                     b.ToTable("media_folders", "filetransfer");
                 });
 
-            modelBuilder.Entity("Domain.Media.MediaItem", b =>
+            modelBuilder.Entity("FileTransfer.Domain.Media.MediaItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -106,9 +105,9 @@ namespace Persistence.Migrations
                     b.ToTable("media_items", "filetransfer");
                 });
 
-            modelBuilder.Entity("Domain.Media.MediaItem", b =>
+            modelBuilder.Entity("FileTransfer.Domain.Media.MediaItem", b =>
                 {
-                    b.HasOne("Domain.Media.MediaFolder", null)
+                    b.HasOne("FileTransfer.Domain.Media.MediaFolder", null)
                         .WithMany("MediaItems")
                         .HasForeignKey("MediaFolderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -116,7 +115,7 @@ namespace Persistence.Migrations
                         .HasConstraintName("fk_media_items_media_folders_media_folder_id");
                 });
 
-            modelBuilder.Entity("Domain.Media.MediaFolder", b =>
+            modelBuilder.Entity("FileTransfer.Domain.Media.MediaFolder", b =>
                 {
                     b.Navigation("MediaItems");
                 });

@@ -6,32 +6,32 @@ BEGIN
 END $EF$;
 
 
-CREATE TABLE filetransfer."MediaFolders" (
-    "Id" uuid NOT NULL,
-    "UserId" uuid NOT NULL,
-    "StorageVersion" smallint NOT NULL,
-    "OriginalName" character varying(50) NOT NULL,
-    "CreatedUtc" timestamp with time zone NOT NULL,
-    "ModifiedUtc" timestamp with time zone,
-    CONSTRAINT "PK_MediaFolders" PRIMARY KEY ("Id")
+CREATE TABLE filetransfer.media_folders (
+    id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    storage_version smallint NOT NULL,
+    original_name character varying(50) NOT NULL,
+    created_utc timestamp with time zone NOT NULL,
+    modified_utc timestamp with time zone,
+    CONSTRAINT pk_media_folders PRIMARY KEY (id)
 );
 
 
-CREATE TABLE filetransfer."MediaItems" (
-    "Id" uuid NOT NULL,
-    "MediaFolderId" uuid NOT NULL,
-    "UserId" uuid NOT NULL,
-    "MediaKind" integer NOT NULL,
-    "MediaSizeKind" integer NOT NULL,
-    "StorageVersion" smallint NOT NULL,
-    "MetaData" text NOT NULL,
-    "CreatedUtc" timestamp with time zone NOT NULL,
-    "ModifiedUtc" timestamp with time zone,
-    CONSTRAINT "PK_MediaItems" PRIMARY KEY ("Id"),
-    CONSTRAINT "FK_MediaItems_MediaFolders_MediaFolderId" FOREIGN KEY ("MediaFolderId") REFERENCES filetransfer."MediaFolders" ("Id") ON DELETE CASCADE
+CREATE TABLE filetransfer.media_items (
+    id uuid NOT NULL,
+    media_folder_id uuid NOT NULL,
+    user_id uuid NOT NULL,
+    media_kind integer NOT NULL,
+    media_size_kind integer NOT NULL,
+    storage_version smallint NOT NULL,
+    meta_data text NOT NULL,
+    created_utc timestamp with time zone NOT NULL,
+    modified_utc timestamp with time zone,
+    CONSTRAINT pk_media_items PRIMARY KEY (id),
+    CONSTRAINT fk_media_items_media_folders_media_folder_id FOREIGN KEY (media_folder_id) REFERENCES filetransfer.media_folders (id) ON DELETE CASCADE
 );
 
 
-CREATE INDEX "IX_MediaItems_MediaFolderId" ON filetransfer."MediaItems" ("MediaFolderId");
+CREATE INDEX ix_media_items_media_folder_id ON filetransfer.media_items (media_folder_id);
 
 
