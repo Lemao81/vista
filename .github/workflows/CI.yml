@@ -34,15 +34,17 @@ jobs:
           echo $TOKEN | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
       - name: Build Maintenance service prod image
-        run: docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
-              -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
+        run: |
+          docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
+          -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
         
       - name: Push Maintenance service prod image
         run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: Build Maintenance service test image
-        run: docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
-              --build-arg COMPILER_CONSTANTS=TEST -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_TEST_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
+        run: |
+          docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
+          --build-arg COMPILER_CONSTANTS=TEST -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_TEST_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
 
       - name: Push Maintenance service test image
         run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_TEST_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
