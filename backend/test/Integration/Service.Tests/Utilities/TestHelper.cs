@@ -25,7 +25,7 @@ public static class TestHelper
 				break;
 			}
 
-			await Task.Delay(TimeSpan.FromMilliseconds(50));
+			await Task.Delay(TimeSpan.FromMilliseconds(200));
 		}
 	}
 }
