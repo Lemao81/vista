@@ -24,7 +24,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		_testOutputHelper      = testOutputHelper;
 	}
 
-	[Fact(Skip = "any")]
+	[Fact]
 	public async Task UploadPicture_Given_valid_image_Should_persist_image()
 	{
 		// Arrange
