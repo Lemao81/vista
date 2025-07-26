@@ -33,13 +33,6 @@ public static class ServiceCollectionExtensions
 			Console.WriteLine("TEST compiler constant set");
 #endif
 
-			Console.WriteLine("CONSOLEWRITETESTCONSOLEWRITETESTCONSOLEWRITETESTCONSOLEWRITETESTCONSOLEWRITETESTCONSOLEWRITETEST");
-#if RELEASE
-			Console.WriteLine("RELEASERELEASERELEASERELEASERELEASERELEASERELEASERELEASERELEASERELEASERELEASERELEASERELEASE");
-#endif
-#if TEST
-			Console.WriteLine("TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST");
-#endif
 			var managedIdentityClientId = configuration.GetValue<string>(ConfigurationKeys.AzureStorageManagedIdentityClientId);
 			clientBuilder.UseCredential(
 				new DefaultAzureCredential(
