@@ -23,7 +23,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		_testOutputHelper      = testOutputHelper;
 	}
 
-	[Fact(Skip = "any")]
+	[Fact]
 	public async Task Given_DbInitEnabled_Should_CreateDatabases()
 	{
 		// Act + Arrange
