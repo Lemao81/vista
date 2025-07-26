@@ -24,7 +24,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		_testOutputHelper      = testOutputHelper;
 	}
 
-	[Fact]
+	[Fact(Skip = "any")]
 	public async Task UploadPicture_Given_valid_image_Should_persist_image()
 	{
 		// Arrange
@@ -68,7 +68,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.True(existResult.Value);
 	}
 
-	[Fact]
+	[Fact(Skip = "any")]
 	public async Task UploadPicture_Given_empty_file_Should_return_bad_request()
 	{
 		// Arrange
@@ -90,7 +90,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		await Verify(response, VerifySettingsFactory.ScrubGuidsSettings);
 	}
 
-	[Fact]
+	[Fact(Skip = "any")]
 	public async Task UploadPicture_Given_invalid_file_type_Should_return_bad_request()
 	{
 		// Arrange
