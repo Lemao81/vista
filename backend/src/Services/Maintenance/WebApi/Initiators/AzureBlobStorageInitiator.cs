@@ -23,6 +23,8 @@ public class AzureBlobStorageInitiator : IInitiator
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{
 		var result = await CreateContainerAsync(Buckets.Media, cancellationToken);
+		var log    = $"{GetType().Name} {(result ? "succeeded" : "failed")} initiating";
+		_logger.LogInformation("{Log}", log);
 
 		return result;
 	}

@@ -63,14 +63,18 @@ try
 	else
 	{
 		logger.LogInformation("Initiators to be executed: {Initiators}", initiators.Select(i => i.GetType().Name).ToCommaSeparated());
+		logger.LogInformation("Initiators start initiating");
 		_ = Task.Run(async () =>
 		{
 			var results = await Task.WhenAll(initiators.Select(i => i.InitiateAsync()));
 			if (results.All(r => r))
 			{
 				HealthCheck.IsHealthy = true;
+				logger.LogInformation("All initiators initiated successfully");
 			}
 		});
+
+		logger.LogInformation("Initiators finished initiating");
 	}
 }
 catch (Exception exception)

@@ -9,7 +9,8 @@ on:
 env:
   DOTNET_VERSION: 9.0.200
   REGISTRY: ghcr.io
-  MAINTENANCE_IMAGE_NAME: lemao81/vista-maintenance-api
+  MAINTENANCE_PROD_IMAGE_NAME: lemao81/vista-maintenance-api
+  MAINTENANCE_TEST_IMAGE_NAME: lemao81/vista-maintenance-test-api
   IMAGE_TAG: latest
   SOLUTION_PATH: ./backend/Vista.sln
 
@@ -32,11 +33,21 @@ jobs:
           export TOKEN=${{ secrets.PACKAGES_TOKEN }}
           echo $TOKEN | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
-      - name: Build Maintenance service image
-        run: docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
+      - name: Build Maintenance service prod image
+        run: |
+          docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
+          -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
+        
+      - name: Push Maintenance service prod image
+        run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
-      - name: Push Maintenance service image
-        run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+      - name: Build Maintenance service test image
+        run: |
+          docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
+          --build-arg COMPILER_CONSTANTS=TEST -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_TEST_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
+
+      - name: Push Maintenance service test image
+        run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_TEST_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       - name: Azure login
         uses: azure/login@v2
@@ -46,8 +57,11 @@ jobs:
       - name: Restore
         run: dotnet restore ${{ env.SOLUTION_PATH }}
 
-      - name: Build solution
+      - name: Build solution prod
         run: dotnet build ${{ env.SOLUTION_PATH }} -c Release --no-restore
+        
+      - name: Build solution test
+        run: dotnet build ${{ env.SOLUTION_PATH }} -c Release --no-restore /p:ExtraDefineConstants=TEST
 
       - name: Test
         run: dotnet test ${{ env.SOLUTION_PATH }} -c Release --no-restore --no-build

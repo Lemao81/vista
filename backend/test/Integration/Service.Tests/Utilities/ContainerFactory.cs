@@ -61,7 +61,7 @@ public class ContainerFactory
 
 	public IContainer CreateMaintenanceContainer()
 	{
-		var image = IsLocal() ? "backend-vista-maintenance-api" : $"{RemoteRepository}/vista-maintenance-api";
+		var image = IsLocal() ? "backend-vista-maintenance-api" : $"{RemoteRepository}/vista-maintenance-test-api";
 
 		return new ContainerBuilder().WithImage(image)
 			.WithName($"{NetworkAliases.MaintenanceApi}_{Guid.NewGuid()}")
