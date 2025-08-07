@@ -24,6 +24,8 @@ internal sealed class PostgresDatabaseInitiator : IInitiator
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{
 		var result = await UpgradeDatabaseAsync(DbNames.FileTransfer, cancellationToken);
+		var log    = $"{GetType().Name} {(result ? "succeeded" : "failed")} initiating";
+		_logger.LogInformation("{Log}", log);
 
 		return result;
 	}
