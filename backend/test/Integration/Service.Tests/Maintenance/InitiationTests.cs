@@ -48,7 +48,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		}
 	}
 
-	[Fact(Skip = "any")]
+	[Fact]
 	public async Task Given_DbInitEnabled_Should_ExecuteFiletransferMigrations()
 	{
 		// Act + Arrange
@@ -75,7 +75,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		Assert.True(migrationIds.All(id => actualMigrationIds.Contains(id, StringComparer.OrdinalIgnoreCase)));
 	}
 
-	[Fact(Skip = "any")]
+	[Fact]
 	public async Task Given_MinioInitEnabled_Should_CreateMinioBuckets()
 	{
 		// Act + Arrange
@@ -93,7 +93,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 		}
 	}
 
-	[Fact(Skip = "any")]
+	[Fact]
 	public async Task Given_AzureBlobStorageInitEnabled_Should_CreateAzureBlobStorageContainers()
 	{
 		// Act + Arrange
