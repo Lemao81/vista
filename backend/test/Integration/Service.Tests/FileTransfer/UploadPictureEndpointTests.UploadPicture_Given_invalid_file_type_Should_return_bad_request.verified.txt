@@ -17,6 +17,7 @@
         ]
       },
       traceId: {Scrubbed},
+      requestId: {Scrubbed},
       errorCode: ValidationFailed
     }
   }

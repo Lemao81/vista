@@ -26,7 +26,7 @@ internal static class UploadPictureEndpoint
 						return BadRequest();
 					}
 
-					var validationResult = await requestValidator.ValidateAsync(request);
+					var validationResult = await requestValidator.ValidateAsync(request, httpContext.RequestAborted);
 					if (!validationResult.IsValid)
 					{
 						return ValidationProblem(validationResult.ToDictionary());
@@ -35,7 +35,7 @@ internal static class UploadPictureEndpoint
 					ArgumentNullException.ThrowIfNull(request.File);
 
 					var command = CommandFactory.CreateUploadPictureCommand(request.File);
-					var result  = await sender.Send(command);
+					var result  = await sender.Send(command, httpContext.RequestAborted);
 					httpContext.MaybeAddError(result);
 
 					return result.Match(

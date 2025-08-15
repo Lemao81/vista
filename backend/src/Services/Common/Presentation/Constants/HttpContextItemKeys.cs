@@ -1,4 +1,4 @@
-﻿namespace FileTransfer.Presentation.Constants;
+﻿namespace Common.Presentation.Constants;
 
 public static class HttpContextItemKeys
 {

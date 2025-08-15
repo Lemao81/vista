@@ -1,7 +1,6 @@
 using System.Globalization;
 using Common.Application.Constants;
 using Common.Persistence.Utilities;
-using Common.Presentation.Constants;
 using Common.WebApi.Extensions;
 using FileTransfer.Application;
 using FileTransfer.Domain;
@@ -9,7 +8,6 @@ using FileTransfer.Domain.Media;
 using FileTransfer.Infrastructure;
 using FileTransfer.Persistence;
 using FileTransfer.Presentation;
-using FileTransfer.Presentation.Constants;
 using FileTransfer.Presentation.Pictures;
 using FileTransfer.WebApi.Extensions;
 using Microsoft.Extensions.Options;
@@ -22,14 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddCommonAppSettings();
 
 builder.Services.AddOpenApi();
-builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = context =>
-{
-	if (context.HttpContext.Items.TryGetValue(HttpContextItemKeys.ErrorCode, out var code))
-	{
-		context.ProblemDetails.Extensions.Add(ProblemDetailsExtensionKeys.ErrorCode, code);
-	}
-});
 
+builder.Services.AddCommonServices();
 builder.Services.AddDomainServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Environment, builder.Logging);
@@ -43,6 +35,8 @@ builder.Services.AddOptions<UploadMediaOptions>().BindConfiguration(Configuratio
 builder.Services.AddSingleton<UploadMediaOptions>(sp => sp.GetRequiredService<IOptions<UploadMediaOptions>>().Value);
 
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {

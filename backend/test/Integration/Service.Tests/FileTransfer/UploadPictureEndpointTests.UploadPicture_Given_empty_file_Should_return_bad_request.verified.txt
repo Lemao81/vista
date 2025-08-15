@@ -13,7 +13,8 @@
           'Length' must be greater than '0'.
         ]
       },
-      traceId: {Scrubbed}
+      traceId: {Scrubbed},
+      requestId: {Scrubbed}
     }
   }
 }

@@ -8,7 +8,7 @@ public static class VerifySettingsFactory
 	{
 		var settings = new VerifySettings();
 		settings.ScrubInlineGuids();
-		settings.ScrubMember("traceId");
+		settings.ScrubMembers("traceId", "requestId");
 
 		return settings;
 	});
