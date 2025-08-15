@@ -2,7 +2,6 @@
 using FileTransfer.Application;
 using FileTransfer.Domain;
 using FileTransfer.Infrastructure;
-using FileTransfer.Persistence;
 using FileTransfer.Presentation;
 using FileTransfer.WebApi;
 using Lemao.UtilExtensions;
@@ -21,7 +20,6 @@ public abstract class ArchitectureTestBase
 	protected IEnumerable<Assembly> DomainAssemblies         { get; } = [typeof(IDomainAssemblyMarker).Assembly];
 	protected IEnumerable<Assembly> ApplicationAssemblies    { get; } = [typeof(IApplicationAssemblyMarker).Assembly];
 	protected IEnumerable<Assembly> InfrastructureAssemblies { get; } = [typeof(IInfrastructureAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> PersistenceAssemblies    { get; } = [typeof(IPersistenceAssemblyMarker).Assembly];
 	protected IEnumerable<Assembly> PresentationAssemblies   { get; } = [typeof(IPresentationAssemblyMarker).Assembly];
 	protected IEnumerable<Assembly> WebApiAssemblies         { get; } = [typeof(IWebApiAssemblyMarker).Assembly];
 

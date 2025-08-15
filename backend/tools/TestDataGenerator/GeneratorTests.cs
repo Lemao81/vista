@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using Bogus;
 using Common.Domain.Users;
 using FileTransfer.Domain.Media;
-using FileTransfer.Persistence;
+using FileTransfer.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql;

@@ -31,7 +31,7 @@
     <ProjectReference Include="..\..\..\Services\Common\Presentation\Presentation.csproj"/>
     <ProjectReference Include="..\..\..\Services\Common\WebApi\WebApi.csproj"/>
     <ProjectReference Include="..\..\..\Services\FileTransfer\Application\Application.csproj"/>
-    <ProjectReference Include="..\..\..\Services\FileTransfer\Persistence\Persistence.csproj"/>
+    <ProjectReference Include="..\..\..\Services\FileTransfer\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.json">

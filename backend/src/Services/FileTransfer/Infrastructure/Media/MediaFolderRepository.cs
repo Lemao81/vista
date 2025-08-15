@@ -1,6 +1,6 @@
 ﻿using FileTransfer.Domain.Media;
 
-namespace FileTransfer.Persistence.Media;
+namespace FileTransfer.Infrastructure.Media;
 
 internal sealed class MediaFolderRepository : IMediaFolderRepository
 {

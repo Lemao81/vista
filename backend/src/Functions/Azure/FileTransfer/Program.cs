@@ -5,6 +5,7 @@ using Common.WebApi.Extensions;
 using FileTransfer.Application;
 using FileTransfer.Domain;
 using FileTransfer.Domain.Media;
+using FileTransfer.Infrastructure;
 using FileTransfer.Persistence;
 using FluentValidation;
 using Microsoft.Azure.Functions.Worker.Builder;

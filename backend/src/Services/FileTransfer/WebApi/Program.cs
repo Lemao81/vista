@@ -6,7 +6,6 @@ using FileTransfer.Application;
 using FileTransfer.Domain;
 using FileTransfer.Domain.Media;
 using FileTransfer.Infrastructure;
-using FileTransfer.Persistence;
 using FileTransfer.Presentation;
 using FileTransfer.Presentation.Pictures;
 using FileTransfer.WebApi.Extensions;

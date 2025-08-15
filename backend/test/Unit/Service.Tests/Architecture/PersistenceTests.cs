@@ -13,7 +13,7 @@ public class PersistenceTests : ArchitectureTestBase
 	public void Repositories_should_end_name_with_Repository()
 	{
 		// Act
-		var result = Types.InAssemblies(PersistenceAssemblies)
+		var result = Types.InAssemblies(InfrastructureAssemblies)
 			.That()
 			.ImplementInterface(typeof(IRepository))
 			.Should()
@@ -30,7 +30,7 @@ public class PersistenceTests : ArchitectureTestBase
 	public void Repositories_should_be_internal_sealed()
 	{
 		// Act
-		var result = Types.InAssemblies(PersistenceAssemblies)
+		var result = Types.InAssemblies(InfrastructureAssemblies)
 			.That()
 			.ImplementInterface(typeof(IRepository))
 			.Should()

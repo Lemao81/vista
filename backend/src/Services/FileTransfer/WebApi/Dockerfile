@@ -25,7 +25,6 @@ COPY ["src/Services/SharedKernel/SharedKernel.csproj", "src/Services/SharedKerne
 COPY ["src/Services/Common/Domain/Domain.csproj", "src/Services/Common/Domain/"]
 COPY ["src/Services/FileTransfer/Domain/Domain.csproj", "src/Services/FileTransfer/Domain/"]
 COPY ["src/Services/FileTransfer/Infrastructure/Infrastructure.csproj", "src/Services/FileTransfer/Infrastructure/"]
-COPY ["src/Services/FileTransfer/Persistence/Persistence.csproj", "src/Services/FileTransfer/Persistence/"]
 COPY ["src/Services/Common/Persistence/Persistence.csproj", "src/Services/Common/Persistence/"]
 COPY ["src/Services/FileTransfer/Presentation/Presentation.csproj", "src/Services/FileTransfer/Presentation/"]
 COPY ["src/Services/Common/Presentation/Presentation.csproj", "src/Services/Common/Presentation/"]

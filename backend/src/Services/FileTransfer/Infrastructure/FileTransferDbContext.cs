@@ -2,7 +2,7 @@
 using FileTransfer.Domain.Media;
 using Microsoft.EntityFrameworkCore;
 
-namespace FileTransfer.Persistence;
+namespace FileTransfer.Infrastructure;
 
 public sealed class FileTransferDbContext : DbContext
 {

@@ -1,9 +1,8 @@
-﻿using System;
+﻿#nullable disable
+
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
-namespace Persistence.Migrations
+namespace FileTransfer.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

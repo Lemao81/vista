@@ -4,7 +4,7 @@ using Common.Domain.Users;
 using FileTransfer.Application.Utilities;
 using FileTransfer.Domain.Media;
 using FileTransfer.Domain.ValueObjects;
-using FileTransfer.Persistence;
+using FileTransfer.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Service.Tests.Extensions;
 using Service.Tests.WebApplicationFactories;

@@ -1,4 +1,4 @@
-﻿using FileTransfer.Persistence;
+﻿using FileTransfer.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace Service.Tests.Utilities;

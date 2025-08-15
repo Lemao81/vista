@@ -9,7 +9,7 @@ using Minio.DataModel.Args;
 using Minio.Exceptions;
 using SharedKernel;
 
-namespace FileTransfer.Persistence.Media;
+namespace FileTransfer.Infrastructure.Media;
 
 internal sealed class MinioObjectStorage : IObjectStorage
 {

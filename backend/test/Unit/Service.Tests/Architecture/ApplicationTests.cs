@@ -150,7 +150,7 @@ public class ApplicationTests : ArchitectureTestBase
 	public void Application_should_not_depend_on_outer_layers()
 	{
 		// Arrange
-		var outerAssemblies = PersistenceAssemblies.Concat(InfrastructureAssemblies)
+		var outerAssemblies = InfrastructureAssemblies.Concat(InfrastructureAssemblies)
 			.Concat(WebApiAssemblies)
 			.GroupBy(a => a.GetName().Name?.Split(".")[0]!)
 			.ToDictionary(g => g.Key, g => g.ToArray());

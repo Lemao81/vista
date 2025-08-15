@@ -4,7 +4,7 @@ using FileTransfer.Domain.Media;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FileTransfer.Persistence.Media;
+namespace FileTransfer.Infrastructure.Media;
 
 internal sealed class MediaItemDbConfiguration : IEntityTypeConfiguration<MediaItem>
 {

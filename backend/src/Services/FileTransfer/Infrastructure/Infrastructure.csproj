@@ -3,9 +3,13 @@
   <PropertyGroup>
     <AssemblyName>FileTransfer.Infrastructure</AssemblyName>
     <RootNamespace>FileTransfer.Infrastructure</RootNamespace>
+    <UserSecretsId>bb970804-ff2c-4d2c-b21b-38cd784a605c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EFCore.NamingConventions"/>
+    <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL"/>
+    <PackageReference Include="Minio"/>
     <PackageReference Include="Npgsql.OpenTelemetry" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol"/>
     <PackageReference Include="OpenTelemetry.Extensions.Hosting"/>
@@ -16,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Common\Persistence\Persistence.csproj"/>
+    <ProjectReference Include="..\Domain\Domain.csproj"/>
   </ItemGroup>
 
 </Project>

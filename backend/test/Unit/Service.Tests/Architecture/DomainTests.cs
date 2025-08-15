@@ -58,7 +58,7 @@ public class DomainTests : ArchitectureTestBase
 	public void Domain_should_not_depend_on_outer_layers()
 	{
 		// Arrange
-		var outerAssemblies = ApplicationAssemblies.Concat(PersistenceAssemblies)
+		var outerAssemblies = ApplicationAssemblies.Concat(InfrastructureAssemblies)
 			.Concat(InfrastructureAssemblies)
 			.Concat(WebApiAssemblies)
 			.GroupBy(a => a.GetName().Name?.Split(".")[0]!)
