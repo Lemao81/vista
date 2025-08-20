@@ -5,7 +5,7 @@ namespace Service.Tests.Tests.Common;
 public class FileLengthTests
 {
 	[Fact]
-	public void New_Given_valid_length_Should_set_value()
+	public void NewValidLength_Should_SetValue()
 	{
 		// Act
 		var fileLength = new FileLength(1000L);
@@ -15,7 +15,7 @@ public class FileLengthTests
 	}
 
 	[Fact]
-	public void New_Given_negative_length_Should_throw()
+	public void NewNegativeLength_Should_Throw()
 	{
 		// Act + Assert
 		Assert.Throws<ArgumentOutOfRangeException>(() => new FileLength(-1L));

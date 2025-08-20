@@ -6,7 +6,7 @@ namespace Service.Tests.Tests.Common;
 public class BasePipelineBehaviorTests
 {
 	[Fact]
-	public void CreateErrorResultT0_Given_error_Should_return_failure_result()
+	public void ErrorNonGeneric_Should_ReturnFailureResult()
 	{
 		// Arrange
 		var error = Errors.EntityNotFound;
@@ -20,7 +20,7 @@ public class BasePipelineBehaviorTests
 	}
 
 	[Fact]
-	public void CreateErrorResultT1_Given_error_Should_return_failure_result()
+	public void ErrorGeneric_Should_ReturnFailureResult()
 	{
 		// Arrange
 		var error = Errors.EntityNotFound;

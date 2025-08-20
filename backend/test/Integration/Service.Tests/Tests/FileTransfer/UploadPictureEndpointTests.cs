@@ -25,7 +25,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	}
 
 	[Fact]
-	public async Task UploadPicture_Given_valid_image_Should_persist_image()
+	public async Task UploadValidImage_Should_PersistImage()
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -69,7 +69,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	}
 
 	[Fact]
-	public async Task UploadPicture_Given_empty_file_Should_return_bad_request()
+	public async Task UploadEmptyFile_Should_ReturnBadRequest()
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -91,7 +91,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	}
 
 	[Fact]
-	public async Task UploadPicture_Given_invalid_file_type_Should_return_bad_request()
+	public async Task UploadInvalidFileType_Should_ReturnBadRequest()
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;

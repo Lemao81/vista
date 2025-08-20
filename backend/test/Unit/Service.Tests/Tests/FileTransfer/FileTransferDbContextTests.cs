@@ -9,7 +9,7 @@ namespace Service.Tests.Tests.FileTransfer;
 public class FileTransferDbContextTests
 {
 	[Fact]
-	public async Task GenerateScript_Should_generate_proper_schema()
+	public async Task GenerateScript_Should_GenerateProperSchema()
 	{
 		// Arrange
 		await using var fixture = new FileTransferDbContextFixture();
@@ -22,7 +22,7 @@ public class FileTransferDbContextTests
 	}
 
 	[Fact]
-	public async Task Migrations_Should_be_up_to_date()
+	public async Task Migrations_Should_BeUpToDate()
 	{
 		// Arrange
 		await using var fixture = new FileTransferDbContextFixture();

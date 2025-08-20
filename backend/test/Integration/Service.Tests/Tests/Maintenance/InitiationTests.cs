@@ -24,7 +24,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Given_DbInitEnabled_Should_CreateDatabases()
+	public async Task EnableDbInitialization_Should_CreateDatabases()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -49,7 +49,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Given_DbInitEnabled_Should_ExecuteFiletransferMigrations()
+	public async Task EnableDbInitialization_Should_ExecuteFiletransferMigrations()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -76,7 +76,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Given_MinioInitEnabled_Should_CreateMinioBuckets()
+	public async Task EnableMinioInitialization_Should_CreateMinioBuckets()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
@@ -94,7 +94,7 @@ public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 	}
 
 	[Fact]
-	public async Task Given_AzureBlobStorageInitEnabled_Should_CreateAzureBlobStorageContainers()
+	public async Task EnableAzureBlobStorageInitialization_Should_CreateAzureBlobStorageContainers()
 	{
 		// Act + Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;

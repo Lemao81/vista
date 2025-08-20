@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using NetArchTest.Rules;
+using Service.Tests.Abstractions;
 
 namespace Service.Tests.Tests.Architecture;
 
@@ -10,7 +11,7 @@ public class PresentationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Validators_should_end_name_with_Validator()
+	public void Validators_Should_EndWithValidator()
 	{
 		// Act
 		var result = Types.InAssemblies(PresentationAssemblies)

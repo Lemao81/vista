@@ -1,4 +1,5 @@
 ﻿using NetArchTest.Rules;
+using Service.Tests.Abstractions;
 using SharedKernel;
 
 namespace Service.Tests.Tests.Architecture;
@@ -10,7 +11,7 @@ public class PersistenceTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Repositories_should_end_name_with_Repository()
+	public void Repositories_Should_EndWithRepository()
 	{
 		// Act
 		var result = Types.InAssemblies(InfrastructureAssemblies)
@@ -27,7 +28,7 @@ public class PersistenceTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Repositories_should_be_internal_sealed()
+	public void Repositories_Should_BeInternalSealed()
 	{
 		// Act
 		var result = Types.InAssemblies(InfrastructureAssemblies)

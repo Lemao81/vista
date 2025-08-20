@@ -1,4 +1,5 @@
 ﻿using NetArchTest.Rules;
+using Service.Tests.Abstractions;
 using SharedKernel;
 
 namespace Service.Tests.Tests.Architecture;
@@ -10,7 +11,7 @@ public class DomainTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Entities_should_be_sealed()
+	public void Entities_Should_BeSealed()
 	{
 		// Act
 		var result = Types.InAssemblies(DomainAssemblies).That().Inherit(typeof(Entity<>)).Should().BeSealed().GetResult();
@@ -21,7 +22,7 @@ public class DomainTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void DomainEvents_should_end_name_with_DomainEvent()
+	public void DomainEvents_Should_EndWithDomainEvent()
 	{
 		// Act
 		var result = Types.InAssemblies(DomainAssemblies)
@@ -38,7 +39,7 @@ public class DomainTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Errors_should_end_name_with_Error()
+	public void Errors_Should_EndWithError()
 	{
 		// Act
 		var result = Types.InAssemblies(DomainAssemblies)
@@ -55,7 +56,7 @@ public class DomainTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Domain_should_not_depend_on_outer_layers()
+	public void Domain_Should_NotDependOnOuterLayers()
 	{
 		// Arrange
 		var outerAssemblies = ApplicationAssemblies.Concat(InfrastructureAssemblies)

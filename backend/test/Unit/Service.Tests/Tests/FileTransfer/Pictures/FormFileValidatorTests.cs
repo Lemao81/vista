@@ -14,7 +14,7 @@ public class FormFileValidatorTests
 	}
 
 	[Fact]
-	public async Task ValidateAsync_Given_valid_file_Should_return_valid()
+	public async Task ValidFile_Should_ReturnValid()
 	{
 		// Arrange
 		var file = new TestFormFile(MediaTypeNames.Image.Jpeg, "", 4000, "pic", "pic.jpg");
@@ -27,7 +27,7 @@ public class FormFileValidatorTests
 	}
 
 	[Fact]
-	public async Task ValidateAsync_Given_invalid_file_Should_respond_errors()
+	public async Task InvalidFile_Should_RespondErrors()
 	{
 		// Arrange
 		var file = new TestFormFile();

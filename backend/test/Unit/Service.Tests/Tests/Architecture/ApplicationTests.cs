@@ -3,6 +3,7 @@ using Common.Application.Abstractions.Command;
 using FluentValidation;
 using MediatR;
 using NetArchTest.Rules;
+using Service.Tests.Abstractions;
 
 namespace Service.Tests.Tests.Architecture;
 
@@ -13,7 +14,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Commands_should_end_name_with_Command()
+	public void Commands_Should_EndWithCommand()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -30,7 +31,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void CommandHandlers_should_end_name_with_CommandHandler()
+	public void CommandHandlers_Should_EndWithCommandHandler()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -47,7 +48,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Validators_should_end_name_with_Validator()
+	public void Validators_Should_EndWithValidator()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -64,7 +65,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void DomainEventHandlers_should_end_name_with_DomainEventHandler()
+	public void DomainEventHandlers_Should_EndWithDomainEventHandler()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -81,7 +82,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void PipelineBehaviors_should_end_name_with_PipelineBehavior()
+	public void PipelineBehaviors_Should_EndWithPipelineBehavior()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -98,7 +99,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void RequestHandlers_should_be_internal_sealed()
+	public void RequestHandlers_Should_BeInternalSealed()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -117,7 +118,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void NotificationHandlers_should_be_internal_sealed()
+	public void NotificationHandlers_Should_BeInternalSealed()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies)
@@ -136,7 +137,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Application_should_not_have_dependency_on_postgres()
+	public void Application_Should_NotHaveDependencyOnPostgres()
 	{
 		// Act
 		var result = Types.InAssemblies(ApplicationAssemblies).ShouldNot().HaveDependencyOn("Npgsql.EntityFrameworkCore.PostgreSQL").GetResult();
@@ -147,7 +148,7 @@ public class ApplicationTests : ArchitectureTestBase
 	}
 
 	[Fact]
-	public void Application_should_not_depend_on_outer_layers()
+	public void Application_Should_NotDependOnOuterLayers()
 	{
 		// Arrange
 		var outerAssemblies = InfrastructureAssemblies.Concat(InfrastructureAssemblies)

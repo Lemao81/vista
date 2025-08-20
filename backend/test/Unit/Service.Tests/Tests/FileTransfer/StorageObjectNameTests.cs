@@ -6,7 +6,7 @@ namespace Service.Tests.Tests.FileTransfer;
 public class StorageObjectNameTests
 {
 	[Fact]
-	public void StorageObjectName_Given_string_path_parts_Should_create_object_name_with_paths()
+	public void StringPathParts_Should_CreateWithPaths()
 	{
 		// Arrange
 		var fileName = new FileName("Test.txt");
@@ -19,7 +19,7 @@ public class StorageObjectNameTests
 	}
 
 	[Fact]
-	public void StorageObjectName_Given_non_string_path_parts_Should_create_object_name_with_paths()
+	public void NonStringPathParts_Should_CreateWithPaths()
 	{
 		// Arrange
 		var fileName = new FileName("Test.txt");
@@ -32,7 +32,7 @@ public class StorageObjectNameTests
 	}
 
 	[Fact]
-	public void StorageObjectName_Given_no_parts_Should_create_object_name_with_file_name()
+	public void NoParts_Should_CreateWithFileName()
 	{
 		// Arrange
 		var fileName = new FileName("Test.txt");
