@@ -1,9 +1,7 @@
 ﻿namespace SharedKernel;
 
-public readonly record struct FileLength : IComparable, IComparable<FileLength>
+public record FileLength : IComparable, IComparable<FileLength>
 {
-	public FileLength() => throw new NotSupportedException();
-
 	public FileLength(long value)
 	{
 		ArgumentOutOfRangeException.ThrowIfNegative(value);
@@ -27,5 +25,5 @@ public readonly record struct FileLength : IComparable, IComparable<FileLength>
 
 	public int CompareTo(object? obj) => Value.CompareTo(obj);
 
-	public int CompareTo(FileLength other) => Value.CompareTo(other.Value);
+	public int CompareTo(FileLength? other) => Value.CompareTo(other?.Value);
 }

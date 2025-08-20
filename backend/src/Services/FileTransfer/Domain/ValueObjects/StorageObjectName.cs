@@ -4,10 +4,8 @@ using SharedKernel;
 
 namespace FileTransfer.Domain.ValueObjects;
 
-public readonly record struct StorageObjectName
+public record StorageObjectName
 {
-	public StorageObjectName() => throw new NotSupportedException();
-
 	public StorageObjectName(FileName fileName, params object[] parts)
 	{
 		Value = "/" + fileName.NormalizedValue;

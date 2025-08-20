@@ -1,9 +1,7 @@
 ﻿namespace SharedKernel;
 
-public readonly record struct FileName
+public record FileName
 {
-	public FileName() => throw new NotSupportedException();
-
 	public FileName(string value)
 	{
 		ArgumentException.ThrowIfNullOrWhiteSpace(value);

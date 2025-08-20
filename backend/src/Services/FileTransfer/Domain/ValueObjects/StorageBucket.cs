@@ -2,11 +2,9 @@
 
 namespace FileTransfer.Domain.ValueObjects;
 
-public readonly record struct StorageBucket
+public record StorageBucket
 {
 	public static readonly StorageBucket Media = new(Buckets.Media);
-
-	public StorageBucket() => throw new NotSupportedException();
 
 	private StorageBucket(string value)
 	{
