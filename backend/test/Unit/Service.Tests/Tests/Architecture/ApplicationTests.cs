@@ -4,7 +4,7 @@ using FluentValidation;
 using MediatR;
 using NetArchTest.Rules;
 
-namespace Service.Tests.Architecture;
+namespace Service.Tests.Tests.Architecture;
 
 public class ApplicationTests : ArchitectureTestBase
 {

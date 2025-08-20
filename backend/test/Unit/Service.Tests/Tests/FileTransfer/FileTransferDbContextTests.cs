@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Service.Tests.Utilities;
 
-namespace Service.Tests.FileTransfer;
+namespace Service.Tests.Tests.FileTransfer;
 
 public class FileTransferDbContextTests
 {

@@ -7,7 +7,7 @@ using FileTransfer.WebApi;
 using Lemao.UtilExtensions;
 using TestResult = NetArchTest.Rules.TestResult;
 
-namespace Service.Tests.Architecture;
+namespace Service.Tests.Tests.Architecture;
 
 public abstract class ArchitectureTestBase
 {

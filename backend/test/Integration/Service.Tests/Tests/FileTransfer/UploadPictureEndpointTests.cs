@@ -11,7 +11,7 @@ using Service.Tests.WebApplicationFactories;
 using SharedKernel;
 using Tests.Common;
 
-namespace Service.Tests.FileTransfer;
+namespace Service.Tests.Tests.FileTransfer;
 
 public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicationFactory>
 {
@@ -34,7 +34,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		var             storageAdapter = scope.ServiceProvider.GetRequiredService<IObjectStorageAdapter>();
 		var             httpClient     = _webApplicationFactory.CreateClient();
 
-		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "ph_600x400.png"));
+		await using var stream        = File.OpenRead(Path.Combine("Tests", "FileTransfer", "Files", "ph_600x400.png"));
 		using var       formContent   = new MultipartFormDataContent();
 		using var       streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
@@ -76,7 +76,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		using var scope      = _webApplicationFactory.Services.CreateScope();
 		var       httpClient = _webApplicationFactory.CreateClient();
 
-		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "empty.png"));
+		await using var stream        = File.OpenRead(Path.Combine("Tests", "FileTransfer", "Files", "empty.png"));
 		using var       formContent   = new MultipartFormDataContent();
 		using var       streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Image.Png);
@@ -98,7 +98,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		using var scope      = _webApplicationFactory.Services.CreateScope();
 		var       httpClient = _webApplicationFactory.CreateClient();
 
-		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "test.txt"));
+		await using var stream        = File.OpenRead(Path.Combine("Tests", "FileTransfer", "Files", "test.txt"));
 		using var       formContent   = new MultipartFormDataContent();
 		using var       streamContent = new StreamContent(stream);
 		streamContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);

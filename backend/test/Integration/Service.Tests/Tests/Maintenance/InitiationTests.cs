@@ -10,7 +10,7 @@ using Npgsql;
 using Service.Tests.Utilities;
 using Service.Tests.WebApplicationFactories;
 
-namespace Service.Tests.Maintenance;
+namespace Service.Tests.Tests.Maintenance;
 
 public class InitiationTests : IClassFixture<MaintenanceWebApplicationFactory>
 {

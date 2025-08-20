@@ -1,7 +1,7 @@
 ﻿using FileTransfer.Domain.ValueObjects;
 using SharedKernel;
 
-namespace Service.Tests.FileTransfer;
+namespace Service.Tests.Tests.FileTransfer;
 
 public class StorageObjectNameTests
 {

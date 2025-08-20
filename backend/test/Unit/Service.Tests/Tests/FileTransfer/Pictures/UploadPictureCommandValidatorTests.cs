@@ -3,7 +3,7 @@ using FileTransfer.Domain.Media;
 using NSubstitute;
 using SharedKernel;
 
-namespace Service.Tests.FileTransfer.Pictures;
+namespace Service.Tests.Tests.FileTransfer.Pictures;
 
 public class UploadPictureCommandValidatorTests
 {

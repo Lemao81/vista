@@ -1,7 +1,7 @@
 ﻿using NetArchTest.Rules;
 using SharedKernel;
 
-namespace Service.Tests.Architecture;
+namespace Service.Tests.Tests.Architecture;
 
 public class DomainTests : ArchitectureTestBase
 {

@@ -1,7 +1,7 @@
 ﻿using Service.Tests.Utilities;
 using SharedKernel;
 
-namespace Service.Tests.Common;
+namespace Service.Tests.Tests.Common;
 
 public class BasePipelineBehaviorTests
 {

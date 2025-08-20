@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using NetArchTest.Rules;
 
-namespace Service.Tests.Architecture;
+namespace Service.Tests.Tests.Architecture;
 
 public class PresentationTests : ArchitectureTestBase
 {

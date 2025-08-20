@@ -3,7 +3,7 @@ using Common.Presentation.Validators;
 using FileTransfer.Presentation.Pictures.Upload;
 using Service.Tests.Utilities;
 
-namespace Service.Tests.FileTransfer.Pictures;
+namespace Service.Tests.Tests.FileTransfer.Pictures;
 
 public class UploadPictureRequestValidatorTests
 {
