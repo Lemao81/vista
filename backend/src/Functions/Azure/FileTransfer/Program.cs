@@ -31,7 +31,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 builder.Services.AddAzureClients(builder.Configuration);
 
-builder.Services.AddScoped<IObjectStorage, AzureObjectStorage>();
+builder.Services.AddScoped<IObjectStorageAdapter, AzureObjectStorageAdapter>();
 
 builder.Services.AddOptions<UploadMediaOptions>().BindConfiguration(ConfigurationKeys.MediaUpload).ValidateDataAnnotations().ValidateOnStart();
 builder.Services.AddSingleton<UploadMediaOptions>(sp => sp.GetRequiredService<IOptions<UploadMediaOptions>>().Value);

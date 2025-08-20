@@ -89,7 +89,7 @@ public static class ServiceRegistration
 	public static IServiceCollection AddObjectStoragePersistenceServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		services.AddMinio(configuration);
-		services.AddScoped<IObjectStorage, MinioObjectStorage>();
+		services.AddScoped<IObjectStorageAdapter, MinioObjectStorageAdapter>();
 
 		return services;
 	}

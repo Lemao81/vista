@@ -8,12 +8,12 @@ using SharedKernel;
 
 namespace FileTransfer.Persistence;
 
-public class AzureObjectStorage : IObjectStorage
+public class AzureObjectStorageAdapter : IObjectStorageAdapter
 {
-	private readonly BlobServiceClient           _blobServiceClient;
-	private readonly ILogger<AzureObjectStorage> _logger;
+	private readonly BlobServiceClient                  _blobServiceClient;
+	private readonly ILogger<AzureObjectStorageAdapter> _logger;
 
-	public AzureObjectStorage(BlobServiceClient blobServiceClient, ILogger<AzureObjectStorage> logger)
+	public AzureObjectStorageAdapter(BlobServiceClient blobServiceClient, ILogger<AzureObjectStorageAdapter> logger)
 	{
 		_blobServiceClient = blobServiceClient;
 		_logger            = logger;

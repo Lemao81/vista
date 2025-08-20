@@ -12,13 +12,16 @@ namespace FileTransfer.Application.Pictures.Upload;
 internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictureCommand, Result<UploadPictureResponse>>
 {
 	private readonly IMediaFolderRepository               _mediaFolderRepository;
-	private readonly IObjectStorage                       _objectStorage;
+	private readonly IObjectStorageAdapter                _objectStorageAdapter;
 	private readonly ILogger<UploadPictureCommandHandler> _logger;
 
-	public UploadPictureCommandHandler(IMediaFolderRepository mediaFolderRepository, IObjectStorage objectStorage, ILogger<UploadPictureCommandHandler> logger)
+	public UploadPictureCommandHandler(
+		IMediaFolderRepository               mediaFolderRepository,
+		IObjectStorageAdapter                objectStorageAdapter,
+		ILogger<UploadPictureCommandHandler> logger)
 	{
 		_mediaFolderRepository = mediaFolderRepository;
-		_objectStorage         = objectStorage;
+		_objectStorageAdapter  = objectStorageAdapter;
 		_logger                = logger;
 	}
 
@@ -31,9 +34,14 @@ internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictur
 			var mediaItem   = MediaItem.Create(mediaFolder.Id, userId, MediaKind.Picture, MediaSizeKind.Original, command.MediaType);
 			mediaFolder.AddMediaItem(mediaItem);
 
-			var fileName        = ApplicationHelper.GetStorageFileName(command.FileName, mediaItem);
-			var objectName      = StorageObjectName.CreateMediaName(fileName, userId, mediaFolder.Id);
-			var putObjectResult = await _objectStorage.PutObjectAsync(StorageBucket.Media, objectName, command.MediaType, command.Stream, cancellationToken);
+			var fileName   = ApplicationHelper.GetStorageFileName(command.FileName, mediaItem);
+			var objectName = StorageObjectName.CreateMediaName(fileName, userId, mediaFolder.Id);
+			var putObjectResult = await _objectStorageAdapter.PutObjectAsync(
+				                      StorageBucket.Media,
+				                      objectName,
+				                      command.MediaType,
+				                      command.Stream,
+				                      cancellationToken);
 
 			if (putObjectResult.IsFailure)
 			{
@@ -42,7 +50,7 @@ internal sealed class UploadPictureCommandHandler : ICommandHandler<UploadPictur
 
 			mediaFolder = await _mediaFolderRepository.AddAsync(mediaFolder);
 
-			using (LogContext.PushProperty("MediaFolder", mediaFolder, true))
+			using (LogContext.PushProperty("MediaFolder", mediaFolder, destructureObjects: true))
 			{
 				_logger.LogInformation("Picture uploaded successfully");
 			}

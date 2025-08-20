@@ -4,7 +4,7 @@ using SharedKernel;
 
 namespace FileTransfer.Domain.Media;
 
-public interface IObjectStorage
+public interface IObjectStorageAdapter
 {
 	Task<Result> CreateBucketAsync(StorageBucket bucket, CancellationToken cancellationToken = default);
 

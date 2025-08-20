@@ -11,12 +11,12 @@ using SharedKernel;
 
 namespace FileTransfer.Infrastructure.Media;
 
-internal sealed class MinioObjectStorage : IObjectStorage
+internal sealed class MinioObjectStorageAdapter : IObjectStorageAdapter
 {
-	private readonly IMinioClient                _minioClient;
-	private readonly ILogger<MinioObjectStorage> _logger;
+	private readonly IMinioClient                       _minioClient;
+	private readonly ILogger<MinioObjectStorageAdapter> _logger;
 
-	public MinioObjectStorage(IMinioClient minioClient, ILogger<MinioObjectStorage> logger)
+	public MinioObjectStorageAdapter(IMinioClient minioClient, ILogger<MinioObjectStorageAdapter> logger)
 	{
 		_minioClient = minioClient;
 		_logger      = logger;

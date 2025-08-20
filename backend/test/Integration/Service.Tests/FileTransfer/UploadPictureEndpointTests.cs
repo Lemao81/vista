@@ -29,10 +29,10 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
-		using var       scope         = _webApplicationFactory.Services.CreateScope();
-		await using var dbContext     = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
-		var             objectStorage = scope.ServiceProvider.GetRequiredService<IObjectStorage>();
-		var             httpClient    = _webApplicationFactory.CreateClient();
+		using var       scope          = _webApplicationFactory.Services.CreateScope();
+		await using var dbContext      = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
+		var             storageAdapter = scope.ServiceProvider.GetRequiredService<IObjectStorageAdapter>();
+		var             httpClient     = _webApplicationFactory.CreateClient();
 
 		await using var stream        = File.OpenRead(Path.Combine("FileTransfer", "Files", "ph_600x400.png"));
 		using var       formContent   = new MultipartFormDataContent();
@@ -44,7 +44,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		// Pre-Assert
 		Assert.Empty(dbContext.MediaFolders);
 		Assert.Empty(dbContext.MediaItems);
-		var itemsResult = await objectStorage.GetObjectItemsAsync(StorageBucket.Media, new StoragePrefix(userId), TestContext.Current.CancellationToken);
+		var itemsResult = await storageAdapter.GetObjectItemsAsync(StorageBucket.Media, new StoragePrefix(userId), TestContext.Current.CancellationToken);
 		Assert.True(itemsResult.IsSuccess);
 		Assert.Empty(itemsResult.Value);
 
@@ -63,7 +63,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.Equal(mediaFolder.Id, mediaItem.MediaFolderId);
 		var fileName    = ApplicationHelper.GetStorageFileName(new FileName("ph_600x400.png"), mediaItem);
 		var objectName  = StorageObjectName.CreateMediaName(fileName, new UserId(userId), mediaFolder.Id);
-		var existResult = await objectStorage.ObjectExistAsync(StorageBucket.Media, objectName, TestContext.Current.CancellationToken);
+		var existResult = await storageAdapter.ObjectExistAsync(StorageBucket.Media, objectName, TestContext.Current.CancellationToken);
 		Assert.True(existResult.IsSuccess);
 		Assert.True(existResult.Value);
 	}
