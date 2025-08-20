@@ -21,7 +21,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : BasePipelineBehav
 		var failures = results.Where(r => !r.IsValid).SelectMany(r => r.Errors).ToArray();
 		if (failures.Length == 0)
 		{
-			return await next();
+			return await next(cancellationToken);
 		}
 
 		var errors = failures.GroupBy(f => f.PropertyName, StringComparer.Ordinal)

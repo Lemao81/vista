@@ -22,18 +22,18 @@ public class LoggingPipelineBehavior<TRequest, TResponse> : BasePipelineBehavior
 	public override async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
 	{
 		var startTime = Stopwatch.GetTimestamp();
-		var result    = await next();
+		var result    = await next(cancellationToken);
 		var elapsedMs = Stopwatch.GetElapsedTime(startTime).TotalMilliseconds;
 
 		if (result.IsSuccess)
 		{
-			_logger.MediatRRequestFinished(typeof(TRequest).Name, true, elapsedMs);
+			_logger.MediatRRequestFinished(typeof(TRequest).Name, isSuccess: true, elapsedMs);
 		}
 		else
 		{
-			using (LogContext.PushProperty("Error", result.Error, true))
+			using (LogContext.PushProperty("Error", result.Error, destructureObjects: true))
 			{
-				_logger.MediatRRequestFinished(typeof(TRequest).Name, false, elapsedMs);
+				_logger.MediatRRequestFinished(typeof(TRequest).Name, isSuccess: false, elapsedMs);
 			}
 		}
 

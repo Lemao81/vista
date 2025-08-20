@@ -23,7 +23,7 @@ public sealed class TransactionalPipelineBehavior<TRequest, TResponse> : BasePip
 
 		try
 		{
-			var result = await next();
+			var result = await next(cancellationToken);
 			await _unitOfWork.SaveChangesAsync(cancellationToken);
 			await transaction.CommitAsync(cancellationToken);
 

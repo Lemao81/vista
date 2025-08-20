@@ -19,7 +19,7 @@ public sealed class ExceptionHandlingPipelineBehavior<TRequest, TResponse> : Bas
 	{
 		try
 		{
-			return await next();
+			return await next(cancellationToken);
 		}
 		catch (Exception exception)
 		{
