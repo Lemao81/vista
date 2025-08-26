@@ -1,17 +1,17 @@
 ﻿using System.Net.Mime;
 using Common.Presentation.Validators;
-using FileTransfer.Presentation.Pictures.Upload;
+using FileTransfer.Presentation.Images.Upload;
 using Service.Tests.Utilities;
 
-namespace Service.Tests.Tests.FileTransfer.Pictures;
+namespace Service.Tests.Tests.FileTransfer.Images;
 
-public class UploadPictureRequestValidatorTests
+public class UploadImageRequestValidatorTests
 {
-	private readonly UploadPictureRequestValidator _classUnderTest;
+	private readonly UploadImageRequestValidator _classUnderTest;
 
-	public UploadPictureRequestValidatorTests()
+	public UploadImageRequestValidatorTests()
 	{
-		_classUnderTest = new UploadPictureRequestValidator(new FormFileValidator());
+		_classUnderTest = new UploadImageRequestValidator(new FormFileValidator());
 	}
 
 	[Fact]
@@ -19,7 +19,7 @@ public class UploadPictureRequestValidatorTests
 	{
 		// Arrange
 		var file    = new TestFormFile(MediaTypeNames.Image.Jpeg, "", 4000, "pic", "pic.jpg");
-		var request = new UploadPictureRequest(file);
+		var request = new UploadImageRequest(file);
 
 		// Act
 		var result = await _classUnderTest.ValidateAsync(request, TestContext.Current.CancellationToken);
@@ -32,7 +32,7 @@ public class UploadPictureRequestValidatorTests
 	public async Task NullFile_Should_BeInvalid()
 	{
 		// Arrange
-		var request = new UploadPictureRequest(null);
+		var request = new UploadImageRequest(null);
 
 		// Act
 		var result = await _classUnderTest.ValidateAsync(request, TestContext.Current.CancellationToken);

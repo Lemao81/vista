@@ -15,9 +15,9 @@ namespace TestDataGenerator;
 [SuppressMessage("Usage", "xUnit1004:Test methods should not be skipped")]
 public class GeneratorTests
 {
-	private readonly (string Extension, string MediaType)[] _pictureMetadata = [("png", "image/png"), ("jpg", "image/jpeg"), ("jpeg", "image/jpeg")];
-	private readonly (string Extension, string MediaType)[] _videoMetadata   = [("mp4", "video/mp4"), ("avi", "video/x-msvideo"), ("mkv", "video/x-matroska")];
-	private readonly Faker                                  _faker           = new();
+	private readonly (string Extension, string MediaType)[] _imageMetadata = [("png", "image/png"), ("jpg", "image/jpeg"), ("jpeg", "image/jpeg")];
+	private readonly (string Extension, string MediaType)[] _videoMetadata = [("mp4", "video/mp4"), ("avi", "video/x-msvideo"), ("mkv", "video/x-matroska")];
+	private readonly Faker                                  _faker         = new();
 
 	[Fact(Skip = "TestDataGenerator")]
 	public async Task ClearMediaData()
@@ -35,8 +35,8 @@ public class GeneratorTests
 		var mediaFolders = Enumerable.Range(0, 10)
 			.Select(index =>
 			{
-				var mediaKind     = index % 2 == 0 ? MediaKind.Picture : MediaKind.Video;
-				var metadataArray = index % 2 == 0 ? _pictureMetadata : _videoMetadata;
+				var mediaKind     = index % 2 == 0 ? MediaKind.Image : MediaKind.Video;
+				var metadataArray = index % 2 == 0 ? _imageMetadata : _videoMetadata;
 				var (extension, mediaType) = metadataArray[Random.Shared.Next(metadataArray.Length)];
 
 				var mediaFolder = MediaFolder.Create(userId, _faker.System.FileName(extension));

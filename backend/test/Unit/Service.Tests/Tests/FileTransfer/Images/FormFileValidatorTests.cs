@@ -2,7 +2,7 @@
 using Common.Presentation.Validators;
 using Service.Tests.Utilities;
 
-namespace Service.Tests.Tests.FileTransfer.Pictures;
+namespace Service.Tests.Tests.FileTransfer.Images;
 
 public class FormFileValidatorTests
 {

@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Routing;
 using SharedKernel;
 using static Microsoft.AspNetCore.Http.Results;
 
-namespace FileTransfer.Presentation.Pictures.Upload;
+namespace FileTransfer.Presentation.Images.Upload;
 
-internal static class UploadPictureEndpoint
+internal static class UploadImageEndpoint
 {
-	public static void MapUploadPictureEndpoint(this RouteGroupBuilder groupBuilder)
+	public static void MapUploadImageEndpoint(this RouteGroupBuilder groupBuilder)
 	{
 		groupBuilder.MapPost(
 				string.Empty,
-				async ([FromForm] UploadPictureRequest? request, IValidator<UploadPictureRequest> requestValidator, ISender sender, HttpContext httpContext) =>
+				async ([FromForm] UploadImageRequest? request, IValidator<UploadImageRequest> requestValidator, ISender sender, HttpContext httpContext) =>
 				{
 					if (request is null)
 					{
@@ -34,12 +34,12 @@ internal static class UploadPictureEndpoint
 
 					ArgumentNullException.ThrowIfNull(request.File);
 
-					var command = CommandFactory.CreateUploadPictureCommand(request.File);
+					var command = CommandFactory.CreateUploadImageCommand(request.File);
 					var result  = await sender.Send(command, httpContext.RequestAborted);
 					httpContext.MaybeAddError(result);
 
 					return result.Match(
-						response => Created($"/{Routes.Pictures}/{response.Id}", response.Id),
+						response => Created($"/{Routes.Images}/{response.Id}", response.Id),
 						error => error switch
 						{
 							ValidationError valError => ValidationProblem(valError.Errors),
@@ -47,6 +47,6 @@ internal static class UploadPictureEndpoint
 						});
 				})
 			.DisableAntiforgery()
-			.WithTags(EndpointTags.Pictures);
+			.WithTags(EndpointTags.Images);
 	}
 }

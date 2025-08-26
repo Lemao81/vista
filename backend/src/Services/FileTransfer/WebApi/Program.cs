@@ -7,7 +7,7 @@ using FileTransfer.Domain;
 using FileTransfer.Domain.Media;
 using FileTransfer.Infrastructure;
 using FileTransfer.Presentation;
-using FileTransfer.Presentation.Pictures;
+using FileTransfer.Presentation.Images;
 using FileTransfer.WebApi.Extensions;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -46,7 +46,7 @@ app.UseSerilogRequestLogging();
 app.UseStatusCodePages();
 
 var apiGroup = app.MapGroup("api");
-apiGroup.MapPictureEndpoints();
+apiGroup.MapImageEndpoints();
 
 app.UseHttpsRedirection();
 

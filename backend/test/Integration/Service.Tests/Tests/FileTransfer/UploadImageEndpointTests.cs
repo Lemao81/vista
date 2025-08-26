@@ -13,12 +13,12 @@ using Tests.Common;
 
 namespace Service.Tests.Tests.FileTransfer;
 
-public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicationFactory>
+public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplicationFactory>
 {
 	private readonly FileTransferWebApplicationFactory _webApplicationFactory;
 	private readonly ITestOutputHelper                 _testOutputHelper;
 
-	public UploadPictureEndpointTests(FileTransferWebApplicationFactory webApplicationFactory, ITestOutputHelper testOutputHelper)
+	public UploadImageEndpointTests(FileTransferWebApplicationFactory webApplicationFactory, ITestOutputHelper testOutputHelper)
 	{
 		_webApplicationFactory = webApplicationFactory;
 		_testOutputHelper      = testOutputHelper;
@@ -49,7 +49,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.Empty(itemsResult.Value);
 
 		// Act
-		var response = await httpClient.PostAsync("api/pictures", formContent, TestContext.Current.CancellationToken);
+		var response = await httpClient.PostAsync("api/images", formContent, TestContext.Current.CancellationToken);
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
@@ -58,7 +58,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		Assert.Single(dbContext.MediaItems);
 		var mediaFolder = dbContext.MediaFolders.Single();
 		var mediaItem   = dbContext.MediaItems.First();
-		Assert.Equal(MediaKind.Picture, mediaItem.MediaKind);
+		Assert.Equal(MediaKind.Image, mediaItem.MediaKind);
 		Assert.Equal(MediaSizeKind.Original, mediaItem.MediaSizeKind);
 		Assert.Equal(mediaFolder.Id, mediaItem.MediaFolderId);
 		var fileName    = ApplicationHelper.GetStorageFileName(new FileName("ph_600x400.png"), mediaItem);
@@ -83,7 +83,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		formContent.Add(streamContent, "file", "empty.png");
 
 		// Act
-		var response = await httpClient.PostAsync("api/pictures", formContent, TestContext.Current.CancellationToken);
+		var response = await httpClient.PostAsync("api/images", formContent, TestContext.Current.CancellationToken);
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert
@@ -105,7 +105,7 @@ public class UploadPictureEndpointTests : IClassFixture<FileTransferWebApplicati
 		formContent.Add(streamContent, "file", "test.txt");
 
 		// Act
-		var response = await httpClient.PostAsync("api/pictures", formContent, TestContext.Current.CancellationToken);
+		var response = await httpClient.PostAsync("api/images", formContent, TestContext.Current.CancellationToken);
 		await response.PrintContentAsync(_testOutputHelper);
 
 		// Assert

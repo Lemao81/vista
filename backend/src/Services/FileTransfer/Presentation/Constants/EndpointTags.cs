@@ -2,5 +2,5 @@
 
 internal static class EndpointTags
 {
-	public const string Pictures = nameof(Pictures);
+	public const string Images = nameof(Images);
 }

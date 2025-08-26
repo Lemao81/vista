@@ -2,6 +2,6 @@
 
 public static class Routes
 {
-	public const string Health   = "health";
-	public const string Pictures = "pictures";
+	public const string Health = "health";
+	public const string Images = "images";
 }

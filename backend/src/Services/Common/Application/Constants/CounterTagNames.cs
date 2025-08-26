@@ -2,5 +2,5 @@
 
 public static class CounterTagNames
 {
-	public const string PictureMediaType = "picture.media_type";
+	public const string ImageMediaType = "image.media_type";
 }

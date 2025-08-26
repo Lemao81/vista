@@ -5,11 +5,11 @@ namespace FileTransfer.Domain.Media;
 public class UploadMediaOptions
 {
 	[Required]
-	public required IEnumerable<string> ValidPictureContentTypes { get; set; }
+	public required IEnumerable<string> ValidImageContentTypes { get; set; }
 
 	[Required]
-	public required IEnumerable<string> ValidPictureFileExtensions { get; set; }
+	public required IEnumerable<string> ValidImageFileExtensions { get; set; }
 
 	[Range(1, int.MaxValue)]
-	public int MaxPictureFileLengthKb { get; set; }
+	public int MaxImageFileLengthKb { get; set; }
 }

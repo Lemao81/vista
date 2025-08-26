@@ -5,16 +5,16 @@ namespace FileTransfer.Application.Media;
 
 public class FileTransferMetrics
 {
-	private readonly Counter<int> _pictureUploadCounter;
+	private readonly Counter<int> _imageUploadCounter;
 
 	public FileTransferMetrics(IMeterFactory meterFactory)
 	{
 		using var meter = meterFactory.Create(MeterNames.FileTransfer);
-		_pictureUploadCounter = meter.CreateCounter<int>(CounterNames.PictureUpload);
+		_imageUploadCounter = meter.CreateCounter<int>(CounterNames.ImageUpload);
 	}
 
-	public void PictureUploaded(string mediaType)
+	public void ImageUploaded(string mediaType)
 	{
-		_pictureUploadCounter.Add(1, new KeyValuePair<string, object?>(CounterTagNames.PictureMediaType, mediaType));
+		_imageUploadCounter.Add(1, new KeyValuePair<string, object?>(CounterTagNames.ImageMediaType, mediaType));
 	}
 }

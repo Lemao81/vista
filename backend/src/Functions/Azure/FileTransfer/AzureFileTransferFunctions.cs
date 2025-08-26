@@ -34,10 +34,10 @@ public class AzureFileTransferFunctions
 		return new OkObjectResult(HealthStatus.Healthy.ToString());
 	}
 
-	[Function("UploadPicture")]
-	public async Task<IActionResult> UploadPictureAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = Routes.Pictures)] HttpRequest req)
+	[Function("UploadImage")]
+	public async Task<IActionResult> UploadImageAsync([HttpTrigger(AuthorizationLevel.Function, "post", Route = Routes.Images)] HttpRequest req)
 	{
-		_logger.LogInformation("Calling UploadPicture function");
+		_logger.LogInformation("Calling UploadImage function");
 
 		try
 		{
@@ -62,14 +62,14 @@ public class AzureFileTransferFunctions
 				return CreateValidationProblemResult(validationResult.ToDictionary());
 			}
 
-			var command = CommandFactory.CreateUploadPictureCommand(formData.Files[0]);
+			var command = CommandFactory.CreateUploadImageCommand(formData.Files[0]);
 			var result  = await _sender.Send(command);
 
 			//// TODO add function equivalent
 			//// httpContext.MaybeAddError(result);
 
 			return result.Match<IActionResult>(
-				response => new CreatedResult($"/{Routes.Pictures}/{response.Id}", response.Id),
+				response => new CreatedResult($"/{Routes.Images}/{response.Id}", response.Id),
 				error => error switch
 				{
 					ValidationError valError => CreateValidationProblemResult(valError.Errors),

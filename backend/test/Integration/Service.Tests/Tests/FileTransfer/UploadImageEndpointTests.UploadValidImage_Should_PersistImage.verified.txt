@@ -1,7 +1,7 @@
 ﻿{
   Status: 201 Created,
   Headers: {
-    Location: /pictures/Guid_1
+    Location: /images/Guid_1
   },
   Content: {
     Headers: {

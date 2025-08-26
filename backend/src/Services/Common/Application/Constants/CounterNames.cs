@@ -2,5 +2,5 @@
 
 public static class CounterNames
 {
-	public const string PictureUpload = "picture.uploads";
+	public const string ImageUpload = "image.uploads";
 }

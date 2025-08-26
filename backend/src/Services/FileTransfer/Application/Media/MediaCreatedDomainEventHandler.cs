@@ -17,8 +17,8 @@ internal sealed class MediaCreatedDomainEventHandler : INotificationHandler<Medi
 	{
 		switch (domainEvent.MediaKind)
 		{
-			case MediaKind.Picture:
-				_fileTransferMetrics.PictureUploaded(domainEvent.MediaType);
+			case MediaKind.Image:
+				_fileTransferMetrics.ImageUploaded(domainEvent.MediaType);
 
 				break;
 			case MediaKind.Video:
