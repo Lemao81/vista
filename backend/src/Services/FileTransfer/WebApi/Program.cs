@@ -28,7 +28,7 @@ builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 builder.Services.AddObjectStoragePersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
-builder.Services.AddSerilog((services, configure) => configure.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services));
+builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(sp));
 
 builder.Services.AddOptions<UploadMediaOptions>().BindConfiguration(ConfigurationKeys.MediaUpload).ValidateDataAnnotations().ValidateOnStart();
 builder.Services.AddSingleton<UploadMediaOptions>(sp => sp.GetRequiredService<IOptions<UploadMediaOptions>>().Value);

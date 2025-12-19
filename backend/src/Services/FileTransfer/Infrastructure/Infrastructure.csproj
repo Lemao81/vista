@@ -10,16 +10,11 @@
     <PackageReference Include="EFCore.NamingConventions"/>
     <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL"/>
     <PackageReference Include="Minio"/>
-    <PackageReference Include="Npgsql.OpenTelemetry" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol"/>
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting"/>
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore"/>
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http"/>
-    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Common\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\Common\Persistence\Persistence.csproj"/>
     <ProjectReference Include="..\Domain\Domain.csproj"/>
   </ItemGroup>

@@ -52,8 +52,6 @@ services:
     secrets:
       - postgres-password
       - minio-keys
-    ports:
-      - "5001:8080"
     depends_on:
       vista-postgres:
         condition: service_healthy
@@ -63,6 +61,19 @@ services:
       vista:
         aliases:
           - maintenance-api
+            
+  vista-gateway-api:
+    build:
+      context: .
+      dockerfile: src/Services/Gateway/WebApi/Dockerfile
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}
+    ports:
+      - "5000:8080"
+    networks:
+      vista:
+        aliases:
+          - gateway-api
   
   vista-file-transfer-api:
     build:
@@ -78,8 +89,6 @@ services:
     secrets:
       - postgres-password
       - minio-keys
-    ports:
-      - "5000:8080"
     depends_on:
       vista-maintenance-api:
         condition: service_healthy

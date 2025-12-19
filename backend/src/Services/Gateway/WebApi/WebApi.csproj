@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <AssemblyName>Gateway.WebApi</AssemblyName>
+    <RootNamespace>Gateway.WebApi</RootNamespace>
+    <UserSecretsId>28cec5e5-7478-4be8-8bfb-7bf090e7d71b</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+    <PackageReference Include="Yarp.ReverseProxy" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Common\WebApi\WebApi.csproj" />
+  </ItemGroup>
+
+</Project>

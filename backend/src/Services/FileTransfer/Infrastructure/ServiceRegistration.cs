@@ -1,5 +1,6 @@
 ﻿using Common.Application.Abstractions;
 using Common.Application.Constants;
+using Common.Infrastructure.Extensions;
 using Common.Persistence.Constants;
 using Common.Persistence.Extensions;
 using Common.Persistence.Interceptors;
@@ -11,13 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Npgsql;
-using OpenTelemetry;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 
 namespace FileTransfer.Infrastructure;
 
@@ -28,33 +23,7 @@ public static class ServiceRegistration
 		IWebHostEnvironment     environment,
 		ILoggingBuilder         loggingBuilder)
 	{
-		loggingBuilder.AddOpenTelemetry(logging =>
-		{
-			logging.IncludeFormattedMessage = true;
-			logging.IncludeScopes           = true;
-		});
-
-		services.AddOpenTelemetry()
-			.ConfigureResource(r => r.AddService(ServiceNames.FileTransfer))
-			.WithMetrics(metrics =>
-			{
-				metrics.AddAspNetCoreInstrumentation();
-				metrics.AddHttpClientInstrumentation();
-				metrics.AddRuntimeInstrumentation();
-				metrics.AddMeter(MeterNames.FileTransfer);
-			})
-			.WithTracing(tracing =>
-			{
-				if (environment.IsDevelopment())
-				{
-					tracing.SetSampler<AlwaysOnSampler>();
-				}
-
-				tracing.AddAspNetCoreInstrumentation();
-				tracing.AddHttpClientInstrumentation();
-				tracing.AddNpgsql();
-			})
-			.UseOtlpExporter();
+		services.AddTelemetry(environment, loggingBuilder, ServiceNames.FileTransfer, MeterNames.FileTransfer);
 
 		return services;
 	}
