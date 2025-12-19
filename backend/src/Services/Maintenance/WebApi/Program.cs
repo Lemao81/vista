@@ -1,4 +1,6 @@
+using Common.Application.Constants;
 using Common.Azure.Extensions;
+using Common.Infrastructure.Extensions;
 using Common.Persistence.Extensions;
 using Common.Persistence.Utilities;
 using Common.WebApi.Constants;
@@ -7,12 +9,17 @@ using Lemao.UtilExtensions;
 using Maintenance.WebApi;
 using Maintenance.WebApi.Abstractions;
 using Maintenance.WebApi.Initiators;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddCommonAppSettings();
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddTelemetry(builder.Environment, builder.Logging, ServiceNames.Maintenance, MeterNames.Maintenance);
+
+builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(sp));
 
 builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");
 

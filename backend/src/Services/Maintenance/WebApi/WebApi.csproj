@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Azure\Azure.csproj"/>
+    <ProjectReference Include="..\..\Common\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\Common\Persistence\Persistence.csproj"/>
     <ProjectReference Include="..\..\Common\WebApi\WebApi.csproj"/>
   </ItemGroup>

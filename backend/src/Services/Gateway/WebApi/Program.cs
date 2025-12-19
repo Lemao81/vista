@@ -10,7 +10,7 @@ builder.Configuration.AddCommonAppSettings();
 builder.Services.AddOpenApi();
 
 builder.Services.AddCommonServices();
-builder.Services.AddTelemetry(builder.Environment, builder.Logging, ServiceNames.Gateway, ServiceNames.Gateway);
+builder.Services.AddTelemetry(builder.Environment, builder.Logging, ServiceNames.Gateway, MeterNames.Gateway);
 
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection(ConfigurationKeys.ReverseProxy));
 
