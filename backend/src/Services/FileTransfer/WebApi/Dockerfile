@@ -14,7 +14,6 @@ FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION} AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Directory.Packages.props", "."]
-COPY ["src/Services/FileTransfer/Directory.Build.props", "src/Services/FileTransfer/"]
 COPY ["src/Directory.Build.props", "src/"]
 COPY ["Directory.Build.props", "."]
 COPY ["src/Services/FileTransfer/WebApi/WebApi.csproj", "src/Services/FileTransfer/WebApi/"]
