@@ -33,7 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		minio-keys = minio-keys
 		postgres-password = postgres-password
 		src\Directory.Build.props = src\Directory.Build.props
-		dev\FileTransferFunctions.http = dev\FileTransferFunctions.http
+		src\Services\FileTransfer\WebApi\WebApi.FileTransfer.http = src\Services\FileTransfer\WebApi\WebApi.FileTransfer.http
+		src\Services\Authentication\WebApi\WebApi.Authentication.http = src\Services\Authentication\WebApi\WebApi.Authentication.http
+		dev\Functions.FileTransfer.http = dev\Functions.FileTransfer.http
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{77BF20A9-EA2E-42FC-8D51-CA37B7DEDBAF}"
