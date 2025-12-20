@@ -16,6 +16,8 @@ public sealed class FileTransferDbContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
+		base.OnModelCreating(modelBuilder);
+
 		modelBuilder.HasDefaultSchema(DbSchemas.FileTransfer);
 		modelBuilder.ApplyConfigurationsFromAssembly(typeof(FileTransferDbContext).Assembly);
 	}

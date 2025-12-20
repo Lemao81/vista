@@ -1,3 +1,4 @@
+using System.Globalization;
 using Common.Application.Constants;
 using Common.Azure.Extensions;
 using Common.Infrastructure.Extensions;
@@ -10,6 +11,8 @@ using Maintenance.WebApi;
 using Maintenance.WebApi.Abstractions;
 using Maintenance.WebApi.Initiators;
 using Serilog;
+
+Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(formatProvider: CultureInfo.InvariantCulture).CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 

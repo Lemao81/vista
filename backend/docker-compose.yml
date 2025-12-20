@@ -61,7 +61,7 @@ services:
       vista:
         aliases:
           - maintenance-api
-            
+  
   vista-gateway-api:
     build:
       context: .
@@ -74,6 +74,26 @@ services:
       vista:
         aliases:
           - gateway-api
+  
+  vista-authentication-api:
+    build:
+      context: .
+      dockerfile: src/Services/Authentication/WebApi/Dockerfile
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}
+    environment:
+      Database__Host: ${DB_HOST}
+      Database__Username: ${DB_USER}
+      Database__PasswordFile: /run/secrets/postgres-password
+    secrets:
+      - postgres-password
+    depends_on:
+      vista-maintenance-api:
+        condition: service_healthy
+    networks:
+      vista:
+        aliases:
+          - authentication-api
   
   vista-file-transfer-api:
     build:

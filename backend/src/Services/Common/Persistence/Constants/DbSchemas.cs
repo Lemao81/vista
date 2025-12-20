@@ -2,5 +2,6 @@
 
 public static class DbSchemas
 {
-	public const string FileTransfer = "filetransfer";
+	public const string Authentication = "authentication";
+	public const string FileTransfer   = "filetransfer";
 }

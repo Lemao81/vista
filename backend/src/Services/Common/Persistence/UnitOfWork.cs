@@ -1,14 +1,16 @@
 ﻿using System.Data.Common;
 using Common.Application.Abstractions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace FileTransfer.Infrastructure;
+namespace Common.Persistence;
 
-internal sealed class UnitOfWork : IUnitOfWork
+public sealed class UnitOfWork<T> : IUnitOfWork
+	where T : DbContext
 {
-	private readonly FileTransferDbContext _dbContext;
+	private readonly T _dbContext;
 
-	public UnitOfWork(FileTransferDbContext dbContext)
+	public UnitOfWork(T dbContext)
 	{
 		_dbContext = dbContext;
 	}

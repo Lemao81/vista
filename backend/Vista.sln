@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8AD07C1A-B654-4D63-BA02-CCC283192007}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FileTransfer", "FileTransfer", "{E14AF59F-958A-4298-8673-759A5CC67206}"
-	ProjectSection(SolutionItems) = preProject
-		src\Services\FileTransfer\Directory.Build.props = src\Services\FileTransfer\Directory.Build.props
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\FileTransfer\Application\Application.csproj", "{4FF7C167-427B-4142-9509-22B3596EA315}"
 EndProject
@@ -119,6 +116,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\Services\Gate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Services\Common\Infrastructure\Infrastructure.csproj", "{9D5B3D32-4DAD-4211-852A-5CB0FF8853B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{806748D8-C667-449F-A11E-E3CF46F7516D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\Services\Authentication\WebApi\WebApi.csproj", "{F02714D0-FBFF-4E16-81BE-3A00F089892A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Services\Authentication\Domain\Domain.csproj", "{2D3EAB69-30E4-4420-B05E-35B50F06440C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Services\Authentication\Application\Application.csproj", "{D57E5C89-6790-4E1F-957C-A8D44241AFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Services\Authentication\Infrastructure\Infrastructure.csproj", "{9E034C8D-A572-4298-A6F5-DACEC9CC6362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Services\Authentication\Presentation\Presentation.csproj", "{3214CA82-C917-4300-B82F-C772479513A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -209,6 +218,26 @@ Global
 		{9D5B3D32-4DAD-4211-852A-5CB0FF8853B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D5B3D32-4DAD-4211-852A-5CB0FF8853B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D5B3D32-4DAD-4211-852A-5CB0FF8853B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F02714D0-FBFF-4E16-81BE-3A00F089892A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02714D0-FBFF-4E16-81BE-3A00F089892A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02714D0-FBFF-4E16-81BE-3A00F089892A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02714D0-FBFF-4E16-81BE-3A00F089892A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3EAB69-30E4-4420-B05E-35B50F06440C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3EAB69-30E4-4420-B05E-35B50F06440C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3EAB69-30E4-4420-B05E-35B50F06440C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3EAB69-30E4-4420-B05E-35B50F06440C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57E5C89-6790-4E1F-957C-A8D44241AFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57E5C89-6790-4E1F-957C-A8D44241AFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57E5C89-6790-4E1F-957C-A8D44241AFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57E5C89-6790-4E1F-957C-A8D44241AFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E034C8D-A572-4298-A6F5-DACEC9CC6362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E034C8D-A572-4298-A6F5-DACEC9CC6362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E034C8D-A572-4298-A6F5-DACEC9CC6362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E034C8D-A572-4298-A6F5-DACEC9CC6362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3214CA82-C917-4300-B82F-C772479513A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3214CA82-C917-4300-B82F-C772479513A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3214CA82-C917-4300-B82F-C772479513A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3214CA82-C917-4300-B82F-C772479513A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,5 +277,11 @@ Global
 		{86B778DC-F2E0-4101-89DA-19EED084C44F} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
 		{5FA563C5-DEA9-48E5-9C13-97E83482DEE9} = {86B778DC-F2E0-4101-89DA-19EED084C44F}
 		{9D5B3D32-4DAD-4211-852A-5CB0FF8853B0} = {44C79AF2-B0B3-404F-B437-A04C82B0B57B}
+		{806748D8-C667-449F-A11E-E3CF46F7516D} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
+		{F02714D0-FBFF-4E16-81BE-3A00F089892A} = {806748D8-C667-449F-A11E-E3CF46F7516D}
+		{2D3EAB69-30E4-4420-B05E-35B50F06440C} = {806748D8-C667-449F-A11E-E3CF46F7516D}
+		{D57E5C89-6790-4E1F-957C-A8D44241AFAF} = {806748D8-C667-449F-A11E-E3CF46F7516D}
+		{9E034C8D-A572-4298-A6F5-DACEC9CC6362} = {806748D8-C667-449F-A11E-E3CF46F7516D}
+		{3214CA82-C917-4300-B82F-C772479513A7} = {806748D8-C667-449F-A11E-E3CF46F7516D}
 	EndGlobalSection
 EndGlobal

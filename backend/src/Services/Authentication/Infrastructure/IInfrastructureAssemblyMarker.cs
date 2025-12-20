@@ -1,0 +1,3 @@
+﻿namespace Authentication.Infrastructure;
+
+public interface IInfrastructureAssemblyMarker;
