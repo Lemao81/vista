@@ -6,8 +6,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 
 RUN apt-get update
 RUN apt-get install -y curl
-
-HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --start-interval=2s --retries=10 CMD curl -f http://localhost:8080/health || exit
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --start-interval=2s --retries=10 CMD curl -f http://localhost:8080/health || exit 1
 
 USER $APP_UID
 WORKDIR /app

@@ -19,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddCommonAppSettings();
 
 builder.Services.AddOpenApi();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddCommonServices();
 builder.Services.AddDomainServices();
@@ -36,6 +37,7 @@ builder.Services.AddSingleton<UploadMediaOptions>(sp => sp.GetRequiredService<IO
 var app = builder.Build();
 
 app.UseExceptionHandler();
+app.MapHealthChecks("/api/health");
 
 if (app.Environment.IsDevelopment())
 {

@@ -19,12 +19,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddCommonAppSettings();
 
 builder.Services.AddOpenApi();
+builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");
+
+builder.Services.AddCommonServices();
 
 builder.Services.AddTelemetry(builder.Environment, builder.Logging, ServiceNames.Maintenance, MeterNames.Maintenance);
 
 builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(sp));
-
-builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");
 
 var initiateDatabase = EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiatePostgresDatabase);
 if (initiateDatabase)
@@ -46,6 +47,7 @@ if (EnvironmentVariable.IsTrue(EnvironmentVariableNames.InitiateAzureBlobStorage
 
 var app = builder.Build();
 
+app.UseExceptionHandler();
 app.MapHealthChecks("/health");
 
 if (app.Environment.IsDevelopment())

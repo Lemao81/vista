@@ -17,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddCommonAppSettings();
 
 builder.Services.AddOpenApi();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddCommonServices();
 builder.Services.AddDomainServices();
@@ -32,6 +33,7 @@ builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Config
 var app = builder.Build();
 
 app.UseExceptionHandler();
+app.MapHealthChecks("/api/health");
 
 if (app.Environment.IsDevelopment())
 {

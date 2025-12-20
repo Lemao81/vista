@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddCommonAppSettings();
 
 builder.Services.AddOpenApi();
+builder.Services.AddHealthChecks();
 
 builder.Services.AddCommonServices();
 builder.Services.AddTelemetry(builder.Environment, builder.Logging, ServiceNames.Gateway, MeterNames.Gateway);
@@ -22,6 +23,7 @@ builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Config
 var app = builder.Build();
 
 app.UseExceptionHandler();
+app.MapHealthChecks("/health");
 
 if (app.Environment.IsDevelopment())
 {
