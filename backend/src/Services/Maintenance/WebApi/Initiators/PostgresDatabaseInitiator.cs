@@ -23,9 +23,24 @@ internal sealed class PostgresDatabaseInitiator : IInitiator
 
 	public async Task<bool> InitiateAsync(CancellationToken cancellationToken = default)
 	{
-		var result = await UpgradeDatabaseAsync(DbNames.FileTransfer, cancellationToken);
+		var result = await UpgradeDatabasesAsync(cancellationToken, DbNames.FileTransfer, DbNames.Authentication);
 		var log    = $"{GetType().Name} {(result ? "succeeded" : "failed")} initiating";
 		_logger.LogInformation("{Log}", log);
+
+		return result;
+	}
+
+	private async Task<bool> UpgradeDatabasesAsync(CancellationToken cancellationToken = default, params string[] databases)
+	{
+		var result = true;
+		foreach (var database in databases)
+		{
+			var succeeded = await UpgradeDatabaseAsync(database, cancellationToken);
+			var log       = $"Database '{database}' {(succeeded ? "succeeded" : "failed")} upgrading";
+			_logger.LogInformation("{Log}", log);
+
+			result &= succeeded;
+		}
 
 		return result;
 	}

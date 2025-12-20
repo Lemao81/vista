@@ -24,11 +24,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DbScripts\vista_authentication\" />
     <Folder Include="DbScripts\vista_file_transfer\"/>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="DbScripts\vista_file_transfer\0001_Initial.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="DbScripts\vista_authentication\0001_Initial.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

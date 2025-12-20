@@ -1,12 +1,23 @@
 {
   "profiles": {
-    "Maintenance http": {
+    "Maintenance all http": {
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "INIT_POSTGRES_DB": "true",
         "INIT_MINIO": "true",
         "INIT_AZURE_BLOB": "true"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5000"
+    },
+    "Maintenance db http": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "INIT_POSTGRES_DB": "true",
+        "INIT_MINIO": "false",
+        "INIT_AZURE_BLOB": "false"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5000"
