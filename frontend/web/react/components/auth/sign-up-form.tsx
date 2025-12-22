@@ -1,6 +1,7 @@
 import Input from '@/components/ui/input';
 import { useContext } from 'react';
 import { ModalContext } from '@/components/shared/modal-provider';
+import Button from '@/components/ui/button';
 
 export default function SignUpForm() {
   const { setShowSignUpModal } = useContext(ModalContext);
@@ -18,15 +19,12 @@ export default function SignUpForm() {
         />
       </div>
       <div className="flex gap-4 mt-10">
-        <button className="rounded-lg bg-blue-500 px-4 py-1.5 text-white shadow-md transition-all hover:bg-blue-400 active:bg-blue-600 active:scale-95 cursor-pointer">
-          OK
-        </button>
-        <button
-          className="rounded-lg border border-neutral-300 bg-white px-4 py-1.5 shadow-md transition-all hover:bg-gray-100 active:bg-gray-200 active:scale-95 cursor-pointer"
+        <Button text={'OK'} className="bg-blue-500 hover:bg-blue-400 active:bg-blue-600" />
+        <Button
+          text={'Cancel'}
+          className="border border-neutral-300 bg-white hover:bg-gray-100 active:bg-gray-200 text-black"
           onClick={() => setShowSignUpModal(false)}
-        >
-          Cancel
-        </button>
+        />
       </div>
     </div>
   );
