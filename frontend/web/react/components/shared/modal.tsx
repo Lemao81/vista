@@ -4,12 +4,13 @@ import React, { PropsWithChildren } from 'react';
 
 export type ModalProps = {
   show: boolean;
+  onDismiss?: () => void;
 } & PropsWithChildren;
 
-export default function Modal({ show, children }: ModalProps) {
+export default function Modal({ children, show, onDismiss }: ModalProps) {
   return (
     <div style={{ display: show ? 'block' : 'none' }}>
-      <Overlay>
+      <Overlay onDismiss={() => onDismiss?.()}>
         <ModalCanvas>{children}</ModalCanvas>
       </Overlay>
     </div>
