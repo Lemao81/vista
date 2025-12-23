@@ -29,6 +29,8 @@ builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 builder.Services.AddObjectStoragePersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
 builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(sp));
 
 builder.Services.AddOptions<UploadMediaOptions>().BindConfiguration(ConfigurationKeys.MediaUpload).ValidateDataAnnotations().ValidateOnStart();
@@ -58,5 +60,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 {
 	await app.MigrateDatabaseAsync();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 await app.RunAsync();

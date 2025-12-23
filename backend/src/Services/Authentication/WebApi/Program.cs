@@ -27,6 +27,7 @@ builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
 builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>().AddEntityFrameworkStores<AuthenticationDbContext>();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(sp));
 
@@ -53,5 +54,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 }
 
 await app.AddUserRolesAsync(logger);
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 await app.RunAsync();

@@ -9,7 +9,7 @@ public static class ImagesEndpointGroup
 {
 	public static void MapImageEndpoints(this RouteGroupBuilder apiGroup)
 	{
-		var imagesGroup = apiGroup.MapGroup(Routes.Images);
+		var imagesGroup = apiGroup.MapGroup(Routes.Images).RequireAuthorization();
 		imagesGroup.MapUploadImageEndpoint();
 	}
 }

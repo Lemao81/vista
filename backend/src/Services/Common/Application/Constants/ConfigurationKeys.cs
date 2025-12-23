@@ -15,4 +15,8 @@ public static class ConfigurationKeys
 	public const string AzureStorageBlobServiceUri          = "Azure:Storage:Blob:ServiceUri";
 	public const string AzureStorageManagedIdentityClientId = "Azure:Storage:ManagedIdentityClientId";
 	public const string ReverseProxy                        = "ReverseProxy";
+	public const string Jwt                                 = "JWT";
+	public const string JwtIssuer                           = "JWT:Issuer";
+	public const string JwtAudience                         = "JWT:Audience";
+	public const string JwtSecretKey                        = "JWT:SecretKey";
 }
