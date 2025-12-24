@@ -1,10 +1,12 @@
 ﻿using System.Text;
 using Common.Application.Constants;
+using Common.Domain.Authentication;
 using Common.Presentation.Constants;
 using Common.WebApi.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SharedKernel;
 
@@ -30,7 +32,8 @@ public static class ServiceCollectionExtensions
 
 	public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
 	{
-		services.AddOptions<JwtBearerOptions>().BindConfiguration(ConfigurationKeys.Jwt).ValidateDataAnnotations().ValidateOnStart();
+		services.AddOptions<JwtOptions>().BindConfiguration(ConfigurationKeys.Jwt).ValidateDataAnnotations().ValidateOnStart();
+		services.AddSingleton<JwtOptions>(sp => sp.GetRequiredService<IOptions<JwtOptions>>().Value);
 
 		services.AddAuthentication(options =>
 			{
