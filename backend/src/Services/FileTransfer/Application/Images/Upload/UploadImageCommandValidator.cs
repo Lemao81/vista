@@ -1,6 +1,7 @@
 ﻿using FileTransfer.Domain.Media;
 using FluentValidation;
 using Lemao.UtilExtensions;
+using SharedApi.FileTransfer.UploadImage;
 
 namespace FileTransfer.Application.Images.Upload;
 

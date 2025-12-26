@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
+using SharedApi.FileTransfer.UploadImage;
 
 namespace FileTransfer.Presentation.Images.Upload;
 

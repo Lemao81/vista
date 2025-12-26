@@ -1,4 +1,5 @@
-﻿using Common.Presentation.Extensions;
+﻿using Common.Presentation.Constants;
+using Common.Presentation.Extensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,8 @@ public static class SignUpUserEndpoint
 							_                        => InternalServerError(),
 						});
 				})
+			.DisableAntiforgery()
+			.WithTags(EndpointTags.Auth)
 			.AllowAnonymous();
 	}
 }

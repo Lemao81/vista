@@ -5,6 +5,7 @@ using FileTransfer.Domain.Media;
 using FileTransfer.Domain.ValueObjects;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using SharedApi.FileTransfer.UploadImage;
 using SharedKernel;
 
 namespace FileTransfer.Application.Images.Upload;

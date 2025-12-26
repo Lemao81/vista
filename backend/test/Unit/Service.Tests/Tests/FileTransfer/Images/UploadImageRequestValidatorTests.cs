@@ -2,6 +2,7 @@
 using Common.Presentation.Validators;
 using FileTransfer.Presentation.Images.Upload;
 using Service.Tests.Utilities;
+using SharedApi.FileTransfer.UploadImage;
 
 namespace Service.Tests.Tests.FileTransfer.Images;
 

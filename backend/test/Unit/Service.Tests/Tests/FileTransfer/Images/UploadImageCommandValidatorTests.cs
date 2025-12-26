@@ -1,6 +1,7 @@
 ﻿using FileTransfer.Application.Images.Upload;
 using FileTransfer.Domain.Media;
 using NSubstitute;
+using SharedApi.FileTransfer.UploadImage;
 using SharedKernel;
 
 namespace Service.Tests.Tests.FileTransfer.Images;

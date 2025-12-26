@@ -1,19 +1,19 @@
 ﻿using Common.Presentation.Constants;
 using Common.Presentation.Extensions;
-using FileTransfer.Application.Utilities;
-using FileTransfer.Presentation.Constants;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using SharedApi.FileTransfer;
+using SharedApi.FileTransfer.UploadImage;
 using SharedKernel;
 using static Microsoft.AspNetCore.Http.Results;
 
 namespace FileTransfer.Presentation.Images.Upload;
 
-internal static class UploadImageEndpoint
+public static class UploadImageEndpoint
 {
 	public static void MapUploadImageEndpoint(this RouteGroupBuilder groupBuilder)
 	{

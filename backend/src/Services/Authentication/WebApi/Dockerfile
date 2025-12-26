@@ -28,6 +28,7 @@ COPY ["src/Services/Common/Application/Application.csproj", "src/Services/Common
 COPY ["src/Services/SharedKernel/SharedKernel.csproj", "src/Services/SharedKernel/"]
 COPY ["src/Services/Common/Domain/Domain.csproj", "src/Services/Common/Domain/"]
 COPY ["src/Services/Authentication/Application/Application.csproj", "src/Services/Authentication/Application/"]
+COPY ["src/Services/SharedApi/SharedApi.csproj", "src/Services/SharedApi/"]
 COPY ["src/Services/Authentication/Domain/Domain.csproj", "src/Services/Authentication/Domain/"]
 COPY ["src/Services/Authentication/Infrastructure/Infrastructure.csproj", "src/Services/Authentication/Infrastructure/"]
 COPY ["src/Services/Common/Infrastructure/Infrastructure.csproj", "src/Services/Common/Infrastructure/"]

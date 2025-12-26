@@ -1,14 +1,12 @@
 using System.Globalization;
 using Common.Application.Constants;
 using Common.Persistence.Utilities;
-using Common.Presentation.Constants;
 using Common.WebApi.Extensions;
 using FileTransfer.Application;
 using FileTransfer.Domain;
 using FileTransfer.Domain.Media;
 using FileTransfer.Infrastructure;
 using FileTransfer.Presentation;
-using FileTransfer.Presentation.Images;
 using FileTransfer.WebApi.Extensions;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -50,8 +48,7 @@ if (app.Environment.IsDevelopment())
 app.UseSerilogRequestLogging();
 app.UseStatusCodePages();
 
-var apiGroup = app.MapGroup(Routes.Api);
-apiGroup.MapImageEndpoints();
+app.MapEndpoints();
 
 app.UseHttpsRedirection();
 

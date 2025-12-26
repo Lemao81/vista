@@ -1,5 +1,4 @@
 ﻿using Common.Presentation.Constants;
-using FileTransfer.Application.Utilities;
 using FluentValidation;
 using Lemao.UtilExtensions;
 using MediatR;
@@ -8,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
+using SharedApi.FileTransfer;
 using SharedKernel;
 using static FileTransfer.ResultFactory;
 
