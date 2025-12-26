@@ -130,6 +130,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Services\Authentication\Presentation\Presentation.csproj", "{3214CA82-C917-4300-B82F-C772479513A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedApi", "src\Services\SharedApi\SharedApi.csproj", "{D9F4E89A-734E-4661-ADB5-A241F6DDA0B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -240,6 +242,10 @@ Global
 		{3214CA82-C917-4300-B82F-C772479513A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3214CA82-C917-4300-B82F-C772479513A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3214CA82-C917-4300-B82F-C772479513A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F4E89A-734E-4661-ADB5-A241F6DDA0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9F4E89A-734E-4661-ADB5-A241F6DDA0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9F4E89A-734E-4661-ADB5-A241F6DDA0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9F4E89A-734E-4661-ADB5-A241F6DDA0B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,5 +291,6 @@ Global
 		{D57E5C89-6790-4E1F-957C-A8D44241AFAF} = {806748D8-C667-449F-A11E-E3CF46F7516D}
 		{9E034C8D-A572-4298-A6F5-DACEC9CC6362} = {806748D8-C667-449F-A11E-E3CF46F7516D}
 		{3214CA82-C917-4300-B82F-C772479513A7} = {806748D8-C667-449F-A11E-E3CF46F7516D}
+		{D9F4E89A-734E-4661-ADB5-A241F6DDA0B9} = {8AD07C1A-B654-4D63-BA02-CCC283192007}
 	EndGlobalSection
 EndGlobal

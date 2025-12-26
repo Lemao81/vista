@@ -26,7 +26,12 @@ builder.Services.AddInfrastructureServices(builder.Environment, builder.Logging)
 builder.Services.AddDatabasePersistenceServices(builder.Configuration);
 builder.Services.AddPresentationServices();
 
-builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>().AddEntityFrameworkStores<AuthenticationDbContext>();
+builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(options =>
+	{
+		options.User.RequireUniqueEmail = true;
+	})
+	.AddEntityFrameworkStores<AuthenticationDbContext>();
+
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddSerilog((sp, configuration) => configuration.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(sp));
@@ -43,6 +48,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 app.UseStatusCodePages();
+
+app.MapEndpoints();
 
 app.UseHttpsRedirection();
 

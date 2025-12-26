@@ -3,3 +3,15 @@
 ###
 # @name Health
 GET {{baseUrl}}/api/health
+
+###
+# @name SignUp
+POST {{baseUrl}}/api/auth/signUp
+Content-Type: application/json
+
+{
+    "userName": "test",
+    "email": "test@test.com",
+    "password": "Test01!",
+    "passwordRepeat": "Test01!"
+}

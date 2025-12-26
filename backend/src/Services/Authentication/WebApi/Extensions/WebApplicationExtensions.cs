@@ -1,5 +1,7 @@
 ﻿using Authentication.Domain.Constants;
 using Authentication.Infrastructure;
+using Authentication.Presentation.SignUpUser;
+using Common.Presentation.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +24,13 @@ internal static class WebApplicationExtensions
 		await AddUserRoleIfNotExistAsync(logger, roleManager, UserRoles.Admin);
 		await AddUserRoleIfNotExistAsync(logger, roleManager, UserRoles.Creator);
 		await AddUserRoleIfNotExistAsync(logger, roleManager, UserRoles.Viewer);
+	}
+
+	public static void MapEndpoints(this WebApplication app)
+	{
+		var apiGroup  = app.MapGroup(Routes.Api);
+		var authGroup = apiGroup.MapGroup(Routes.Auth);
+		authGroup.MapSignUpUser();
 	}
 
 	private static async Task AddUserRoleIfNotExistAsync(ILogger logger, RoleManager<IdentityRole<Guid>> roleManager, string role)

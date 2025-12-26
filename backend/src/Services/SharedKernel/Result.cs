@@ -24,6 +24,8 @@ public record Result
 	public static Result Success() => new(true, Errors.None);
 
 	public static Result Failure(Error error) => new(false, error);
+
+	public TResult Match<TResult>(Func<TResult> onSuccess, Func<Error, TResult> onFailure) => IsSuccess ? onSuccess() : onFailure(Error);
 }
 
 #pragma warning disable SA1402

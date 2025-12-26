@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using SharedKernel;
 
-namespace FileTransfer.Presentation.Extensions;
+namespace Common.Presentation.Extensions;
 
-internal static class HttpContextExtensions
+public static class HttpContextExtensions
 {
 	public static void MaybeAddError(this HttpContext httpContext, Result result)
 	{

@@ -1,6 +1,7 @@
 using System.Globalization;
 using Common.Application.Constants;
 using Common.Persistence.Utilities;
+using Common.Presentation.Constants;
 using Common.WebApi.Extensions;
 using FileTransfer.Application;
 using FileTransfer.Domain;
@@ -49,7 +50,7 @@ if (app.Environment.IsDevelopment())
 app.UseSerilogRequestLogging();
 app.UseStatusCodePages();
 
-var apiGroup = app.MapGroup("api");
+var apiGroup = app.MapGroup(Routes.Api);
 apiGroup.MapImageEndpoints();
 
 app.UseHttpsRedirection();
