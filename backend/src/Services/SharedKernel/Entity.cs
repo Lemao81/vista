@@ -1,6 +1,6 @@
 ﻿namespace SharedKernel;
 
-public abstract class Entity
+public abstract class Entity : IEntity
 {
 	private readonly List<IDomainEvent> _domainEvents = [];
 
@@ -14,7 +14,7 @@ public abstract class Entity
 
 	public void ClearDomainEvents() => _domainEvents.Clear();
 
-	protected void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
+	public void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
 }
 
 #pragma warning disable SA1402

@@ -22,16 +22,11 @@ internal sealed class SignUpUserCommandHandler : ICommandHandler<SignUpUserComma
 
 	public async Task<Result> Handle(SignUpUserCommand command, CancellationToken cancellationToken)
 	{
-		var user = new AppUser
-		{
-			UserName = command.UserName,
-			Email    = command.Email,
-		};
-
+		var user   = AppUser.Create(command.UserName, command.Email);
 		var result = await _userManager.CreateAsync(user, command.Password);
 		if (!result.Succeeded)
 		{
-			_logger.LogError("Creating user failed | Errors={Errors}", result.Errors);
+			_logger.LogError("Creating user failed | Errors='{Errors}'", result.Errors);
 
 			return new ValidationError(ErrorCodes.ValidationFailed, MapToValidationErrors(result.Errors, command));
 		}

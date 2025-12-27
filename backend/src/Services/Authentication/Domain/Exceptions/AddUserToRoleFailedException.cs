@@ -8,7 +8,7 @@ public class AddUserToRoleFailedException : Exception
 	{
 	}
 
-	public AddUserToRoleFailedException(IEnumerable<IdentityError> identityErrors) : base($"Adding user to role failed | Errors={identityErrors}")
+	public AddUserToRoleFailedException(IEnumerable<IdentityError> identityErrors) : base($"Adding user to role failed | Errors='{identityErrors}'")
 	{
 	}
 

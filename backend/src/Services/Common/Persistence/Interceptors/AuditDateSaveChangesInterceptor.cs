@@ -33,7 +33,7 @@ public sealed class AuditDateSaveChangesInterceptor : SaveChangesInterceptor
 		var entries = eventData.Context.ChangeTracker.Entries();
 		foreach (var entry in entries)
 		{
-			if (entry.Entity is not Entity entity)
+			if (entry.Entity is not IEntity entity)
 			{
 				continue;
 			}

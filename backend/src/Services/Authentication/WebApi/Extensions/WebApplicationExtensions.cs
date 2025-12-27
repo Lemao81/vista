@@ -43,7 +43,7 @@ internal static class WebApplicationExtensions
 		var result = await roleManager.CreateAsync(new IdentityRole<Guid>(role));
 		if (!result.Succeeded)
 		{
-			logger.LogError("Adding role '{UserRole}' failed | Errors={Errors}", role, result.Errors);
+			logger.LogError("Adding role '{UserRole}' failed | Errors='{Errors}'", role, result.Errors);
 		}
 	}
 }

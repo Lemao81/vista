@@ -47,7 +47,7 @@ public sealed class DomainEventSaveChangesInterceptor : SaveChangesInterceptor
 	}
 
 	private static List<IDomainEvent>? GatherDomainEvents(DbContextEventData eventData) =>
-		eventData.Context?.ChangeTracker.Entries<Entity>()
+		eventData.Context?.ChangeTracker.Entries<IEntity>()
 			.Select(e => e.Entity)
 			.Where(e => e.HasDomainEvents)
 			.SelectMany(entity =>
