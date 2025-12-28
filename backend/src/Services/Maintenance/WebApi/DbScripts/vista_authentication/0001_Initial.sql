@@ -28,6 +28,8 @@ CREATE TABLE authentication.roles (
 
 CREATE TABLE authentication.users (
     id uuid NOT NULL,
+    created_utc timestamp with time zone NOT NULL,
+    modified_utc timestamp with time zone,
     user_name character varying(256),
     normalized_user_name character varying(256),
     email character varying(256),
@@ -104,7 +106,7 @@ CREATE INDEX "EmailIndex" ON authentication.users (normalized_email);
 CREATE UNIQUE INDEX "UserNameIndex" ON authentication.users (normalized_user_name);
 
 INSERT INTO authentication.__ef_migrations_history (migration_id, product_version)
-VALUES ('20251219175717_Initial', '9.0.2');
+VALUES ('20251227184549_Initial', '9.0.2');
 
 COMMIT;
 
