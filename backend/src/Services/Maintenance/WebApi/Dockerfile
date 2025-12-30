@@ -4,8 +4,9 @@ ARG DOTNET_VERSION=9.0
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 
-RUN apt-get update
-RUN apt-get install -y curl
+RUN apt-get update && \
+    apt-get install -y curl
+
 HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --start-interval=2s --retries=10 CMD curl -f http://localhost:8080/health || exit 1
 
 USER $APP_UID
