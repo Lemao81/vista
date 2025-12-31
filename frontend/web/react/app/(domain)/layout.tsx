@@ -1,17 +1,20 @@
 import React from 'react';
 import AppBar from '@/components/layout/app-bar';
 import SideNavigation from '@/components/layout/side-navigation';
-import PageContainer from '@/components/layout/page-container';
 import ModalProvider from '@/components/shared/modal-provider';
+import Footer from '@/components/layout/footer';
 
 export default function DomainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ModalProvider>
-      <div className="flex min-h-screen flex-col">
+      <div className="app-container grid">
         <AppBar />
-        <div className="flex grow">
+        <div className="app-outer-body grid">
           <SideNavigation />
-          <PageContainer>{children}</PageContainer>
+          <div className="app-inner-body grid">
+            <main className="bg-neutral-200 p-2">{children}</main>
+            <Footer />
+          </div>
         </div>
       </div>
     </ModalProvider>

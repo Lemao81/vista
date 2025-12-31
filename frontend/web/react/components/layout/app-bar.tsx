@@ -5,7 +5,7 @@ import AppBarLogo from '@/components/layout/app-bar-logo';
 
 export default function AppBar() {
   return (
-    <header className="flex h-14 justify-between dark:bg-neutral-900 p-1.5">
+    <header className="flex justify-between dark:bg-neutral-900 p-1.5">
       <AppBarLogo />
       <TopNavigation />
       <AuthButtonPanel />
