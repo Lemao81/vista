@@ -5,6 +5,7 @@ import Button from '@/components/ui/button';
 import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Checkbox from '@/components/ui/checkbox';
 
 const formDataSchema = z.object({
   userName: z
@@ -18,6 +19,7 @@ const formDataSchema = z.object({
     .nonempty('Must not be empty')
     .min(6, { message: 'Must be at least 6 characters' })
     .trim(),
+  acceptTerms: z.boolean(),
 });
 
 type FormData = z.infer<typeof formDataSchema>;
@@ -28,17 +30,28 @@ export default function SignUpForm() {
     register,
     handleSubmit,
     reset,
+    setError,
+    watch,
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<z.input<typeof formDataSchema>, any, z.output<typeof formDataSchema>>({
     resolver: zodResolver(formDataSchema),
   });
+
+  const acceptTerms = watch('acceptTerms');
 
   useEffect(() => {
     reset();
   }, [isSubmitSuccessful]);
 
   const onSubmit: SubmitHandler<FormData> = (formData) => {
-    formData && console.log(formData);
+    if (!formData.acceptTerms) {
+      setError('acceptTerms', {
+        type: 'manual',
+        message: 'You must agree to our terms and conditions',
+      });
+    }
+
+    console.log(formData);
   };
 
   return (
@@ -65,12 +78,17 @@ export default function SignUpForm() {
             isPassword={true}
             error={errors.password?.message}
           />
+          <Checkbox
+            {...register('acceptTerms')}
+            label={'I agree with the Terms and Conditions'}
+            error={errors.acceptTerms?.message}
+          />
         </div>
         <div className="flex gap-4 mt-8">
           <Button
             text={'OK'}
             type={'submit'}
-            disabled={isSubmitting}
+            disabled={!acceptTerms || isSubmitting}
             className="bg-blue-500 hover:bg-blue-400 active:bg-blue-600"
           />
           <Button

@@ -10,7 +10,7 @@ export default function Button({ text, type, className, ...props }: ButtonProps)
   return (
     <button
       className={cn(
-        'rounded-lg px-4 py-1.5 shadow-md transition-all active:scale-95 cursor-pointer text-white',
+        'rounded-lg px-4 py-1.5 shadow-md transition-all active:scale-95 cursor-pointer text-white disabled:bg-gray-400 disabled:pointer-events-none',
         className
       )}
       type={type || 'button'}

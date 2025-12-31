@@ -14,7 +14,7 @@ export default function Input({ label, placeholder, isPassword, error, ...props 
       <label className="font-semibold">{label}</label>
       <input
         className={cn(
-          'rounded-lg bg-white p-1 px-2 shadow-md ring-1 ring-neutral-400 focus:outline-0 mt-2',
+          'rounded-lg bg-white px-2 py-1 shadow-md ring-1 ring-neutral-400 focus:outline-0 mt-2',
           error && 'ring-red-400'
         )}
         type={isPassword ? 'password' : 'text'}
