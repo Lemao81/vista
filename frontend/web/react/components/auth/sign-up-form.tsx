@@ -6,19 +6,21 @@ import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Checkbox from '@/components/ui/checkbox';
+import { VALIDATION_MESSAGES } from '@/utils/messages';
 
 const formDataSchema = z.object({
   userName: z
     .string()
-    .nonempty('Must not be empty')
-    .regex(/^[a-zA-Z0-9]*$/, { error: 'Must only contain letters and digits' })
+    .nonempty(VALIDATION_MESSAGES.nonEmpty)
+    .regex(/^[a-zA-Z0-9]*$/, { error: 'Must only contain letters and digits.' })
     .trim(),
-  email: z.string().nonempty('Must not be empty').email().trim(),
+  email: z.string().nonempty(VALIDATION_MESSAGES.nonEmpty).email().trim(),
   password: z
     .string()
-    .nonempty('Must not be empty')
-    .min(6, { message: 'Must be at least 6 characters' })
+    .nonempty(VALIDATION_MESSAGES.nonEmpty)
+    .min(6, { message: 'Must be at least 6 characters.' })
     .trim(),
+  passwordRepeat: z.string().nonempty(VALIDATION_MESSAGES.nonEmpty).trim(),
   acceptTerms: z.boolean(),
 });
 
@@ -49,6 +51,17 @@ export default function SignUpForm() {
         type: 'manual',
         message: 'You must agree to our terms and conditions',
       });
+
+      return;
+    }
+
+    if (formData.password !== formData.passwordRepeat) {
+      setError('passwordRepeat', {
+        type: 'manual',
+        message: 'Must equal password.',
+      });
+
+      return;
     }
 
     console.log(formData);
@@ -78,9 +91,16 @@ export default function SignUpForm() {
             isPassword={true}
             error={errors.password?.message}
           />
+          <Input
+            {...register('passwordRepeat')}
+            label={'Confirm Password'}
+            placeholder={'Repeat your password'}
+            isPassword={true}
+            error={errors.passwordRepeat?.message}
+          />
           <Checkbox
             {...register('acceptTerms')}
-            label={'I agree with the Terms and Conditions'}
+            label={'I accept the Terms and Conditions'}
             error={errors.acceptTerms?.message}
           />
         </div>
