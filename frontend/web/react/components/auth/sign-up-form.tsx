@@ -7,6 +7,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Checkbox from '@/components/ui/checkbox';
 import { VALIDATION_MESSAGES } from '@/utils/messages';
+import { signUpUser } from '@/requests/auth/signUpUser';
+import { useMutation } from '@tanstack/react-query';
+import { isDevelopment, jsonify } from '@/utils/helpers';
 
 const formDataSchema = z.object({
   userName: z
@@ -28,6 +31,7 @@ type FormData = z.infer<typeof formDataSchema>;
 
 export default function SignUpForm() {
   const { setShowSignUpModal } = useContext(ModalContext);
+
   const {
     register,
     handleSubmit,
@@ -37,6 +41,7 @@ export default function SignUpForm() {
     formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<z.input<typeof formDataSchema>, any, z.output<typeof formDataSchema>>({
     resolver: zodResolver(formDataSchema),
+    defaultValues: (isDevelopment() && getDevDefault()) || undefined,
   });
 
   const acceptTerms = watch('acceptTerms');
@@ -44,6 +49,16 @@ export default function SignUpForm() {
   useEffect(() => {
     reset();
   }, [isSubmitSuccessful]);
+
+  const { status, mutate } = useMutation({
+    mutationFn: signUpUser,
+    onError: (error) => console.error(error),
+    onSuccess: (data) => {
+      if (data) {
+        console.log(jsonify(data));
+      }
+    },
+  });
 
   const onSubmit: SubmitHandler<FormData> = (formData) => {
     if (!formData.acceptTerms) {
@@ -64,8 +79,25 @@ export default function SignUpForm() {
       return;
     }
 
-    console.log(formData);
+    console.log(`formData=${jsonify(formData)}`);
+
+    mutate({
+      userName: formData.userName,
+      email: formData.email,
+      password: formData.password,
+      passwordRepeat: formData.passwordRepeat,
+    });
   };
+
+  function getDevDefault() {
+    return {
+      userName: 'test',
+      email: 'test@test.com',
+      password: 'Test01!',
+      passwordRepeat: 'Test01!',
+      acceptTerms: true,
+    };
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
