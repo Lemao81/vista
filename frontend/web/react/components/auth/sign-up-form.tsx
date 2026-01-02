@@ -10,6 +10,7 @@ import { VALIDATION_MESSAGES } from '@/utils/messages';
 import { signUpUser } from '@/requests/auth/signUpUser';
 import { useMutation } from '@tanstack/react-query';
 import { isDevelopment, jsonify } from '@/utils/helpers';
+import { toast } from 'sonner';
 
 const formDataSchema = z.object({
   userName: z
@@ -52,7 +53,10 @@ export default function SignUpForm() {
 
   const { status, mutate } = useMutation({
     mutationFn: signUpUser,
-    onError: (error) => console.error(error),
+    onError: (error) => {
+      console.error(error);
+      toast.error(error?.message ? `Error: ${error.message}` : 'Unknown error occurred');
+    },
     onSuccess: (data) => {
       if (data) {
         console.log(jsonify(data));
