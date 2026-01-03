@@ -618,5 +618,6 @@ FodyWeavers.xsd
 # Custom
 backend/postgres-password
 backend/minio-keys
+backend/jwt-secretkey
 **/dev/
 **/.env.secrets

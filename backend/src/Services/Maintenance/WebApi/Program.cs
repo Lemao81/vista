@@ -17,6 +17,7 @@ Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(f
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddCommonAppSettings();
+builder.Configuration.AddSecretFileConfiguration();
 
 builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks().AddCheck<HealthCheck>("healthcheck");

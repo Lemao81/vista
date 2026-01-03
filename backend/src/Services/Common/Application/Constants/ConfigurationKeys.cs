@@ -19,4 +19,5 @@ public static class ConfigurationKeys
 	public const string JwtIssuer                           = "JWT:Issuer";
 	public const string JwtAudience                         = "JWT:Audience";
 	public const string JwtSecretKey                        = "JWT:SecretKey";
+	public const string JwtSecretKeyFile                    = "JWT:SecretKeyFile";
 }

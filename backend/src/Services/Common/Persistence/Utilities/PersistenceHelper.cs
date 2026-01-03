@@ -31,15 +31,6 @@ public static partial class PersistenceHelper
 		var password = configuration[ConfigurationKeys.DatabasePassword];
 		if (password.IsNullOrWhiteSpace())
 		{
-			var passwordFile = configuration[ConfigurationKeys.DatabasePasswordFile];
-			if (!passwordFile.IsNullOrWhiteSpace() && File.Exists(passwordFile))
-			{
-				password = File.ReadAllText(passwordFile);
-			}
-		}
-
-		if (password.IsNullOrWhiteSpace())
-		{
 			throw new MissingConfigurationException("Database password");
 		}
 

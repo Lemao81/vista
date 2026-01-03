@@ -85,8 +85,10 @@ services:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}
       Database__PasswordFile: /run/secrets/postgres-password
+      Jwt__SecretKeyFile: /run/secrets/jwt-secretkey
     secrets:
       - postgres-password
+      - jwt-secretkey
     depends_on:
       vista-maintenance-api:
         condition: service_healthy
@@ -106,9 +108,11 @@ services:
       Database__Username: ${DB_USER}
       Database__PasswordFile: /run/secrets/postgres-password
       Minio__KeysFile: /run/secrets/minio-keys
+      Jwt__SecretKeyFile: /run/secrets/jwt-secretkey
     secrets:
       - postgres-password
       - minio-keys
+      - jwt-secretkey
     depends_on:
       vista-maintenance-api:
         condition: service_healthy
@@ -150,6 +154,8 @@ secrets:
     file: postgres-password
   minio-keys:
     file: minio-keys
+  jwt-secretkey:
+    file: jwt-secretkey
 
 networks:
   vista:
