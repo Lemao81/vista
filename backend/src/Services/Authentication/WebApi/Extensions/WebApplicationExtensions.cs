@@ -28,9 +28,8 @@ internal static class WebApplicationExtensions
 
 	public static void MapEndpoints(this WebApplication app)
 	{
-		var apiGroup  = app.MapGroup(Routes.Api);
-		var authGroup = apiGroup.MapGroup(Routes.Auth);
-		authGroup.MapSignUpUser();
+		var apiGroup = app.MapGroup(Routes.Api);
+		apiGroup.MapSignUpUser();
 	}
 
 	private static async Task AddUserRoleIfNotExistAsync(ILogger logger, RoleManager<IdentityRole<Guid>> roleManager, string role)
