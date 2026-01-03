@@ -51,6 +51,7 @@ app.UseStatusCodePages();
 
 app.MapEndpoints();
 
+app.UseCors();
 app.UseHttpsRedirection();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();

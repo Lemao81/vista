@@ -27,6 +27,8 @@ public static class ServiceCollectionExtensions
 
 		services.AddExceptionHandler<GlobalExceptionHandlerMiddleware>();
 
+		services.AddCors(options => options.AddDefaultPolicy(p => p.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod()));
+
 		return services;
 	}
 
