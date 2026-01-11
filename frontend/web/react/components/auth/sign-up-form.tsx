@@ -9,7 +9,12 @@ import Checkbox from '@/components/ui/checkbox';
 import { VALIDATION_MESSAGES } from '@/utils/messages';
 import { signUpUser } from '@/requests/auth/signUpUser';
 import { useMutation } from '@tanstack/react-query';
-import { isDevelopment, jsonify } from '@/utils/helpers';
+import {
+  getValidationErrors,
+  isDevelopment,
+  isValidationFailedError,
+  jsonify,
+} from '@/utils/helpers';
 import { toast } from 'sonner';
 
 const formDataSchema = z.object({
@@ -51,23 +56,30 @@ export default function SignUpForm() {
     reset();
   }, [isSubmitSuccessful]);
 
-  const { status, mutate } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: signUpUser,
-    onError: (error) => {
-      console.error(error);
-      toast.error(error?.message ? `Error: ${error.message}` : 'Unknown error occurred');
+    onSuccess: (_) => {
+      toast.success('You have been signed up');
     },
-    onSuccess: (data) => {
-      if (data) {
-        console.log(jsonify(data));
+    onError: (error) => {
+      if (isValidationFailedError(error)) {
+        for (const [name, errors] of getValidationErrors(error)) {
+          setError(name as keyof FormData, {
+            message: errors[0],
+          });
+        }
+
+        return;
       }
+
+      console.error(jsonify(error));
+      toast.error(error?.message ? `Error: ${error.message}` : 'Unknown error occurred');
     },
   });
 
   const onSubmit: SubmitHandler<FormData> = (formData) => {
     if (!formData.acceptTerms) {
       setError('acceptTerms', {
-        type: 'manual',
         message: 'You must agree to our terms and conditions',
       });
 
