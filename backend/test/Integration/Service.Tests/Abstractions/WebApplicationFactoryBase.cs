@@ -79,6 +79,13 @@ public abstract class WebApplicationFactoryBase<T> : WebApplicationFactory<T>, I
 		builder.UseSetting(ConfigurationKeys.MinioSecretKey, "adminpwd");
 	}
 
+	protected void UseJwtSetting(IWebHostBuilder builder)
+	{
+		builder.UseSetting(ConfigurationKeys.JwtSecretKey, TestConstants.JwtSecretKey);
+		builder.UseSetting(ConfigurationKeys.JwtIssuer, "http://localhost:5000");
+		builder.UseSetting(ConfigurationKeys.JwtAudience, "http://localhost:5000");
+	}
+
 	protected void UseAzuriteSetting(IWebHostBuilder builder, AzuriteContainer azuriteContainer)
 	{
 		var blobEndpoint = azuriteContainer.GetBlobEndpoint().Replace("http", "https", StringComparison.OrdinalIgnoreCase);

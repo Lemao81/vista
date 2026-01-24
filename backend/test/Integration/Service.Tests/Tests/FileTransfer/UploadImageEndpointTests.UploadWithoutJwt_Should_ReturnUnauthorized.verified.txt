@@ -1,0 +1,18 @@
+﻿{
+  Status: 401 Unauthorized,
+  Headers: {
+    WWW-Authenticate: Bearer
+  },
+  Content: {
+    Headers: {
+      Content-Type: application/problem+json
+    },
+    Value: {
+      type: https://tools.ietf.org/html/rfc9110#section-15.5.2,
+      title: Unauthorized,
+      status: 401,
+      traceId: {Scrubbed},
+      requestId: {Scrubbed}
+    }
+  }
+}

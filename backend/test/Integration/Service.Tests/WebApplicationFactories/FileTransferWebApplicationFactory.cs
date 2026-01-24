@@ -27,6 +27,7 @@ public class FileTransferWebApplicationFactory : WebApplicationFactoryBase<IWebA
 
 		UsePostgresDatabaseSetting(builder, _postgresContainer);
 		UseMinioSetting(builder, _minioContainer);
+		UseJwtSetting(builder);
 	}
 
 	protected override async Task DoInitializeAsync()

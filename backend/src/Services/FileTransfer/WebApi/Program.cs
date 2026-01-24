@@ -9,6 +9,7 @@ using FileTransfer.Infrastructure;
 using FileTransfer.Presentation;
 using FileTransfer.WebApi.Extensions;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Logging;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console(formatProvider: CultureInfo.InvariantCulture).CreateBootstrapLogger();
@@ -44,6 +45,8 @@ app.MapHealthChecks("/api/health");
 if (app.Environment.IsDevelopment())
 {
 	app.MapOpenApi();
+	IdentityModelEventSource.ShowPII                     = true;
+	IdentityModelEventSource.LogCompleteSecurityArtifact = true;
 }
 
 app.UseSerilogRequestLogging();

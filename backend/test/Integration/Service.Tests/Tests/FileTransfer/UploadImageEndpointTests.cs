@@ -7,6 +7,7 @@ using FileTransfer.Domain.ValueObjects;
 using FileTransfer.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Service.Tests.Extensions;
+using Service.Tests.Utilities;
 using Service.Tests.WebApplicationFactories;
 using SharedKernel;
 using Tests.Common;
@@ -25,6 +26,23 @@ public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplication
 	}
 
 	[Fact]
+	public async Task UploadWithoutJwt_Should_ReturnUnauthorized()
+	{
+		// Arrange
+		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
+		var httpClient = _webApplicationFactory.CreateClient();
+
+		using var formContent = new MultipartFormDataContent();
+
+		// Act
+		var response = await httpClient.PostAsync("api/images", formContent, TestContext.Current.CancellationToken);
+		await response.PrintContentAsync(_testOutputHelper);
+
+		// Assert
+		await Verify(response, VerifySettingsFactory.ScrubGuidsSettings);
+	}
+
+	[Fact]
 	public async Task UploadValidImage_Should_PersistImage()
 	{
 		// Arrange
@@ -32,7 +50,7 @@ public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplication
 		using var       scope          = _webApplicationFactory.Services.CreateScope();
 		await using var dbContext      = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
 		var             storageAdapter = scope.ServiceProvider.GetRequiredService<IObjectStorageAdapter>();
-		var             httpClient     = _webApplicationFactory.CreateClient();
+		using var       httpClient     = TestHelper.CreateAuthorizedHttpClient(_webApplicationFactory);
 
 		await using var stream        = File.OpenRead(Path.Combine("Tests", "FileTransfer", "Files", "ph_600x400.png"));
 		using var       formContent   = new MultipartFormDataContent();
@@ -73,8 +91,7 @@ public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplication
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
-		using var scope      = _webApplicationFactory.Services.CreateScope();
-		var       httpClient = _webApplicationFactory.CreateClient();
+		using var httpClient = TestHelper.CreateAuthorizedHttpClient(_webApplicationFactory);
 
 		await using var stream        = File.OpenRead(Path.Combine("Tests", "FileTransfer", "Files", "empty.png"));
 		using var       formContent   = new MultipartFormDataContent();
@@ -95,8 +112,7 @@ public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplication
 	{
 		// Arrange
 		_webApplicationFactory.TestOutputHelper = _testOutputHelper;
-		using var scope      = _webApplicationFactory.Services.CreateScope();
-		var       httpClient = _webApplicationFactory.CreateClient();
+		using var httpClient = TestHelper.CreateAuthorizedHttpClient(_webApplicationFactory);
 
 		await using var stream        = File.OpenRead(Path.Combine("Tests", "FileTransfer", "Files", "test.txt"));
 		using var       formContent   = new MultipartFormDataContent();
