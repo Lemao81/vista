@@ -1,9 +1,4 @@
 ﻿using System.Reflection;
-using FileTransfer.Application;
-using FileTransfer.Domain;
-using FileTransfer.Infrastructure;
-using FileTransfer.Presentation;
-using FileTransfer.WebApi;
 using Lemao.UtilExtensions;
 using TestResult = NetArchTest.Rules.TestResult;
 
@@ -16,12 +11,33 @@ public abstract class ArchitectureTestBase
 		TestOutputHelper = testOutputHelper;
 	}
 
-	protected ITestOutputHelper     TestOutputHelper         { get; }
-	protected IEnumerable<Assembly> DomainAssemblies         { get; } = [typeof(IDomainAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> ApplicationAssemblies    { get; } = [typeof(IApplicationAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> InfrastructureAssemblies { get; } = [typeof(IInfrastructureAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> PresentationAssemblies   { get; } = [typeof(IPresentationAssemblyMarker).Assembly];
-	protected IEnumerable<Assembly> WebApiAssemblies         { get; } = [typeof(IWebApiAssemblyMarker).Assembly];
+	protected ITestOutputHelper TestOutputHelper { get; }
+
+	protected IEnumerable<Assembly> DomainAssemblies { get; } =
+	[
+		typeof(FileTransfer.Domain.IDomainAssemblyMarker).Assembly, typeof(Authentication.Domain.IDomainAssemblyMarker).Assembly,
+	];
+
+	protected IEnumerable<Assembly> ApplicationAssemblies { get; } =
+	[
+		typeof(FileTransfer.Application.IApplicationAssemblyMarker).Assembly, typeof(Authentication.Application.IApplicationAssemblyMarker).Assembly,
+	];
+
+	protected IEnumerable<Assembly> InfrastructureAssemblies { get; } =
+	[
+		typeof(FileTransfer.Infrastructure.IInfrastructureAssemblyMarker).Assembly,
+		typeof(Authentication.Infrastructure.IInfrastructureAssemblyMarker).Assembly,
+	];
+
+	protected IEnumerable<Assembly> PresentationAssemblies { get; } =
+	[
+		typeof(FileTransfer.Presentation.IPresentationAssemblyMarker).Assembly, typeof(Authentication.Presentation.IPresentationAssemblyMarker).Assembly,
+	];
+
+	protected IEnumerable<Assembly> WebApiAssemblies { get; } =
+	[
+		typeof(FileTransfer.WebApi.IWebApiAssemblyMarker).Assembly, typeof(Authentication.WebApi.IWebApiAssemblyMarker).Assembly,
+	];
 
 	protected void PrintFailingTypes(TestResult result) => TestOutputHelper.WriteLine(result.FailingTypeNames.ToCommaSeparated());
 }

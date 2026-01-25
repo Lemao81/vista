@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Services\Authentication\WebApi\WebApi.csproj" />
     <ProjectReference Include="..\..\..\src\Services\Common\Domain\Domain.csproj"/>
     <ProjectReference Include="..\..\..\src\Services\FileTransfer\WebApi\WebApi.csproj"/>
     <ProjectReference Include="..\..\Tests.Common\Tests.Common.csproj" />
