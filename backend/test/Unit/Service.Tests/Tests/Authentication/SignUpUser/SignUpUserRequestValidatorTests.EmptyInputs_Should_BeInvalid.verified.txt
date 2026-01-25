@@ -1,0 +1,63 @@
+﻿{
+  IsValid: false,
+  Errors: [
+    {
+      PropertyName: UserName,
+      ErrorMessage: 'User Name' must not be empty.,
+      AttemptedValue: ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: User Name,
+        PropertyPath: UserName,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: Email,
+      ErrorMessage: 'Email' must not be empty.,
+      AttemptedValue: ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Email,
+        PropertyPath: Email,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: Email,
+      ErrorMessage: 'Email' is not a valid email address.,
+      AttemptedValue: ,
+      ErrorCode: EmailValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Email,
+        PropertyPath: Email,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: Password,
+      ErrorMessage: 'Password' must not be empty.,
+      AttemptedValue: ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Password,
+        PropertyPath: Password,
+        PropertyValue: 
+      }
+    },
+    {
+      PropertyName: PasswordRepeat,
+      ErrorMessage: 'Password Repeat' must not be empty.,
+      AttemptedValue: ,
+      ErrorCode: NotEmptyValidator,
+      FormattedMessagePlaceholderValues: {
+        PropertyName: Password Repeat,
+        PropertyPath: PasswordRepeat,
+        PropertyValue: 
+      }
+    }
+  ],
+  RuleSetsExecuted: [
+    default
+  ]
+}

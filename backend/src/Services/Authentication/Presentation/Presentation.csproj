@@ -10,5 +10,9 @@
     <ProjectReference Include="..\..\SharedApi\SharedApi.csproj" />
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <InternalsVisibleTo Include="Unit.Service.Tests"/>
+  </ItemGroup>
 
 </Project>
