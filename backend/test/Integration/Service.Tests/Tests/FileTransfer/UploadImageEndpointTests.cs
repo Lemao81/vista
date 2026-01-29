@@ -5,6 +5,7 @@ using FileTransfer.Application.Utilities;
 using FileTransfer.Domain.Media;
 using FileTransfer.Domain.ValueObjects;
 using FileTransfer.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Service.Tests.Extensions;
 using Service.Tests.Utilities;
@@ -14,7 +15,7 @@ using Tests.Common;
 
 namespace Service.Tests.Tests.FileTransfer;
 
-public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplicationFactory>
+public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplicationFactory>, IAsyncDisposable
 {
 	private readonly FileTransferWebApplicationFactory _webApplicationFactory;
 	private readonly ITestOutputHelper                 _testOutputHelper;
@@ -126,5 +127,14 @@ public class UploadImageEndpointTests : IClassFixture<FileTransferWebApplication
 
 		// Assert
 		await Verify(response, VerifySettingsFactory.ScrubGuidsSettings);
+	}
+
+	public async ValueTask DisposeAsync()
+	{
+		GC.SuppressFinalize(this);
+		using var       scope     = _webApplicationFactory.Services.CreateScope();
+		await using var dbContext = scope.ServiceProvider.GetRequiredService<FileTransferDbContext>();
+		await dbContext.MediaFolders.ExecuteDeleteAsync(TestContext.Current.CancellationToken);
+		await dbContext.MediaItems.ExecuteDeleteAsync(TestContext.Current.CancellationToken);
 	}
 }

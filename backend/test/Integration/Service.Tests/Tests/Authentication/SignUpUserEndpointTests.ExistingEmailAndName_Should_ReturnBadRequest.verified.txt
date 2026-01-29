@@ -1,0 +1,24 @@
+﻿{
+  Status: 400 Bad Request,
+  Content: {
+    Headers: {
+      Content-Type: application/problem+json
+    },
+    Value: {
+      type: https://tools.ietf.org/html/rfc9110#section-15.5.1,
+      title: One or more validation errors occurred.,
+      status: 400,
+      errors: {
+        UserName: [
+          Username 'test' is already taken.
+        ],
+        Email: [
+          Email 'test@test.com' is already taken.
+        ]
+      },
+      traceId: {Scrubbed},
+      requestId: {Scrubbed},
+      errorCode: ValidationFailed
+    }
+  }
+}
