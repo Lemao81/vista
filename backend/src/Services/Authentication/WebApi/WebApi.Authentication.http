@@ -6,7 +6,7 @@ GET {{baseUrl}}/api/health
 
 ###
 # @name SignUp
-POST {{baseUrl}}/api/auth/signUp
+POST {{baseUrl}}/api/signUp
 Content-Type: application/json
 
 {

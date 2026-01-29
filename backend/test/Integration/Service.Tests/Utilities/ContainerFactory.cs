@@ -75,7 +75,7 @@ public class ContainerFactory
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioSecretKey), MinioPassword)
 			.WithEnvironment(EnvironmentVariableNames.InitiatePostgresDatabase, "true")
 			.WithEnvironment(EnvironmentVariableNames.InitiateMinio, "true")
-			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy(3, s => s.WithTimeout(TimeSpan.FromSeconds(5))))
+			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy(3, s => s.WithTimeout(TimeSpan.FromSeconds(10))))
 			.Build();
 	}
 
