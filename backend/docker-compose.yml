@@ -41,7 +41,8 @@ services:
       context: .
       dockerfile: src/Services/Maintenance/WebApi/Dockerfile
       args:
-        DOTNET_VERSION: ${DOTNET_VERSION}
+        DOTNET_RT_VERSION: ${DOTNET_RT_VERSION}
+        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION}
     environment:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}
@@ -67,7 +68,8 @@ services:
       context: .
       dockerfile: src/Services/Gateway/WebApi/Dockerfile
       args:
-        DOTNET_VERSION: ${DOTNET_VERSION}
+        DOTNET_RT_VERSION: ${DOTNET_RT_VERSION}
+        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION}
     ports:
       - "5000:8080"
     networks:
@@ -80,7 +82,8 @@ services:
       context: .
       dockerfile: src/Services/Authentication/WebApi/Dockerfile
       args:
-        DOTNET_VERSION: ${DOTNET_VERSION}
+        DOTNET_RT_VERSION: ${DOTNET_RT_VERSION}
+        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION}
     environment:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}
@@ -102,7 +105,8 @@ services:
       context: .
       dockerfile: src/Services/FileTransfer/WebApi/Dockerfile
       args:
-        DOTNET_VERSION: ${DOTNET_VERSION}
+        DOTNET_RT_VERSION: ${DOTNET_RT_VERSION}
+        DOTNET_SDK_VERSION: ${DOTNET_SDK_VERSION}
     environment:
       Database__Host: ${DB_HOST}
       Database__Username: ${DB_USER}
@@ -136,7 +140,7 @@ services:
           - seq
   
   vista-aspire-dashboard:
-    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:13.0
     ports:
       - "18888:18888"
       - "4317:18889"

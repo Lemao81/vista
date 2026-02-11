@@ -109,6 +109,8 @@ dotnet_diagnostic.CA1805.severity = none
 dotnet_diagnostic.CA5394.severity = none
 # Type names should not match namespaces
 dotnet_diagnostic.CA1724.severity = none
+# Avoid potentially expensive logging
+dotnet_diagnostic.CA1873.severity = none
 
 # StyleCop-Analyzer
 # FileMustHaveHeader

@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  DOTNET_VERSION: 9.0.200
+  DOTNET_VERSION: 10.0.103
   REGISTRY: ghcr.io
   MAINTENANCE_PROD_IMAGE_NAME: lemao81/vista-maintenance-api
   MAINTENANCE_TEST_IMAGE_NAME: lemao81/vista-maintenance-test-api

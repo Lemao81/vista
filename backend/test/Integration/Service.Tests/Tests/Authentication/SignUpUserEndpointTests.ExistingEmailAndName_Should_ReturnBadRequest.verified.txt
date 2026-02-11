@@ -2,6 +2,7 @@
   Status: 400 Bad Request,
   Content: {
     Headers: {
+      Content-Length: 363,
       Content-Type: application/problem+json
     },
     Value: {

@@ -10,7 +10,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Http"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc"/>
     <PackageReference Include="Microsoft.AspNetCore.Routing"/>
-    <PackageReference Include="System.Text.RegularExpressions" />
   </ItemGroup>
 
   <ItemGroup>

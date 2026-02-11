@@ -1,4 +1,5 @@
-﻿using Common.Presentation.Constants;
+﻿using Ardalis.GuardClauses;
+using Common.Presentation.Constants;
 using Common.Presentation.Extensions;
 using FluentValidation;
 using MediatR;
@@ -32,8 +33,7 @@ public static class UploadImageEndpoint
 						return ValidationProblem(validationResult.ToDictionary());
 					}
 
-					ArgumentNullException.ThrowIfNull(request.File);
-
+					Guard.Against.Null(request.File);
 					var command = CommandFactory.CreateUploadImageCommand(request.File);
 					var result  = await sender.Send(command, httpContext.RequestAborted);
 					httpContext.MaybeAddError(result);

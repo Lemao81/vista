@@ -41,7 +41,6 @@ public static class ServiceCollectionExtensions
 						ExcludeWorkloadIdentityCredential   = true,
 						ExcludeAzureDeveloperCliCredential  = true,
 						ExcludeAzurePowerShellCredential    = true,
-						ExcludeSharedTokenCacheCredential   = true,
 						ExcludeVisualStudioCodeCredential   = true,
 					}));
 		});

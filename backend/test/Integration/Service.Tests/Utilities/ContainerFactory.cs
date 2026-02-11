@@ -28,8 +28,7 @@ public class ContainerFactory
 	{
 		var image = IsLocal() ? "backend-vista-postgres" : $"{RemoteRepository}/vista-postgres";
 
-		return new PostgreSqlBuilder().WithImage(image)
-			.WithName($"{NetworkAliases.Postgres}_{Guid.NewGuid()}")
+		return new PostgreSqlBuilder(image).WithName($"{NetworkAliases.Postgres}_{Guid.NewGuid()}")
 			.WithNetwork(_network)
 			.WithNetworkAliases(NetworkAliases.Postgres)
 			.WithDatabase("sa")
@@ -46,8 +45,7 @@ public class ContainerFactory
 	{
 		var image = IsLocal() ? "backend-vista-minio" : $"{RemoteRepository}/vista-minio";
 
-		return new MinioBuilder().WithImage(image)
-			.WithName($"{NetworkAliases.Minio}_{Guid.NewGuid()}")
+		return new MinioBuilder(image).WithName($"{NetworkAliases.Minio}_{Guid.NewGuid()}")
 			.WithNetwork(_network)
 			.WithNetworkAliases(NetworkAliases.Minio)
 			.WithUsername(MinioUsername)
@@ -59,12 +57,11 @@ public class ContainerFactory
 			.Build();
 	}
 
-	public IContainer CreateMaintenanceContainer()
+	public IContainer CreateMaintenanceContainer(bool initiateMinio = false)
 	{
 		var image = IsLocal() ? "backend-vista-maintenance-api" : $"{RemoteRepository}/vista-maintenance-test-api";
 
-		return new ContainerBuilder().WithImage(image)
-			.WithName($"{NetworkAliases.MaintenanceApi}_{Guid.NewGuid()}")
+		return new ContainerBuilder(image).WithName($"{NetworkAliases.MaintenanceApi}_{Guid.NewGuid()}")
 			.WithNetwork(_network)
 			.WithNetworkAliases(NetworkAliases.MaintenanceApi)
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.DatabaseHost), $"{NetworkAliases.Postgres}:5432")
@@ -74,15 +71,14 @@ public class ContainerFactory
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioAccessKey), MinioUsername)
 			.WithEnvironment(ToEnvironmentName(ConfigurationKeys.MinioSecretKey), MinioPassword)
 			.WithEnvironment(EnvironmentVariableNames.InitiatePostgresDatabase, "true")
-			.WithEnvironment(EnvironmentVariableNames.InitiateMinio, "true")
+			.WithEnvironment(EnvironmentVariableNames.InitiateMinio, initiateMinio ? "true" : "false")
 			.WithWaitStrategy(Wait.ForUnixContainer().UntilContainerIsHealthy(3, s => s.WithTimeout(TimeSpan.FromSeconds(10))))
 			.Build();
 	}
 
 	public AzuriteContainer CreateAzuriteContainer()
 	{
-		return new AzuriteBuilder().WithImage("mcr.microsoft.com/azure-storage/azurite:3.34.0")
-			.WithName($"{NetworkAliases.Azurite}_{Guid.NewGuid()}")
+		return new AzuriteBuilder("mcr.microsoft.com/azure-storage/azurite:3.34.0").WithName($"{NetworkAliases.Azurite}_{Guid.NewGuid()}")
 			.WithNetwork(_network)
 			.WithNetworkAliases(NetworkAliases.Azurite)
 			.WithResourceMapping(Path.Combine("Utilities", "cert", "127.0.0.1.pem"), "/workspace")

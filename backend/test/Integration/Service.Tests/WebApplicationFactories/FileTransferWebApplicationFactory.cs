@@ -33,7 +33,7 @@ public class FileTransferWebApplicationFactory : WebApplicationFactoryBase<IWebA
 	protected override async Task DoInitializeAsync()
 	{
 		await Task.WhenAll(_postgresContainer.StartAsync(), _minioContainer.StartAsync());
-		_maintenanceContainer = ContainerFactory.CreateMaintenanceContainer();
+		_maintenanceContainer = ContainerFactory.CreateMaintenanceContainer(initiateMinio: true);
 		await _maintenanceContainer.StartAsync();
 	}
 

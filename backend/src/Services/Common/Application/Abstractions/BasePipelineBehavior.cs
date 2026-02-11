@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Ardalis.GuardClauses;
 using MediatR;
 using SharedKernel;
 
@@ -17,7 +18,7 @@ public abstract class BasePipelineBehavior<TRequest, TResponse> : IPipelineBehav
 #pragma warning disable S3011
 			var genericResult = Activator.CreateInstance(responseType, BindingFlags.Instance | BindingFlags.NonPublic, null, [error], null);
 #pragma warning restore S3011
-			ArgumentNullException.ThrowIfNull(genericResult);
+			Guard.Against.Null(genericResult);
 
 			return (TResponse)genericResult;
 		}
@@ -30,7 +31,7 @@ public abstract class BasePipelineBehavior<TRequest, TResponse> : IPipelineBehav
 #pragma warning disable S3011
 		var result = Activator.CreateInstance(responseType, BindingFlags.Instance | BindingFlags.NonPublic, null, [false, error], null);
 #pragma warning restore S3011
-		ArgumentNullException.ThrowIfNull(result);
+		Guard.Against.Null(result);
 
 		return (TResponse)result;
 	}
