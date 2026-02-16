@@ -3,7 +3,7 @@ title = "Gitleaks configuration"
 [extend]
 useDefault = true
 
-[[allowlists]]
+[allowlist]
 description = "global allow list"
 paths = [
     '''backend/test/Integration/Service.Tests/TestConstants.cs''',
