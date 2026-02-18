@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Checkbox from '@/components/ui/checkbox';
-import { signUpUser } from '@/requests/auth/signUpUser';
+import { signUp } from '@/requests/auth/signUp';
 import { useMutation } from '@tanstack/react-query';
 import {
   getValidationErrors,
@@ -39,7 +39,7 @@ export default function SignUpForm() {
   }, [isSubmitSuccessful]);
 
   const { mutate } = useMutation({
-    mutationFn: signUpUser,
+    mutationFn: signUp,
     onSuccess: (_) => {
       toast.success('You have been signed up');
     },

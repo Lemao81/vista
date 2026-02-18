@@ -1,18 +1,18 @@
 import axios, { AxiosResponse } from 'axios';
 import { RequestFailedError } from '@/types/errors';
 
-export type SignUpUserRequest = {
+export type SignUpRequest = {
   userName: string;
   email: string;
   password: string;
   passwordRepeat: string;
 };
 
-export type SignUpUserResponse = '';
+export type SignUpResponse = '';
 
-export async function signUpUser(request: SignUpUserRequest): Promise<''> {
+export async function signUp(request: SignUpRequest): Promise<''> {
   try {
-    const response = await axios.post<SignUpUserRequest, AxiosResponse<SignUpUserResponse>>(
+    const response = await axios.post<SignUpRequest, AxiosResponse<SignUpResponse>>(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/signUp`,
       request
     );
