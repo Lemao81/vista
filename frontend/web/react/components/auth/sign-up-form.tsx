@@ -6,7 +6,6 @@ import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Checkbox from '@/components/ui/checkbox';
-import { VALIDATION_MESSAGES } from '@/utils/messages';
 import { signUpUser } from '@/requests/auth/signUpUser';
 import { useMutation } from '@tanstack/react-query';
 import {
@@ -16,24 +15,7 @@ import {
   jsonify,
 } from '@/utils/helpers';
 import { toast } from 'sonner';
-
-const formDataSchema = z.object({
-  userName: z
-    .string()
-    .nonempty(VALIDATION_MESSAGES.nonEmpty)
-    .regex(/^[a-zA-Z0-9]*$/, { error: 'Must only contain letters and digits.' })
-    .trim(),
-  email: z.string().nonempty(VALIDATION_MESSAGES.nonEmpty).email().trim(),
-  password: z
-    .string()
-    .nonempty(VALIDATION_MESSAGES.nonEmpty)
-    .min(6, { message: 'Must be at least 6 characters.' })
-    .trim(),
-  passwordRepeat: z.string().nonempty(VALIDATION_MESSAGES.nonEmpty).trim(),
-  acceptTerms: z.boolean(),
-});
-
-type FormData = z.infer<typeof formDataSchema>;
+import { SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
 
 export default function SignUpForm() {
   const { setShowSignUpModal } = useContext(ModalContext);
@@ -45,8 +27,8 @@ export default function SignUpForm() {
     setError,
     watch,
     formState: { errors, isSubmitting, isSubmitSuccessful },
-  } = useForm<z.input<typeof formDataSchema>, any, z.output<typeof formDataSchema>>({
-    resolver: zodResolver(formDataSchema),
+  } = useForm<z.input<typeof signUpFormDataSchema>, any, z.output<typeof signUpFormDataSchema>>({
+    resolver: zodResolver(signUpFormDataSchema),
     defaultValues: (isDevelopment() && getDevDefault()) || undefined,
   });
 
@@ -64,7 +46,7 @@ export default function SignUpForm() {
     onError: (error) => {
       if (isValidationFailedError(error)) {
         for (const [name, errors] of getValidationErrors(error)) {
-          setError(name as keyof FormData, {
+          setError(name as keyof SignUpFormData, {
             message: errors[0],
           });
         }
@@ -77,7 +59,7 @@ export default function SignUpForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<FormData> = (formData) => {
+  const onSubmit: SubmitHandler<SignUpFormData> = (formData) => {
     if (!formData.acceptTerms) {
       setError('acceptTerms', {
         message: 'You must agree to our terms and conditions',
