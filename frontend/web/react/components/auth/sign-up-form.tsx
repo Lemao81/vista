@@ -98,10 +98,9 @@ export default function SignUpForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col items-center w-100 px-6">
-        <h1 className="text-3xl font-bold">Sign Up</h1>
-        <div className="flex flex-col w-full gap-1 mt-10">
+    <>
+      <h1 className="text-3xl font-bold mb-8">Sign Up</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2 min-w-87.5">
           <Input
             {...register('userName')}
             label={'User name'}
@@ -133,8 +132,7 @@ export default function SignUpForm() {
             label={'I accept the Terms and Conditions'}
             error={errors.acceptTerms?.message}
           />
-        </div>
-        <div className="flex gap-4 mt-8">
+        <div className="grid grid-cols-2 gap-4">
           <Button
             text={'OK'}
             type={'submit'}
@@ -150,7 +148,7 @@ export default function SignUpForm() {
             }}
           />
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }

@@ -27,6 +27,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.form-group label {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
 .app-container {
   min-block-size: 100vb;
   grid-template-rows: 3.5rem 1fr;
