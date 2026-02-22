@@ -137,7 +137,7 @@ export default function SignUpForm() {
             text={'OK'}
             type={'submit'}
             disabled={!acceptTerms || isSubmitting}
-            className="bg-blue-500 hover:bg-blue-400 active:bg-blue-600"
+            className="bg-(--primary) hover:bg-(--primary-bright) active:bg-(--primary-dim)"
           />
           <Button
             text={'Cancel'}
