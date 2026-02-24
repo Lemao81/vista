@@ -101,37 +101,37 @@ export default function SignUpForm() {
     <>
       <h1 className="text-3xl font-bold mb-8">Sign Up</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2 min-w-87.5">
-          <Input
-            {...register('userName')}
-            label={'User name'}
-            placeholder={'Please chose a user name'}
-            error={errors.userName?.message}
-          />
-          <Input
-            {...register('email')}
-            label={'Email'}
-            placeholder={'Please enter your email'}
-            error={errors.email?.message}
-          />
-          <Input
-            {...register('password')}
-            label={'Password'}
-            placeholder={'Your password must be at least 6 characters'}
-            isPassword={true}
-            error={errors.password?.message}
-          />
-          <Input
-            {...register('passwordRepeat')}
-            label={'Confirm Password'}
-            placeholder={'Repeat your password'}
-            isPassword={true}
-            error={errors.passwordRepeat?.message}
-          />
-          <Checkbox
-            {...register('acceptTerms')}
-            label={'I accept the Terms and Conditions'}
-            error={errors.acceptTerms?.message}
-          />
+        <Input
+          {...register('userName')}
+          label={'User name'}
+          placeholder={'Please chose a user name'}
+          error={errors.userName?.message}
+        />
+        <Input
+          {...register('email')}
+          label={'Email'}
+          placeholder={'Please enter your email'}
+          error={errors.email?.message}
+        />
+        <Input
+          {...register('password')}
+          label={'Password'}
+          placeholder={'Your password must be at least 6 characters'}
+          isPassword={true}
+          error={errors.password?.message}
+        />
+        <Input
+          {...register('passwordRepeat')}
+          label={'Confirm Password'}
+          placeholder={'Repeat your password'}
+          isPassword={true}
+          error={errors.passwordRepeat?.message}
+        />
+        <Checkbox
+          {...register('acceptTerms')}
+          label={'I accept the Terms and Conditions'}
+          error={errors.acceptTerms?.message}
+        />
         <div className="grid grid-cols-2 gap-4">
           <Button
             text={'OK'}

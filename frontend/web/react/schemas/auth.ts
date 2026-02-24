@@ -1,19 +1,19 @@
-import { VALIDATION_MESSAGES } from '@/utils/messages';
 import { z } from 'zod';
+import { validationMessages } from '@/utils/constants';
 
 export const signUpFormDataSchema = z.object({
   userName: z
     .string()
-    .nonempty(VALIDATION_MESSAGES.nonEmpty)
+    .nonempty(validationMessages.nonEmpty)
     .regex(/^[a-zA-Z0-9]*$/, { error: 'Must only contain letters and digits.' })
     .trim(),
-  email: z.string().nonempty(VALIDATION_MESSAGES.nonEmpty).email().trim(),
+  email: z.string().nonempty(validationMessages.nonEmpty).email().trim(),
   password: z
     .string()
-    .nonempty(VALIDATION_MESSAGES.nonEmpty)
+    .nonempty(validationMessages.nonEmpty)
     .min(6, { message: 'Must be at least 6 characters.' })
     .trim(),
-  passwordRepeat: z.string().nonempty(VALIDATION_MESSAGES.nonEmpty).trim(),
+  passwordRepeat: z.string().nonempty(validationMessages.nonEmpty).trim(),
   acceptTerms: z.boolean(),
 });
 

@@ -8,3 +8,5 @@ export class RequestFailedError extends Error {
     this.data = data;
   }
 }
+
+export class AssertionError extends Error {}
