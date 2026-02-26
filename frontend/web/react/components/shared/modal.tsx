@@ -1,6 +1,6 @@
-import Overlay from '@/components/shared/overlay';
-import ModalCanvas from '@/components/shared/modal-canvas';
 import React, { type PropsWithChildren } from 'react';
+import ModalCanvas from '@/components/shared/modal-canvas';
+import Overlay from '@/components/shared/overlay';
 
 export type ModalProps = {
   show: boolean;

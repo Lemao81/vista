@@ -1,21 +1,21 @@
-import Input from '@/components/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useContext, useEffect } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import type { z } from 'zod';
 import { ModalContext } from '@/components/shared/modal-provider';
 import Button from '@/components/ui/button';
-import type { z } from 'zod';
-import { type SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import Checkbox from '@/components/ui/checkbox';
+import Input from '@/components/ui/input';
 import { signUp } from '@/requests/auth/signUp';
-import { useMutation } from '@tanstack/react-query';
+import { type SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
 import {
   getValidationErrors,
   isDevelopment,
   isValidationFailedError,
   jsonify,
 } from '@/utils/helpers';
-import { toast } from 'sonner';
-import { type SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
 
 export default function SignUpForm() {
   const { setShowSignUpModal } = useContext(ModalContext);
@@ -100,52 +100,52 @@ export default function SignUpForm() {
   return (
     <>
       <h1 className="text-3xl font-bold mb-8">Sign Up</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2 min-w-87.5">
+      <form className="grid gap-2 min-w-87.5" onSubmit={handleSubmit(onSubmit)}>
         <Input
           {...register('userName')}
+          error={errors.userName?.message}
           label={'User name'}
           placeholder={'Please chose a user name'}
-          error={errors.userName?.message}
         />
         <Input
           {...register('email')}
+          error={errors.email?.message}
           label={'Email'}
           placeholder={'Please enter your email'}
-          error={errors.email?.message}
         />
         <Input
           {...register('password')}
+          error={errors.password?.message}
+          isPassword={true}
           label={'Password'}
           placeholder={'Your password must be at least 6 characters'}
-          isPassword={true}
-          error={errors.password?.message}
         />
         <Input
           {...register('passwordRepeat')}
+          error={errors.passwordRepeat?.message}
+          isPassword={true}
           label={'Confirm Password'}
           placeholder={'Repeat your password'}
-          isPassword={true}
-          error={errors.passwordRepeat?.message}
         />
         <Checkbox
           {...register('acceptTerms')}
-          label={'I accept the Terms and Conditions'}
           error={errors.acceptTerms?.message}
+          label={'I accept the Terms and Conditions'}
         />
         <div className="grid grid-cols-2 gap-4">
           <Button
+            className="bg-(--primary) hover:bg-(--primary-bright) active:bg-(--primary-dim)"
+            disabled={!acceptTerms || isSubmitting}
             text={'OK'}
             type={'submit'}
-            disabled={!acceptTerms || isSubmitting}
-            className="bg-(--primary) hover:bg-(--primary-bright) active:bg-(--primary-dim)"
           />
           <Button
-            text={'Cancel'}
             className="border border-neutral-300 bg-white hover:bg-gray-100 active:bg-gray-200 text-black"
             onClick={() => {
               reset();
               setShowSignUpModal(false);
             }}
+            text={'Cancel'}
           />
         </div>
       </form>

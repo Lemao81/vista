@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { createContext, type Dispatch, type SetStateAction, useState } from 'react'
+import { createContext, type Dispatch, type SetStateAction, useState } from 'react';
 import SignUpModal from '@/components/auth/sign-up-modal';
 
 export type ModalContextType = {

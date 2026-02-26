@@ -17,8 +17,8 @@ export default function Input({ label, placeholder, isPassword, error, ...props 
           'rounded-lg bg-white px-2 py-1 shadow-md ring-1 ring-neutral-400 focus:outline-0',
           error && 'ring-red-400'
         )}
-        type={isPassword ? 'password' : 'text'}
         placeholder={placeholder}
+        type={isPassword ? 'password' : 'text'}
         {...props}
       />
       {error ? (

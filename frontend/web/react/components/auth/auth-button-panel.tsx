@@ -11,13 +11,13 @@ export default function AuthButtonPanel() {
     <>
       <div className="flex items-center gap-4 pr-8">
         <Button
-          text={'Sign In'}
           className="bg-(--primary) hover:bg-(--primary-bright) active:bg-(--primary-dim) hover:scale-105"
+          text={'Sign In'}
         />
         <Button
-          text={'Sign Up'}
           className="rounded-md bg-(--primary) px-5 py-2 hover:bg-(--primary-bright) active:bg-(--primary-dim) hover:scale-105"
           onClick={() => setShowSignUpModal(true)}
+          text={'Sign Up'}
         />
       </div>
     </>

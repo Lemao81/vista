@@ -1,8 +1,8 @@
 import type React from 'react';
 import AppBar from '@/components/layout/app-bar';
+import Footer from '@/components/layout/footer';
 import SideNavigation from '@/components/layout/side-navigation';
 import ModalProvider from '@/components/shared/modal-provider';
-import Footer from '@/components/layout/footer';
 import QueryClientProviderWrapper from '@/components/shared/query-client-provider-wrapper';
 
 export default function DomainLayout({ children }: Readonly<{ children: React.ReactNode }>) {

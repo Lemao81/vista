@@ -1,5 +1,5 @@
-import { AssertionError, RequestFailedError } from '@/types/errors';
 import { validationProblemDetailsSchema } from '@/schemas/problemDetails';
+import { AssertionError, RequestFailedError } from '@/types/errors';
 import { errorCodes } from '@/utils/constants';
 
 const useDevelopmentMode = true;
