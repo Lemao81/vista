@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #4B0082;
+  --primary: #4b0082;
   --primary-bright: hsl(from var(--primary) h s calc(l + 10));
   --primary-dim: hsl(from var(--primary) h s calc(l - 10));
 }
