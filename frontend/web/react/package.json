@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "biome-format-fix": "pnpx @biomejs/biome format --fix",
+    "biome-lint-fix": "pnpx @biomejs/biome lint --fix",
+    "biome-check-fix": "pnpx @biomejs/biome check --fix",
+    "biome-check": "pnpx @biomejs/biome check"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
@@ -21,6 +25,7 @@
     "tailwind-merge": "3.4.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.4",
     "@tailwindcss/postcss": "4.1.18",
     "@types/node": "25.0.1",
     "@types/react": "19.2.7",
