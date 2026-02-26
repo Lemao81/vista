@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import AppBar from '@/components/layout/app-bar';
 import SideNavigation from '@/components/layout/side-navigation';
 import ModalProvider from '@/components/shared/modal-provider';

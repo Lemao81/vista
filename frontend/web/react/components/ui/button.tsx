@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, HTMLProps, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, DetailedHTMLProps, HTMLProps, ReactNode } from 'react';
 import { cn } from '@/utils/cn';
 
 export type ButtonProps = {

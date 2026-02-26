@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLProps } from 'react';
+import type { DetailedHTMLProps, HTMLProps } from 'react';
 
 export type CheckboxProps = {
   label: string;

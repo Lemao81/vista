@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 import { RequestFailedError } from '@/types/errors';
 
 export type SignUpRequest = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 export default function ModalCanvas({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

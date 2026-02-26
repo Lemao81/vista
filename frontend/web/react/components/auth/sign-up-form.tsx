@@ -2,8 +2,8 @@ import Input from '@/components/ui/input';
 import { useContext, useEffect } from 'react';
 import { ModalContext } from '@/components/shared/modal-provider';
 import Button from '@/components/ui/button';
-import { z } from 'zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import type { z } from 'zod';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Checkbox from '@/components/ui/checkbox';
 import { signUp } from '@/requests/auth/signUp';
@@ -15,7 +15,7 @@ import {
   jsonify,
 } from '@/utils/helpers';
 import { toast } from 'sonner';
-import { SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
+import { type SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
 
 export default function SignUpForm() {
   const { setShowSignUpModal } = useContext(ModalContext);
