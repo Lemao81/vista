@@ -1,4 +1,3 @@
-import React from 'react';
 import AuthButtonPanel from '@/components/auth/auth-button-panel';
 import AppBarLogo from '@/components/layout/app-bar-logo';
 import TopNavigation from '@/components/layout/top-navigation';

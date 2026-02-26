@@ -1,4 +1,4 @@
-import React, { type PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
 import ModalCanvas from '@/components/shared/modal-canvas';
 import Overlay from '@/components/shared/overlay';
 

@@ -25,7 +25,7 @@ export function isRequestFailedError(error: Error): error is RequestFailedError 
 export function isValidationFailedError(error: Error): error is RequestFailedError {
   return (
     isRequestFailedError(error) &&
-    error.status == 400 &&
+    error.status === 400 &&
     error.data?.errorCode === errorCodes.validationFailed &&
     error.data?.errors
   );
