@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useEffectEvent } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import type { z } from 'zod';
@@ -27,16 +27,17 @@ export default function SignUpForm() {
     setError,
     watch,
     formState: { errors, isSubmitting, isSubmitSuccessful },
-  } = useForm<z.input<typeof signUpFormDataSchema>, any, z.output<typeof signUpFormDataSchema>>({
-    resolver: zodResolver(signUpFormDataSchema),
-    defaultValues: (isDevelopment() && getDevDefault()) || undefined,
-  });
+  } = useForm<z.input<typeof signUpFormDataSchema>, unknown, z.output<typeof signUpFormDataSchema>>(
+    {
+      resolver: zodResolver(signUpFormDataSchema),
+      defaultValues: (isDevelopment() && getDevDefault()) || undefined,
+    }
+  );
 
   const acceptTerms = watch('acceptTerms');
 
-  useEffect(() => {
-    reset();
-  }, [isSubmitSuccessful]);
+  const onSuccessfulSubmit = useEffectEvent((_: boolean) => reset());
+  useEffect(() => onSuccessfulSubmit(isSubmitSuccessful), [isSubmitSuccessful]);
 
   const { mutate } = useMutation({
     mutationFn: signUp,

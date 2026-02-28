@@ -4,7 +4,7 @@ import { errorCodes } from '@/utils/constants';
 
 const useDevelopmentMode = true;
 
-export function jsonify(data: any) {
+export function jsonify(data: unknown) {
   return JSON.stringify(data, null, 2);
 }
 
@@ -23,12 +23,18 @@ export function isRequestFailedError(error: Error): error is RequestFailedError 
 }
 
 export function isValidationFailedError(error: Error): error is RequestFailedError {
-  return (
-    isRequestFailedError(error) &&
-    error.status === 400 &&
-    error.data?.errorCode === errorCodes.validationFailed &&
-    error.data?.errors
-  );
+  if (!isRequestFailedError(error) || error.status !== 400) {
+    return false;
+  }
+
+  const parseResult = validationProblemDetailsSchema.safeParse(error.data);
+  if (!parseResult.success) {
+    return false;
+  }
+
+  const problemDetails = parseResult.data;
+
+  return problemDetails.errorCode === errorCodes.validationFailed && !!problemDetails.errors;
 }
 
 export function uncapitalize(str: string | undefined): string | undefined {

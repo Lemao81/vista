@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 export type OverLayProps = {
   onDismiss?: () => void;
@@ -11,6 +11,8 @@ export default function Overlay({ children, onDismiss }: OverLayProps) {
       <div
         className="fixed inset-0 z-1001 flex items-center justify-center"
         onClick={() => onDismiss?.()}
+        onKeyDown={() => onDismiss?.()}
+        role="dialog"
       >
         {children}
       </div>

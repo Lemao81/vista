@@ -18,8 +18,9 @@ export async function signUp(request: SignUpRequest): Promise<''> {
     );
 
     return response.data;
-  } catch (error: any) {
-    const requestError = new RequestFailedError(error?.message);
+  } catch (error: unknown) {
+    const message = error !== null && error instanceof Error ? error.message : 'Unknown error';
+    const requestError = new RequestFailedError(message);
     if (axios.isAxiosError(error)) {
       requestError.status = error.status;
       requestError.data = error.response?.data;

@@ -11,7 +11,9 @@ export type InputProps = {
 export default function Input({ label, placeholder, isPassword, error, ...props }: InputProps) {
   return (
     <div className="grid gap-[0.25lh] form-group">
-      <label className="font-semibold">{label}</label>
+      <label className="font-semibold" htmlFor="input">
+        {label}
+      </label>
       <input
         className={cn(
           'rounded-lg bg-white px-2 py-1 shadow-md ring-1 ring-neutral-400 focus:outline-0',
