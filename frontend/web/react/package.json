@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "biome-format-fix": "pnpx @biomejs/biome format --fix",
-    "biome-lint-fix": "pnpx @biomejs/biome lint --fix",
     "biome-check-fix": "pnpx @biomejs/biome check --fix",
-    "biome-check": "pnpx @biomejs/biome check"
+    "biome-check": "pnpx @biomejs/biome check",
+    "biome-format-fix": "pnpx @biomejs/biome format --fix",
+    "biome-lint-fix": "pnpx @biomejs/biome lint --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
