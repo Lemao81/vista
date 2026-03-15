@@ -16,7 +16,7 @@ export default function Input({ label, placeholder, isPassword, error, ...props 
       </label>
       <input
         className={cn(
-          'rounded-lg bg-white px-2 py-1 shadow-md ring-1 ring-neutral-400 focus:outline-0',
+          'rounded-lg bg-surface2 px-2 py-1 shadow-md ring-1 ring-neutral-400 focus:outline-0',
           error && 'ring-red-400'
         )}
         placeholder={placeholder}

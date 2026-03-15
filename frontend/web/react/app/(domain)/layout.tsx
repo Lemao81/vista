@@ -13,7 +13,7 @@ export default function DomainLayout({ children }: LayoutProps<'/'>) {
           <div className="app-outer-body grid">
             <SideNavigation />
             <div className="app-inner-body grid">
-              <main className="bg-neutral-200 p-2">{children}</main>
+              <main className="bg-surface2 p-2">{children}</main>
               <Footer />
             </div>
           </div>

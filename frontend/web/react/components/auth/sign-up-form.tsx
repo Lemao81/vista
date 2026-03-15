@@ -135,13 +135,13 @@ export default function SignUpForm() {
         />
         <div className="grid grid-cols-2 gap-4">
           <Button
-            className="bg-(--primary) hover:bg-(--primary-bright) active:bg-(--primary-dim)"
+            className="bg-brand hover:bg-(--brand-bright) active:bg-(--brand-dim)"
             disabled={!acceptTerms || isSubmitting}
             text={'OK'}
             type={'submit'}
           />
           <Button
-            className="border border-neutral-300 bg-white hover:bg-gray-100 active:bg-gray-200 text-black"
+            className="border border-neutral-300 bg-surface1 hover:bg-surface2 active:bg-surface3"
             onClick={() => {
               reset();
               setShowSignUpModal(false);
