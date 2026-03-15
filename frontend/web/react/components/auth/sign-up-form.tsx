@@ -10,12 +10,8 @@ import Checkbox from '@/components/ui/checkbox';
 import Input from '@/components/ui/input';
 import { signUp } from '@/requests/auth/sign-up';
 import { type SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
-import {
-  getValidationErrors,
-  isDevelopment,
-  isValidationFailedError,
-  jsonify,
-} from '@/utils/helpers';
+import { getSignUpFormDevDefault, isDevelopment } from '@/utils/dev-helpers';
+import { getValidationErrors, isValidationFailedError, jsonify } from '@/utils/helpers';
 
 export default function SignUpForm() {
   const { setShowSignUpModal } = useContext(ModalContext);
@@ -30,7 +26,7 @@ export default function SignUpForm() {
   } = useForm<z.input<typeof signUpFormDataSchema>, unknown, z.output<typeof signUpFormDataSchema>>(
     {
       resolver: zodResolver(signUpFormDataSchema),
-      defaultValues: (isDevelopment() && getDevDefault()) || undefined,
+      defaultValues: (isDevelopment() && getSignUpFormDevDefault()) || undefined,
     }
   );
 
@@ -41,9 +37,7 @@ export default function SignUpForm() {
 
   const { mutate } = useMutation({
     mutationFn: signUp,
-    onSuccess: (_) => {
-      toast.success('You have been signed up');
-    },
+    onSuccess: (_) => toast.success('You have been signed up'),
     onError: (error) => {
       if (isValidationFailedError(error)) {
         for (const [name, errors] of getValidationErrors(error)) {
@@ -87,16 +81,6 @@ export default function SignUpForm() {
       passwordRepeat: formData.passwordRepeat,
     });
   };
-
-  function getDevDefault() {
-    return {
-      userName: 'test',
-      email: 'test@test.com',
-      password: 'Test01!',
-      passwordRepeat: 'Test01!',
-      acceptTerms: true,
-    };
-  }
 
   return (
     <>

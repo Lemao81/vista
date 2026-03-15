@@ -2,14 +2,8 @@ import { validationProblemDetailsSchema } from '@/schemas/problem-details';
 import { AssertionError, RequestFailedError } from '@/types/errors';
 import { errorCodes } from '@/utils/constants';
 
-const useDevelopmentMode = true;
-
 export function jsonify(data: unknown) {
   return JSON.stringify(data, null, 2);
-}
-
-export function isDevelopment() {
-  return useDevelopmentMode && process.env.NODE_ENV === 'development';
 }
 
 export function assert(condition: boolean, message?: string): asserts condition {
