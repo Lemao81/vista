@@ -8,7 +8,7 @@ import { ModalContext } from '@/components/shared/modal-provider';
 import Button from '@/components/ui/button';
 import Checkbox from '@/components/ui/checkbox';
 import Input from '@/components/ui/input';
-import { signUp } from '@/requests/auth/signUp';
+import { signUp } from '@/requests/auth/sign-up';
 import { type SignUpFormData, signUpFormDataSchema } from '@/schemas/auth';
 import {
   getValidationErrors,

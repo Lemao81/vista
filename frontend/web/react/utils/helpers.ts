@@ -1,4 +1,4 @@
-import { validationProblemDetailsSchema } from '@/schemas/problemDetails';
+import { validationProblemDetailsSchema } from '@/schemas/problem-details';
 import { AssertionError, RequestFailedError } from '@/types/errors';
 import { errorCodes } from '@/utils/constants';
 
