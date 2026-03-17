@@ -13,6 +13,7 @@
   --surface2-light: hsl(var(--brand-hue) 20% 99%);
   --surface3-light: hsl(var(--brand-hue) 20% 92%);
   --surface4-light: hsl(var(--brand-hue) 20% 85%);
+  --border-light: hsl(var(--brand-hue) 30% 50%);
   --surface-shadow-light: var(--brand-hue) 10% 20%;
   --shadow-strength-light: 0.02;
 
@@ -26,6 +27,7 @@
   --surface2-dark: hsl(var(--brand-hue) 10% 15%);
   --surface3-dark: hsl(var(--brand-hue) 5% 20%);
   --surface4-dark: hsl(var(--brand-hue) 5% 25%);
+  --border-dark: hsl(var(--brand-hue) 5% 55%);
   --surface-shadow-dark: var(--brand-hue) 50% 3%;
   --shadow-strength-dark: 0.8;
 }
@@ -38,6 +40,7 @@
   --surface2: var(--surface2-light);
   --surface3: var(--surface3-light);
   --surface4: var(--surface4-light);
+  --border: var(--border-light);
   --surface-shadow: var(--surface-shadow-light);
   --shadow-strength: var(--shadow-strength-light);
   --brand-bright: hsl(from var(--brand) h s calc(l + 10));
@@ -64,6 +67,7 @@
     --surface2: var(--surface2-dark);
     --surface3: var(--surface3-dark);
     --surface4: var(--surface4-dark);
+    --border: var(--border-dark);
     --surface-shadow: var(--surface-shadow-dark);
     --shadow-strength: var(--shadow-strength-dark);
     color-scheme: dark;
@@ -78,6 +82,7 @@
   --surface2: var(--surface2-light);
   --surface3: var(--surface3-light);
   --surface4: var(--surface4-light);
+  --border: var(--border-light);
   --surface-shadow: var(--surface-shadow-light);
   --shadow-strength: var(--shadow-strength-light);
   color-scheme: light;
@@ -91,6 +96,7 @@
   --surface2: var(--surface2-dark);
   --surface3: var(--surface3-dark);
   --surface4: var(--surface4-dark);
+  --border: var(--border-dark);
   --surface-shadow: var(--surface-shadow-dark);
   --shadow-strength: var(--shadow-strength-dark);
   color-scheme: dark;
@@ -106,4 +112,76 @@ html[color-scheme='light'] .color-scheme-dark {
 
 html[color-scheme='dark'] .color-scheme-auto {
   display: unset;
+}
+
+.surface1 {
+  color: var(--text2);
+  background-color: var(--surface1);
+  border-color: var(--border);
+
+  &.hover {
+    &:hover {
+      background-color: var(--surface2);
+    }
+  }
+
+  &.active {
+    &:active {
+      background-color: var(--surface4);
+    }
+  }
+}
+
+.surface2 {
+  color: var(--text2);
+  background-color: var(--surface2);
+  border-color: var(--border);
+
+  &.hover {
+    &:hover {
+      background-color: var(--surface1);
+    }
+  }
+
+  &.active {
+    &:active {
+      background-color: var(--surface4);
+    }
+  }
+}
+
+.surface3 {
+  color: var(--text1);
+  background-color: var(--surface3);
+  border-color: var(--border);
+
+  &.hover {
+    &:hover {
+      background-color: var(--surface4);
+    }
+  }
+
+  &.active {
+    &:active {
+      background-color: var(--surface1);
+    }
+  }
+}
+
+.surface4 {
+  color: var(--text1);
+  background-color: var(--surface4);
+  border-color: var(--border);
+
+  &.hover {
+    &:hover {
+      background-color: var(--surface3);
+    }
+  }
+
+  &.active {
+    &:active {
+      background-color: var(--surface1);
+    }
+  }
 }

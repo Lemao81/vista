@@ -125,7 +125,7 @@ export default function SignUpForm() {
             type={'submit'}
           />
           <Button
-            className="border border-neutral-300 bg-surface1 hover:bg-surface2 active:bg-surface3"
+            className="border surface3 hover active"
             onClick={() => {
               reset();
               setShowSignUpModal(false);
