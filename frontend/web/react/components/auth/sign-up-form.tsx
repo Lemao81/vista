@@ -118,14 +118,9 @@ export default function SignUpForm() {
           label={'I accept the Terms and Conditions'}
         />
         <div className="grid grid-cols-2 gap-4">
+          <Button disabled={!acceptTerms || isSubmitting} text={'OK'} type="submit" />
           <Button
-            className="bg-brand hover:bg-(--brand-bright) active:bg-(--brand-dim)"
-            disabled={!acceptTerms || isSubmitting}
-            text={'OK'}
-            type={'submit'}
-          />
-          <Button
-            className="border surface3 hover active"
+            intent="cancel"
             onClick={() => {
               reset();
               setShowSignUpModal(false);
