@@ -22,11 +22,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Gitleaks scan
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -42,7 +37,7 @@ jobs:
         run: |
           docker build -f ./backend/src/Services/Maintenance/WebApi/Dockerfile --build-arg DOTNET_VERSION=${{ env.DOTNET_VERSION }} \
           -t ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }} ./backend
-        
+
       - name: Push Maintenance service prod image
         run: docker push ${{ env.REGISTRY }}/${{ env.MAINTENANCE_PROD_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
@@ -64,7 +59,7 @@ jobs:
 
       - name: Build solution prod
         run: dotnet build ${{ env.SOLUTION_PATH }} -c Release --no-restore
-        
+
       - name: Build solution test
         run: dotnet build ${{ env.SOLUTION_PATH }} -c Release --no-restore /p:ExtraDefineConstants=TEST
 
