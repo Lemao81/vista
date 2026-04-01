@@ -1,0 +1,9 @@
+﻿environment_name                 = "dev"
+storage_account_replication_type = "LRS"
+storage_account_tier             = "Standard"
+service_plan_sku_name            = "B1"
+app_always_on                    = false
+psql_storage_mb                  = "32768"
+psql_storage_tier                = "P4"
+psql_sku_name                    = "B_Standard_B1ms"
+key_vault_sku_name               = "standard"
