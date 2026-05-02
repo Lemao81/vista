@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\Services\FileTransfer\WebApi\WebApi.csproj", "{522FEFF5-D234-433D-9D18-D406A98BC2EA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34A438BD-31FB-4AC8-8139-ED98994FF08F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{34A438BD-31FB-4AC8-8139-ED98994FF08F}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
