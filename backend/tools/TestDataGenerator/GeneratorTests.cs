@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography;
 using Bogus;
 using Common.Domain.Users;
 using FileTransfer.Domain.Media;
@@ -43,7 +42,7 @@ public class GeneratorTests
 				var mediaItem   = MediaItem.Create(mediaFolder.Id, userId, mediaKind, MediaSizeKind.Original, mediaType);
 				if (mediaKind == MediaKind.Video)
 				{
-					mediaItem.AddMetaData("DurationSec", RandomNumberGenerator.GetInt32(5, 31));
+					mediaItem.AddMetaData("DurationSec", Random.Shared.Next(5, 31));
 				}
 
 				mediaFolder.AddMediaItem(mediaItem);
