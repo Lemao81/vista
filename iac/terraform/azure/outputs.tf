@@ -43,7 +43,7 @@ output "service_plan_name" {
 }
 
 output "web_app_name" {
-  value = azurerm_linux_web_app.maintenance.name
+  value = azurerm_linux_web_app.main.name
 }
 
 output "function_app_name" {

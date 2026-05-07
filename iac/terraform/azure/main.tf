@@ -75,17 +75,44 @@ resource "azurerm_service_plan" "main" {
   }
 }
 
-resource "azurerm_linux_web_app" "maintenance" {
+resource "azurerm_linux_web_app" "main" {
   name                = "app-${var.application_name}-maintenance-${var.environment_name}-${var.primary_location}-${random_string.suffix.result}"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   service_plan_id     = azurerm_service_plan.main.id
+  tags = {
+    (local.tag_application) = var.application_name
+  }
 
   site_config {
     always_on = var.app_always_on
 
     application_stack {
       dotnet_version = local.dotnet_version
+    }
+  }
+
+  app_settings = {
+    Database__Host     = azurerm_postgresql_flexible_server.main.fqdn
+    Database__Password = var.postgres_password
+    Database__Username = var.postgres_username
+    INIT_AZURE_BLOB    = "true"
+    INIT_POSTGRES_DB   = "true"
+  }
+
+  logs {
+    detailed_error_messages = true
+    failed_request_tracing  = true
+
+    application_logs {
+      file_system_level = "Verbose"
+    }
+
+    http_logs {
+      file_system {
+        retention_in_days = 90
+        retention_in_mb   = 35
+      }
     }
   }
 }
@@ -118,7 +145,9 @@ resource "azurerm_linux_function_app" "main" {
   }
 
   app_settings = {
-    AZURE_CLIENT_ID = azurerm_user_assigned_identity.main.client_id
+    AZURE_CLIENT_ID                 = azurerm_user_assigned_identity.main.client_id
+    WEBSITE_RUN_FROM_PACKAGE        = "1"
+    WEBSITE_ENABLE_SYNC_UPDATE_SITE = "true"
   }
 }
 
@@ -127,7 +156,7 @@ resource "azurerm_postgresql_flexible_server" "main" {
   resource_group_name    = azurerm_resource_group.main.name
   location               = azurerm_resource_group.main.location
   version                = "18"
-  administrator_login    = "psqladmin"
+  administrator_login    = var.postgres_username
   administrator_password = var.postgres_password
   storage_mb             = var.psql_storage_mb
   storage_tier           = var.psql_storage_tier

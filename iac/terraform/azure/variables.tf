@@ -19,6 +19,11 @@ variable "postgres_password" {
   sensitive = true
 }
 
+variable "postgres_username" {
+  type    = string
+  default = "psqladmin"
+}
+
 # environment specific
 variable "environment_name" {
   type = string
