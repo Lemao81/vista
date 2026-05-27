@@ -1,6 +1,7 @@
-﻿using NetArchTest.Rules;
+﻿using ArchUnitNET.xUnitV3;
 using Service.Tests.Abstractions;
 using SharedKernel;
+using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace Service.Tests.Tests.Architecture;
 
@@ -13,70 +14,48 @@ public class DomainTests : ArchitectureTestBase
 	[Fact]
 	public void Entities_Should_BeSealed()
 	{
-		// Act
-		var result = Types.InAssemblies(DomainAssemblies).That().Inherit(typeof(Entity<>)).Should().BeSealed().GetResult();
-		PrintFailingTypes(result);
-
-		// Assert
-		Assert.True(result.IsSuccessful);
+		Classes().That().AreAssignableTo(typeof(Entity<>)).And().AreNotAbstract().Should().BeSealed().Check(Architecture);
 	}
 
 	[Fact]
 	public void DomainEvents_Should_EndWithDomainEvent()
 	{
-		// Act
-		var result = Types.InAssemblies(DomainAssemblies)
-			.That()
-			.ImplementInterface(typeof(IDomainEvent))
-			.Should()
-			.HaveNameEndingWith("DomainEvent", StringComparison.Ordinal)
-			.GetResult();
-
-		PrintFailingTypes(result);
-
-		// Assert
-		Assert.True(result.IsSuccessful);
+		Classes().That().ImplementInterface(typeof(IDomainEvent)).Should().HaveNameEndingWith("DomainEvent").Check(Architecture);
 	}
 
 	[Fact]
 	public void Errors_Should_EndWithError()
 	{
-		// Act
-		var result = Types.InAssemblies(DomainAssemblies)
-			.That()
-			.Inherit(typeof(Error))
-			.Should()
-			.HaveNameEndingWith("Error", StringComparison.Ordinal)
-			.GetResult();
-
-		PrintFailingTypes(result);
-
-		// Assert
-		Assert.True(result.IsSuccessful);
+		Classes().That().AreAssignableTo(typeof(Error)).Should().HaveNameEndingWith("Error").Check(Architecture);
 	}
 
 	[Fact]
-	public void Domain_Should_NotDependOnOuterLayers()
+	public void Errors_Should_BeRecords()
 	{
-		// Arrange
-		var outerAssemblies = ApplicationAssemblies.Concat(InfrastructureAssemblies)
-			.Concat(InfrastructureAssemblies)
-			.Concat(WebApiAssemblies)
-			.GroupBy(a => a.GetName().Name?.Split(".")[0]!)
-			.ToDictionary(g => g.Key, g => g.ToArray());
+		Classes().That().AreAssignableTo(typeof(Error)).Should().BeRecord().Check(Architecture);
+	}
 
-		foreach (var domainAssembly in DomainAssemblies)
-		{
-			var key             = domainAssembly.GetName().Name?.Split(".")[0];
-			var outerNamespaces = outerAssemblies[key!].Select(a => a.GetName().Name?.Split(".")[1]).ToArray();
+	[Fact]
+	public void Domain_Should_NotHaveDependencyOnApplication()
+	{
+		Types().That().Are(DomainLayer).Should().NotDependOnAny(ApplicationLayer).Check(Architecture);
+	}
 
-			// Act
-			var result = Types.InAssembly(domainAssembly).Should().NotHaveDependencyOnAny(outerNamespaces).GetResult();
+	[Fact]
+	public void Domain_Should_NotHaveDependencyOnInfrastructure()
+	{
+		Types().That().Are(DomainLayer).Should().NotDependOnAny(InfrastructureLayer).Check(Architecture);
+	}
 
-			PrintFailingTypes(result);
+	[Fact]
+	public void Domain_Should_NotHaveDependencyOnPresentation()
+	{
+		Types().That().Are(DomainLayer).Should().NotDependOnAny(PresentationLayer).Check(Architecture);
+	}
 
-			// Assert
-			Assert.True(result.IsSuccessful);
-		}
+	[Fact]
+	public void Domain_Should_NotHaveDependencyOnWebApi()
+	{
+		Types().That().Are(DomainLayer).Should().NotDependOnAny(WebApiLayer).Check(Architecture);
 	}
 }

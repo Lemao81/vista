@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NetArchTest.Rules"/>
     <PackageReference Include="NSubstitute"/>
+    <PackageReference Include="TngTech.ArchUnitNET.xUnitV3" />
   </ItemGroup>
 
   <ItemGroup>

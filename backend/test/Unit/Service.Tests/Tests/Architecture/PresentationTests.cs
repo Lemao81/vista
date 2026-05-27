@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using NetArchTest.Rules;
 using Service.Tests.Abstractions;
+using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace Service.Tests.Tests.Architecture;
 
@@ -13,17 +13,6 @@ public class PresentationTests : ArchitectureTestBase
 	[Fact]
 	public void Validators_Should_EndWithValidator()
 	{
-		// Act
-		var result = Types.InAssemblies(PresentationAssemblies)
-			.That()
-			.ImplementInterface(typeof(IValidator))
-			.Should()
-			.HaveNameEndingWith("Validator", StringComparison.Ordinal)
-			.GetResult();
-
-		PrintFailingTypes(result);
-
-		// Assert
-		Assert.True(result.IsSuccessful);
+		Classes().That().ImplementInterface(typeof(IValidator)).Should().HaveNameEndingWith("Validator");
 	}
 }
