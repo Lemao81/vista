@@ -29,7 +29,7 @@ public static class TestHelper
 			var task      = await Task.WhenAny(timeoutTask, checkTask);
 			if (task == timeoutTask)
 			{
-				throw new TimeoutException();
+				throw new TimeoutException("Awaiting service healthiness timed out");
 			}
 
 			if ((await checkTask).Status == HealthStatus.Healthy)
